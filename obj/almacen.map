@@ -1,0 +1,175 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           cpct_video
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__GSFINAL                      
+     00000000  l__GSINIT                       
+     00000000  l__HOME                         
+     00000000  l__INITIALIZED                  
+     00000000  l__INITIALIZER                  
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     00000017  l__DATA                         
+     0000058C  l__CODE                         
+     00004000  s__CODE                         
+     0000458C  s__DATA                         
+     000045A3  s__GSFINAL                      
+     000045A3  s__GSINIT                       
+     000045A3  s__HOME                         
+     000045A3  s__INITIALIZED                  
+     000045A3  s__INITIALIZER                  
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    0000058C =        1420. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004000  _pera                              pera
+     00004020  _manzana                           manzana
+     00004040  _izquierda                         izquierda
+     00004068  _izquierda_lleno                   izquierda_lleno
+     00004090  _derecha_lleno                     derecha_lleno
+     000040B8  _derecha                           derecha
+     000040E0  _BW                                BW
+     000040E2  _borra                             borra
+     00004100  _iniciar_valores                   definiciones
+     00004138  _fisica                            fisica
+     00004147  _baja                              fisica
+     0000417F  _sube                              fisica
+     000041B7  _main                              main
+     000041D3  _mientras_juego                    main
+     000041E7  _pinta_marcador                    marcador
+     000041FC  _pintar_sprites                    pintar
+     00004237  _teclado                           teclado
+     00004271  IR                                 rupturas.s
+     00004272  _control_interrupciones            rupturas.s
+     0000428A  int_1                              rupturas.s
+     000042A4  int_2                              rupturas.s
+     000042BE  int_3                              rupturas.s
+     000042E6  int_4                              rupturas.s
+     0000430E  int_5                              rupturas.s
+     00004328  int_6                              rupturas.s
+     00004350  _cpct_isKeyPressed                 cpct_keyboard
+     00004350  cpct_isKeyPressed_asm              cpct_keyboard
+     0000435C  cpct_setPALColour_asm              cpct_video
+     00004366  _cpct_drawStringM2                 cpct_strings
+     00004395  _cpct_drawSprite                   cpct_sprites
+     0000443A  cpct_drawCharM2_inner_asm          cpct_strings
+     00004449  cpct_charm2imc                     cpct_strings
+     00004460  _cpct_keyboardStatusBuffer         cpct_keyboard
+     0000446A  _cpct_waitVSYNC                    cpct_video
+     0000446A  cpct_waitVSYNC_asm                 cpct_video
+     00004472  _cpct_setVideoMode                 cpct_video
+     00004480  cpct_setVideoMode_asm              cpct_video
+     0000448D  _cpct_disableFirmware              cpct_firmware
+     0000448D  _cpct_removeInterruptHandler       cpct_firmware
+     0000448D  cpct_disableFirmware_asm           cpct_firmware
+     0000448D  cpct_removeInterruptHandler_asm    cpct_firmware
+     0000449D  _cpct_drawSolidBox                 cpct_sprites
+     00004544  _cpct_mode_rom_status              cpct_firmware
+     00004545  _cpct_scanKeyboard                 cpct_keyboard
+     00004545  cpct_scanKeyboard_asm              cpct_keyboard
+     00004576  _cpct_getScreenPtr                 cpct_video
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               0000458C    00000017 =          23. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000458C  _x_jugador                         definiciones
+     0000458D  _y_jugador                         definiciones
+     0000458E  _spr_jugador                       definiciones
+     00004590  _vy_jug                            definiciones
+     00004591  _x_pera                            definiciones
+     00004592  _y_pera                            definiciones
+     00004593  _spr_pera                          definiciones
+     00004595  _vx_pera                           definiciones
+     00004596  _x_manzana                         definiciones
+     00004597  _y_manzana                         definiciones
+     00004598  _spr_manzana                       definiciones
+     0000459A  _vx_manzana                        definiciones
+     0000459B  _y_frame_1                         definiciones
+     0000459C  _y_frame_2                         definiciones
+     0000459D  _y_frame_3                         definiciones
+     0000459E  _y_frame_4                         definiciones
+     0000459F  _x_start_jugador                   definiciones
+     000045A0  _y_start_jugador                   definiciones
+     000045A1  _x_start_manzana                   definiciones
+     000045A2  _y_start_manzana                   definiciones
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+
+Files Linked                              [ module(s) ]
+
+obj/media/pera.rel                        [ pera ]
+obj/media/manzana.rel                     [ manzana ]
+obj/media/izquierda.rel                   [ izquierda ]
+obj/media/izquierda_lleno.rel             [ izquierda_lleno ]
+obj/media/derecha_lleno.rel               [ derecha_lleno ]
+obj/media/derecha.rel                     [ derecha ]
+obj/media/BW.rel                          [ BW ]
+obj/borra.rel                             [ borra ]
+obj/definiciones.rel                      [ definiciones ]
+obj/fisica.rel                            [ fisica ]
+obj/main.rel                              [ main ]
+obj/marcador.rel                          [ marcador ]
+obj/pintar.rel                            [ pintar ]
+obj/teclado.rel                           [ teclado ]
+obj/interrupciones.rel                    [ rupturas.s ]
+
+
+Libraries Linked                          [ object file ]
+
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isKeyPressed.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPALColour_asmbindings.re ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawStringM2_cbindings.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSprite_cbindings.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawCharM2_inner.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ keyboard.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_cbindings.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_asmbindings.re ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSolidBox_cbindings.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard.rel ]
+/home/papa/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_cbindings.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+
+
