@@ -1,6 +1,6 @@
 #include <cpctelera.h>
 #include "sprites.h"
-#include "delcaraciones.h"
+#include "datos/delcaraciones.h"
 
 typedef struct Sentidad{
    u8 x,y;
@@ -8,13 +8,12 @@ typedef struct Sentidad{
    u8* sprite;
 }entidad;
 void main(void) {
-   u8* pvmem;  // Pointer to video memory
    entidad jugador;
    cpct_disableFirmware();
    control_interrupciones();
    cpct_setVideoMode(2);
    iniciar_valores();
-   //pinta_marcador();
+   pinta_marcador();
    mientras_juego();
  
 }
@@ -23,8 +22,9 @@ void mientras_juego(){
       borra();
       teclado();
       fisica();
+      fisica_objetos();
       pintar_sprites();
-      pinta_marcador();
+      pinta_puntos();
       cpct_waitVSYNC();
       }
    }

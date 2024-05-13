@@ -1,6 +1,6 @@
   #include <cpctelera.h>
 #include "sprites.h"
-#include "delcaraciones.h"
+#include "datos/delcaraciones.h"
 void pintar_sprites(){
     u8* pvmem;
   pvmem = cpct_getScreenPtr(CPCT_VMEM_START, x_jugador, y_jugador);

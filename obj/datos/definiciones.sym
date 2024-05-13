@@ -1,0 +1,51 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+  1 _caida_objeto                                                  0010 GR
+  0 _iniciar_valores                                               0000 GR
+    _puntos                                                        **** GX
+  1 _puntos_decena                                                 0019 GR
+  1 _spr_jugador                                                   0002 GR
+  1 _spr_manzana                                                   000D GR
+  1 _spr_pera                                                      0007 GR
+  1 _vx_manzana                                                    000F GR
+  1 _vx_pera                                                       0009 GR
+  1 _vy_jug                                                        0004 GR
+  1 _x_jugador                                                     0000 GR
+  1 _x_manzana                                                     000B GR
+  1 _x_pera                                                        0005 GR
+  1 _x_start_jugador                                               0015 GR
+  1 _x_start_manzana                                               0017 GR
+  1 _x_start_objeto                                                000A GR
+  1 _y_frame_1                                                     0011 GR
+  1 _y_frame_2                                                     0012 GR
+  1 _y_frame_3                                                     0013 GR
+  1 _y_frame_4                                                     0014 GR
+  1 _y_jugador                                                     0001 GR
+  1 _y_manzana                                                     000C GR
+  1 _y_pera                                                        0006 GR
+  1 _y_start_jugador                                               0016 GR
+  1 _y_start_manzana                                               0018 GR
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size   51   flags    0
+   1 _DATA                                      size   1A   flags    0
+   2 _INITIALIZED                               size    0   flags    0
+   3 _DABS                                      size    0   flags    8
+   4 _HOME                                      size    0   flags    0
+   5 _GSINIT                                    size    0   flags    0
+   6 _GSFINAL                                   size    0   flags    0
+   7 _INITIALIZER                               size    0   flags    0
+   8 _CABS                                      size    0   flags    8
+

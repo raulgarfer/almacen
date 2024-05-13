@@ -1,6 +1,6 @@
 #include <cpctelera.h>
 #include "sprites.h"
-#include "delcaraciones.h"
+#include "datos/delcaraciones.h"
 void teclado(){
     vy_jug=0;
     cpct_scanKeyboard();

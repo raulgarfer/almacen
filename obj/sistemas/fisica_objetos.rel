@@ -1,0 +1,46 @@
+XL2
+H 9 areas B global symbols
+M fisica_objetos
+O -mz80
+S _vx_manzana Ref0000
+S _borra_objeto Ref0000
+S _x_manzana Ref0000
+S _y_manzana Ref0000
+S _suma_puntos Ref0000
+S .__.ABS. Def0000
+S _y_jugador Ref0000
+S _caida_objeto Ref0000
+A _CODE size 41 flags 0 addr 0
+S _comprobar_recojida Def002F
+S _fisica_objetos Def0000
+S _muere Def003F
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 00 00
+T 00 00 21 02 10 E5 3A 00 00 F5 33 3A 00 00 F5 33
+R 00 00 00 00 02 07 03 00 02 0C 02 00
+T 0E 00 CD 00 00 F1 F1 FD 21 00 00 FD 7E 00 21
+R 00 00 00 00 02 03 01 00 02 09 02 00
+T 1B 00 00 00 86 FD 77 00 3A 00 00 FD 21 00 00 FD
+R 00 00 00 00 02 02 00 00 02 09 02 00 02 0D 07 00
+T 29 00 96 00 C0 C3 2F 00
+R 00 00 00 00 00 06 00 00
+T 2F 00
+R 00 00 00 00
+T 2F 00 3A 00 00 FD 21 00 00 FD 96 00 CA 00 00 C3
+R 00 00 00 00 02 03 03 00 02 07 06 00 02 0D 04 00
+T 3D 00 3F 00
+R 00 00 00 00 00 02 00 00
+T 3F 00
+R 00 00 00 00
+T 3F 00
+R 00 00 00 00
+T 3F 00 18 FE
+R 00 00 00 00

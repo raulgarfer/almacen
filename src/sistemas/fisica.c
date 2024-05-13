@@ -1,6 +1,6 @@
 #include <cpctelera.h>
 #include "sprites.h"
-#include "delcaraciones.h"
+#include "datos/delcaraciones.h"
 void fisica(){
     if (vy_jug==1)
             {baja();}

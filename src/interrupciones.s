@@ -64,11 +64,7 @@ int_4::
         numero_interrupcion 4
         siguiente_interrrupcion int_5
     cpctm_setBorder_asm 6
-      ld c,#1
-        ;;call cpct_setVideoMode_asm
-        call _pinta_marcador
-        ld c,#2
-        ;;call cpct_setVideoMode_asm
+   
       ld l,#1                             ;;pen
     ld h,#4                             ;;ink
     call cpct_setPALColour_asm
@@ -81,6 +77,11 @@ int_5::
         numero_interrupcion 5
         siguiente_interrrupcion int_6
     cpctm_setBorder_asm 7
+       ld c,#1
+        ;call cpct_setVideoMode_asm
+        call _pinta_marcador
+        ld c,#2
+        ;call cpct_setVideoMode_asm
     cpctm_pop hl,bc,af
     ei
 reti

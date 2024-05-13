@@ -1,0 +1,168 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.8 #9946 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module definiciones
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _iniciar_valores
+                             12 	.globl _puntos_decena
+                             13 	.globl _y_start_manzana
+                             14 	.globl _x_start_manzana
+                             15 	.globl _y_start_jugador
+                             16 	.globl _x_start_jugador
+                             17 	.globl _y_frame_4
+                             18 	.globl _y_frame_3
+                             19 	.globl _y_frame_2
+                             20 	.globl _y_frame_1
+                             21 	.globl _caida_objeto
+                             22 	.globl _vx_manzana
+                             23 	.globl _spr_manzana
+                             24 	.globl _y_manzana
+                             25 	.globl _x_manzana
+                             26 	.globl _x_start_objeto
+                             27 	.globl _vx_pera
+                             28 	.globl _spr_pera
+                             29 	.globl _y_pera
+                             30 	.globl _x_pera
+                             31 	.globl _vy_jug
+                             32 	.globl _spr_jugador
+                             33 	.globl _y_jugador
+                             34 	.globl _x_jugador
+                             35 ;--------------------------------------------------------
+                             36 ; special function registers
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area _DATA
+   0000                      42 _x_jugador::
+   0000                      43 	.ds 1
+   0001                      44 _y_jugador::
+   0001                      45 	.ds 1
+   0002                      46 _spr_jugador::
+   0002                      47 	.ds 2
+   0004                      48 _vy_jug::
+   0004                      49 	.ds 1
+   0005                      50 _x_pera::
+   0005                      51 	.ds 1
+   0006                      52 _y_pera::
+   0006                      53 	.ds 1
+   0007                      54 _spr_pera::
+   0007                      55 	.ds 2
+   0009                      56 _vx_pera::
+   0009                      57 	.ds 1
+   000A                      58 _x_start_objeto::
+   000A                      59 	.ds 1
+   000B                      60 _x_manzana::
+   000B                      61 	.ds 1
+   000C                      62 _y_manzana::
+   000C                      63 	.ds 1
+   000D                      64 _spr_manzana::
+   000D                      65 	.ds 2
+   000F                      66 _vx_manzana::
+   000F                      67 	.ds 1
+   0010                      68 _caida_objeto::
+   0010                      69 	.ds 1
+   0011                      70 _y_frame_1::
+   0011                      71 	.ds 1
+   0012                      72 _y_frame_2::
+   0012                      73 	.ds 1
+   0013                      74 _y_frame_3::
+   0013                      75 	.ds 1
+   0014                      76 _y_frame_4::
+   0014                      77 	.ds 1
+   0015                      78 _x_start_jugador::
+   0015                      79 	.ds 1
+   0016                      80 _y_start_jugador::
+   0016                      81 	.ds 1
+   0017                      82 _x_start_manzana::
+   0017                      83 	.ds 1
+   0018                      84 _y_start_manzana::
+   0018                      85 	.ds 1
+   0019                      86 _puntos_decena::
+   0019                      87 	.ds 1
+                             88 ;--------------------------------------------------------
+                             89 ; ram data
+                             90 ;--------------------------------------------------------
+                             91 	.area _INITIALIZED
+                             92 ;--------------------------------------------------------
+                             93 ; absolute external ram data
+                             94 ;--------------------------------------------------------
+                             95 	.area _DABS (ABS)
+                             96 ;--------------------------------------------------------
+                             97 ; global & static initialisations
+                             98 ;--------------------------------------------------------
+                             99 	.area _HOME
+                            100 	.area _GSINIT
+                            101 	.area _GSFINAL
+                            102 	.area _GSINIT
+                            103 ;--------------------------------------------------------
+                            104 ; Home
+                            105 ;--------------------------------------------------------
+                            106 	.area _HOME
+                            107 	.area _HOME
+                            108 ;--------------------------------------------------------
+                            109 ; code
+                            110 ;--------------------------------------------------------
+                            111 	.area _CODE
+                            112 ;src/datos/definiciones.c:23: void iniciar_valores(){
+                            113 ;	---------------------------------
+                            114 ; Function iniciar_valores
+                            115 ; ---------------------------------
+   0000                     116 _iniciar_valores::
+                            117 ;src/datos/definiciones.c:24: y_frame_1       =   20;         //hay que ir cambiando a medida
+   0000 21r11r00      [10]  118 	ld	hl,#_y_frame_1 + 0
+   0003 36 14         [10]  119 	ld	(hl), #0x14
+                            120 ;src/datos/definiciones.c:25: y_frame_2       =   70;         //que se actualice el juego
+   0005 21r12r00      [10]  121 	ld	hl,#_y_frame_2 + 0
+   0008 36 46         [10]  122 	ld	(hl), #0x46
+                            123 ;src/datos/definiciones.c:26: y_frame_3       =   120;
+   000A 21r13r00      [10]  124 	ld	hl,#_y_frame_3 + 0
+   000D 36 78         [10]  125 	ld	(hl), #0x78
+                            126 ;src/datos/definiciones.c:27: y_frame_4       =   170;
+   000F 21r14r00      [10]  127 	ld	hl,#_y_frame_4 + 0
+   0012 36 AA         [10]  128 	ld	(hl), #0xaa
+                            129 ;src/datos/definiciones.c:28: x_start_jugador =   10;
+   0014 21r15r00      [10]  130 	ld	hl,#_x_start_jugador + 0
+   0017 36 0A         [10]  131 	ld	(hl), #0x0a
+                            132 ;src/datos/definiciones.c:29: y_start_jugador =   y_frame_1;
+   0019 21r16r00      [10]  133 	ld	hl,#_y_start_jugador + 0
+   001C 36 14         [10]  134 	ld	(hl), #0x14
+                            135 ;src/datos/definiciones.c:30: x_start_objeto  =   60;
+   001E 21r0Ar00      [10]  136 	ld	hl,#_x_start_objeto + 0
+   0021 36 3C         [10]  137 	ld	(hl), #0x3c
+                            138 ;src/datos/definiciones.c:32: x_jugador       =   x_start_jugador;
+   0023 21r00r00      [10]  139 	ld	hl,#_x_jugador + 0
+   0026 36 0A         [10]  140 	ld	(hl), #0x0a
+                            141 ;src/datos/definiciones.c:33: y_jugador       =   y_frame_1;
+   0028 21r01r00      [10]  142 	ld	hl,#_y_jugador + 0
+   002B 36 14         [10]  143 	ld	(hl), #0x14
+                            144 ;src/datos/definiciones.c:34: vy_jug          =   0;
+   002D 21r04r00      [10]  145 	ld	hl,#_vy_jug + 0
+   0030 36 00         [10]  146 	ld	(hl), #0x00
+                            147 ;src/datos/definiciones.c:35: x_manzana       =   x_start_objeto;
+   0032 21r0Br00      [10]  148 	ld	hl,#_x_manzana + 0
+   0035 36 3C         [10]  149 	ld	(hl), #0x3c
+                            150 ;src/datos/definiciones.c:36: y_manzana       =   y_frame_1;
+   0037 21r0Cr00      [10]  151 	ld	hl,#_y_manzana + 0
+   003A 36 14         [10]  152 	ld	(hl), #0x14
+                            153 ;src/datos/definiciones.c:37: puntos          =   '0';
+   003C 21r00r00      [10]  154 	ld	hl,#_puntos + 0
+   003F 36 30         [10]  155 	ld	(hl), #0x30
+                            156 ;src/datos/definiciones.c:38: puntos_decena   =   '0';
+   0041 21r19r00      [10]  157 	ld	hl,#_puntos_decena + 0
+   0044 36 30         [10]  158 	ld	(hl), #0x30
+                            159 ;src/datos/definiciones.c:39: vx_manzana      =   -1;
+   0046 21r0Fr00      [10]  160 	ld	hl,#_vx_manzana + 0
+   0049 36 FF         [10]  161 	ld	(hl), #0xff
+                            162 ;src/datos/definiciones.c:40: caida_objeto    =   x_jugador + DERECHA_W + 1;//posicion donde conprueba si jugador coge objeto
+   004B 21r10r00      [10]  163 	ld	hl,#_caida_objeto + 0
+   004E 36 0D         [10]  164 	ld	(hl), #0x0d
+   0050 C9            [10]  165 	ret
+                            166 	.area _CODE
+                            167 	.area _INITIALIZER
+                            168 	.area _CABS (ABS)
