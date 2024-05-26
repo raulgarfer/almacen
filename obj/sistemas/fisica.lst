@@ -8,9 +8,9 @@
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
-                             11 	.globl _sube
+                             11 	.globl _fisica
                              12 	.globl _baja
-                             13 	.globl _fisica
+                             13 	.globl _sube
                              14 ;--------------------------------------------------------
                              15 ; special function registers
                              16 ;--------------------------------------------------------
@@ -42,90 +42,84 @@
                              42 ; code
                              43 ;--------------------------------------------------------
                              44 	.area _CODE
-                             45 ;src/sistemas/fisica.c:4: void fisica(){
+                             45 ;src/sistemas/fisica.c:7: void fisica(){
                              46 ;	---------------------------------
                              47 ; Function fisica
                              48 ; ---------------------------------
    0000                      49 _fisica::
-                             50 ;src/sistemas/fisica.c:5: if (vy_jug==1)
+                             50 ;src/sistemas/fisica.c:8: if (vy_jug==1)
    0000 3Ar00r00      [13]   51 	ld	a,(#_vy_jug + 0)
    0003 3D            [ 4]   52 	dec	a
-                             53 ;src/sistemas/fisica.c:6: {baja();}
+                             53 ;src/sistemas/fisica.c:9: {baja();}
    0004 CAr0Fr00      [10]   54 	jp	Z,_baja
-                             55 ;src/sistemas/fisica.c:7: else if(vy_jug==-1)
+                             55 ;src/sistemas/fisica.c:10: else if(vy_jug==-1)
    0007 3Ar00r00      [13]   56 	ld	a,(#_vy_jug + 0)
    000A 3C            [ 4]   57 	inc	a
    000B C0            [11]   58 	ret	NZ
-                             59 ;src/sistemas/fisica.c:8: {sube();}
-   000C C3r47r00      [10]   60 	jp  _sube
-                             61 ;src/sistemas/fisica.c:10: void baja(){
+                             59 ;src/sistemas/fisica.c:11: {sube();}
+   000C C3r3Er00      [10]   60 	jp  _sube
+                             61 ;src/sistemas/fisica.c:13: void baja(){
                              62 ;	---------------------------------
                              63 ; Function baja
                              64 ; ---------------------------------
    000F                      65 _baja::
-                             66 ;src/sistemas/fisica.c:11: if (y_jugador   ==  y_frame_1)
-   000F 3Ar00r00      [13]   67 	ld	a,(#_y_jugador + 0)
-   0012 FD 21r00r00   [14]   68 	ld	iy, #_y_frame_1
-   0016 FD 96 00      [19]   69 	sub	a, 0 (iy)
-   0019 20 07         [12]   70 	jr	NZ,00107$
-                             71 ;src/sistemas/fisica.c:12: {y_jugador  =   y_frame_2;}
-   001B 3Ar00r00      [13]   72 	ld	a,(#_y_frame_2 + 0)
-   001E 32r00r00      [13]   73 	ld	(#_y_jugador + 0),a
-   0021 C9            [10]   74 	ret
-   0022                      75 00107$:
-                             76 ;src/sistemas/fisica.c:14: if (y_jugador   ==  y_frame_2)
-   0022 3Ar00r00      [13]   77 	ld	a,(#_y_jugador + 0)
-   0025 FD 21r00r00   [14]   78 	ld	iy, #_y_frame_2
-   0029 FD 96 00      [19]   79 	sub	a, 0 (iy)
-   002C 20 07         [12]   80 	jr	NZ,00104$
-                             81 ;src/sistemas/fisica.c:15: {y_jugador  =   y_frame_3;}
-   002E 3Ar00r00      [13]   82 	ld	a,(#_y_frame_3 + 0)
-   0031 32r00r00      [13]   83 	ld	(#_y_jugador + 0),a
-   0034 C9            [10]   84 	ret
-   0035                      85 00104$:
-                             86 ;src/sistemas/fisica.c:17: if (y_jugador   ==  y_frame_3)
-   0035 3Ar00r00      [13]   87 	ld	a,(#_y_jugador + 0)
-   0038 FD 21r00r00   [14]   88 	ld	iy, #_y_frame_3
-   003C FD 96 00      [19]   89 	sub	a, 0 (iy)
-   003F C0            [11]   90 	ret	NZ
-                             91 ;src/sistemas/fisica.c:18: {y_jugador  =   y_frame_4;}}
-   0040 3Ar00r00      [13]   92 	ld	a,(#_y_frame_4 + 0)
-   0043 32r00r00      [13]   93 	ld	(#_y_jugador + 0),a
-   0046 C9            [10]   94 	ret
-                             95 ;src/sistemas/fisica.c:19: void sube(){
-                             96 ;	---------------------------------
-                             97 ; Function sube
-                             98 ; ---------------------------------
-   0047                      99 _sube::
-                            100 ;src/sistemas/fisica.c:20: if (y_jugador   ==  y_frame_4)
-   0047 3Ar00r00      [13]  101 	ld	a,(#_y_jugador + 0)
-   004A FD 21r00r00   [14]  102 	ld	iy, #_y_frame_4
-   004E FD 96 00      [19]  103 	sub	a, 0 (iy)
-   0051 20 07         [12]  104 	jr	NZ,00107$
-                            105 ;src/sistemas/fisica.c:21: {y_jugador  =   y_frame_3;}
-   0053 3Ar00r00      [13]  106 	ld	a,(#_y_frame_3 + 0)
-   0056 32r00r00      [13]  107 	ld	(#_y_jugador + 0),a
-   0059 C9            [10]  108 	ret
-   005A                     109 00107$:
-                            110 ;src/sistemas/fisica.c:23: if (y_jugador   ==  y_frame_3)
-   005A 3Ar00r00      [13]  111 	ld	a,(#_y_jugador + 0)
-   005D FD 21r00r00   [14]  112 	ld	iy, #_y_frame_3
-   0061 FD 96 00      [19]  113 	sub	a, 0 (iy)
-   0064 20 07         [12]  114 	jr	NZ,00104$
-                            115 ;src/sistemas/fisica.c:24: {y_jugador  =   y_frame_2;}
-   0066 3Ar00r00      [13]  116 	ld	a,(#_y_frame_2 + 0)
-   0069 32r00r00      [13]  117 	ld	(#_y_jugador + 0),a
-   006C C9            [10]  118 	ret
-   006D                     119 00104$:
-                            120 ;src/sistemas/fisica.c:26: if (y_jugador   ==  y_frame_2)
-   006D 3Ar00r00      [13]  121 	ld	a,(#_y_jugador + 0)
-   0070 FD 21r00r00   [14]  122 	ld	iy, #_y_frame_2
-   0074 FD 96 00      [19]  123 	sub	a, 0 (iy)
-   0077 C0            [11]  124 	ret	NZ
-                            125 ;src/sistemas/fisica.c:27: {y_jugador  =   y_frame_1;}
-   0078 3Ar00r00      [13]  126 	ld	a,(#_y_frame_1 + 0)
-   007B 32r00r00      [13]  127 	ld	(#_y_jugador + 0),a
-   007E C9            [10]  128 	ret
-                            129 	.area _CODE
-                            130 	.area _INITIALIZER
-                            131 	.area _CABS (ABS)
+                             66 ;src/sistemas/fisica.c:14: if (y_jugador   ==  y_frame_1)
+   000F FD 21r00r00   [14]   67 	ld	iy, #_y_jugador
+   0013 FD 7E 00      [19]   68 	ld	a, 0 (iy)
+   0016 D6 14         [ 7]   69 	sub	a, #0x14
+   0018 20 05         [12]   70 	jr	NZ,00107$
+                             71 ;src/sistemas/fisica.c:15: {y_jugador  =   y_frame_2;}
+   001A FD 36 00 46   [19]   72 	ld	0 (iy), #0x46
+   001E C9            [10]   73 	ret
+   001F                      74 00107$:
+                             75 ;src/sistemas/fisica.c:17: if (y_jugador   ==  y_frame_2)
+   001F FD 21r00r00   [14]   76 	ld	iy, #_y_jugador
+   0023 FD 7E 00      [19]   77 	ld	a, 0 (iy)
+   0026 D6 46         [ 7]   78 	sub	a, #0x46
+   0028 20 05         [12]   79 	jr	NZ,00104$
+                             80 ;src/sistemas/fisica.c:18: {y_jugador  =   y_frame_3;}
+   002A FD 36 00 78   [19]   81 	ld	0 (iy), #0x78
+   002E C9            [10]   82 	ret
+   002F                      83 00104$:
+                             84 ;src/sistemas/fisica.c:20: if (y_jugador   ==  y_frame_3)
+   002F FD 21r00r00   [14]   85 	ld	iy, #_y_jugador
+   0033 FD 7E 00      [19]   86 	ld	a, 0 (iy)
+   0036 D6 78         [ 7]   87 	sub	a, #0x78
+   0038 C0            [11]   88 	ret	NZ
+                             89 ;src/sistemas/fisica.c:21: {y_jugador  =   y_frame_4;}}
+   0039 FD 36 00 AA   [19]   90 	ld	0 (iy), #0xaa
+   003D C9            [10]   91 	ret
+                             92 ;src/sistemas/fisica.c:22: void sube(){
+                             93 ;	---------------------------------
+                             94 ; Function sube
+                             95 ; ---------------------------------
+   003E                      96 _sube::
+                             97 ;src/sistemas/fisica.c:23: if (y_jugador   ==  y_frame_4)
+   003E FD 21r00r00   [14]   98 	ld	iy, #_y_jugador
+   0042 FD 7E 00      [19]   99 	ld	a, 0 (iy)
+   0045 D6 AA         [ 7]  100 	sub	a, #0xaa
+   0047 20 05         [12]  101 	jr	NZ,00107$
+                            102 ;src/sistemas/fisica.c:24: {y_jugador  =   y_frame_3;}
+   0049 FD 36 00 78   [19]  103 	ld	0 (iy), #0x78
+   004D C9            [10]  104 	ret
+   004E                     105 00107$:
+                            106 ;src/sistemas/fisica.c:26: if (y_jugador   ==  y_frame_3)
+   004E FD 21r00r00   [14]  107 	ld	iy, #_y_jugador
+   0052 FD 7E 00      [19]  108 	ld	a, 0 (iy)
+   0055 D6 78         [ 7]  109 	sub	a, #0x78
+   0057 20 05         [12]  110 	jr	NZ,00104$
+                            111 ;src/sistemas/fisica.c:27: {y_jugador  =   y_frame_2;}
+   0059 FD 36 00 46   [19]  112 	ld	0 (iy), #0x46
+   005D C9            [10]  113 	ret
+   005E                     114 00104$:
+                            115 ;src/sistemas/fisica.c:29: if (y_jugador   ==  y_frame_2)
+   005E FD 21r00r00   [14]  116 	ld	iy, #_y_jugador
+   0062 FD 7E 00      [19]  117 	ld	a, 0 (iy)
+   0065 D6 46         [ 7]  118 	sub	a, #0x46
+   0067 C0            [11]  119 	ret	NZ
+                            120 ;src/sistemas/fisica.c:30: {y_jugador  =   y_frame_1;}
+   0068 FD 36 00 14   [19]  121 	ld	0 (iy), #0x14
+   006C C9            [10]  122 	ret
+                            123 	.area _CODE
+                            124 	.area _INITIALIZER
+                            125 	.area _CABS (ABS)

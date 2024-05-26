@@ -59,10 +59,10 @@
    0015 34            [11]   59 	inc	(hl)
    0016                      60 00102$:
                              61 ;src/sistemas/puntuacion.c:10: x_manzana = x_start_objeto;
-   0016 3Ar00r00      [13]   62 	ld	a,(#_x_start_objeto + 0)
-   0019 32r00r00      [13]   63 	ld	(#_x_manzana + 0),a
+   0016 21r00r00      [10]   62 	ld	hl,#_x_manzana + 0
+   0019 36 3C         [10]   63 	ld	(hl), #0x3c
                              64 ;src/sistemas/puntuacion.c:11: pinta_marcador();
-   001C C3r00r00      [10]   65 	jp  _pinta_marcador
+   001B C3r00r00      [10]   65 	jp  _pinta_marcador
                              66 	.area _CODE
                              67 	.area _INITIALIZER
                              68 	.area _CABS (ABS)

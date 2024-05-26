@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cpctelera.h": "c",
-        "delcaraciones.h": "c"
+        "delcaraciones.h": "c",
+        "sprites.h": "c"
     }
 }

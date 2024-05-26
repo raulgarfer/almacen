@@ -1,33 +1,28 @@
 XL2
-H 9 areas 1A global symbols
+H 9 areas 15 global symbols
 M definiciones
 O -mz80
 S _puntos Ref0000
 S .__.ABS. Def0000
-A _CODE size 51 flags 0 addr 0
+A _CODE size 38 flags 0 addr 0
 S _iniciar_valores Def0000
-A _DATA size 1A flags 0 addr 0
-S _x_start_objeto Def000A
-S _puntos_decena Def0019
-S _vx_manzana Def000F
-S _y_frame_1 Def0011
-S _y_frame_2 Def0012
+A _DATA size 15 flags 0 addr 0
+S _puntos_centena Def0013
+S _puntos_decena Def0012
+S _vx_manzana Def000E
 S _vx_pera Def0009
-S _y_frame_3 Def0013
-S _y_frame_4 Def0014
-S _x_manzana Def000B
-S _y_manzana Def000C
+S _x_manzana Def000A
+S _y_manzana Def000B
 S _x_pera Def0005
 S _y_pera Def0006
 S _x_jugador Def0000
 S _y_jugador Def0001
-S _x_start_manzana Def0017
-S _y_start_manzana Def0018
-S _x_start_jugador Def0015
-S _y_start_jugador Def0016
+S _x_start_manzana Def0010
+S _y_start_manzana Def0011
 S _vy_jug Def0004
-S _caida_objeto Def0010
-S _spr_manzana Def000D
+S _caida_objeto Def000F
+S _vidas Def0014
+S _spr_manzana Def000C
 S _spr_pera Def0007
 S _spr_jugador Def0002
 A _INITIALIZED size 0 flags 0 addr 0
@@ -81,9 +76,9 @@ T 0C 00
 R 00 00 01 00
 T 0C 00
 R 00 00 01 00
-T 0D 00
+T 0E 00
 R 00 00 01 00
-T 0D 00
+T 0E 00
 R 00 00 01 00
 T 0F 00
 R 00 00 01 00
@@ -108,38 +103,16 @@ R 00 00 01 00
 T 14 00
 R 00 00 01 00
 T 14 00
-R 00 00 01 00
-T 15 00
-R 00 00 01 00
-T 15 00
-R 00 00 01 00
-T 16 00
-R 00 00 01 00
-T 16 00
-R 00 00 01 00
-T 17 00
-R 00 00 01 00
-T 17 00
-R 00 00 01 00
-T 18 00
-R 00 00 01 00
-T 18 00
-R 00 00 01 00
-T 19 00
-R 00 00 01 00
-T 19 00
 R 00 00 01 00
 T 00 00
 R 00 00 00 00
-T 00 00 21 11 00 36 14 21 12 00 36 46 21 13 00 36
+T 00 00 21 00 00 36 0A 21 01 00 36 14 21 04 00 36
 R 00 00 00 00 00 03 01 00 00 08 01 00 00 0D 01 00
-T 0E 00 78 21 14 00 36 AA 21 15 00 36 0A 21 16 00
-R 00 00 00 00 00 04 01 00 00 09 01 00 00 0E 01 00
-T 1C 00 36 14 21 0A 00 36 3C 21 00 00 36 0A 21
+T 0E 00 00 21 0A 00 36 3C 21 0B 00 36 14 21 00 00
+R 00 00 00 00 00 04 01 00 00 09 01 00 02 0E 00 00
+T 1C 00 36 30 21 12 00 36 30 21 13 00 36 30 21
 R 00 00 00 00 00 05 01 00 00 0A 01 00
-T 29 00 01 00 36 14 21 04 00 36 00 21 0B 00 36 3C
+T 29 00 14 00 36 33 21 0E 00 36 FF 21 0F 00 36 0D
 R 00 00 00 00 00 02 01 00 00 07 01 00 00 0C 01 00
-T 37 00 21 0C 00 36 14 21 00 00 36 30 21 19 00 36
-R 00 00 00 00 00 03 01 00 02 08 00 00 00 0D 01 00
-T 45 00 30 21 0F 00 36 FF 21 10 00 36 0D C9
-R 00 00 00 00 00 04 01 00 00 09 01 00
+T 37 00 C9
+R 00 00 00 00

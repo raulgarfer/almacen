@@ -9,21 +9,16 @@ Symbol Table
     .__.H$L.                                                    =  0000 L
   0 _baja                                                          000F GR
   0 _fisica                                                        0000 GR
-  0 _sube                                                          0047 GR
+  0 _sube                                                          003E GR
     _vy_jug                                                        **** GX
-    _y_frame_1                                                     **** GX
-    _y_frame_2                                                     **** GX
-    _y_frame_3                                                     **** GX
-    _y_frame_4                                                     **** GX
     _y_jugador                                                     **** GX
-
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   7F   flags    0
+   0 _CODE                                      size   6D   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

@@ -47,12 +47,12 @@ _puntos::
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/sistemas/marcador.c:4: void pinta_marcador(){
+;src/sistemas/marcador.c:5: void pinta_marcador(){
 ;	---------------------------------
 ; Function pinta_marcador
 ; ---------------------------------
 _pinta_marcador::
-;src/sistemas/marcador.c:5: cpct_setPALColour (0, 1);
+;src/sistemas/marcador.c:6: cpct_setPALColour (0, 1);
 	ld	hl, #0x0100
 	push	hl
 	call	_cpct_setPALColour
@@ -60,15 +60,24 @@ _pinta_marcador::
 	ld	hl, #0x0201
 	push	hl
 	call	_cpct_setPALColour
-;src/sistemas/marcador.c:9: cpct_drawStringM2("Puntos",0xc780); 
+;src/sistemas/marcador.c:8: cpct_drawStringM2("Puntos",marcador_y); 
 	ld	hl, #0xc780
 	push	hl
 	ld	hl, #___str_0
 	push	hl
 	call	_cpct_drawStringM2
+;src/sistemas/marcador.c:9: cpct_drawStringM2("Vidas",marcador_y+10);
+	ld	hl, #0xc78a
+	push	hl
+	ld	hl, #___str_1
+	push	hl
+	call	_cpct_drawStringM2
 	ret
 ___str_0:
 	.ascii "Puntos"
+	.db 0x00
+___str_1:
+	.ascii "Vidas"
 	.db 0x00
 ;src/sistemas/marcador.c:12: void pinta_puntos(){
 ;	---------------------------------
@@ -83,20 +92,28 @@ _pinta_puntos::
 	ld	hl, #0x0201
 	push	hl
 	call	_cpct_setPALColour
-;src/sistemas/marcador.c:15: cpct_drawCharM2(0xc78a,puntos_decena);
+;src/sistemas/marcador.c:15: cpct_drawCharM2(marcador_y+7,puntos_decena);
 	ld	hl,#_puntos_decena + 0
 	ld	c, (hl)
 	ld	b, #0x00
 	push	bc
-	ld	hl, #0xc78a
+	ld	hl, #0xc787
 	push	hl
 	call	_cpct_drawCharM2
-;src/sistemas/marcador.c:16: cpct_drawCharM2(0xc78a+1,puntos);
+;src/sistemas/marcador.c:16: cpct_drawCharM2(marcador_y+8,puntos);
 	ld	hl,#_puntos + 0
 	ld	c, (hl)
 	ld	b, #0x00
 	push	bc
-	ld	hl, #0xc78b
+	ld	hl, #0xc788
+	push	hl
+	call	_cpct_drawCharM2
+;src/sistemas/marcador.c:17: cpct_drawCharM2(marcador_y+16,vidas);
+	ld	hl,#_vidas + 0
+	ld	c, (hl)
+	ld	b, #0x00
+	push	bc
+	ld	hl, #0xc790
 	push	hl
 	call	_cpct_drawCharM2
 	ret

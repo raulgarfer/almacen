@@ -57,31 +57,30 @@
    000B CDr00r00      [17]   57 	call	_cpct_isKeyPressed
    000E 7D            [ 4]   58 	ld	a, l
    000F B7            [ 4]   59 	or	a, a
-   0010 28 0E         [12]   60 	jr	Z,00102$
+   0010 28 0C         [12]   60 	jr	Z,00102$
                              61 ;src/sistemas/teclado.c:8: && y_jugador>=y_frame_1)
-   0012 21r00r00      [10]   62 	ld	hl, #_y_frame_1
-   0015 3Ar00r00      [13]   63 	ld	a,(#_y_jugador + 0)
-   0018 96            [ 7]   64 	sub	a, (hl)
-   0019 38 05         [12]   65 	jr	C,00102$
-                             66 ;src/sistemas/teclado.c:9: {vy_jug=-1;}
-   001B 21r00r00      [10]   67 	ld	hl,#_vy_jug + 0
-   001E 36 FF         [10]   68 	ld	(hl), #0xff
-   0020                      69 00102$:
-                             70 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
-   0020 21 08 20      [10]   71 	ld	hl, #0x2008
-   0023 CDr00r00      [17]   72 	call	_cpct_isKeyPressed
-   0026 7D            [ 4]   73 	ld	a, l
-   0027 B7            [ 4]   74 	or	a, a
-   0028 C8            [11]   75 	ret	Z
-                             76 ;src/sistemas/teclado.c:11: && y_jugador<=y_frame_4)
-   0029 3Ar00r00      [13]   77 	ld	a, (#_y_frame_4)
-   002C FD 21r00r00   [14]   78 	ld	iy, #_y_jugador
-   0030 FD 96 00      [19]   79 	sub	a, 0 (iy)
-   0033 D8            [11]   80 	ret	C
-                             81 ;src/sistemas/teclado.c:12: {vy_jug=1;}
-   0034 21r00r00      [10]   82 	ld	hl,#_vy_jug + 0
-   0037 36 01         [10]   83 	ld	(hl), #0x01
-   0039 C9            [10]   84 	ret
-                             85 	.area _CODE
-                             86 	.area _INITIALIZER
-                             87 	.area _CABS (ABS)
+   0012 3Ar00r00      [13]   62 	ld	a,(#_y_jugador + 0)
+   0015 D6 14         [ 7]   63 	sub	a, #0x14
+   0017 38 05         [12]   64 	jr	C,00102$
+                             65 ;src/sistemas/teclado.c:9: {vy_jug=-1;}
+   0019 21r00r00      [10]   66 	ld	hl,#_vy_jug + 0
+   001C 36 FF         [10]   67 	ld	(hl), #0xff
+   001E                      68 00102$:
+                             69 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
+   001E 21 08 20      [10]   70 	ld	hl, #0x2008
+   0021 CDr00r00      [17]   71 	call	_cpct_isKeyPressed
+   0024 7D            [ 4]   72 	ld	a, l
+   0025 B7            [ 4]   73 	or	a, a
+   0026 C8            [11]   74 	ret	Z
+                             75 ;src/sistemas/teclado.c:11: && y_jugador<=y_frame_4)
+   0027 3E AA         [ 7]   76 	ld	a, #0xaa
+   0029 FD 21r00r00   [14]   77 	ld	iy, #_y_jugador
+   002D FD 96 00      [19]   78 	sub	a, 0 (iy)
+   0030 D8            [11]   79 	ret	C
+                             80 ;src/sistemas/teclado.c:12: {vy_jug=1;}
+   0031 21r00r00      [10]   81 	ld	hl,#_vy_jug + 0
+   0034 36 01         [10]   82 	ld	(hl), #0x01
+   0036 C9            [10]   83 	ret
+                             84 	.area _CODE
+                             85 	.area _INITIALIZER
+                             86 	.area _CABS (ABS)

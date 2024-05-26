@@ -1,0 +1,48 @@
+XL2
+H 9 areas 7 global symbols
+M definiciones
+O -mz80
+S .__.ABS. Def0000
+A _CODE size 0 flags 0 addr 0
+A _DATA size 1E flags 0 addr 0
+S _init_manzana Def0012
+S _init_pera Def0018
+S _ent_manzana Def0006
+S _ent_pera Def000C
+S _ent_jugador Def0000
+A _INITIALIZED size 6 flags 0 addr 0
+S _init_jugador Def0000
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 6 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 01 00
+T 00 00
+R 00 00 01 00
+T 06 00
+R 00 00 01 00
+T 06 00
+R 00 00 01 00
+T 0C 00
+R 00 00 01 00
+T 0C 00
+R 00 00 01 00
+T 12 00
+R 00 00 01 00
+T 12 00
+R 00 00 01 00
+T 18 00
+R 00 00 01 00
+T 18 00
+R 00 00 01 00
+T 00 00
+R 00 00 02 00
+T 00 00
+R 00 00 02 00
+T 00 00
+R 00 00 07 00
+T 00 00 0A 00 00 00 00 00
+R 00 00 07 00

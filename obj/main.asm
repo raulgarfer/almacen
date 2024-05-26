@@ -8,6 +8,7 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _a_jugar
 	.globl _main
 	.globl _pintar_sprites
 	.globl _fisica_objetos
@@ -18,6 +19,7 @@
 	.globl _control_interrupciones
 	.globl _cpct_waitVSYNC
 	.globl _cpct_setVideoMode
+	.globl _cpct_memset_f64
 	.globl _cpct_disableFirmware
 	.globl _mientras_juego
 ;--------------------------------------------------------
@@ -51,51 +53,62 @@
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/main.c:10: void main(void) {
+;src/main.c:6: void main(void) {
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
-	ld	hl, #-6
-	add	hl, sp
-	ld	sp, hl
-;src/main.c:12: cpct_disableFirmware();
+;src/main.c:7: cpct_disableFirmware();
 	call	_cpct_disableFirmware
-;src/main.c:13: control_interrupciones();
+;src/main.c:8: control_interrupciones();
 	call	_control_interrupciones
-;src/main.c:14: cpct_setVideoMode(2);
+;src/main.c:9: cpct_setVideoMode(2);
 	ld	l, #0x02
 	call	_cpct_setVideoMode
-;src/main.c:15: iniciar_valores();
+;src/main.c:10: menu_juego();
+	call	_menu_juego
+;src/main.c:11: a_jugar();}
+	jp  _a_jugar
+;src/main.c:12: void a_jugar(){  
+;	---------------------------------
+; Function a_jugar
+; ---------------------------------
+_a_jugar::
+;src/main.c:13: cpct_clearScreen_f64(0); 
+	ld	hl, #0x4000
+	push	hl
+	ld	h, #0x00
+	push	hl
+	ld	h, #0xc0
+	push	hl
+	call	_cpct_memset_f64
+;src/main.c:14: iniciar_valores();
 	call	_iniciar_valores
-;src/main.c:16: pinta_marcador();
+;src/main.c:15: pinta_marcador();
 	call	_pinta_marcador
-;src/main.c:17: mientras_juego();
+;src/main.c:16: mientras_juego();
 	call	_mientras_juego
-	ld	hl, #6
-	add	hl, sp
-	ld	sp, hl
 	ret
-;src/main.c:20: void mientras_juego(){
+;src/main.c:19: void mientras_juego(){
 ;	---------------------------------
 ; Function mientras_juego
 ; ---------------------------------
 _mientras_juego::
-;src/main.c:21: while(1){
+;src/main.c:20: while(1){
 00102$:
-;src/main.c:22: borra();
+;src/main.c:21: borra();
 	call	_borra
-;src/main.c:23: teclado();
+;src/main.c:22: teclado();
 	call	_teclado
-;src/main.c:24: fisica();
+;src/main.c:23: fisica();
 	call	_fisica
-;src/main.c:25: fisica_objetos();
+;src/main.c:24: fisica_objetos();
 	call	_fisica_objetos
-;src/main.c:26: pintar_sprites();
+;src/main.c:25: pintar_sprites();
 	call	_pintar_sprites
-;src/main.c:27: pinta_puntos();
+;src/main.c:26: pinta_puntos();
 	call	_pinta_puntos
-;src/main.c:28: cpct_waitVSYNC();
+;src/main.c:27: cpct_waitVSYNC();
 	call	_cpct_waitVSYNC
 	jr	00102$
 	.area _CODE

@@ -46,42 +46,41 @@
                              46 ;	---------------------------------
                              47 ; Function teclado
                              48 ; ---------------------------------
-   431B                      49 _teclado::
+   4390                      49 _teclado::
                              50 ;src/sistemas/teclado.c:5: vy_jug=0;
-   431B 21 9B 46      [10]   51 	ld	hl,#_vy_jug + 0
-   431E 36 00         [10]   52 	ld	(hl), #0x00
+   4390 21 C2 47      [10]   51 	ld	hl,#_vy_jug + 0
+   4393 36 00         [10]   52 	ld	(hl), #0x00
                              53 ;src/sistemas/teclado.c:6: cpct_scanKeyboard();
-   4320 CD 50 46      [17]   54 	call	_cpct_scanKeyboard
+   4395 CD 77 47      [17]   54 	call	_cpct_scanKeyboard
                              55 ;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q)
-   4323 21 08 08      [10]   56 	ld	hl, #0x0808
-   4326 CD 34 44      [17]   57 	call	_cpct_isKeyPressed
-   4329 7D            [ 4]   58 	ld	a, l
-   432A B7            [ 4]   59 	or	a, a
-   432B 28 0E         [12]   60 	jr	Z,00102$
+   4398 21 08 08      [10]   56 	ld	hl, #0x0808
+   439B CD 03 45      [17]   57 	call	_cpct_isKeyPressed
+   439E 7D            [ 4]   58 	ld	a, l
+   439F B7            [ 4]   59 	or	a, a
+   43A0 28 0C         [12]   60 	jr	Z,00102$
                              61 ;src/sistemas/teclado.c:8: && y_jugador>=y_frame_1)
-   432D 21 A8 46      [10]   62 	ld	hl, #_y_frame_1
-   4330 3A 98 46      [13]   63 	ld	a,(#_y_jugador + 0)
-   4333 96            [ 7]   64 	sub	a, (hl)
-   4334 38 05         [12]   65 	jr	C,00102$
-                             66 ;src/sistemas/teclado.c:9: {vy_jug=-1;}
-   4336 21 9B 46      [10]   67 	ld	hl,#_vy_jug + 0
-   4339 36 FF         [10]   68 	ld	(hl), #0xff
-   433B                      69 00102$:
-                             70 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
-   433B 21 08 20      [10]   71 	ld	hl, #0x2008
-   433E CD 34 44      [17]   72 	call	_cpct_isKeyPressed
-   4341 7D            [ 4]   73 	ld	a, l
-   4342 B7            [ 4]   74 	or	a, a
-   4343 C8            [11]   75 	ret	Z
-                             76 ;src/sistemas/teclado.c:11: && y_jugador<=y_frame_4)
-   4344 3A AB 46      [13]   77 	ld	a, (#_y_frame_4)
-   4347 FD 21 98 46   [14]   78 	ld	iy, #_y_jugador
-   434B FD 96 00      [19]   79 	sub	a, 0 (iy)
-   434E D8            [11]   80 	ret	C
-                             81 ;src/sistemas/teclado.c:12: {vy_jug=1;}
-   434F 21 9B 46      [10]   82 	ld	hl,#_vy_jug + 0
-   4352 36 01         [10]   83 	ld	(hl), #0x01
-   4354 C9            [10]   84 	ret
-                             85 	.area _CODE
-                             86 	.area _INITIALIZER
-                             87 	.area _CABS (ABS)
+   43A2 3A BF 47      [13]   62 	ld	a,(#_y_jugador + 0)
+   43A5 D6 14         [ 7]   63 	sub	a, #0x14
+   43A7 38 05         [12]   64 	jr	C,00102$
+                             65 ;src/sistemas/teclado.c:9: {vy_jug=-1;}
+   43A9 21 C2 47      [10]   66 	ld	hl,#_vy_jug + 0
+   43AC 36 FF         [10]   67 	ld	(hl), #0xff
+   43AE                      68 00102$:
+                             69 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
+   43AE 21 08 20      [10]   70 	ld	hl, #0x2008
+   43B1 CD 03 45      [17]   71 	call	_cpct_isKeyPressed
+   43B4 7D            [ 4]   72 	ld	a, l
+   43B5 B7            [ 4]   73 	or	a, a
+   43B6 C8            [11]   74 	ret	Z
+                             75 ;src/sistemas/teclado.c:11: && y_jugador<=y_frame_4)
+   43B7 3E AA         [ 7]   76 	ld	a, #0xaa
+   43B9 FD 21 BF 47   [14]   77 	ld	iy, #_y_jugador
+   43BD FD 96 00      [19]   78 	sub	a, 0 (iy)
+   43C0 D8            [11]   79 	ret	C
+                             80 ;src/sistemas/teclado.c:12: {vy_jug=1;}
+   43C1 21 C2 47      [10]   81 	ld	hl,#_vy_jug + 0
+   43C4 36 01         [10]   82 	ld	(hl), #0x01
+   43C6 C9            [10]   83 	ret
+                             84 	.area _CODE
+                             85 	.area _INITIALIZER
+                             86 	.area _CABS (ABS)

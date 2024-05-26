@@ -14,5 +14,29 @@ void comprobar_recojida(){
     else {muere();}}
 
 void muere(){
-    while(1);
+   vidas--;
+    x_manzana = x_start_objeto;
+    pinta_marcador();
+   if (vidas=='0')
+    {fin_juego();}
 }
+void fin_juego(){
+    u8* pvmem;
+   // cpct_clearScreen(0);
+    pvmem=cpct_getScreenPtr(0xc000,10,20);
+        cpct_drawStringM2("Has sido despedido!",pvmem);
+    pvmem=cpct_getScreenPtr(0xc000,10,40);
+        cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
+    espera_pulsacion_tecla();
+    espera_pulsar();
+}
+void espera_pulsacion_tecla(){
+    u8 pulsado;
+    cpct_scanKeyboard();
+    pulsado=cpct_isAnyKeyPressed();
+    if (pulsado!=0)
+        {espera_pulsar();}
+    else espera_pulsacion_tecla();
+}
+void espera_pulsar(){
+    a_jugar();}

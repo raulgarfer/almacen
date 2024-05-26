@@ -46,42 +46,42 @@
                              46 ;	---------------------------------
                              47 ; Function pintar_sprites
                              48 ; ---------------------------------
-   42C1                      49 _pintar_sprites::
+   4337                      49 _pintar_sprites::
                              50 ;src/sistemas/pintar.c:6: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, x_jugador, y_jugador);
-   42C1 3A 98 46      [13]   51 	ld	a, (_y_jugador)
-   42C4 F5            [11]   52 	push	af
-   42C5 33            [ 6]   53 	inc	sp
-   42C6 3A 97 46      [13]   54 	ld	a, (_x_jugador)
-   42C9 F5            [11]   55 	push	af
-   42CA 33            [ 6]   56 	inc	sp
-   42CB 21 00 C0      [10]   57 	ld	hl, #0xc000
-   42CE E5            [11]   58 	push	hl
-   42CF CD 81 46      [17]   59 	call	_cpct_getScreenPtr
+   4337 3A BF 47      [13]   51 	ld	a, (_y_jugador)
+   433A F5            [11]   52 	push	af
+   433B 33            [ 6]   53 	inc	sp
+   433C 3A BE 47      [13]   54 	ld	a, (_x_jugador)
+   433F F5            [11]   55 	push	af
+   4340 33            [ 6]   56 	inc	sp
+   4341 21 00 C0      [10]   57 	ld	hl, #0xc000
+   4344 E5            [11]   58 	push	hl
+   4345 CD A8 47      [17]   59 	call	_cpct_getScreenPtr
                              60 ;src/sistemas/pintar.c:7: cpct_drawSprite(derecha,pvmem,DERECHA_W,DERECHA_H);
-   42D2 01 B8 40      [10]   61 	ld	bc, #_derecha+0
-   42D5 11 02 14      [10]   62 	ld	de, #0x1402
-   42D8 D5            [11]   63 	push	de
-   42D9 E5            [11]   64 	push	hl
-   42DA C5            [11]   65 	push	bc
-   42DB CD 85 44      [17]   66 	call	_cpct_drawSprite
+   4348 01 B8 40      [10]   61 	ld	bc, #_derecha+0
+   434B 11 02 14      [10]   62 	ld	de, #0x1402
+   434E D5            [11]   63 	push	de
+   434F E5            [11]   64 	push	hl
+   4350 C5            [11]   65 	push	bc
+   4351 CD 54 45      [17]   66 	call	_cpct_drawSprite
                              67 ;src/sistemas/pintar.c:8: pvmem=   cpct_getScreenPtr(CPCT_VMEM_START,x_manzana,y_manzana);
-   42DE 3A A3 46      [13]   68 	ld	a, (_y_manzana)
-   42E1 F5            [11]   69 	push	af
-   42E2 33            [ 6]   70 	inc	sp
-   42E3 3A A2 46      [13]   71 	ld	a, (_x_manzana)
-   42E6 F5            [11]   72 	push	af
-   42E7 33            [ 6]   73 	inc	sp
-   42E8 21 00 C0      [10]   74 	ld	hl, #0xc000
-   42EB E5            [11]   75 	push	hl
-   42EC CD 81 46      [17]   76 	call	_cpct_getScreenPtr
+   4354 3A C9 47      [13]   68 	ld	a, (_y_manzana)
+   4357 F5            [11]   69 	push	af
+   4358 33            [ 6]   70 	inc	sp
+   4359 3A C8 47      [13]   71 	ld	a, (_x_manzana)
+   435C F5            [11]   72 	push	af
+   435D 33            [ 6]   73 	inc	sp
+   435E 21 00 C0      [10]   74 	ld	hl, #0xc000
+   4361 E5            [11]   75 	push	hl
+   4362 CD A8 47      [17]   76 	call	_cpct_getScreenPtr
                              77 ;src/sistemas/pintar.c:9: cpct_drawSprite(manzana,pvmem,MANZANA_W,MANZANA_H);
-   42EF 01 20 40      [10]   78 	ld	bc, #_manzana+0
-   42F2 11 02 10      [10]   79 	ld	de, #0x1002
-   42F5 D5            [11]   80 	push	de
-   42F6 E5            [11]   81 	push	hl
-   42F7 C5            [11]   82 	push	bc
-   42F8 CD 85 44      [17]   83 	call	_cpct_drawSprite
-   42FB C9            [10]   84 	ret
+   4365 01 20 40      [10]   78 	ld	bc, #_manzana+0
+   4368 11 02 10      [10]   79 	ld	de, #0x1002
+   436B D5            [11]   80 	push	de
+   436C E5            [11]   81 	push	hl
+   436D C5            [11]   82 	push	bc
+   436E CD 54 45      [17]   83 	call	_cpct_drawSprite
+   4371 C9            [10]   84 	ret
                              85 	.area _CODE
                              86 	.area _INITIALIZER
                              87 	.area _CABS (ABS)

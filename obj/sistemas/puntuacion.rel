@@ -1,14 +1,13 @@
 XL2
-H 9 areas 7 global symbols
+H 9 areas 6 global symbols
 M puntuacion
 O -mz80
-S _x_start_objeto Ref0000
 S _puntos_decena Ref0000
 S _puntos Ref0000
 S _x_manzana Ref0000
 S .__.ABS. Def0000
 S _pinta_marcador Ref0000
-A _CODE size 1F flags 0 addr 0
+A _CODE size 1E flags 0 addr 0
 S _suma_puntos Def0000
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
@@ -21,10 +20,10 @@ A _CABS size 0 flags 8 addr 0
 T 00 00
 R 00 00 00 00
 T 00 00 FD 21 00 00 FD 34 00 FD 7E 00 D6 3A 20 08
-R 00 00 00 00 02 04 02 00
+R 00 00 00 00 02 04 01 00
 T 0E 00 FD 36 00 30 21 00 00 34
-R 00 00 00 00 02 07 01 00
+R 00 00 00 00 02 07 00 00
 T 16 00
 R 00 00 00 00
-T 16 00 3A 00 00 32 00 00 C3 00 00
-R 00 00 00 00 02 03 00 00 02 06 03 00 02 09 05 00
+T 16 00 21 00 00 36 3C C3 00 00
+R 00 00 00 00 02 03 02 00 02 08 04 00

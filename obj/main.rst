@@ -8,96 +8,109 @@
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
-                             11 	.globl _main
-                             12 	.globl _pintar_sprites
-                             13 	.globl _fisica_objetos
-                             14 	.globl _iniciar_valores
-                             15 	.globl _fisica
-                             16 	.globl _teclado
-                             17 	.globl _borra
-                             18 	.globl _control_interrupciones
-                             19 	.globl _cpct_waitVSYNC
-                             20 	.globl _cpct_setVideoMode
-                             21 	.globl _cpct_disableFirmware
-                             22 	.globl _mientras_juego
-                             23 ;--------------------------------------------------------
-                             24 ; special function registers
+                             11 	.globl _a_jugar
+                             12 	.globl _main
+                             13 	.globl _pintar_sprites
+                             14 	.globl _fisica_objetos
+                             15 	.globl _iniciar_valores
+                             16 	.globl _fisica
+                             17 	.globl _teclado
+                             18 	.globl _borra
+                             19 	.globl _control_interrupciones
+                             20 	.globl _cpct_waitVSYNC
+                             21 	.globl _cpct_setVideoMode
+                             22 	.globl _cpct_memset_f64
+                             23 	.globl _cpct_disableFirmware
+                             24 	.globl _mientras_juego
                              25 ;--------------------------------------------------------
-                             26 ;--------------------------------------------------------
-                             27 ; ram data
+                             26 ; special function registers
+                             27 ;--------------------------------------------------------
                              28 ;--------------------------------------------------------
-                             29 	.area _DATA
+                             29 ; ram data
                              30 ;--------------------------------------------------------
-                             31 ; ram data
+                             31 	.area _DATA
                              32 ;--------------------------------------------------------
-                             33 	.area _INITIALIZED
+                             33 ; ram data
                              34 ;--------------------------------------------------------
-                             35 ; absolute external ram data
+                             35 	.area _INITIALIZED
                              36 ;--------------------------------------------------------
-                             37 	.area _DABS (ABS)
+                             37 ; absolute external ram data
                              38 ;--------------------------------------------------------
-                             39 ; global & static initialisations
+                             39 	.area _DABS (ABS)
                              40 ;--------------------------------------------------------
-                             41 	.area _HOME
-                             42 	.area _GSINIT
-                             43 	.area _GSFINAL
+                             41 ; global & static initialisations
+                             42 ;--------------------------------------------------------
+                             43 	.area _HOME
                              44 	.area _GSINIT
-                             45 ;--------------------------------------------------------
-                             46 ; Home
+                             45 	.area _GSFINAL
+                             46 	.area _GSINIT
                              47 ;--------------------------------------------------------
-                             48 	.area _HOME
-                             49 	.area _HOME
-                             50 ;--------------------------------------------------------
-                             51 ; code
+                             48 ; Home
+                             49 ;--------------------------------------------------------
+                             50 	.area _HOME
+                             51 	.area _HOME
                              52 ;--------------------------------------------------------
-                             53 	.area _CODE
-                             54 ;src/main.c:10: void main(void) {
-                             55 ;	---------------------------------
-                             56 ; Function main
-                             57 ; ---------------------------------
-   40E2                      58 _main::
-   40E2 21 FA FF      [10]   59 	ld	hl, #-6
-   40E5 39            [11]   60 	add	hl, sp
-   40E6 F9            [ 6]   61 	ld	sp, hl
-                             62 ;src/main.c:12: cpct_disableFirmware();
-   40E7 CD 98 45      [17]   63 	call	_cpct_disableFirmware
-                             64 ;src/main.c:13: control_interrupciones();
-   40EA CD 56 43      [17]   65 	call	_control_interrupciones
-                             66 ;src/main.c:14: cpct_setVideoMode(2);
-   40ED 2E 02         [ 7]   67 	ld	l, #0x02
-   40EF CD 7D 45      [17]   68 	call	_cpct_setVideoMode
-                             69 ;src/main.c:15: iniciar_valores();
-   40F2 CD 18 41      [17]   70 	call	_iniciar_valores
-                             71 ;src/main.c:16: pinta_marcador();
-   40F5 CD 75 42      [17]   72 	call	_pinta_marcador
-                             73 ;src/main.c:17: mientras_juego();
-   40F8 CD 01 41      [17]   74 	call	_mientras_juego
-   40FB 21 06 00      [10]   75 	ld	hl, #6
-   40FE 39            [11]   76 	add	hl, sp
-   40FF F9            [ 6]   77 	ld	sp, hl
-   4100 C9            [10]   78 	ret
-                             79 ;src/main.c:20: void mientras_juego(){
-                             80 ;	---------------------------------
-                             81 ; Function mientras_juego
-                             82 ; ---------------------------------
-   4101                      83 _mientras_juego::
-                             84 ;src/main.c:21: while(1){
-   4101                      85 00102$:
-                             86 ;src/main.c:22: borra();
-   4101 CD 69 41      [17]   87 	call	_borra
-                             88 ;src/main.c:23: teclado();
-   4104 CD 1B 43      [17]   89 	call	_teclado
-                             90 ;src/main.c:24: fisica();
-   4107 CD B5 41      [17]   91 	call	_fisica
-                             92 ;src/main.c:25: fisica_objetos();
-   410A CD 34 42      [17]   93 	call	_fisica_objetos
-                             94 ;src/main.c:26: pintar_sprites();
-   410D CD C1 42      [17]   95 	call	_pintar_sprites
-                             96 ;src/main.c:27: pinta_puntos();
-   4110 CD 96 42      [17]   97 	call	_pinta_puntos
-                             98 ;src/main.c:28: cpct_waitVSYNC();
-   4113 CD 75 45      [17]   99 	call	_cpct_waitVSYNC
-   4116 18 E9         [12]  100 	jr	00102$
-                            101 	.area _CODE
-                            102 	.area _INITIALIZER
-                            103 	.area _CABS (ABS)
+                             53 ; code
+                             54 ;--------------------------------------------------------
+                             55 	.area _CODE
+                             56 ;src/main.c:6: void main(void) {
+                             57 ;	---------------------------------
+                             58 ; Function main
+                             59 ; ---------------------------------
+   40E2                      60 _main::
+                             61 ;src/main.c:7: cpct_disableFirmware();
+   40E2 CD BF 46      [17]   62 	call	_cpct_disableFirmware
+                             63 ;src/main.c:8: control_interrupciones();
+   40E5 CD 25 44      [17]   64 	call	_control_interrupciones
+                             65 ;src/main.c:9: cpct_setVideoMode(2);
+   40E8 2E 02         [ 7]   66 	ld	l, #0x02
+   40EA CD A4 46      [17]   67 	call	_cpct_setVideoMode
+                             68 ;src/main.c:10: menu_juego();
+   40ED CD C7 43      [17]   69 	call	_menu_juego
+                             70 ;src/main.c:11: a_jugar();}
+   40F0 C3 F3 40      [10]   71 	jp  _a_jugar
+                             72 ;src/main.c:12: void a_jugar(){  
+                             73 ;	---------------------------------
+                             74 ; Function a_jugar
+                             75 ; ---------------------------------
+   40F3                      76 _a_jugar::
+                             77 ;src/main.c:13: cpct_clearScreen_f64(0); 
+   40F3 21 00 40      [10]   78 	ld	hl, #0x4000
+   40F6 E5            [11]   79 	push	hl
+   40F7 26 00         [ 7]   80 	ld	h, #0x00
+   40F9 E5            [11]   81 	push	hl
+   40FA 26 C0         [ 7]   82 	ld	h, #0xc0
+   40FC E5            [11]   83 	push	hl
+   40FD CD 44 46      [17]   84 	call	_cpct_memset_f64
+                             85 ;src/main.c:14: iniciar_valores();
+   4100 CD 21 41      [17]   86 	call	_iniciar_valores
+                             87 ;src/main.c:15: pinta_marcador();
+   4103 CD CC 42      [17]   88 	call	_pinta_marcador
+                             89 ;src/main.c:16: mientras_juego();
+   4106 CD 0A 41      [17]   90 	call	_mientras_juego
+   4109 C9            [10]   91 	ret
+                             92 ;src/main.c:19: void mientras_juego(){
+                             93 ;	---------------------------------
+                             94 ; Function mientras_juego
+                             95 ; ---------------------------------
+   410A                      96 _mientras_juego::
+                             97 ;src/main.c:20: while(1){
+   410A                      98 00102$:
+                             99 ;src/main.c:21: borra();
+   410A CD 59 41      [17]  100 	call	_borra
+                            101 ;src/main.c:22: teclado();
+   410D CD 90 43      [17]  102 	call	_teclado
+                            103 ;src/main.c:23: fisica();
+   4110 CD A5 41      [17]  104 	call	_fisica
+                            105 ;src/main.c:24: fisica_objetos();
+   4113 CD 12 42      [17]  106 	call	_fisica_objetos
+                            107 ;src/main.c:25: pintar_sprites();
+   4116 CD 37 43      [17]  108 	call	_pintar_sprites
+                            109 ;src/main.c:26: pinta_puntos();
+   4119 CD FE 42      [17]  110 	call	_pinta_puntos
+                            111 ;src/main.c:27: cpct_waitVSYNC();
+   411C CD 9C 46      [17]  112 	call	_cpct_waitVSYNC
+   411F 18 E9         [12]  113 	jr	00102$
+                            114 	.area _CODE
+                            115 	.area _INITIALIZER
+                            116 	.area _CABS (ABS)

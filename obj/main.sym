@@ -7,16 +7,19 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
+  0 _a_jugar                                                       0011 GR
     _borra                                                         **** GX
     _control_interrupciones                                        **** GX
     _cpct_disableFirmware                                          **** GX
+    _cpct_memset_f64                                               **** GX
     _cpct_setVideoMode                                             **** GX
     _cpct_waitVSYNC                                                **** GX
     _fisica                                                        **** GX
     _fisica_objetos                                                **** GX
     _iniciar_valores                                               **** GX
   0 _main                                                          0000 GR
-  0 _mientras_juego                                                001F GR
+    _menu_juego                                                    **** GX
+  0 _mientras_juego                                                0028 GR
     _pinta_marcador                                                **** GX
     _pinta_puntos                                                  **** GX
     _pintar_sprites                                                **** GX
@@ -27,7 +30,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   36   flags    0
+   0 _CODE                                      size   3F   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

@@ -59,9 +59,8 @@ _teclado::
 	or	a, a
 	jr	Z,00102$
 ;src/sistemas/teclado.c:8: && y_jugador>=y_frame_1)
-	ld	hl, #_y_frame_1
 	ld	a,(#_y_jugador + 0)
-	sub	a, (hl)
+	sub	a, #0x14
 	jr	C,00102$
 ;src/sistemas/teclado.c:9: {vy_jug=-1;}
 	ld	hl,#_vy_jug + 0
@@ -74,7 +73,7 @@ _teclado::
 	or	a, a
 	ret	Z
 ;src/sistemas/teclado.c:11: && y_jugador<=y_frame_4)
-	ld	a, (#_y_frame_4)
+	ld	a, #0xaa
 	ld	iy, #_y_jugador
 	sub	a, 0 (iy)
 	ret	C

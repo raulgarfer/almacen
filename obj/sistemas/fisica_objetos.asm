@@ -8,11 +8,18 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _espera_pulsar
+	.globl _fin_juego
 	.globl _borra_objeto
 	.globl _suma_puntos
+	.globl _cpct_getScreenPtr
+	.globl _cpct_drawStringM2
+	.globl _cpct_isAnyKeyPressed
+	.globl _cpct_scanKeyboard
 	.globl _fisica_objetos
 	.globl _comprobar_recojida
 	.globl _muere
+	.globl _espera_pulsacion_tecla
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -92,9 +99,81 @@ _comprobar_recojida::
 ; Function muere
 ; ---------------------------------
 _muere::
-;src/sistemas/fisica_objetos.c:17: while(1);
-00102$:
-	jr	00102$
+;src/sistemas/fisica_objetos.c:17: vidas--;
+	ld	hl, #_vidas+0
+	dec	(hl)
+;src/sistemas/fisica_objetos.c:18: x_manzana = x_start_objeto;
+	ld	hl,#_x_manzana + 0
+	ld	(hl), #0x3c
+;src/sistemas/fisica_objetos.c:19: pinta_marcador();
+	call	_pinta_marcador
+;src/sistemas/fisica_objetos.c:20: if (vidas=='0')
+	ld	a,(#_vidas + 0)
+	sub	a, #0x30
+	ret	NZ
+;src/sistemas/fisica_objetos.c:21: {fin_juego();}
+	jp  _fin_juego
+;src/sistemas/fisica_objetos.c:23: void fin_juego(){
+;	---------------------------------
+; Function fin_juego
+; ---------------------------------
+_fin_juego::
+;src/sistemas/fisica_objetos.c:26: pvmem=cpct_getScreenPtr(0xc000,10,20);
+	ld	hl, #0x140a
+	push	hl
+	ld	hl, #0xc000
+	push	hl
+	call	_cpct_getScreenPtr
+;src/sistemas/fisica_objetos.c:27: cpct_drawStringM2("Has sido despedido!",pvmem);
+	ld	bc, #___str_0+0
+	push	hl
+	push	bc
+	call	_cpct_drawStringM2
+;src/sistemas/fisica_objetos.c:28: pvmem=cpct_getScreenPtr(0xc000,10,40);
+	ld	hl, #0x280a
+	push	hl
+	ld	hl, #0xc000
+	push	hl
+	call	_cpct_getScreenPtr
+;src/sistemas/fisica_objetos.c:29: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
+	ld	bc, #___str_1+0
+	push	hl
+	push	bc
+	call	_cpct_drawStringM2
+;src/sistemas/fisica_objetos.c:30: espera_pulsacion_tecla();
+	call	_espera_pulsacion_tecla
+;src/sistemas/fisica_objetos.c:31: espera_pulsar();
+	call	_espera_pulsar
+	ret
+___str_0:
+	.ascii "Has sido despedido!"
+	.db 0x00
+___str_1:
+	.ascii "Vuelve a intentarlo."
+	.db 0x00
+;src/sistemas/fisica_objetos.c:33: void espera_pulsacion_tecla(){
+;	---------------------------------
+; Function espera_pulsacion_tecla
+; ---------------------------------
+_espera_pulsacion_tecla::
+;src/sistemas/fisica_objetos.c:35: cpct_scanKeyboard();
+	call	_cpct_scanKeyboard
+;src/sistemas/fisica_objetos.c:36: pulsado=cpct_isAnyKeyPressed();
+	call	_cpct_isAnyKeyPressed
+;src/sistemas/fisica_objetos.c:37: if (pulsado!=0)
+	ld	a, l
+	or	a, a
+;src/sistemas/fisica_objetos.c:38: {espera_pulsar();}
+	jp	NZ,_espera_pulsar
+;src/sistemas/fisica_objetos.c:39: else espera_pulsacion_tecla();
+	jr	_espera_pulsacion_tecla
+;src/sistemas/fisica_objetos.c:41: void espera_pulsar(){
+;	---------------------------------
+; Function espera_pulsar
+; ---------------------------------
+_espera_pulsar::
+;src/sistemas/fisica_objetos.c:42: a_jugar();}
+	jp  _a_jugar
 	.area _CODE
 	.area _INITIALIZER
 	.area _CABS (ABS)

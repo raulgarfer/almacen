@@ -59,8 +59,8 @@ _suma_puntos::
 	inc	(hl)
 00102$:
 ;src/sistemas/puntuacion.c:10: x_manzana = x_start_objeto;
-	ld	a,(#_x_start_objeto + 0)
-	ld	(#_x_manzana + 0),a
+	ld	hl,#_x_manzana + 0
+	ld	(hl), #0x3c
 ;src/sistemas/puntuacion.c:11: pinta_marcador();
 	jp  _pinta_marcador
 	.area _CODE
