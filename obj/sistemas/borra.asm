@@ -48,13 +48,12 @@
 ; Function borra
 ; ---------------------------------
 _borra::
-;src/sistemas/borra.c:6: pvmem   =   cpct_getScreenPtr(0xc000,x_jugador,y_jugador);
-	ld	a, (_y_jugador)
-	push	af
-	inc	sp
-	ld	a, (_x_jugador)
-	push	af
-	inc	sp
+;src/sistemas/borra.c:6: pvmem   =   cpct_getScreenPtr(0xc000,array[0].x,array[0].y);
+	ld	hl, #_array + 2
+	ld	d, (hl)
+	ld	hl, #_array + 1
+	ld	e, (hl)
+	push	de
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr

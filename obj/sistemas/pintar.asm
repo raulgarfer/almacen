@@ -47,13 +47,12 @@
 ; Function pintar_sprites
 ; ---------------------------------
 _pintar_sprites::
-;src/sistemas/pintar.c:6: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, x_jugador, y_jugador);
-	ld	a, (_y_jugador)
-	push	af
-	inc	sp
-	ld	a, (_x_jugador)
-	push	af
-	inc	sp
+;src/sistemas/pintar.c:6: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, array[0].x, array[0].y);
+	ld	hl, #_array + 2
+	ld	d, (hl)
+	ld	hl, #_array + 1
+	ld	e, (hl)
+	push	de
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
@@ -64,22 +63,28 @@ _pintar_sprites::
 	push	hl
 	push	bc
 	call	_cpct_drawSprite
-;src/sistemas/pintar.c:8: pvmem=   cpct_getScreenPtr(CPCT_VMEM_START,x_manzana,y_manzana);
-	ld	a, (_y_manzana)
-	push	af
-	inc	sp
-	ld	a, (_x_manzana)
-	push	af
-	inc	sp
+;src/sistemas/pintar.c:8: pvmem=   cpct_getScreenPtr(CPCT_VMEM_START,array[1].x,array[1].y);
+	ld	hl, #_array + 11
+	ld	d, (hl)
+	ld	hl, #_array + 10
+	ld	e, (hl)
+	push	de
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
-;src/sistemas/pintar.c:9: cpct_drawSprite(manzana,pvmem,MANZANA_W,MANZANA_H);
-	ld	bc, #_manzana+0
-	ld	de, #0x1002
-	push	de
+	ld	c, l
+	ld	b, h
+;src/sistemas/pintar.c:9: cpct_drawSprite(array[1].sprite,pvmem,array[1].ancho,array[1].alto);
+	ld	hl, #_array + 15
+	ld	d, (hl)
+	ld	hl, #_array + 14
+	ld	e, (hl)
+	ld	hl, (#_array + 16)
 	push	hl
+	pop	iy
+	push	de
 	push	bc
+	push	iy
 	call	_cpct_drawSprite
 	ret
 	.area _CODE

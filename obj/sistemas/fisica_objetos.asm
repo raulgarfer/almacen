@@ -56,28 +56,41 @@
 ; Function fisica_objetos
 ; ---------------------------------
 _fisica_objetos::
-;src/sistemas/fisica_objetos.c:5: borra_objeto(x_manzana,y_manzana,MANZANA_W,MANZANA_H);
-	ld	hl, #0x1002
-	push	hl
-	ld	a, (_y_manzana)
+;src/sistemas/fisica_objetos.c:5: borra_objeto(array[1].x,array[1].y,array[1].ancho,array[1].alto);
+	ld	hl, #_array + 15
+	ld	c, (hl)
+	ld	hl, #_array + 14
+	ld	b, (hl)
+	ld	hl, #_array + 11
+	ld	e, (hl)
+	ld	hl, #(_array + 0x000a) + 0
+	ld	d, (hl)
+	ld	a, c
 	push	af
 	inc	sp
-	ld	a, (_x_manzana)
+	push	bc
+	inc	sp
+	ld	a, e
 	push	af
+	inc	sp
+	push	de
 	inc	sp
 	call	_borra_objeto
 	pop	af
 	pop	af
-;src/sistemas/fisica_objetos.c:6: x_manzana+=vx_manzana;
-	ld	iy, #_x_manzana
-	ld	a, 0 (iy)
-	ld	hl, #_vx_manzana
-	add	a, (hl)
-	ld	0 (iy), a
-;src/sistemas/fisica_objetos.c:7: if (x_manzana==caida_objeto)
-	ld	a,(#_x_manzana + 0)
-	ld	iy, #_caida_objeto
-	sub	a, 0 (iy)
+;src/sistemas/fisica_objetos.c:6: array[1].x+=array[1].vx;
+	ld	hl, #(_array + 0x000a) + 0
+	ld	c, (hl)
+	ld	hl, #_array + 12
+	ld	e, (hl)
+	ld	a, c
+	add	a, e
+	ld	(#(_array + 0x000a)),a
+;src/sistemas/fisica_objetos.c:7: if (array[1].x==caida_objeto)
+	ld	hl, #(_array + 0x000a) + 0
+	ld	c, (hl)
+	ld	a,(#_caida_objeto + 0)
+	sub	a, c
 	ret	NZ
 ;src/sistemas/fisica_objetos.c:8: {comprobar_recojida();}
 	jp  _comprobar_recojida
@@ -86,10 +99,13 @@ _fisica_objetos::
 ; Function comprobar_recojida
 ; ---------------------------------
 _comprobar_recojida::
-;src/sistemas/fisica_objetos.c:12: if (y_manzana==y_jugador)
-	ld	a,(#_y_manzana + 0)
-	ld	iy, #_y_jugador
-	sub	a, 0 (iy)
+;src/sistemas/fisica_objetos.c:12: if (array[1].y==array[0].y)
+	ld	hl, #_array + 11
+	ld	c, (hl)
+	ld	hl, #_array + 2
+	ld	b, (hl)
+	ld	a, c
+	sub	a, b
 ;src/sistemas/fisica_objetos.c:13: {suma_puntos();}
 	jp	Z,_suma_puntos
 ;src/sistemas/fisica_objetos.c:14: else {muere();}}
@@ -102,8 +118,8 @@ _muere::
 ;src/sistemas/fisica_objetos.c:17: vidas--;
 	ld	hl, #_vidas+0
 	dec	(hl)
-;src/sistemas/fisica_objetos.c:18: x_manzana = x_start_objeto;
-	ld	hl,#_x_manzana + 0
+;src/sistemas/fisica_objetos.c:18: array[1].x = x_start_objeto;
+	ld	hl, #(_array + 0x000a)
 	ld	(hl), #0x3c
 ;src/sistemas/fisica_objetos.c:19: pinta_marcador();
 	call	_pinta_marcador

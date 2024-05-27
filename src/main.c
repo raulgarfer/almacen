@@ -7,6 +7,7 @@ void main(void) {
    cpct_disableFirmware();
    control_interrupciones();
    cpct_setVideoMode(2);
+   inicia_objetos();
    menu_juego();
    a_jugar();}
 void a_jugar(){  

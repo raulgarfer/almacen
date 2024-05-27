@@ -48,61 +48,60 @@
                              48 ; Function borra
                              49 ; ---------------------------------
    0000                      50 _borra::
-                             51 ;src/sistemas/borra.c:6: pvmem   =   cpct_getScreenPtr(0xc000,x_jugador,y_jugador);
-   0000 3Ar00r00      [13]   52 	ld	a, (_y_jugador)
-   0003 F5            [11]   53 	push	af
-   0004 33            [ 6]   54 	inc	sp
-   0005 3Ar00r00      [13]   55 	ld	a, (_x_jugador)
-   0008 F5            [11]   56 	push	af
-   0009 33            [ 6]   57 	inc	sp
-   000A 21 00 C0      [10]   58 	ld	hl, #0xc000
-   000D E5            [11]   59 	push	hl
-   000E CDr00r00      [17]   60 	call	_cpct_getScreenPtr
-                             61 ;src/sistemas/borra.c:7: cpct_drawSolidBox(pvmem,0,DERECHA_W,DERECHA_H);
-   0011 01 02 14      [10]   62 	ld	bc, #0x1402
-   0014 C5            [11]   63 	push	bc
-   0015 01 00 00      [10]   64 	ld	bc, #0x0000
-   0018 C5            [11]   65 	push	bc
-   0019 E5            [11]   66 	push	hl
-   001A CDr00r00      [17]   67 	call	_cpct_drawSolidBox
-   001D C9            [10]   68 	ret
-                             69 ;src/sistemas/borra.c:9: void borra_objeto(u8 x,u8 y,u8 ancho,u8 alto){
-                             70 ;	---------------------------------
-                             71 ; Function borra_objeto
-                             72 ; ---------------------------------
-   001E                      73 _borra_objeto::
-                             74 ;src/sistemas/borra.c:11: pvmem   =   cpct_getScreenPtr(0xc000,x,y);  
-   001E 21 03 00      [10]   75 	ld	hl, #3+0
-   0021 39            [11]   76 	add	hl, sp
-   0022 7E            [ 7]   77 	ld	a, (hl)
-   0023 F5            [11]   78 	push	af
-   0024 33            [ 6]   79 	inc	sp
-   0025 21 03 00      [10]   80 	ld	hl, #3+0
-   0028 39            [11]   81 	add	hl, sp
-   0029 7E            [ 7]   82 	ld	a, (hl)
-   002A F5            [11]   83 	push	af
-   002B 33            [ 6]   84 	inc	sp
-   002C 21 00 C0      [10]   85 	ld	hl, #0xc000
-   002F E5            [11]   86 	push	hl
-   0030 CDr00r00      [17]   87 	call	_cpct_getScreenPtr
-   0033 4D            [ 4]   88 	ld	c, l
-   0034 44            [ 4]   89 	ld	b, h
-                             90 ;src/sistemas/borra.c:12: cpct_drawSolidBox(pvmem,0,ancho,alto);
-   0035 21 05 00      [10]   91 	ld	hl, #5+0
-   0038 39            [11]   92 	add	hl, sp
-   0039 7E            [ 7]   93 	ld	a, (hl)
-   003A F5            [11]   94 	push	af
-   003B 33            [ 6]   95 	inc	sp
-   003C 21 05 00      [10]   96 	ld	hl, #5+0
-   003F 39            [11]   97 	add	hl, sp
-   0040 7E            [ 7]   98 	ld	a, (hl)
-   0041 F5            [11]   99 	push	af
-   0042 33            [ 6]  100 	inc	sp
-   0043 21 00 00      [10]  101 	ld	hl, #0x0000
-   0046 E5            [11]  102 	push	hl
-   0047 C5            [11]  103 	push	bc
-   0048 CDr00r00      [17]  104 	call	_cpct_drawSolidBox
-   004B C9            [10]  105 	ret
-                            106 	.area _CODE
-                            107 	.area _INITIALIZER
-                            108 	.area _CABS (ABS)
+                             51 ;src/sistemas/borra.c:6: pvmem   =   cpct_getScreenPtr(0xc000,array[0].x,array[0].y);
+   0000 21r02r00      [10]   52 	ld	hl, #_array + 2
+   0003 56            [ 7]   53 	ld	d, (hl)
+   0004 21r01r00      [10]   54 	ld	hl, #_array + 1
+   0007 5E            [ 7]   55 	ld	e, (hl)
+   0008 D5            [11]   56 	push	de
+   0009 21 00 C0      [10]   57 	ld	hl, #0xc000
+   000C E5            [11]   58 	push	hl
+   000D CDr00r00      [17]   59 	call	_cpct_getScreenPtr
+                             60 ;src/sistemas/borra.c:7: cpct_drawSolidBox(pvmem,0,DERECHA_W,DERECHA_H);
+   0010 01 02 14      [10]   61 	ld	bc, #0x1402
+   0013 C5            [11]   62 	push	bc
+   0014 01 00 00      [10]   63 	ld	bc, #0x0000
+   0017 C5            [11]   64 	push	bc
+   0018 E5            [11]   65 	push	hl
+   0019 CDr00r00      [17]   66 	call	_cpct_drawSolidBox
+   001C C9            [10]   67 	ret
+                             68 ;src/sistemas/borra.c:9: void borra_objeto(u8 x,u8 y,u8 ancho,u8 alto){
+                             69 ;	---------------------------------
+                             70 ; Function borra_objeto
+                             71 ; ---------------------------------
+   001D                      72 _borra_objeto::
+                             73 ;src/sistemas/borra.c:11: pvmem   =   cpct_getScreenPtr(0xc000,x,y);  
+   001D 21 03 00      [10]   74 	ld	hl, #3+0
+   0020 39            [11]   75 	add	hl, sp
+   0021 7E            [ 7]   76 	ld	a, (hl)
+   0022 F5            [11]   77 	push	af
+   0023 33            [ 6]   78 	inc	sp
+   0024 21 03 00      [10]   79 	ld	hl, #3+0
+   0027 39            [11]   80 	add	hl, sp
+   0028 7E            [ 7]   81 	ld	a, (hl)
+   0029 F5            [11]   82 	push	af
+   002A 33            [ 6]   83 	inc	sp
+   002B 21 00 C0      [10]   84 	ld	hl, #0xc000
+   002E E5            [11]   85 	push	hl
+   002F CDr00r00      [17]   86 	call	_cpct_getScreenPtr
+   0032 4D            [ 4]   87 	ld	c, l
+   0033 44            [ 4]   88 	ld	b, h
+                             89 ;src/sistemas/borra.c:12: cpct_drawSolidBox(pvmem,0,ancho,alto);
+   0034 21 05 00      [10]   90 	ld	hl, #5+0
+   0037 39            [11]   91 	add	hl, sp
+   0038 7E            [ 7]   92 	ld	a, (hl)
+   0039 F5            [11]   93 	push	af
+   003A 33            [ 6]   94 	inc	sp
+   003B 21 05 00      [10]   95 	ld	hl, #5+0
+   003E 39            [11]   96 	add	hl, sp
+   003F 7E            [ 7]   97 	ld	a, (hl)
+   0040 F5            [11]   98 	push	af
+   0041 33            [ 6]   99 	inc	sp
+   0042 21 00 00      [10]  100 	ld	hl, #0x0000
+   0045 E5            [11]  101 	push	hl
+   0046 C5            [11]  102 	push	bc
+   0047 CDr00r00      [17]  103 	call	_cpct_drawSolidBox
+   004A C9            [10]  104 	ret
+                            105 	.area _CODE
+                            106 	.area _INITIALIZER
+                            107 	.area _CABS (ABS)

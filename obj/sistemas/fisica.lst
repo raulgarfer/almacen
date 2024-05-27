@@ -47,79 +47,70 @@
                              47 ; Function fisica
                              48 ; ---------------------------------
    0000                      49 _fisica::
-                             50 ;src/sistemas/fisica.c:8: if (vy_jug==1)
-   0000 3Ar00r00      [13]   51 	ld	a,(#_vy_jug + 0)
-   0003 3D            [ 4]   52 	dec	a
-                             53 ;src/sistemas/fisica.c:9: {baja();}
-   0004 CAr0Fr00      [10]   54 	jp	Z,_baja
-                             55 ;src/sistemas/fisica.c:10: else if(vy_jug==-1)
-   0007 3Ar00r00      [13]   56 	ld	a,(#_vy_jug + 0)
-   000A 3C            [ 4]   57 	inc	a
-   000B C0            [11]   58 	ret	NZ
-                             59 ;src/sistemas/fisica.c:11: {sube();}
-   000C C3r3Er00      [10]   60 	jp  _sube
-                             61 ;src/sistemas/fisica.c:13: void baja(){
-                             62 ;	---------------------------------
-                             63 ; Function baja
-                             64 ; ---------------------------------
-   000F                      65 _baja::
-                             66 ;src/sistemas/fisica.c:14: if (y_jugador   ==  y_frame_1)
-   000F FD 21r00r00   [14]   67 	ld	iy, #_y_jugador
-   0013 FD 7E 00      [19]   68 	ld	a, 0 (iy)
-   0016 D6 14         [ 7]   69 	sub	a, #0x14
-   0018 20 05         [12]   70 	jr	NZ,00107$
-                             71 ;src/sistemas/fisica.c:15: {y_jugador  =   y_frame_2;}
-   001A FD 36 00 46   [19]   72 	ld	0 (iy), #0x46
-   001E C9            [10]   73 	ret
-   001F                      74 00107$:
-                             75 ;src/sistemas/fisica.c:17: if (y_jugador   ==  y_frame_2)
-   001F FD 21r00r00   [14]   76 	ld	iy, #_y_jugador
-   0023 FD 7E 00      [19]   77 	ld	a, 0 (iy)
-   0026 D6 46         [ 7]   78 	sub	a, #0x46
-   0028 20 05         [12]   79 	jr	NZ,00104$
-                             80 ;src/sistemas/fisica.c:18: {y_jugador  =   y_frame_3;}
-   002A FD 36 00 78   [19]   81 	ld	0 (iy), #0x78
-   002E C9            [10]   82 	ret
-   002F                      83 00104$:
-                             84 ;src/sistemas/fisica.c:20: if (y_jugador   ==  y_frame_3)
-   002F FD 21r00r00   [14]   85 	ld	iy, #_y_jugador
-   0033 FD 7E 00      [19]   86 	ld	a, 0 (iy)
-   0036 D6 78         [ 7]   87 	sub	a, #0x78
-   0038 C0            [11]   88 	ret	NZ
-                             89 ;src/sistemas/fisica.c:21: {y_jugador  =   y_frame_4;}}
-   0039 FD 36 00 AA   [19]   90 	ld	0 (iy), #0xaa
-   003D C9            [10]   91 	ret
-                             92 ;src/sistemas/fisica.c:22: void sube(){
-                             93 ;	---------------------------------
-                             94 ; Function sube
-                             95 ; ---------------------------------
-   003E                      96 _sube::
-                             97 ;src/sistemas/fisica.c:23: if (y_jugador   ==  y_frame_4)
-   003E FD 21r00r00   [14]   98 	ld	iy, #_y_jugador
-   0042 FD 7E 00      [19]   99 	ld	a, 0 (iy)
-   0045 D6 AA         [ 7]  100 	sub	a, #0xaa
-   0047 20 05         [12]  101 	jr	NZ,00107$
-                            102 ;src/sistemas/fisica.c:24: {y_jugador  =   y_frame_3;}
-   0049 FD 36 00 78   [19]  103 	ld	0 (iy), #0x78
-   004D C9            [10]  104 	ret
-   004E                     105 00107$:
-                            106 ;src/sistemas/fisica.c:26: if (y_jugador   ==  y_frame_3)
-   004E FD 21r00r00   [14]  107 	ld	iy, #_y_jugador
-   0052 FD 7E 00      [19]  108 	ld	a, 0 (iy)
-   0055 D6 78         [ 7]  109 	sub	a, #0x78
-   0057 20 05         [12]  110 	jr	NZ,00104$
-                            111 ;src/sistemas/fisica.c:27: {y_jugador  =   y_frame_2;}
-   0059 FD 36 00 46   [19]  112 	ld	0 (iy), #0x46
-   005D C9            [10]  113 	ret
-   005E                     114 00104$:
-                            115 ;src/sistemas/fisica.c:29: if (y_jugador   ==  y_frame_2)
-   005E FD 21r00r00   [14]  116 	ld	iy, #_y_jugador
-   0062 FD 7E 00      [19]  117 	ld	a, 0 (iy)
-   0065 D6 46         [ 7]  118 	sub	a, #0x46
-   0067 C0            [11]  119 	ret	NZ
-                            120 ;src/sistemas/fisica.c:30: {y_jugador  =   y_frame_1;}
-   0068 FD 36 00 14   [19]  121 	ld	0 (iy), #0x14
-   006C C9            [10]  122 	ret
-                            123 	.area _CODE
-                            124 	.area _INITIALIZER
-                            125 	.area _CABS (ABS)
+                             50 ;src/sistemas/fisica.c:8: if (array[0].vy==1)
+   0000 3Ar04r00      [13]   51 	ld	a, (#(_array + 0x0004) + 0)
+   0003 FE 01         [ 7]   52 	cp	a, #0x01
+                             53 ;src/sistemas/fisica.c:9: baja();
+   0005 CAr0Dr00      [10]   54 	jp	Z,_baja
+                             55 ;src/sistemas/fisica.c:10: else if(array[0].vy==-1)
+   0008 3C            [ 4]   56 	inc	a
+   0009 C0            [11]   57 	ret	NZ
+                             58 ;src/sistemas/fisica.c:11: sube();
+   000A C3r25r00      [10]   59 	jp  _sube
+                             60 ;src/sistemas/fisica.c:13: void baja(){
+                             61 ;	---------------------------------
+                             62 ; Function baja
+                             63 ; ---------------------------------
+   000D                      64 _baja::
+                             65 ;src/sistemas/fisica.c:14: if (array[0].y   ==  y_frame_1)
+   000D 21r02r00      [10]   66 	ld	hl, #_array+2
+   0010 7E            [ 7]   67 	ld	a, (hl)
+   0011 FE 14         [ 7]   68 	cp	a, #0x14
+   0013 20 03         [12]   69 	jr	NZ,00107$
+                             70 ;src/sistemas/fisica.c:15: {array[0].y  =   y_frame_2;}
+   0015 36 46         [10]   71 	ld	(hl), #0x46
+   0017 C9            [10]   72 	ret
+   0018                      73 00107$:
+                             74 ;src/sistemas/fisica.c:17: if (array[0].y   ==  y_frame_2)
+   0018 FE 46         [ 7]   75 	cp	a, #0x46
+   001A 20 03         [12]   76 	jr	NZ,00104$
+                             77 ;src/sistemas/fisica.c:18: {array[0].y  =   y_frame_3;}
+   001C 36 78         [10]   78 	ld	(hl), #0x78
+   001E C9            [10]   79 	ret
+   001F                      80 00104$:
+                             81 ;src/sistemas/fisica.c:20: if (array[0].y   ==  y_frame_3)
+   001F D6 78         [ 7]   82 	sub	a, #0x78
+   0021 C0            [11]   83 	ret	NZ
+                             84 ;src/sistemas/fisica.c:21: {array[0].y  =   y_frame_4;}}
+   0022 36 AA         [10]   85 	ld	(hl), #0xaa
+   0024 C9            [10]   86 	ret
+                             87 ;src/sistemas/fisica.c:22: void sube(){
+                             88 ;	---------------------------------
+                             89 ; Function sube
+                             90 ; ---------------------------------
+   0025                      91 _sube::
+                             92 ;src/sistemas/fisica.c:23: if (array[0].y   ==  y_frame_4)
+   0025 21r02r00      [10]   93 	ld	hl, #_array+2
+   0028 7E            [ 7]   94 	ld	a, (hl)
+   0029 FE AA         [ 7]   95 	cp	a, #0xaa
+   002B 20 03         [12]   96 	jr	NZ,00107$
+                             97 ;src/sistemas/fisica.c:24: {array[0].y  =   y_frame_3;}
+   002D 36 78         [10]   98 	ld	(hl), #0x78
+   002F C9            [10]   99 	ret
+   0030                     100 00107$:
+                            101 ;src/sistemas/fisica.c:26: if (array[0].y   ==  y_frame_3)
+   0030 FE 78         [ 7]  102 	cp	a, #0x78
+   0032 20 03         [12]  103 	jr	NZ,00104$
+                            104 ;src/sistemas/fisica.c:27: {array[0].y  =   y_frame_2;}
+   0034 36 46         [10]  105 	ld	(hl), #0x46
+   0036 C9            [10]  106 	ret
+   0037                     107 00104$:
+                            108 ;src/sistemas/fisica.c:29: if (array[0].y   ==  y_frame_2)
+   0037 D6 46         [ 7]  109 	sub	a, #0x46
+   0039 C0            [11]  110 	ret	NZ
+                            111 ;src/sistemas/fisica.c:30: {array[0].y  =   y_frame_1;}
+   003A 36 14         [10]  112 	ld	(hl), #0x14
+   003C C9            [10]  113 	ret
+                            114 	.area _CODE
+                            115 	.area _INITIALIZER
+                            116 	.area _CABS (ABS)

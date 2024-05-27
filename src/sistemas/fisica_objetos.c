@@ -2,20 +2,20 @@
 #include "sprites.h"
 #include "datos/delcaraciones.h"
 void fisica_objetos(){
-    borra_objeto(x_manzana,y_manzana,MANZANA_W,MANZANA_H);
-    x_manzana+=vx_manzana;
-    if (x_manzana==caida_objeto)
+    borra_objeto(array[1].x,array[1].y,array[1].ancho,array[1].alto);
+    array[1].x+=array[1].vx;
+    if (array[1].x==caida_objeto)
         {comprobar_recojida();}
         }
 
 void comprobar_recojida(){
-    if (y_manzana==y_jugador)
+    if (array[1].y==array[0].y)
         {suma_puntos();}
     else {muere();}}
 
 void muere(){
    vidas--;
-    x_manzana = x_start_objeto;
+    array[1].x = x_start_objeto;
     pinta_marcador();
    if (vidas=='0')
     {fin_juego();}

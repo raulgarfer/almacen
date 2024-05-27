@@ -47,41 +47,46 @@
                              47 ; Function pintar_sprites
                              48 ; ---------------------------------
    0000                      49 _pintar_sprites::
-                             50 ;src/sistemas/pintar.c:6: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, x_jugador, y_jugador);
-   0000 3Ar00r00      [13]   51 	ld	a, (_y_jugador)
-   0003 F5            [11]   52 	push	af
-   0004 33            [ 6]   53 	inc	sp
-   0005 3Ar00r00      [13]   54 	ld	a, (_x_jugador)
-   0008 F5            [11]   55 	push	af
-   0009 33            [ 6]   56 	inc	sp
-   000A 21 00 C0      [10]   57 	ld	hl, #0xc000
-   000D E5            [11]   58 	push	hl
-   000E CDr00r00      [17]   59 	call	_cpct_getScreenPtr
-                             60 ;src/sistemas/pintar.c:7: cpct_drawSprite(derecha,pvmem,DERECHA_W,DERECHA_H);
-   0011 01r00r00      [10]   61 	ld	bc, #_derecha+0
-   0014 11 02 14      [10]   62 	ld	de, #0x1402
-   0017 D5            [11]   63 	push	de
-   0018 E5            [11]   64 	push	hl
-   0019 C5            [11]   65 	push	bc
-   001A CDr00r00      [17]   66 	call	_cpct_drawSprite
-                             67 ;src/sistemas/pintar.c:8: pvmem=   cpct_getScreenPtr(CPCT_VMEM_START,x_manzana,y_manzana);
-   001D 3Ar00r00      [13]   68 	ld	a, (_y_manzana)
-   0020 F5            [11]   69 	push	af
-   0021 33            [ 6]   70 	inc	sp
-   0022 3Ar00r00      [13]   71 	ld	a, (_x_manzana)
-   0025 F5            [11]   72 	push	af
-   0026 33            [ 6]   73 	inc	sp
-   0027 21 00 C0      [10]   74 	ld	hl, #0xc000
-   002A E5            [11]   75 	push	hl
-   002B CDr00r00      [17]   76 	call	_cpct_getScreenPtr
-                             77 ;src/sistemas/pintar.c:9: cpct_drawSprite(manzana,pvmem,MANZANA_W,MANZANA_H);
-   002E 01r00r00      [10]   78 	ld	bc, #_manzana+0
-   0031 11 02 10      [10]   79 	ld	de, #0x1002
-   0034 D5            [11]   80 	push	de
-   0035 E5            [11]   81 	push	hl
-   0036 C5            [11]   82 	push	bc
-   0037 CDr00r00      [17]   83 	call	_cpct_drawSprite
-   003A C9            [10]   84 	ret
-                             85 	.area _CODE
-                             86 	.area _INITIALIZER
-                             87 	.area _CABS (ABS)
+                             50 ;src/sistemas/pintar.c:6: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, array[0].x, array[0].y);
+   0000 21r02r00      [10]   51 	ld	hl, #_array + 2
+   0003 56            [ 7]   52 	ld	d, (hl)
+   0004 21r01r00      [10]   53 	ld	hl, #_array + 1
+   0007 5E            [ 7]   54 	ld	e, (hl)
+   0008 D5            [11]   55 	push	de
+   0009 21 00 C0      [10]   56 	ld	hl, #0xc000
+   000C E5            [11]   57 	push	hl
+   000D CDr00r00      [17]   58 	call	_cpct_getScreenPtr
+                             59 ;src/sistemas/pintar.c:7: cpct_drawSprite(derecha,pvmem,DERECHA_W,DERECHA_H);
+   0010 01r00r00      [10]   60 	ld	bc, #_derecha+0
+   0013 11 02 14      [10]   61 	ld	de, #0x1402
+   0016 D5            [11]   62 	push	de
+   0017 E5            [11]   63 	push	hl
+   0018 C5            [11]   64 	push	bc
+   0019 CDr00r00      [17]   65 	call	_cpct_drawSprite
+                             66 ;src/sistemas/pintar.c:8: pvmem=   cpct_getScreenPtr(CPCT_VMEM_START,array[1].x,array[1].y);
+   001C 21r0Br00      [10]   67 	ld	hl, #_array + 11
+   001F 56            [ 7]   68 	ld	d, (hl)
+   0020 21r0Ar00      [10]   69 	ld	hl, #_array + 10
+   0023 5E            [ 7]   70 	ld	e, (hl)
+   0024 D5            [11]   71 	push	de
+   0025 21 00 C0      [10]   72 	ld	hl, #0xc000
+   0028 E5            [11]   73 	push	hl
+   0029 CDr00r00      [17]   74 	call	_cpct_getScreenPtr
+   002C 4D            [ 4]   75 	ld	c, l
+   002D 44            [ 4]   76 	ld	b, h
+                             77 ;src/sistemas/pintar.c:9: cpct_drawSprite(array[1].sprite,pvmem,array[1].ancho,array[1].alto);
+   002E 21r0Fr00      [10]   78 	ld	hl, #_array + 15
+   0031 56            [ 7]   79 	ld	d, (hl)
+   0032 21r0Er00      [10]   80 	ld	hl, #_array + 14
+   0035 5E            [ 7]   81 	ld	e, (hl)
+   0036 2Ar10r00      [16]   82 	ld	hl, (#_array + 16)
+   0039 E5            [11]   83 	push	hl
+   003A FD E1         [14]   84 	pop	iy
+   003C D5            [11]   85 	push	de
+   003D C5            [11]   86 	push	bc
+   003E FD E5         [15]   87 	push	iy
+   0040 CDr00r00      [17]   88 	call	_cpct_drawSprite
+   0043 C9            [10]   89 	ret
+                             90 	.area _CODE
+                             91 	.area _INITIALIZER
+                             92 	.area _CABS (ABS)

@@ -46,80 +46,71 @@
                              46 ;	---------------------------------
                              47 ; Function fisica
                              48 ; ---------------------------------
-   41A5                      49 _fisica::
-                             50 ;src/sistemas/fisica.c:8: if (vy_jug==1)
-   41A5 3A C2 47      [13]   51 	ld	a,(#_vy_jug + 0)
-   41A8 3D            [ 4]   52 	dec	a
-                             53 ;src/sistemas/fisica.c:9: {baja();}
-   41A9 CA B4 41      [10]   54 	jp	Z,_baja
-                             55 ;src/sistemas/fisica.c:10: else if(vy_jug==-1)
-   41AC 3A C2 47      [13]   56 	ld	a,(#_vy_jug + 0)
-   41AF 3C            [ 4]   57 	inc	a
-   41B0 C0            [11]   58 	ret	NZ
-                             59 ;src/sistemas/fisica.c:11: {sube();}
-   41B1 C3 E3 41      [10]   60 	jp  _sube
-                             61 ;src/sistemas/fisica.c:13: void baja(){
-                             62 ;	---------------------------------
-                             63 ; Function baja
-                             64 ; ---------------------------------
-   41B4                      65 _baja::
-                             66 ;src/sistemas/fisica.c:14: if (y_jugador   ==  y_frame_1)
-   41B4 FD 21 BF 47   [14]   67 	ld	iy, #_y_jugador
-   41B8 FD 7E 00      [19]   68 	ld	a, 0 (iy)
-   41BB D6 14         [ 7]   69 	sub	a, #0x14
-   41BD 20 05         [12]   70 	jr	NZ,00107$
-                             71 ;src/sistemas/fisica.c:15: {y_jugador  =   y_frame_2;}
-   41BF FD 36 00 46   [19]   72 	ld	0 (iy), #0x46
-   41C3 C9            [10]   73 	ret
-   41C4                      74 00107$:
-                             75 ;src/sistemas/fisica.c:17: if (y_jugador   ==  y_frame_2)
-   41C4 FD 21 BF 47   [14]   76 	ld	iy, #_y_jugador
-   41C8 FD 7E 00      [19]   77 	ld	a, 0 (iy)
-   41CB D6 46         [ 7]   78 	sub	a, #0x46
-   41CD 20 05         [12]   79 	jr	NZ,00104$
-                             80 ;src/sistemas/fisica.c:18: {y_jugador  =   y_frame_3;}
-   41CF FD 36 00 78   [19]   81 	ld	0 (iy), #0x78
-   41D3 C9            [10]   82 	ret
-   41D4                      83 00104$:
-                             84 ;src/sistemas/fisica.c:20: if (y_jugador   ==  y_frame_3)
-   41D4 FD 21 BF 47   [14]   85 	ld	iy, #_y_jugador
-   41D8 FD 7E 00      [19]   86 	ld	a, 0 (iy)
-   41DB D6 78         [ 7]   87 	sub	a, #0x78
-   41DD C0            [11]   88 	ret	NZ
-                             89 ;src/sistemas/fisica.c:21: {y_jugador  =   y_frame_4;}}
-   41DE FD 36 00 AA   [19]   90 	ld	0 (iy), #0xaa
-   41E2 C9            [10]   91 	ret
-                             92 ;src/sistemas/fisica.c:22: void sube(){
-                             93 ;	---------------------------------
-                             94 ; Function sube
-                             95 ; ---------------------------------
-   41E3                      96 _sube::
-                             97 ;src/sistemas/fisica.c:23: if (y_jugador   ==  y_frame_4)
-   41E3 FD 21 BF 47   [14]   98 	ld	iy, #_y_jugador
-   41E7 FD 7E 00      [19]   99 	ld	a, 0 (iy)
-   41EA D6 AA         [ 7]  100 	sub	a, #0xaa
-   41EC 20 05         [12]  101 	jr	NZ,00107$
-                            102 ;src/sistemas/fisica.c:24: {y_jugador  =   y_frame_3;}
-   41EE FD 36 00 78   [19]  103 	ld	0 (iy), #0x78
-   41F2 C9            [10]  104 	ret
-   41F3                     105 00107$:
-                            106 ;src/sistemas/fisica.c:26: if (y_jugador   ==  y_frame_3)
-   41F3 FD 21 BF 47   [14]  107 	ld	iy, #_y_jugador
-   41F7 FD 7E 00      [19]  108 	ld	a, 0 (iy)
-   41FA D6 78         [ 7]  109 	sub	a, #0x78
-   41FC 20 05         [12]  110 	jr	NZ,00104$
-                            111 ;src/sistemas/fisica.c:27: {y_jugador  =   y_frame_2;}
-   41FE FD 36 00 46   [19]  112 	ld	0 (iy), #0x46
-   4202 C9            [10]  113 	ret
-   4203                     114 00104$:
-                            115 ;src/sistemas/fisica.c:29: if (y_jugador   ==  y_frame_2)
-   4203 FD 21 BF 47   [14]  116 	ld	iy, #_y_jugador
-   4207 FD 7E 00      [19]  117 	ld	a, 0 (iy)
-   420A D6 46         [ 7]  118 	sub	a, #0x46
-   420C C0            [11]  119 	ret	NZ
-                            120 ;src/sistemas/fisica.c:30: {y_jugador  =   y_frame_1;}
-   420D FD 36 00 14   [19]  121 	ld	0 (iy), #0x14
-   4211 C9            [10]  122 	ret
-                            123 	.area _CODE
-                            124 	.area _INITIALIZER
-                            125 	.area _CABS (ABS)
+   41DC                      49 _fisica::
+                             50 ;src/sistemas/fisica.c:8: if (array[0].vy==1)
+   41DC 3A 08 48      [13]   51 	ld	a, (#(_array + 0x0004) + 0)
+   41DF FE 01         [ 7]   52 	cp	a, #0x01
+                             53 ;src/sistemas/fisica.c:9: baja();
+   41E1 CA E9 41      [10]   54 	jp	Z,_baja
+                             55 ;src/sistemas/fisica.c:10: else if(array[0].vy==-1)
+   41E4 3C            [ 4]   56 	inc	a
+   41E5 C0            [11]   57 	ret	NZ
+                             58 ;src/sistemas/fisica.c:11: sube();
+   41E6 C3 01 42      [10]   59 	jp  _sube
+                             60 ;src/sistemas/fisica.c:13: void baja(){
+                             61 ;	---------------------------------
+                             62 ; Function baja
+                             63 ; ---------------------------------
+   41E9                      64 _baja::
+                             65 ;src/sistemas/fisica.c:14: if (array[0].y   ==  y_frame_1)
+   41E9 21 06 48      [10]   66 	ld	hl, #_array+2
+   41EC 7E            [ 7]   67 	ld	a, (hl)
+   41ED FE 14         [ 7]   68 	cp	a, #0x14
+   41EF 20 03         [12]   69 	jr	NZ,00107$
+                             70 ;src/sistemas/fisica.c:15: {array[0].y  =   y_frame_2;}
+   41F1 36 46         [10]   71 	ld	(hl), #0x46
+   41F3 C9            [10]   72 	ret
+   41F4                      73 00107$:
+                             74 ;src/sistemas/fisica.c:17: if (array[0].y   ==  y_frame_2)
+   41F4 FE 46         [ 7]   75 	cp	a, #0x46
+   41F6 20 03         [12]   76 	jr	NZ,00104$
+                             77 ;src/sistemas/fisica.c:18: {array[0].y  =   y_frame_3;}
+   41F8 36 78         [10]   78 	ld	(hl), #0x78
+   41FA C9            [10]   79 	ret
+   41FB                      80 00104$:
+                             81 ;src/sistemas/fisica.c:20: if (array[0].y   ==  y_frame_3)
+   41FB D6 78         [ 7]   82 	sub	a, #0x78
+   41FD C0            [11]   83 	ret	NZ
+                             84 ;src/sistemas/fisica.c:21: {array[0].y  =   y_frame_4;}}
+   41FE 36 AA         [10]   85 	ld	(hl), #0xaa
+   4200 C9            [10]   86 	ret
+                             87 ;src/sistemas/fisica.c:22: void sube(){
+                             88 ;	---------------------------------
+                             89 ; Function sube
+                             90 ; ---------------------------------
+   4201                      91 _sube::
+                             92 ;src/sistemas/fisica.c:23: if (array[0].y   ==  y_frame_4)
+   4201 21 06 48      [10]   93 	ld	hl, #_array+2
+   4204 7E            [ 7]   94 	ld	a, (hl)
+   4205 FE AA         [ 7]   95 	cp	a, #0xaa
+   4207 20 03         [12]   96 	jr	NZ,00107$
+                             97 ;src/sistemas/fisica.c:24: {array[0].y  =   y_frame_3;}
+   4209 36 78         [10]   98 	ld	(hl), #0x78
+   420B C9            [10]   99 	ret
+   420C                     100 00107$:
+                            101 ;src/sistemas/fisica.c:26: if (array[0].y   ==  y_frame_3)
+   420C FE 78         [ 7]  102 	cp	a, #0x78
+   420E 20 03         [12]  103 	jr	NZ,00104$
+                            104 ;src/sistemas/fisica.c:27: {array[0].y  =   y_frame_2;}
+   4210 36 46         [10]  105 	ld	(hl), #0x46
+   4212 C9            [10]  106 	ret
+   4213                     107 00104$:
+                            108 ;src/sistemas/fisica.c:29: if (array[0].y   ==  y_frame_2)
+   4213 D6 46         [ 7]  109 	sub	a, #0x46
+   4215 C0            [11]  110 	ret	NZ
+                            111 ;src/sistemas/fisica.c:30: {array[0].y  =   y_frame_1;}
+   4216 36 14         [10]  112 	ld	(hl), #0x14
+   4218 C9            [10]  113 	ret
+                            114 	.area _CODE
+                            115 	.area _INITIALIZER
+                            116 	.area _CABS (ABS)

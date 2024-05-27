@@ -7,28 +7,25 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 ___str_0                                                       0081 R
-  0 ___str_1                                                       0095 R
+  0 ___str_0                                                       008A R
+  0 ___str_1                                                       009E R
     _a_jugar                                                       **** GX
+    _array                                                         **** GX
     _borra_objeto                                                  **** GX
     _caida_objeto                                                  **** GX
-  0 _comprobar_recojida                                            002F GR
+  0 _comprobar_recojida                                            0038 GR
     _cpct_drawStringM2                                             **** GX
     _cpct_getScreenPtr                                             **** GX
     _cpct_isAnyKeyPressed                                          **** GX
     _cpct_scanKeyboard                                             **** GX
-  0 _espera_pulsacion_tecla                                        00AA GR
-  0 _espera_pulsar                                                 00B7 GR
-  0 _fin_juego                                                     0054 GR
+  0 _espera_pulsacion_tecla                                        00B3 GR
+  0 _espera_pulsar                                                 00C0 GR
+  0 _fin_juego                                                     005D GR
   0 _fisica_objetos                                                0000 GR
-  0 _muere                                                         003F GR
+  0 _muere                                                         0048 GR
     _pinta_marcador                                                **** GX
     _suma_puntos                                                   **** GX
     _vidas                                                         **** GX
-    _vx_manzana                                                    **** GX
-    _x_manzana                                                     **** GX
-    _y_jugador                                                     **** GX
-    _y_manzana                                                     **** GX
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
@@ -36,7 +33,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   BA   flags    0
+   0 _CODE                                      size   C3   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

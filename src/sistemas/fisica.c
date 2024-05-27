@@ -5,27 +5,27 @@ void baja();
 void sube();
 
 void fisica(){
-    if (vy_jug==1)
-            {baja();}
-        else if(vy_jug==-1)
-            {sube();}
+    if (array[0].vy==1)
+            baja();
+    else if(array[0].vy==-1)
+            sube();
 }   
 void baja(){
-    if (y_jugador   ==  y_frame_1)
-        {y_jugador  =   y_frame_2;}
+    if (array[0].y   ==  y_frame_1)
+        {array[0].y  =   y_frame_2;}
      else 
-    if (y_jugador   ==  y_frame_2)
-        {y_jugador  =   y_frame_3;}
+    if (array[0].y   ==  y_frame_2)
+        {array[0].y  =   y_frame_3;}
      else
-    if (y_jugador   ==  y_frame_3)
-        {y_jugador  =   y_frame_4;}}
+    if (array[0].y   ==  y_frame_3)
+        {array[0].y  =   y_frame_4;}}
 void sube(){
-     if (y_jugador   ==  y_frame_4)
-        {y_jugador  =   y_frame_3;}
+     if (array[0].y   ==  y_frame_4)
+        {array[0].y  =   y_frame_3;}
      else 
-    if (y_jugador   ==  y_frame_3)
-        {y_jugador  =   y_frame_2;}
+    if (array[0].y   ==  y_frame_3)
+        {array[0].y  =   y_frame_2;}
      else
-    if (y_jugador   ==  y_frame_2)
-        {y_jugador  =   y_frame_1;}
+    if (array[0].y   ==  y_frame_2)
+        {array[0].y  =   y_frame_1;}
 }

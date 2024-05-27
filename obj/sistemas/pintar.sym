@@ -7,23 +7,18 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
+    _array                                                         **** GX
     _cpct_drawSprite                                               **** GX
     _cpct_getScreenPtr                                             **** GX
     _derecha                                                       **** GX
-    _manzana                                                       **** GX
   0 _pintar_sprites                                                0000 GR
-    _x_jugador                                                     **** GX
-    _x_manzana                                                     **** GX
-    _y_jugador                                                     **** GX
-    _y_manzana                                                     **** GX
-
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   3B   flags    0
+   0 _CODE                                      size   44   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

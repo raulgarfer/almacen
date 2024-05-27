@@ -1,12 +1,18 @@
 XL2
-H 9 areas 15 global symbols
+H 9 areas 1E global symbols
 M definiciones
 O -mz80
+S _manzana Ref0000
 S _puntos Ref0000
 S .__.ABS. Def0000
-A _CODE size 38 flags 0 addr 0
+S _derecha Ref0000
+S _cpct_memcpy Ref0000
+A _CODE size 6D flags 0 addr 0
+S _manzana_init Def0064
 S _iniciar_valores Def0000
-A _DATA size 15 flags 0 addr 0
+S _inicia_objetos Def003C
+S _player_init Def005B
+A _DATA size 81 flags 0 addr 0
 S _puntos_centena Def0013
 S _puntos_decena Def0012
 S _vx_manzana Def000E
@@ -19,12 +25,15 @@ S _x_jugador Def0000
 S _y_jugador Def0001
 S _x_start_manzana Def0010
 S _y_start_manzana Def0011
+S _player Def0015
 S _vy_jug Def0004
 S _caida_objeto Def000F
 S _vidas Def0014
 S _spr_manzana Def000C
 S _spr_pera Def0007
+S _array Def0027
 S _spr_jugador Def0002
+S _item1 Def001E
 A _INITIALIZED size 0 flags 0 addr 0
 A _DABS size 0 flags 8 addr 0
 A _HOME size 0 flags 0 addr 0
@@ -104,15 +113,43 @@ T 14 00
 R 00 00 01 00
 T 14 00
 R 00 00 01 00
+T 15 00
+R 00 00 01 00
+T 15 00
+R 00 00 01 00
+T 1E 00
+R 00 00 01 00
+T 1E 00
+R 00 00 01 00
+T 27 00
+R 00 00 01 00
+T 27 00
+R 00 00 01 00
 T 00 00
 R 00 00 00 00
-T 00 00 21 00 00 36 0A 21 01 00 36 14 21 04 00 36
+T 00 00 21 28 00 36 0A 21 29 00 36 14 21 2B 00 36
 R 00 00 00 00 00 03 01 00 00 08 01 00 00 0D 01 00
 T 0E 00 00 21 0A 00 36 3C 21 0B 00 36 14 21 00 00
-R 00 00 00 00 00 04 01 00 00 09 01 00 02 0E 00 00
+R 00 00 00 00 00 04 01 00 00 09 01 00 02 0E 01 00
 T 1C 00 36 30 21 12 00 36 30 21 13 00 36 30 21
 R 00 00 00 00 00 05 01 00 00 0A 01 00
-T 29 00 14 00 36 33 21 0E 00 36 FF 21 0F 00 36 0D
+T 29 00 14 00 36 33 21 0E 00 36 FF 21 0F 00 3A
 R 00 00 00 00 00 02 01 00 00 07 01 00 00 0C 01 00
-T 37 00 C9
+T 36 00 00 00 C6 03 77 C9
+R 00 00 00 00 00 02 01 00
+T 3C 00
 R 00 00 00 00
+T 3C 00 21 09 00 E5 21 5B 00 E5 21 27 00 E5 CD
+R 00 00 00 00 00 07 00 00 00 0B 01 00
+T 49 00 00 00 21 09 00 E5 21 64 00 E5 21 30 00 E5
+R 00 00 00 00 02 02 04 00 00 09 00 00 00 0D 01 00
+T 57 00 CD 00 00 C9
+R 00 00 00 00 02 03 04 00
+T 5B 00
+R 00 00 00 00
+T 5B 00 01 0A 14 00 00 02 14 00 00
+R 00 00 00 00 02 09 03 00
+T 64 00
+R 00 00 00 00
+T 64 00 01 3C 14 FF 00 02 10 00 00
+R 00 00 00 00 02 09 00 00
