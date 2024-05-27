@@ -7,11 +7,11 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
+    _array                                                         **** GX
     _pinta_marcador                                                **** GX
     _puntos                                                        **** GX
     _puntos_decena                                                 **** GX
   0 _suma_puntos                                                   0000 GR
-    _x_manzana                                                     **** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]

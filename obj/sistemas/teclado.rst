@@ -46,44 +46,44 @@
                              46 ;	---------------------------------
                              47 ; Function teclado
                              48 ; ---------------------------------
-   43A9                      49 _teclado::
+   4397                      49 _teclado::
                              50 ;src/sistemas/teclado.c:5: array[0].vy=0;
-   43A9 21 08 48      [10]   51 	ld	hl, #(_array + 0x0004)
-   43AC 36 00         [10]   52 	ld	(hl), #0x00
+   4397 21 F6 47      [10]   51 	ld	hl, #(_array + 0x0004)
+   439A 36 00         [10]   52 	ld	(hl), #0x00
                              53 ;src/sistemas/teclado.c:6: cpct_scanKeyboard();
-   43AE CD 96 47      [17]   54 	call	_cpct_scanKeyboard
+   439C CD 84 47      [17]   54 	call	_cpct_scanKeyboard
                              55 ;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q)
-   43B1 21 08 08      [10]   56 	ld	hl, #0x0808
-   43B4 CD 1A 45      [17]   57 	call	_cpct_isKeyPressed
+   439F 21 08 08      [10]   56 	ld	hl, #0x0808
+   43A2 CD 08 45      [17]   57 	call	_cpct_isKeyPressed
                              58 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
                              59 ;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q)
-   43B7 7D            [ 4]   60 	ld	a, l
-   43B8 B7            [ 4]   61 	or	a, a
-   43B9 28 0C         [12]   62 	jr	Z,00102$
+   43A5 7D            [ 4]   60 	ld	a, l
+   43A6 B7            [ 4]   61 	or	a, a
+   43A7 28 0C         [12]   62 	jr	Z,00102$
                              63 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
-   43BB 3A 06 48      [13]   64 	ld	a, (#(_array + 0x0002) + 0)
-   43BE D6 14         [ 7]   65 	sub	a, #0x14
-   43C0 38 05         [12]   66 	jr	C,00102$
+   43A9 3A F4 47      [13]   64 	ld	a, (#(_array + 0x0002) + 0)
+   43AC D6 14         [ 7]   65 	sub	a, #0x14
+   43AE 38 05         [12]   66 	jr	C,00102$
                              67 ;src/sistemas/teclado.c:9: {array[0].vy=-1;}
-   43C2 21 08 48      [10]   68 	ld	hl, #(_array + 0x0004)
-   43C5 36 FF         [10]   69 	ld	(hl), #0xff
-   43C7                      70 00102$:
+   43B0 21 F6 47      [10]   68 	ld	hl, #(_array + 0x0004)
+   43B3 36 FF         [10]   69 	ld	(hl), #0xff
+   43B5                      70 00102$:
                              71 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
-   43C7 21 08 20      [10]   72 	ld	hl, #0x2008
-   43CA CD 1A 45      [17]   73 	call	_cpct_isKeyPressed
-   43CD 7D            [ 4]   74 	ld	a, l
-   43CE B7            [ 4]   75 	or	a, a
-   43CF C8            [11]   76 	ret	Z
+   43B5 21 08 20      [10]   72 	ld	hl, #0x2008
+   43B8 CD 08 45      [17]   73 	call	_cpct_isKeyPressed
+   43BB 7D            [ 4]   74 	ld	a, l
+   43BC B7            [ 4]   75 	or	a, a
+   43BD C8            [11]   76 	ret	Z
                              77 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
-   43D0 21 06 48      [10]   78 	ld	hl, #(_array + 0x0002) + 0
-   43D3 4E            [ 7]   79 	ld	c, (hl)
-   43D4 3E AA         [ 7]   80 	ld	a, #0xaa
-   43D6 91            [ 4]   81 	sub	a, c
-   43D7 D8            [11]   82 	ret	C
+   43BE 21 F4 47      [10]   78 	ld	hl, #(_array + 0x0002) + 0
+   43C1 4E            [ 7]   79 	ld	c, (hl)
+   43C2 3E AA         [ 7]   80 	ld	a, #0xaa
+   43C4 91            [ 4]   81 	sub	a, c
+   43C5 D8            [11]   82 	ret	C
                              83 ;src/sistemas/teclado.c:12: {array[0].vy=1;}
-   43D8 21 08 48      [10]   84 	ld	hl, #(_array + 0x0004)
-   43DB 36 01         [10]   85 	ld	(hl), #0x01
-   43DD C9            [10]   86 	ret
+   43C6 21 F6 47      [10]   84 	ld	hl, #(_array + 0x0004)
+   43C9 36 01         [10]   85 	ld	(hl), #0x01
+   43CB C9            [10]   86 	ret
                              87 	.area _CODE
                              88 	.area _INITIALIZER
                              89 	.area _CABS (ABS)

@@ -11,13 +11,13 @@ Symbol Table
   1 _caida_objeto                                                  000F GR
     _cpct_memcpy                                                   **** GX
     _derecha                                                       **** GX
-  0 _inicia_objetos                                                003C GR
+  0 _inicia_objetos                                                002D GR
   0 _iniciar_valores                                               0000 GR
   1 _item1                                                         001E GR
     _manzana                                                       **** GX
-  0 _manzana_init                                                  0064 GR
+  0 _manzana_init                                                  0055 GR
   1 _player                                                        0015 GR
-  0 _player_init                                                   005B GR
+  0 _player_init                                                   004C GR
     _puntos                                                        **** GX
   1 _puntos_centena                                                0013 GR
   1 _puntos_decena                                                 0012 GR
@@ -42,7 +42,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   6D   flags    0
+   0 _CODE                                      size   5E   flags    0
    1 _DATA                                      size   81   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

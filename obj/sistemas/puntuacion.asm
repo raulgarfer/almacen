@@ -58,8 +58,8 @@ _suma_puntos::
 	ld	hl, #_puntos_decena+0
 	inc	(hl)
 00102$:
-;src/sistemas/puntuacion.c:10: x_manzana = x_start_objeto;
-	ld	hl,#_x_manzana + 0
+;src/sistemas/puntuacion.c:10: array[1].x = 60;
+	ld	hl, #(_array + 0x000a)
 	ld	(hl), #0x3c
 ;src/sistemas/puntuacion.c:11: pinta_marcador();
 	jp  _pinta_marcador

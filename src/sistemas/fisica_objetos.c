@@ -4,7 +4,7 @@
 void fisica_objetos(){
     borra_objeto(array[1].x,array[1].y,array[1].ancho,array[1].alto);
     array[1].x+=array[1].vx;
-    if (array[1].x==caida_objeto)
+    if (array[1].x==10)
         {comprobar_recojida();}
         }
 
@@ -15,7 +15,7 @@ void comprobar_recojida(){
 
 void muere(){
    vidas--;
-    array[1].x = x_start_objeto;
+    array[1].x = 60;
     pinta_marcador();
    if (vidas=='0')
     {fin_juego();}

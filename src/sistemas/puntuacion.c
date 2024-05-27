@@ -7,7 +7,7 @@ void suma_puntos(){
     if (puntos=='9'+1)
         {puntos='0';
         puntos_decena++;}
-    x_manzana = x_start_objeto;
+    array[1].x = 60;
     pinta_marcador();
    
 }

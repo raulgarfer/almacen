@@ -112,15 +112,6 @@ _array::
 ; Function iniciar_valores
 ; ---------------------------------
 _iniciar_valores::
-;src/datos/definiciones.c:22: array[0].x       =   x_start_jugador;
-	ld	hl, #(_array + 0x0001)
-	ld	(hl), #0x0a
-;src/datos/definiciones.c:23: array[0].y       =   y_frame_1;
-	ld	hl, #(_array + 0x0002)
-	ld	(hl), #0x14
-;src/datos/definiciones.c:24: array[0].vy          =   0;
-	ld	hl, #(_array + 0x0004)
-	ld	(hl), #0x00
 ;src/datos/definiciones.c:25: x_manzana       =   x_start_objeto;
 	ld	hl,#_x_manzana + 0
 	ld	(hl), #0x3c
@@ -148,12 +139,12 @@ _iniciar_valores::
 	add	a, #0x03
 	ld	(hl), a
 	ret
-;src/datos/definiciones.c:44: void inicia_objetos(){
+;src/datos/definiciones.c:48: void inicia_objetos(){
 ;	---------------------------------
 ; Function inicia_objetos
 ; ---------------------------------
 _inicia_objetos::
-;src/datos/definiciones.c:45: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
+;src/datos/definiciones.c:49: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
 	ld	hl, #0x0009
 	push	hl
 	ld	hl, #_player_init
@@ -161,7 +152,7 @@ _inicia_objetos::
 	ld	hl, #_array
 	push	hl
 	call	_cpct_memcpy
-;src/datos/definiciones.c:46: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
+;src/datos/definiciones.c:50: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
 	ld	hl, #0x0009
 	push	hl
 	ld	hl, #_manzana_init

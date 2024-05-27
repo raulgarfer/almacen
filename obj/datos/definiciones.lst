@@ -112,82 +112,73 @@
                             112 ; Function iniciar_valores
                             113 ; ---------------------------------
    0000                     114 _iniciar_valores::
-                            115 ;src/datos/definiciones.c:22: array[0].x       =   x_start_jugador;
-   0000 21r28r00      [10]  116 	ld	hl, #(_array + 0x0001)
-   0003 36 0A         [10]  117 	ld	(hl), #0x0a
-                            118 ;src/datos/definiciones.c:23: array[0].y       =   y_frame_1;
-   0005 21r29r00      [10]  119 	ld	hl, #(_array + 0x0002)
+                            115 ;src/datos/definiciones.c:25: x_manzana       =   x_start_objeto;
+   0000 21r0Ar00      [10]  116 	ld	hl,#_x_manzana + 0
+   0003 36 3C         [10]  117 	ld	(hl), #0x3c
+                            118 ;src/datos/definiciones.c:26: y_manzana       =   y_frame_1;
+   0005 21r0Br00      [10]  119 	ld	hl,#_y_manzana + 0
    0008 36 14         [10]  120 	ld	(hl), #0x14
-                            121 ;src/datos/definiciones.c:24: array[0].vy          =   0;
-   000A 21r2Br00      [10]  122 	ld	hl, #(_array + 0x0004)
-   000D 36 00         [10]  123 	ld	(hl), #0x00
-                            124 ;src/datos/definiciones.c:25: x_manzana       =   x_start_objeto;
-   000F 21r0Ar00      [10]  125 	ld	hl,#_x_manzana + 0
-   0012 36 3C         [10]  126 	ld	(hl), #0x3c
-                            127 ;src/datos/definiciones.c:26: y_manzana       =   y_frame_1;
-   0014 21r0Br00      [10]  128 	ld	hl,#_y_manzana + 0
-   0017 36 14         [10]  129 	ld	(hl), #0x14
-                            130 ;src/datos/definiciones.c:27: puntos          =   '0';
-   0019 21r00r00      [10]  131 	ld	hl,#_puntos + 0
-   001C 36 30         [10]  132 	ld	(hl), #0x30
-                            133 ;src/datos/definiciones.c:28: puntos_decena   =   '0';
-   001E 21r12r00      [10]  134 	ld	hl,#_puntos_decena + 0
-   0021 36 30         [10]  135 	ld	(hl), #0x30
-                            136 ;src/datos/definiciones.c:29: puntos_centena  =   '0';
-   0023 21r13r00      [10]  137 	ld	hl,#_puntos_centena + 0
-   0026 36 30         [10]  138 	ld	(hl), #0x30
-                            139 ;src/datos/definiciones.c:30: vidas           =   '3';
-   0028 21r14r00      [10]  140 	ld	hl,#_vidas + 0
-   002B 36 33         [10]  141 	ld	(hl), #0x33
-                            142 ;src/datos/definiciones.c:31: vx_manzana      =   -1;
-   002D 21r0Er00      [10]  143 	ld	hl,#_vx_manzana + 0
-   0030 36 FF         [10]  144 	ld	(hl), #0xff
-                            145 ;src/datos/definiciones.c:32: caida_objeto    =   x_jugador + DERECHA_W + 1;//posicion donde conprueba si jugador coge objeto
-   0032 21r0Fr00      [10]  146 	ld	hl, #_caida_objeto
-   0035 3Ar00r00      [13]  147 	ld	a,(#_x_jugador + 0)
-   0038 C6 03         [ 7]  148 	add	a, #0x03
-   003A 77            [ 7]  149 	ld	(hl), a
-   003B C9            [10]  150 	ret
-                            151 ;src/datos/definiciones.c:44: void inicia_objetos(){
-                            152 ;	---------------------------------
-                            153 ; Function inicia_objetos
-                            154 ; ---------------------------------
-   003C                     155 _inicia_objetos::
-                            156 ;src/datos/definiciones.c:45: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
-   003C 21 09 00      [10]  157 	ld	hl, #0x0009
-   003F E5            [11]  158 	push	hl
-   0040 21r5Br00      [10]  159 	ld	hl, #_player_init
-   0043 E5            [11]  160 	push	hl
-   0044 21r27r00      [10]  161 	ld	hl, #_array
-   0047 E5            [11]  162 	push	hl
-   0048 CDr00r00      [17]  163 	call	_cpct_memcpy
-                            164 ;src/datos/definiciones.c:46: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
-   004B 21 09 00      [10]  165 	ld	hl, #0x0009
-   004E E5            [11]  166 	push	hl
-   004F 21r64r00      [10]  167 	ld	hl, #_manzana_init
-   0052 E5            [11]  168 	push	hl
-   0053 21r30r00      [10]  169 	ld	hl, #(_array + 0x0009)
-   0056 E5            [11]  170 	push	hl
-   0057 CDr00r00      [17]  171 	call	_cpct_memcpy
-   005A C9            [10]  172 	ret
-   005B                     173 _player_init:
-   005B 01                  174 	.db #0x01	; 1
-   005C 0A                  175 	.db #0x0a	; 10
-   005D 14                  176 	.db #0x14	; 20
-   005E 00                  177 	.db #0x00	;  0
-   005F 00                  178 	.db #0x00	;  0
-   0060 02                  179 	.db #0x02	; 2
-   0061 14                  180 	.db #0x14	; 20
-   0062r00r00               181 	.dw _derecha
-   0064                     182 _manzana_init:
-   0064 01                  183 	.db #0x01	; 1
-   0065 3C                  184 	.db #0x3c	; 60
-   0066 14                  185 	.db #0x14	; 20
-   0067 FF                  186 	.db #0xff	; -1
-   0068 00                  187 	.db #0x00	;  0
-   0069 02                  188 	.db #0x02	; 2
-   006A 10                  189 	.db #0x10	; 16
-   006Br00r00               190 	.dw _manzana
-                            191 	.area _CODE
-                            192 	.area _INITIALIZER
-                            193 	.area _CABS (ABS)
+                            121 ;src/datos/definiciones.c:27: puntos          =   '0';
+   000A 21r00r00      [10]  122 	ld	hl,#_puntos + 0
+   000D 36 30         [10]  123 	ld	(hl), #0x30
+                            124 ;src/datos/definiciones.c:28: puntos_decena   =   '0';
+   000F 21r12r00      [10]  125 	ld	hl,#_puntos_decena + 0
+   0012 36 30         [10]  126 	ld	(hl), #0x30
+                            127 ;src/datos/definiciones.c:29: puntos_centena  =   '0';
+   0014 21r13r00      [10]  128 	ld	hl,#_puntos_centena + 0
+   0017 36 30         [10]  129 	ld	(hl), #0x30
+                            130 ;src/datos/definiciones.c:30: vidas           =   '3';
+   0019 21r14r00      [10]  131 	ld	hl,#_vidas + 0
+   001C 36 33         [10]  132 	ld	(hl), #0x33
+                            133 ;src/datos/definiciones.c:31: vx_manzana      =   -1;
+   001E 21r0Er00      [10]  134 	ld	hl,#_vx_manzana + 0
+   0021 36 FF         [10]  135 	ld	(hl), #0xff
+                            136 ;src/datos/definiciones.c:32: caida_objeto    =   x_jugador + DERECHA_W + 1;//posicion donde conprueba si jugador coge objeto
+   0023 21r0Fr00      [10]  137 	ld	hl, #_caida_objeto
+   0026 3Ar00r00      [13]  138 	ld	a,(#_x_jugador + 0)
+   0029 C6 03         [ 7]  139 	add	a, #0x03
+   002B 77            [ 7]  140 	ld	(hl), a
+   002C C9            [10]  141 	ret
+                            142 ;src/datos/definiciones.c:48: void inicia_objetos(){
+                            143 ;	---------------------------------
+                            144 ; Function inicia_objetos
+                            145 ; ---------------------------------
+   002D                     146 _inicia_objetos::
+                            147 ;src/datos/definiciones.c:49: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
+   002D 21 09 00      [10]  148 	ld	hl, #0x0009
+   0030 E5            [11]  149 	push	hl
+   0031 21r4Cr00      [10]  150 	ld	hl, #_player_init
+   0034 E5            [11]  151 	push	hl
+   0035 21r27r00      [10]  152 	ld	hl, #_array
+   0038 E5            [11]  153 	push	hl
+   0039 CDr00r00      [17]  154 	call	_cpct_memcpy
+                            155 ;src/datos/definiciones.c:50: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
+   003C 21 09 00      [10]  156 	ld	hl, #0x0009
+   003F E5            [11]  157 	push	hl
+   0040 21r55r00      [10]  158 	ld	hl, #_manzana_init
+   0043 E5            [11]  159 	push	hl
+   0044 21r30r00      [10]  160 	ld	hl, #(_array + 0x0009)
+   0047 E5            [11]  161 	push	hl
+   0048 CDr00r00      [17]  162 	call	_cpct_memcpy
+   004B C9            [10]  163 	ret
+   004C                     164 _player_init:
+   004C 01                  165 	.db #0x01	; 1
+   004D 0A                  166 	.db #0x0a	; 10
+   004E 14                  167 	.db #0x14	; 20
+   004F 00                  168 	.db #0x00	;  0
+   0050 00                  169 	.db #0x00	;  0
+   0051 02                  170 	.db #0x02	; 2
+   0052 14                  171 	.db #0x14	; 20
+   0053r00r00               172 	.dw _derecha
+   0055                     173 _manzana_init:
+   0055 01                  174 	.db #0x01	; 1
+   0056 3C                  175 	.db #0x3c	; 60
+   0057 14                  176 	.db #0x14	; 20
+   0058 FF                  177 	.db #0xff	; -1
+   0059 00                  178 	.db #0x00	;  0
+   005A 02                  179 	.db #0x02	; 2
+   005B 10                  180 	.db #0x10	; 16
+   005Cr00r00               181 	.dw _manzana
+                            182 	.area _CODE
+                            183 	.area _INITIALIZER
+                            184 	.area _CABS (ABS)

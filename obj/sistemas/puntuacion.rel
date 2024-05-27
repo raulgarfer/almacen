@@ -4,9 +4,9 @@ M puntuacion
 O -mz80
 S _puntos_decena Ref0000
 S _puntos Ref0000
-S _x_manzana Ref0000
 S .__.ABS. Def0000
 S _pinta_marcador Ref0000
+S _array Ref0000
 A _CODE size 1E flags 0 addr 0
 S _suma_puntos Def0000
 A _DATA size 0 flags 0 addr 0
@@ -25,5 +25,5 @@ T 0E 00 FD 36 00 30 21 00 00 34
 R 00 00 00 00 02 07 00 00
 T 16 00
 R 00 00 00 00
-T 16 00 21 00 00 36 3C C3 00 00
-R 00 00 00 00 02 03 02 00 02 08 04 00
+T 16 00 21 0A 00 36 3C C3 00 00
+R 00 00 00 00 02 03 04 00 02 08 03 00

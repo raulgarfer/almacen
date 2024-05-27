@@ -43,7 +43,7 @@ objeto array[10];
 //    u8 ancho,alto;
 //    u8* sprite;
 const objeto player_init  ={1,x_start_jugador,y_frame_1,0,0,DERECHA_W,DERECHA_H,derecha};
-const objeto manzana_init ={1,x_start_objeto,y_frame_1,-1,0,MANZANA_W,MANZANA_H,manzana};
+const objeto manzana_init ={1,60,y_frame_1,-1,0,MANZANA_W,MANZANA_H,manzana};
 
 void inicia_objetos(){
    cpct_memcpy (&array[0], &player_init, sizeof(array[0]));

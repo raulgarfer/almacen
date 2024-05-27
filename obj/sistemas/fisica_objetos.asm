@@ -86,11 +86,9 @@ _fisica_objetos::
 	ld	a, c
 	add	a, e
 	ld	(#(_array + 0x000a)),a
-;src/sistemas/fisica_objetos.c:7: if (array[1].x==caida_objeto)
-	ld	hl, #(_array + 0x000a) + 0
-	ld	c, (hl)
-	ld	a,(#_caida_objeto + 0)
-	sub	a, c
+;src/sistemas/fisica_objetos.c:7: if (array[1].x==10)
+	ld	a, (#(_array + 0x000a) + 0)
+	sub	a, #0x0a
 	ret	NZ
 ;src/sistemas/fisica_objetos.c:8: {comprobar_recojida();}
 	jp  _comprobar_recojida
@@ -118,7 +116,7 @@ _muere::
 ;src/sistemas/fisica_objetos.c:17: vidas--;
 	ld	hl, #_vidas+0
 	dec	(hl)
-;src/sistemas/fisica_objetos.c:18: array[1].x = x_start_objeto;
+;src/sistemas/fisica_objetos.c:18: array[1].x = 60;
 	ld	hl, #(_array + 0x000a)
 	ld	(hl), #0x3c
 ;src/sistemas/fisica_objetos.c:19: pinta_marcador();

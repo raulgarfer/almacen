@@ -86,116 +86,114 @@
    0027 79            [ 4]   86 	ld	a, c
    0028 83            [ 4]   87 	add	a, e
    0029 32r0Ar00      [13]   88 	ld	(#(_array + 0x000a)),a
-                             89 ;src/sistemas/fisica_objetos.c:7: if (array[1].x==caida_objeto)
-   002C 21r0Ar00      [10]   90 	ld	hl, #(_array + 0x000a) + 0
-   002F 4E            [ 7]   91 	ld	c, (hl)
-   0030 3Ar00r00      [13]   92 	ld	a,(#_caida_objeto + 0)
-   0033 91            [ 4]   93 	sub	a, c
-   0034 C0            [11]   94 	ret	NZ
-                             95 ;src/sistemas/fisica_objetos.c:8: {comprobar_recojida();}
-   0035 C3r38r00      [10]   96 	jp  _comprobar_recojida
-                             97 ;src/sistemas/fisica_objetos.c:11: void comprobar_recojida(){
-                             98 ;	---------------------------------
-                             99 ; Function comprobar_recojida
-                            100 ; ---------------------------------
-   0038                     101 _comprobar_recojida::
-                            102 ;src/sistemas/fisica_objetos.c:12: if (array[1].y==array[0].y)
-   0038 21r0Br00      [10]  103 	ld	hl, #_array + 11
-   003B 4E            [ 7]  104 	ld	c, (hl)
-   003C 21r02r00      [10]  105 	ld	hl, #_array + 2
-   003F 46            [ 7]  106 	ld	b, (hl)
-   0040 79            [ 4]  107 	ld	a, c
-   0041 90            [ 4]  108 	sub	a, b
-                            109 ;src/sistemas/fisica_objetos.c:13: {suma_puntos();}
-   0042 CAr00r00      [10]  110 	jp	Z,_suma_puntos
-                            111 ;src/sistemas/fisica_objetos.c:14: else {muere();}}
-   0045 C3r48r00      [10]  112 	jp  _muere
-                            113 ;src/sistemas/fisica_objetos.c:16: void muere(){
-                            114 ;	---------------------------------
-                            115 ; Function muere
-                            116 ; ---------------------------------
-   0048                     117 _muere::
-                            118 ;src/sistemas/fisica_objetos.c:17: vidas--;
-   0048 21r00r00      [10]  119 	ld	hl, #_vidas+0
-   004B 35            [11]  120 	dec	(hl)
-                            121 ;src/sistemas/fisica_objetos.c:18: array[1].x = x_start_objeto;
-   004C 21r0Ar00      [10]  122 	ld	hl, #(_array + 0x000a)
-   004F 36 3C         [10]  123 	ld	(hl), #0x3c
-                            124 ;src/sistemas/fisica_objetos.c:19: pinta_marcador();
-   0051 CDr00r00      [17]  125 	call	_pinta_marcador
-                            126 ;src/sistemas/fisica_objetos.c:20: if (vidas=='0')
-   0054 3Ar00r00      [13]  127 	ld	a,(#_vidas + 0)
-   0057 D6 30         [ 7]  128 	sub	a, #0x30
-   0059 C0            [11]  129 	ret	NZ
-                            130 ;src/sistemas/fisica_objetos.c:21: {fin_juego();}
-   005A C3r5Dr00      [10]  131 	jp  _fin_juego
-                            132 ;src/sistemas/fisica_objetos.c:23: void fin_juego(){
-                            133 ;	---------------------------------
-                            134 ; Function fin_juego
-                            135 ; ---------------------------------
-   005D                     136 _fin_juego::
-                            137 ;src/sistemas/fisica_objetos.c:26: pvmem=cpct_getScreenPtr(0xc000,10,20);
-   005D 21 0A 14      [10]  138 	ld	hl, #0x140a
-   0060 E5            [11]  139 	push	hl
-   0061 21 00 C0      [10]  140 	ld	hl, #0xc000
-   0064 E5            [11]  141 	push	hl
-   0065 CDr00r00      [17]  142 	call	_cpct_getScreenPtr
-                            143 ;src/sistemas/fisica_objetos.c:27: cpct_drawStringM2("Has sido despedido!",pvmem);
-   0068 01r8Ar00      [10]  144 	ld	bc, #___str_0+0
-   006B E5            [11]  145 	push	hl
-   006C C5            [11]  146 	push	bc
-   006D CDr00r00      [17]  147 	call	_cpct_drawStringM2
-                            148 ;src/sistemas/fisica_objetos.c:28: pvmem=cpct_getScreenPtr(0xc000,10,40);
-   0070 21 0A 28      [10]  149 	ld	hl, #0x280a
-   0073 E5            [11]  150 	push	hl
-   0074 21 00 C0      [10]  151 	ld	hl, #0xc000
-   0077 E5            [11]  152 	push	hl
-   0078 CDr00r00      [17]  153 	call	_cpct_getScreenPtr
-                            154 ;src/sistemas/fisica_objetos.c:29: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
-   007B 01r9Er00      [10]  155 	ld	bc, #___str_1+0
-   007E E5            [11]  156 	push	hl
-   007F C5            [11]  157 	push	bc
-   0080 CDr00r00      [17]  158 	call	_cpct_drawStringM2
-                            159 ;src/sistemas/fisica_objetos.c:30: espera_pulsacion_tecla();
-   0083 CDrB3r00      [17]  160 	call	_espera_pulsacion_tecla
-                            161 ;src/sistemas/fisica_objetos.c:31: espera_pulsar();
-   0086 CDrC0r00      [17]  162 	call	_espera_pulsar
-   0089 C9            [10]  163 	ret
-   008A                     164 ___str_0:
-   008A 48 61 73 20 73 69   165 	.ascii "Has sido despedido!"
+                             89 ;src/sistemas/fisica_objetos.c:7: if (array[1].x==10)
+   002C 3Ar0Ar00      [13]   90 	ld	a, (#(_array + 0x000a) + 0)
+   002F D6 0A         [ 7]   91 	sub	a, #0x0a
+   0031 C0            [11]   92 	ret	NZ
+                             93 ;src/sistemas/fisica_objetos.c:8: {comprobar_recojida();}
+   0032 C3r35r00      [10]   94 	jp  _comprobar_recojida
+                             95 ;src/sistemas/fisica_objetos.c:11: void comprobar_recojida(){
+                             96 ;	---------------------------------
+                             97 ; Function comprobar_recojida
+                             98 ; ---------------------------------
+   0035                      99 _comprobar_recojida::
+                            100 ;src/sistemas/fisica_objetos.c:12: if (array[1].y==array[0].y)
+   0035 21r0Br00      [10]  101 	ld	hl, #_array + 11
+   0038 4E            [ 7]  102 	ld	c, (hl)
+   0039 21r02r00      [10]  103 	ld	hl, #_array + 2
+   003C 46            [ 7]  104 	ld	b, (hl)
+   003D 79            [ 4]  105 	ld	a, c
+   003E 90            [ 4]  106 	sub	a, b
+                            107 ;src/sistemas/fisica_objetos.c:13: {suma_puntos();}
+   003F CAr00r00      [10]  108 	jp	Z,_suma_puntos
+                            109 ;src/sistemas/fisica_objetos.c:14: else {muere();}}
+   0042 C3r45r00      [10]  110 	jp  _muere
+                            111 ;src/sistemas/fisica_objetos.c:16: void muere(){
+                            112 ;	---------------------------------
+                            113 ; Function muere
+                            114 ; ---------------------------------
+   0045                     115 _muere::
+                            116 ;src/sistemas/fisica_objetos.c:17: vidas--;
+   0045 21r00r00      [10]  117 	ld	hl, #_vidas+0
+   0048 35            [11]  118 	dec	(hl)
+                            119 ;src/sistemas/fisica_objetos.c:18: array[1].x = 60;
+   0049 21r0Ar00      [10]  120 	ld	hl, #(_array + 0x000a)
+   004C 36 3C         [10]  121 	ld	(hl), #0x3c
+                            122 ;src/sistemas/fisica_objetos.c:19: pinta_marcador();
+   004E CDr00r00      [17]  123 	call	_pinta_marcador
+                            124 ;src/sistemas/fisica_objetos.c:20: if (vidas=='0')
+   0051 3Ar00r00      [13]  125 	ld	a,(#_vidas + 0)
+   0054 D6 30         [ 7]  126 	sub	a, #0x30
+   0056 C0            [11]  127 	ret	NZ
+                            128 ;src/sistemas/fisica_objetos.c:21: {fin_juego();}
+   0057 C3r5Ar00      [10]  129 	jp  _fin_juego
+                            130 ;src/sistemas/fisica_objetos.c:23: void fin_juego(){
+                            131 ;	---------------------------------
+                            132 ; Function fin_juego
+                            133 ; ---------------------------------
+   005A                     134 _fin_juego::
+                            135 ;src/sistemas/fisica_objetos.c:26: pvmem=cpct_getScreenPtr(0xc000,10,20);
+   005A 21 0A 14      [10]  136 	ld	hl, #0x140a
+   005D E5            [11]  137 	push	hl
+   005E 21 00 C0      [10]  138 	ld	hl, #0xc000
+   0061 E5            [11]  139 	push	hl
+   0062 CDr00r00      [17]  140 	call	_cpct_getScreenPtr
+                            141 ;src/sistemas/fisica_objetos.c:27: cpct_drawStringM2("Has sido despedido!",pvmem);
+   0065 01r87r00      [10]  142 	ld	bc, #___str_0+0
+   0068 E5            [11]  143 	push	hl
+   0069 C5            [11]  144 	push	bc
+   006A CDr00r00      [17]  145 	call	_cpct_drawStringM2
+                            146 ;src/sistemas/fisica_objetos.c:28: pvmem=cpct_getScreenPtr(0xc000,10,40);
+   006D 21 0A 28      [10]  147 	ld	hl, #0x280a
+   0070 E5            [11]  148 	push	hl
+   0071 21 00 C0      [10]  149 	ld	hl, #0xc000
+   0074 E5            [11]  150 	push	hl
+   0075 CDr00r00      [17]  151 	call	_cpct_getScreenPtr
+                            152 ;src/sistemas/fisica_objetos.c:29: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
+   0078 01r9Br00      [10]  153 	ld	bc, #___str_1+0
+   007B E5            [11]  154 	push	hl
+   007C C5            [11]  155 	push	bc
+   007D CDr00r00      [17]  156 	call	_cpct_drawStringM2
+                            157 ;src/sistemas/fisica_objetos.c:30: espera_pulsacion_tecla();
+   0080 CDrB0r00      [17]  158 	call	_espera_pulsacion_tecla
+                            159 ;src/sistemas/fisica_objetos.c:31: espera_pulsar();
+   0083 CDrBDr00      [17]  160 	call	_espera_pulsar
+   0086 C9            [10]  161 	ret
+   0087                     162 ___str_0:
+   0087 48 61 73 20 73 69   163 	.ascii "Has sido despedido!"
         64 6F 20 64 65 73
         70 65 64 69 64 6F
         21
-   009D 00                  166 	.db 0x00
-   009E                     167 ___str_1:
-   009E 56 75 65 6C 76 65   168 	.ascii "Vuelve a intentarlo."
+   009A 00                  164 	.db 0x00
+   009B                     165 ___str_1:
+   009B 56 75 65 6C 76 65   166 	.ascii "Vuelve a intentarlo."
         20 61 20 69 6E 74
         65 6E 74 61 72 6C
         6F 2E
-   00B2 00                  169 	.db 0x00
-                            170 ;src/sistemas/fisica_objetos.c:33: void espera_pulsacion_tecla(){
-                            171 ;	---------------------------------
-                            172 ; Function espera_pulsacion_tecla
-                            173 ; ---------------------------------
-   00B3                     174 _espera_pulsacion_tecla::
-                            175 ;src/sistemas/fisica_objetos.c:35: cpct_scanKeyboard();
-   00B3 CDr00r00      [17]  176 	call	_cpct_scanKeyboard
-                            177 ;src/sistemas/fisica_objetos.c:36: pulsado=cpct_isAnyKeyPressed();
-   00B6 CDr00r00      [17]  178 	call	_cpct_isAnyKeyPressed
-                            179 ;src/sistemas/fisica_objetos.c:37: if (pulsado!=0)
-   00B9 7D            [ 4]  180 	ld	a, l
-   00BA B7            [ 4]  181 	or	a, a
-                            182 ;src/sistemas/fisica_objetos.c:38: {espera_pulsar();}
-   00BB C2rC0r00      [10]  183 	jp	NZ,_espera_pulsar
-                            184 ;src/sistemas/fisica_objetos.c:39: else espera_pulsacion_tecla();
-   00BE 18 F3         [12]  185 	jr	_espera_pulsacion_tecla
-                            186 ;src/sistemas/fisica_objetos.c:41: void espera_pulsar(){
-                            187 ;	---------------------------------
-                            188 ; Function espera_pulsar
-                            189 ; ---------------------------------
-   00C0                     190 _espera_pulsar::
-                            191 ;src/sistemas/fisica_objetos.c:42: a_jugar();}
-   00C0 C3r00r00      [10]  192 	jp  _a_jugar
-                            193 	.area _CODE
-                            194 	.area _INITIALIZER
-                            195 	.area _CABS (ABS)
+   00AF 00                  167 	.db 0x00
+                            168 ;src/sistemas/fisica_objetos.c:33: void espera_pulsacion_tecla(){
+                            169 ;	---------------------------------
+                            170 ; Function espera_pulsacion_tecla
+                            171 ; ---------------------------------
+   00B0                     172 _espera_pulsacion_tecla::
+                            173 ;src/sistemas/fisica_objetos.c:35: cpct_scanKeyboard();
+   00B0 CDr00r00      [17]  174 	call	_cpct_scanKeyboard
+                            175 ;src/sistemas/fisica_objetos.c:36: pulsado=cpct_isAnyKeyPressed();
+   00B3 CDr00r00      [17]  176 	call	_cpct_isAnyKeyPressed
+                            177 ;src/sistemas/fisica_objetos.c:37: if (pulsado!=0)
+   00B6 7D            [ 4]  178 	ld	a, l
+   00B7 B7            [ 4]  179 	or	a, a
+                            180 ;src/sistemas/fisica_objetos.c:38: {espera_pulsar();}
+   00B8 C2rBDr00      [10]  181 	jp	NZ,_espera_pulsar
+                            182 ;src/sistemas/fisica_objetos.c:39: else espera_pulsacion_tecla();
+   00BB 18 F3         [12]  183 	jr	_espera_pulsacion_tecla
+                            184 ;src/sistemas/fisica_objetos.c:41: void espera_pulsar(){
+                            185 ;	---------------------------------
+                            186 ; Function espera_pulsar
+                            187 ; ---------------------------------
+   00BD                     188 _espera_pulsar::
+                            189 ;src/sistemas/fisica_objetos.c:42: a_jugar();}
+   00BD C3r00r00      [10]  190 	jp  _a_jugar
+                            191 	.area _CODE
+                            192 	.area _INITIALIZER
+                            193 	.area _CABS (ABS)
