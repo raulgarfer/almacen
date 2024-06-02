@@ -8,85 +8,68 @@
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
-                             11 	.globl _cpct_getScreenPtr
-                             12 	.globl _cpct_drawSprite
-                             13 	.globl _pintar_sprites
-                             14 ;--------------------------------------------------------
-                             15 ; special function registers
+                             11 	.globl _pinta_con_puntero
+                             12 	.globl _pintar_sprites
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
                              16 ;--------------------------------------------------------
-                             17 ;--------------------------------------------------------
-                             18 ; ram data
-                             19 ;--------------------------------------------------------
-                             20 	.area _DATA
-                             21 ;--------------------------------------------------------
-                             22 ; ram data
-                             23 ;--------------------------------------------------------
-                             24 	.area _INITIALIZED
-                             25 ;--------------------------------------------------------
-                             26 ; absolute external ram data
-                             27 ;--------------------------------------------------------
-                             28 	.area _DABS (ABS)
-                             29 ;--------------------------------------------------------
-                             30 ; global & static initialisations
-                             31 ;--------------------------------------------------------
-                             32 	.area _HOME
-                             33 	.area _GSINIT
-                             34 	.area _GSFINAL
-                             35 	.area _GSINIT
-                             36 ;--------------------------------------------------------
-                             37 ; Home
-                             38 ;--------------------------------------------------------
+                             17 ; ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; ram data
+                             22 ;--------------------------------------------------------
+                             23 	.area _INITIALIZED
+                             24 ;--------------------------------------------------------
+                             25 ; absolute external ram data
+                             26 ;--------------------------------------------------------
+                             27 	.area _DABS (ABS)
+                             28 ;--------------------------------------------------------
+                             29 ; global & static initialisations
+                             30 ;--------------------------------------------------------
+                             31 	.area _HOME
+                             32 	.area _GSINIT
+                             33 	.area _GSFINAL
+                             34 	.area _GSINIT
+                             35 ;--------------------------------------------------------
+                             36 ; Home
+                             37 ;--------------------------------------------------------
+                             38 	.area _HOME
                              39 	.area _HOME
-                             40 	.area _HOME
-                             41 ;--------------------------------------------------------
-                             42 ; code
-                             43 ;--------------------------------------------------------
-                             44 	.area _CODE
-                             45 ;src/sistemas/pintar.c:4: void pintar_sprites(){
-                             46 ;	---------------------------------
-                             47 ; Function pintar_sprites
-                             48 ; ---------------------------------
-   0000                      49 _pintar_sprites::
-                             50 ;src/sistemas/pintar.c:6: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, array[0].x, array[0].y);
-   0000 21r02r00      [10]   51 	ld	hl, #_array + 2
-   0003 56            [ 7]   52 	ld	d, (hl)
-   0004 21r01r00      [10]   53 	ld	hl, #_array + 1
-   0007 5E            [ 7]   54 	ld	e, (hl)
-   0008 D5            [11]   55 	push	de
-   0009 21 00 C0      [10]   56 	ld	hl, #0xc000
-   000C E5            [11]   57 	push	hl
-   000D CDr00r00      [17]   58 	call	_cpct_getScreenPtr
-                             59 ;src/sistemas/pintar.c:7: cpct_drawSprite(derecha,pvmem,DERECHA_W,DERECHA_H);
-   0010 01r00r00      [10]   60 	ld	bc, #_derecha+0
-   0013 11 02 14      [10]   61 	ld	de, #0x1402
-   0016 D5            [11]   62 	push	de
-   0017 E5            [11]   63 	push	hl
-   0018 C5            [11]   64 	push	bc
-   0019 CDr00r00      [17]   65 	call	_cpct_drawSprite
-                             66 ;src/sistemas/pintar.c:8: pvmem=   cpct_getScreenPtr(CPCT_VMEM_START,array[1].x,array[1].y);
-   001C 21r0Br00      [10]   67 	ld	hl, #_array + 11
-   001F 56            [ 7]   68 	ld	d, (hl)
-   0020 21r0Ar00      [10]   69 	ld	hl, #_array + 10
-   0023 5E            [ 7]   70 	ld	e, (hl)
-   0024 D5            [11]   71 	push	de
-   0025 21 00 C0      [10]   72 	ld	hl, #0xc000
-   0028 E5            [11]   73 	push	hl
-   0029 CDr00r00      [17]   74 	call	_cpct_getScreenPtr
-   002C 4D            [ 4]   75 	ld	c, l
-   002D 44            [ 4]   76 	ld	b, h
-                             77 ;src/sistemas/pintar.c:9: cpct_drawSprite(array[1].sprite,pvmem,array[1].ancho,array[1].alto);
-   002E 21r0Fr00      [10]   78 	ld	hl, #_array + 15
-   0031 56            [ 7]   79 	ld	d, (hl)
-   0032 21r0Er00      [10]   80 	ld	hl, #_array + 14
-   0035 5E            [ 7]   81 	ld	e, (hl)
-   0036 2Ar10r00      [16]   82 	ld	hl, (#_array + 16)
-   0039 E5            [11]   83 	push	hl
-   003A FD E1         [14]   84 	pop	iy
-   003C D5            [11]   85 	push	de
-   003D C5            [11]   86 	push	bc
-   003E FD E5         [15]   87 	push	iy
-   0040 CDr00r00      [17]   88 	call	_cpct_drawSprite
-   0043 C9            [10]   89 	ret
-                             90 	.area _CODE
-                             91 	.area _INITIALIZER
-                             92 	.area _CABS (ABS)
+                             40 ;--------------------------------------------------------
+                             41 ; code
+                             42 ;--------------------------------------------------------
+                             43 	.area _CODE
+                             44 ;src/sistemas/pintar.c:6: void pintar_sprites(){
+                             45 ;	---------------------------------
+                             46 ; Function pintar_sprites
+                             47 ; ---------------------------------
+   0000                      48 _pintar_sprites::
+                             49 ;src/sistemas/pintar.c:8: for (i=0;i<max_entidades;i++){
+   0000 0E 00         [ 7]   50 	ld	c, #0x00
+   0002                      51 00102$:
+                             52 ;src/sistemas/pintar.c:9: pinta_objeto  = &array[i];
+   0002 06 00         [ 7]   53 	ld	b,#0x00
+   0004 69            [ 4]   54 	ld	l, c
+   0005 60            [ 4]   55 	ld	h, b
+   0006 29            [11]   56 	add	hl, hl
+   0007 29            [11]   57 	add	hl, hl
+   0008 09            [11]   58 	add	hl, bc
+   0009 29            [11]   59 	add	hl, hl
+   000A 11r00r00      [10]   60 	ld	de, #_array
+   000D 19            [11]   61 	add	hl, de
+   000E 22r00r00      [16]   62 	ld	(_pinta_objeto), hl
+                             63 ;src/sistemas/pintar.c:10: pinta_con_puntero();} 
+   0011 C5            [11]   64 	push	bc
+   0012 CDr00r00      [17]   65 	call	_pinta_con_puntero
+   0015 C1            [10]   66 	pop	bc
+                             67 ;src/sistemas/pintar.c:8: for (i=0;i<max_entidades;i++){
+   0016 0C            [ 4]   68 	inc	c
+   0017 79            [ 4]   69 	ld	a, c
+   0018 D6 02         [ 7]   70 	sub	a, #0x02
+   001A 38 E6         [12]   71 	jr	C,00102$
+   001C C9            [10]   72 	ret
+                             73 	.area _CODE
+                             74 	.area _INITIALIZER
+                             75 	.area _CABS (ABS)

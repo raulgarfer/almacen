@@ -5207,7 +5207,7 @@ Hexadecimal [16-Bits]
    0055                      50         siguiente_interrrupcion int_4
                               1 .globl cpct_setVideoMode_asm
                               2 .globl _pinta_marcador
-   0055 21 75 00      [10]    3     ld hl,#int_4
+   0055 21 6E 00      [10]    3     ld hl,#int_4
    0058 22 39 00      [16]    4     ld (0x39),hl
    005B                      51     cpctm_setBorder_asm 5
                               1    .radix h
@@ -5216,21 +5216,21 @@ Hexadecimal [16-Bits]
    005B 21 10 05      [10]    2    ld   hl, #0x510         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
    005E CD 00 00      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
-   0061 2E 00         [ 7]   52     ld l,#0                             ;;pen
-   0063 26 02         [ 7]   53     ld h,#2                             ;;ink
-   0065 CD 00 00      [17]   54     call cpct_setPALColour_asm
-   0068 2E 01         [ 7]   55      ld l,#1                             ;;pen
-   006A 26 01         [ 7]   56     ld h,#1                            ;;ink
-   006C CD 00 00      [17]   57     call cpct_setPALColour_asm
+                             52     ;;ld l,#0                             ;;pen
+                             53     ;;ld h,#2                             ;;ink
+                             54     ;;call cpct_setPALColour_asm
+   0061 2E 01         [ 7]   55      ld l,#1                             ;;pen
+   0063 26 01         [ 7]   56     ld h,#1                            ;;ink
+   0065 CD 00 00      [17]   57     call cpct_setPALColour_asm
                              58     
-   006F                      59     cpctm_pop hl,bc,af
+   0068                      59     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   006F E1            [10]    3    pop hl
+   0068 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   0070 C1            [10]    5    pop bc
+   0069 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   0071 F1            [10]    7    pop af
+   006A F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5245,22 +5245,22 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   0072 FB            [ 4]   60     ei
+   006B FB            [ 4]   60     ei
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 100.
 Hexadecimal [16-Bits]
 
 
 
-   0073 ED 4D         [14]   61 reti
-   0075                      62 int_4::
-   0075                      63   cpctm_push af,bc,hl
+   006C ED 4D         [14]   61 reti
+   006E                      62 int_4::
+   006E                      63   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   0075 F5            [11]    3    push af
+   006E F5            [11]    3    push af
                      0001     4    .if v-1
-   0076 C5            [11]    5    push bc
+   006F C5            [11]    5    push bc
                      0001     6    .if v-2
-   0077 E5            [11]    7    push hl
+   0070 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5275,33 +5275,33 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   0078                      64         numero_interrupcion 4
-   0078 3E 04         [ 7]    1     ld a,#4
-   007A 32 00 00      [13]    2     ld (IR),a
-   007D                      65         siguiente_interrrupcion int_5
+   0071                      64         numero_interrupcion 4
+   0071 3E 04         [ 7]    1     ld a,#4
+   0073 32 00 00      [13]    2     ld (IR),a
+   0076                      65         siguiente_interrrupcion int_5
                               1 .globl cpct_setVideoMode_asm
                               2 .globl _pinta_marcador
-   007D 21 96 00      [10]    3     ld hl,#int_5
-   0080 22 39 00      [16]    4     ld (0x39),hl
-   0083                      66     cpctm_setBorder_asm 6
+   0076 21 8F 00      [10]    3     ld hl,#int_5
+   0079 22 39 00      [16]    4     ld (0x39),hl
+   007C                      66     cpctm_setBorder_asm 6
                               1    .radix h
-   0083                       2    cpctm_setBorder_raw_asm \6 ;; [28] Macro that does the job, but requires a number value to be passed
+   007C                       2    cpctm_setBorder_raw_asm \6 ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   0083 21 10 06      [10]    2    ld   hl, #0x610         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   0086 CD 00 00      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   007C 21 10 06      [10]    2    ld   hl, #0x610         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   007F CD 00 00      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              67    
-   0089 2E 01         [ 7]   68       ld l,#1                             ;;pen
-   008B 26 04         [ 7]   69     ld h,#4                             ;;ink
-   008D CD 00 00      [17]   70     call cpct_setPALColour_asm
-   0090                      71     cpctm_pop hl,bc,af
+   0082 2E 01         [ 7]   68       ld l,#1                             ;;pen
+   0084 26 04         [ 7]   69     ld h,#4                             ;;ink
+   0086 CD 00 00      [17]   70     call cpct_setPALColour_asm
+   0089                      71     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   0090 E1            [10]    3    pop hl
+   0089 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   0091 C1            [10]    5    pop bc
+   008A C1            [10]    5    pop bc
                      0001     6    .if v-2
-   0092 F1            [10]    7    pop af
+   008B F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5322,17 +5322,17 @@ Hexadecimal [16-Bits]
                      0001    20    .else
                              21    .mexit
                              72     
-   0093 FB            [ 4]   73     ei
-   0094 ED 4D         [14]   74 reti
-   0096                      75 int_5::
-   0096                      76   cpctm_push af,bc,hl
+   008C FB            [ 4]   73     ei
+   008D ED 4D         [14]   74 reti
+   008F                      75 int_5::
+   008F                      76   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   0096 F5            [11]    3    push af
+   008F F5            [11]    3    push af
                      0001     4    .if v-1
-   0097 C5            [11]    5    push bc
+   0090 C5            [11]    5    push bc
                      0001     6    .if v-2
-   0098 E5            [11]    7    push hl
+   0091 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5347,39 +5347,39 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   0099                      77         numero_interrupcion 5
-   0099 3E 05         [ 7]    1     ld a,#5
-   009B 32 00 00      [13]    2     ld (IR),a
-   009E                      78         siguiente_interrrupcion int_6
+   0092                      77         numero_interrupcion 5
+   0092 3E 05         [ 7]    1     ld a,#5
+   0094 32 00 00      [13]    2     ld (IR),a
+   0097                      78         siguiente_interrrupcion int_6
                               1 .globl cpct_setVideoMode_asm
                               2 .globl _pinta_marcador
-   009E 21 B7 00      [10]    3     ld hl,#int_6
-   00A1 22 39 00      [16]    4     ld (0x39),hl
-   00A4                      79     cpctm_setBorder_asm 7
+   0097 21 B0 00      [10]    3     ld hl,#int_6
+   009A 22 39 00      [16]    4     ld (0x39),hl
+   009D                      79     cpctm_setBorder_asm 7
                               1    .radix h
-   00A4                       2    cpctm_setBorder_raw_asm \7 ;; [28] Macro that does the job, but requires a number value to be passed
+   009D                       2    cpctm_setBorder_raw_asm \7 ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   00A4 21 10 07      [10]    2    ld   hl, #0x710         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   00A7 CD 00 00      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   009D 21 10 07      [10]    2    ld   hl, #0x710         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   00A0 CD 00 00      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
-   00AA 0E 01         [ 7]   80        ld c,#1
+   00A3 0E 01         [ 7]   80        ld c,#1
                              81         ;call cpct_setVideoMode_asm
-   00AC CD 00 00      [17]   82         call _pinta_marcador
-   00AF 0E 02         [ 7]   83         ld c,#2
+   00A5 CD 00 00      [17]   82         call _pinta_marcador
+   00A8 0E 02         [ 7]   83         ld c,#2
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
                              84         ;call cpct_setVideoMode_asm
-   00B1                      85     cpctm_pop hl,bc,af
+   00AA                      85     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   00B1 E1            [10]    3    pop hl
+   00AA E1            [10]    3    pop hl
                      0001     4    .if v-1
-   00B2 C1            [10]    5    pop bc
+   00AB C1            [10]    5    pop bc
                      0001     6    .if v-2
-   00B3 F1            [10]    7    pop af
+   00AC F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5394,17 +5394,17 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   00B4 FB            [ 4]   86     ei
-   00B5 ED 4D         [14]   87 reti
-   00B7                      88 int_6::
-   00B7                      89   cpctm_push af,bc,hl
+   00AD FB            [ 4]   86     ei
+   00AE ED 4D         [14]   87 reti
+   00B0                      88 int_6::
+   00B0                      89   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   00B7 F5            [11]    3    push af
+   00B0 F5            [11]    3    push af
                      0001     4    .if v-1
-   00B8 C5            [11]    5    push bc
+   00B1 C5            [11]    5    push bc
                      0001     6    .if v-2
-   00B9 E5            [11]    7    push hl
+   00B2 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5419,41 +5419,41 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   00BA                      90         numero_interrupcion 6
-   00BA 3E 06         [ 7]    1     ld a,#6
-   00BC 32 00 00      [13]    2     ld (IR),a
-   00BF                      91         siguiente_interrrupcion int_1
+   00B3                      90         numero_interrupcion 6
+   00B3 3E 06         [ 7]    1     ld a,#6
+   00B5 32 00 00      [13]    2     ld (IR),a
+   00B8                      91         siguiente_interrrupcion int_1
                               1 .globl cpct_setVideoMode_asm
                               2 .globl _pinta_marcador
-   00BF 21 19 00      [10]    3     ld hl,#int_1
+   00B8 21 19 00      [10]    3     ld hl,#int_1
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 103.
 Hexadecimal [16-Bits]
 
 
 
-   00C2 22 39 00      [16]    4     ld (0x39),hl
-   00C5                      92     cpctm_setBorder_asm 8
+   00BB 22 39 00      [16]    4     ld (0x39),hl
+   00BE                      92     cpctm_setBorder_asm 8
                               1    .radix h
-   00C5                       2    cpctm_setBorder_raw_asm \8 ;; [28] Macro that does the job, but requires a number value to be passed
+   00BE                       2    cpctm_setBorder_raw_asm \8 ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   00C5 21 10 08      [10]    2    ld   hl, #0x810         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   00C8 CD 00 00      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   00BE 21 10 08      [10]    2    ld   hl, #0x810         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   00C1 CD 00 00      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
-   00CB 2E 00         [ 7]   93     ld l,#0                             ;;pen
-   00CD 26 01         [ 7]   94     ld h,#1                             ;;ink
-   00CF CD 00 00      [17]   95     call cpct_setPALColour_asm
-   00D2 2E 01         [ 7]   96      ld l,#1                             ;;pen
-   00D4 26 03         [ 7]   97     ld h,#3                             ;;ink
-   00D6 CD 00 00      [17]   98     call cpct_setPALColour_asm
+   00C4 2E 00         [ 7]   93     ld l,#0                             ;;pen
+   00C6 26 01         [ 7]   94     ld h,#1                             ;;ink
+   00C8 CD 00 00      [17]   95     call cpct_setPALColour_asm
+   00CB 2E 01         [ 7]   96      ld l,#1                             ;;pen
+   00CD 26 03         [ 7]   97     ld h,#3                             ;;ink
+   00CF CD 00 00      [17]   98     call cpct_setPALColour_asm
                              99     
-   00D9                     100     cpctm_pop hl,bc,af
+   00D2                     100     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   00D9 E1            [10]    3    pop hl
+   00D2 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   00DA C1            [10]    5    pop bc
+   00D3 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   00DB F1            [10]    7    pop af
+   00D4 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5468,5 +5468,5 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   00DC FB            [ 4]  101     ei
-   00DD ED 4D         [14]  102 reti
+   00D5 FB            [ 4]  101     ei
+   00D6 ED 4D         [14]  102 reti

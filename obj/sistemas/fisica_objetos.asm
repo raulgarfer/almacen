@@ -8,18 +8,13 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
-	.globl _espera_pulsar
-	.globl _fin_juego
+	.globl _pinta_puntos
 	.globl _borra_objeto
+	.globl _muere
 	.globl _suma_puntos
-	.globl _cpct_getScreenPtr
-	.globl _cpct_drawStringM2
-	.globl _cpct_isAnyKeyPressed
-	.globl _cpct_scanKeyboard
+	.globl _obj_caido
 	.globl _fisica_objetos
 	.globl _comprobar_recojida
-	.globl _muere
-	.globl _espera_pulsacion_tecla
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -27,6 +22,8 @@
 ; ram data
 ;--------------------------------------------------------
 	.area _DATA
+_obj_caido::
+	.ds 2
 ;--------------------------------------------------------
 ; ram data
 ;--------------------------------------------------------
@@ -56,138 +53,145 @@
 ; Function fisica_objetos
 ; ---------------------------------
 _fisica_objetos::
-;src/sistemas/fisica_objetos.c:5: borra_objeto(array[1].x,array[1].y,array[1].ancho,array[1].alto);
-	ld	hl, #_array + 15
+	push	ix
+	ld	ix,#0
+	add	ix,sp
+	push	af
+	push	af
+	dec	sp
+;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
+	ld	b, #0x01
+00104$:
+;src/sistemas/fisica_objetos.c:7: borra_objeto(array[i].x,array[i].y,array[i].ancho,array[i].alto);
+	ld	e,b
+	ld	d,#0x00
+	ld	l, e
+	ld	h, d
+	add	hl, hl
+	add	hl, hl
+	add	hl, de
+	add	hl, hl
+	ld	de, #_array
+	add	hl, de
+	ld	-2 (ix), l
+	ld	-1 (ix), h
+	ld	de, #0x0006
+	add	hl, de
+	ld	a, (hl)
+	ld	-3 (ix), a
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
+	ld	de, #0x0005
+	add	hl, de
+	ld	a, (hl)
+	ld	-4 (ix), a
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
+	inc	hl
+	inc	hl
 	ld	c, (hl)
-	ld	hl, #_array + 14
-	ld	b, (hl)
-	ld	hl, #_array + 11
-	ld	e, (hl)
-	ld	hl, #(_array + 0x000a) + 0
-	ld	d, (hl)
-	ld	a, c
-	push	af
-	inc	sp
+	ld	e,-2 (ix)
+	ld	d,-1 (ix)
+	inc	de
+	ld	a, (de)
+	ld	-5 (ix), a
 	push	bc
-	inc	sp
-	ld	a, e
+	push	de
+	ld	a, -3 (ix)
 	push	af
 	inc	sp
-	push	de
+	ld	b, -4 (ix)
+	push	bc
+	ld	a, -5 (ix)
+	push	af
 	inc	sp
 	call	_borra_objeto
 	pop	af
 	pop	af
-;src/sistemas/fisica_objetos.c:6: array[1].x+=array[1].vx;
-	ld	hl, #(_array + 0x000a) + 0
-	ld	c, (hl)
-	ld	hl, #_array + 12
-	ld	e, (hl)
+	pop	de
+	pop	bc
+;src/sistemas/fisica_objetos.c:8: array[i].x+=array[i].vx;
+	ld	a, (de)
+	ld	c, a
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
+	inc	hl
+	inc	hl
+	inc	hl
+	ld	l, (hl)
 	ld	a, c
-	add	a, e
-	ld	(#(_array + 0x000a)),a
-;src/sistemas/fisica_objetos.c:7: if (array[1].x==10)
-	ld	a, (#(_array + 0x000a) + 0)
+	add	a, l
+	ld	(de), a
+;src/sistemas/fisica_objetos.c:9: if (array[i].x==10)
+	ld	a, (de)
 	sub	a, #0x0a
-	ret	NZ
-;src/sistemas/fisica_objetos.c:8: {comprobar_recojida();}
-	jp  _comprobar_recojida
-;src/sistemas/fisica_objetos.c:11: void comprobar_recojida(){
+	jr	NZ,00105$
+;src/sistemas/fisica_objetos.c:10: {comprobar_recojida(i);}
+	push	bc
+	push	bc
+	inc	sp
+	call	_comprobar_recojida
+	inc	sp
+	pop	bc
+00105$:
+;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
+	inc	b
+	ld	a, b
+	sub	a, #0x02
+	jr	C,00104$
+	ld	sp, ix
+	pop	ix
+	ret
+;src/sistemas/fisica_objetos.c:14: void comprobar_recojida(u8 i){
 ;	---------------------------------
 ; Function comprobar_recojida
 ; ---------------------------------
 _comprobar_recojida::
-;src/sistemas/fisica_objetos.c:12: if (array[1].y==array[0].y)
-	ld	hl, #_array + 11
+	push	ix
+	ld	ix,#0
+	add	ix,sp
+;src/sistemas/fisica_objetos.c:16: if (array[i].y==array[0].y)
+	ld	de, #_array+0
+	ld	c,4 (ix)
+	ld	b,#0x00
+	ld	l, c
+	ld	h, b
+	add	hl, hl
+	add	hl, hl
+	add	hl, bc
+	add	hl, hl
+	add	hl, de
+	push	hl
+	pop	iy
+	push	iy
+	pop	hl
+	inc	hl
+	inc	hl
 	ld	c, (hl)
-	ld	hl, #_array + 2
-	ld	b, (hl)
-	ld	a, c
-	sub	a, b
-;src/sistemas/fisica_objetos.c:13: {suma_puntos();}
-	jp	Z,_suma_puntos
-;src/sistemas/fisica_objetos.c:14: else {muere();}}
-	jp  _muere
-;src/sistemas/fisica_objetos.c:16: void muere(){
-;	---------------------------------
-; Function muere
-; ---------------------------------
-_muere::
-;src/sistemas/fisica_objetos.c:17: vidas--;
-	ld	hl, #_vidas+0
-	dec	(hl)
-;src/sistemas/fisica_objetos.c:18: array[1].x = 60;
-	ld	hl, #(_array + 0x000a)
-	ld	(hl), #0x3c
-;src/sistemas/fisica_objetos.c:19: pinta_marcador();
-	call	_pinta_marcador
-;src/sistemas/fisica_objetos.c:20: if (vidas=='0')
-	ld	a,(#_vidas + 0)
-	sub	a, #0x30
-	ret	NZ
-;src/sistemas/fisica_objetos.c:21: {fin_juego();}
-	jp  _fin_juego
-;src/sistemas/fisica_objetos.c:23: void fin_juego(){
-;	---------------------------------
-; Function fin_juego
-; ---------------------------------
-_fin_juego::
-;src/sistemas/fisica_objetos.c:26: pvmem=cpct_getScreenPtr(0xc000,10,20);
-	ld	hl, #0x140a
-	push	hl
-	ld	hl, #0xc000
-	push	hl
-	call	_cpct_getScreenPtr
-;src/sistemas/fisica_objetos.c:27: cpct_drawStringM2("Has sido despedido!",pvmem);
-	ld	bc, #___str_0+0
-	push	hl
-	push	bc
-	call	_cpct_drawStringM2
-;src/sistemas/fisica_objetos.c:28: pvmem=cpct_getScreenPtr(0xc000,10,40);
-	ld	hl, #0x280a
-	push	hl
-	ld	hl, #0xc000
-	push	hl
-	call	_cpct_getScreenPtr
-;src/sistemas/fisica_objetos.c:29: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
-	ld	bc, #___str_1+0
-	push	hl
-	push	bc
-	call	_cpct_drawStringM2
-;src/sistemas/fisica_objetos.c:30: espera_pulsacion_tecla();
-	call	_espera_pulsacion_tecla
-;src/sistemas/fisica_objetos.c:31: espera_pulsar();
-	call	_espera_pulsar
+	ld	a, (#_array + 2)
+	sub	a, c
+	jr	NZ,00102$
+;src/sistemas/fisica_objetos.c:17: {suma_puntos(i);
+	ld	a, 4 (ix)
+	push	af
+	inc	sp
+	call	_suma_puntos
+	inc	sp
+;src/sistemas/fisica_objetos.c:18: pinta_puntos();}
+	call	_pinta_puntos
+	jr	00104$
+00102$:
+;src/sistemas/fisica_objetos.c:19: else {obj_caido=&array[i];
+	ld	(_obj_caido), iy
+;src/sistemas/fisica_objetos.c:20: muere(i);}
+	ld	a, 4 (ix)
+	push	af
+	inc	sp
+	call	_muere
+	inc	sp
+00104$:
+	pop	ix
 	ret
-___str_0:
-	.ascii "Has sido despedido!"
-	.db 0x00
-___str_1:
-	.ascii "Vuelve a intentarlo."
-	.db 0x00
-;src/sistemas/fisica_objetos.c:33: void espera_pulsacion_tecla(){
-;	---------------------------------
-; Function espera_pulsacion_tecla
-; ---------------------------------
-_espera_pulsacion_tecla::
-;src/sistemas/fisica_objetos.c:35: cpct_scanKeyboard();
-	call	_cpct_scanKeyboard
-;src/sistemas/fisica_objetos.c:36: pulsado=cpct_isAnyKeyPressed();
-	call	_cpct_isAnyKeyPressed
-;src/sistemas/fisica_objetos.c:37: if (pulsado!=0)
-	ld	a, l
-	or	a, a
-;src/sistemas/fisica_objetos.c:38: {espera_pulsar();}
-	jp	NZ,_espera_pulsar
-;src/sistemas/fisica_objetos.c:39: else espera_pulsacion_tecla();
-	jr	_espera_pulsacion_tecla
-;src/sistemas/fisica_objetos.c:41: void espera_pulsar(){
-;	---------------------------------
-; Function espera_pulsar
-; ---------------------------------
-_espera_pulsar::
-;src/sistemas/fisica_objetos.c:42: a_jugar();}
-	jp  _a_jugar
 	.area _CODE
 	.area _INITIALIZER
 	.area _CABS (ABS)

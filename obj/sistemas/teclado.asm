@@ -62,7 +62,7 @@ _teclado::
 	jr	Z,00102$
 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
 	ld	a, (#(_array + 0x0002) + 0)
-	sub	a, #0x14
+	sub	a, #0x0a
 	jr	C,00102$
 ;src/sistemas/teclado.c:9: {array[0].vy=-1;}
 	ld	hl, #(_array + 0x0004)
@@ -77,7 +77,7 @@ _teclado::
 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
 	ld	hl, #(_array + 0x0002) + 0
 	ld	c, (hl)
-	ld	a, #0xaa
+	ld	a, #0x96
 	sub	a, c
 	ret	C
 ;src/sistemas/teclado.c:12: {array[0].vy=1;}

@@ -9,176 +9,220 @@
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
                              11 	.globl _cpct_memcpy
-                             12 	.globl _array
-                             13 	.globl _item1
-                             14 	.globl _player
-                             15 	.globl _vidas
-                             16 	.globl _puntos_centena
-                             17 	.globl _puntos_decena
-                             18 	.globl _y_start_manzana
-                             19 	.globl _x_start_manzana
-                             20 	.globl _caida_objeto
-                             21 	.globl _vx_manzana
-                             22 	.globl _spr_manzana
-                             23 	.globl _y_manzana
-                             24 	.globl _x_manzana
-                             25 	.globl _vx_pera
-                             26 	.globl _spr_pera
-                             27 	.globl _y_pera
-                             28 	.globl _x_pera
-                             29 	.globl _vy_jug
-                             30 	.globl _spr_jugador
-                             31 	.globl _y_jugador
-                             32 	.globl _x_jugador
-                             33 	.globl _manzana_init
-                             34 	.globl _player_init
-                             35 	.globl _iniciar_valores
-                             36 	.globl _inicia_objetos
-                             37 ;--------------------------------------------------------
-                             38 ; special function registers
-                             39 ;--------------------------------------------------------
-                             40 ;--------------------------------------------------------
-                             41 ; ram data
-                             42 ;--------------------------------------------------------
-                             43 	.area _DATA
-   0000                      44 _x_jugador::
-   0000                      45 	.ds 1
-   0001                      46 _y_jugador::
-   0001                      47 	.ds 1
-   0002                      48 _spr_jugador::
-   0002                      49 	.ds 2
-   0004                      50 _vy_jug::
-   0004                      51 	.ds 1
-   0005                      52 _x_pera::
-   0005                      53 	.ds 1
-   0006                      54 _y_pera::
-   0006                      55 	.ds 1
-   0007                      56 _spr_pera::
-   0007                      57 	.ds 2
-   0009                      58 _vx_pera::
-   0009                      59 	.ds 1
-   000A                      60 _x_manzana::
-   000A                      61 	.ds 1
-   000B                      62 _y_manzana::
-   000B                      63 	.ds 1
-   000C                      64 _spr_manzana::
-   000C                      65 	.ds 2
-   000E                      66 _vx_manzana::
-   000E                      67 	.ds 1
-   000F                      68 _caida_objeto::
-   000F                      69 	.ds 1
-   0010                      70 _x_start_manzana::
-   0010                      71 	.ds 1
-   0011                      72 _y_start_manzana::
-   0011                      73 	.ds 1
-   0012                      74 _puntos_decena::
-   0012                      75 	.ds 1
-   0013                      76 _puntos_centena::
-   0013                      77 	.ds 1
-   0014                      78 _vidas::
-   0014                      79 	.ds 1
-   0015                      80 _player::
-   0015                      81 	.ds 9
-   001E                      82 _item1::
-   001E                      83 	.ds 9
-   0027                      84 _array::
-   0027                      85 	.ds 90
-                             86 ;--------------------------------------------------------
-                             87 ; ram data
-                             88 ;--------------------------------------------------------
-                             89 	.area _INITIALIZED
-                             90 ;--------------------------------------------------------
-                             91 ; absolute external ram data
-                             92 ;--------------------------------------------------------
-                             93 	.area _DABS (ABS)
-                             94 ;--------------------------------------------------------
-                             95 ; global & static initialisations
+                             12 	.globl _pobjeto2
+                             13 	.globl _pobjeto1
+                             14 	.globl _pjugador
+                             15 	.globl _item1
+                             16 	.globl _player
+                             17 	.globl _array
+                             18 	.globl _vidas
+                             19 	.globl _puntos_centena
+                             20 	.globl _puntos_decena
+                             21 	.globl _y_start_manzana
+                             22 	.globl _x_start_manzana
+                             23 	.globl _caida_objeto
+                             24 	.globl _vx_manzana
+                             25 	.globl _spr_manzana
+                             26 	.globl _y_manzana
+                             27 	.globl _x_manzana
+                             28 	.globl _vx_pera
+                             29 	.globl _spr_pera
+                             30 	.globl _y_pera
+                             31 	.globl _x_pera
+                             32 	.globl _vy_jug
+                             33 	.globl _spr_jugador
+                             34 	.globl _y_jugador
+                             35 	.globl _x_jugador
+                             36 	.globl _pera_init
+                             37 	.globl _manzana_init
+                             38 	.globl _player_init
+                             39 	.globl _iniciar_valores
+                             40 	.globl _inicia_objetos
+                             41 ;--------------------------------------------------------
+                             42 ; special function registers
+                             43 ;--------------------------------------------------------
+                             44 ;--------------------------------------------------------
+                             45 ; ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area _DATA
+   0000                      48 _x_jugador::
+   0000                      49 	.ds 1
+   0001                      50 _y_jugador::
+   0001                      51 	.ds 1
+   0002                      52 _spr_jugador::
+   0002                      53 	.ds 2
+   0004                      54 _vy_jug::
+   0004                      55 	.ds 1
+   0005                      56 _x_pera::
+   0005                      57 	.ds 1
+   0006                      58 _y_pera::
+   0006                      59 	.ds 1
+   0007                      60 _spr_pera::
+   0007                      61 	.ds 2
+   0009                      62 _vx_pera::
+   0009                      63 	.ds 1
+   000A                      64 _x_manzana::
+   000A                      65 	.ds 1
+   000B                      66 _y_manzana::
+   000B                      67 	.ds 1
+   000C                      68 _spr_manzana::
+   000C                      69 	.ds 2
+   000E                      70 _vx_manzana::
+   000E                      71 	.ds 1
+   000F                      72 _caida_objeto::
+   000F                      73 	.ds 1
+   0010                      74 _x_start_manzana::
+   0010                      75 	.ds 1
+   0011                      76 _y_start_manzana::
+   0011                      77 	.ds 1
+   0012                      78 _puntos_decena::
+   0012                      79 	.ds 1
+   0013                      80 _puntos_centena::
+   0013                      81 	.ds 1
+   0014                      82 _vidas::
+   0014                      83 	.ds 1
+   0015                      84 _array::
+   0015                      85 	.ds 100
+   0079                      86 _player::
+   0079                      87 	.ds 10
+   0083                      88 _item1::
+   0083                      89 	.ds 10
+   008D                      90 _pjugador::
+   008D                      91 	.ds 2
+   008F                      92 _pobjeto1::
+   008F                      93 	.ds 2
+   0091                      94 _pobjeto2::
+   0091                      95 	.ds 2
                              96 ;--------------------------------------------------------
-                             97 	.area _HOME
-                             98 	.area _GSINIT
-                             99 	.area _GSFINAL
-                            100 	.area _GSINIT
-                            101 ;--------------------------------------------------------
-                            102 ; Home
-                            103 ;--------------------------------------------------------
-                            104 	.area _HOME
-                            105 	.area _HOME
+                             97 ; ram data
+                             98 ;--------------------------------------------------------
+                             99 	.area _INITIALIZED
+                            100 ;--------------------------------------------------------
+                            101 ; absolute external ram data
+                            102 ;--------------------------------------------------------
+                            103 	.area _DABS (ABS)
+                            104 ;--------------------------------------------------------
+                            105 ; global & static initialisations
                             106 ;--------------------------------------------------------
-                            107 ; code
-                            108 ;--------------------------------------------------------
-                            109 	.area _CODE
-                            110 ;src/datos/definiciones.c:21: void iniciar_valores(){
-                            111 ;	---------------------------------
-                            112 ; Function iniciar_valores
-                            113 ; ---------------------------------
-   0000                     114 _iniciar_valores::
-                            115 ;src/datos/definiciones.c:25: x_manzana       =   x_start_objeto;
-   0000 21r0Ar00      [10]  116 	ld	hl,#_x_manzana + 0
-   0003 36 3C         [10]  117 	ld	(hl), #0x3c
-                            118 ;src/datos/definiciones.c:26: y_manzana       =   y_frame_1;
-   0005 21r0Br00      [10]  119 	ld	hl,#_y_manzana + 0
-   0008 36 14         [10]  120 	ld	(hl), #0x14
-                            121 ;src/datos/definiciones.c:27: puntos          =   '0';
-   000A 21r00r00      [10]  122 	ld	hl,#_puntos + 0
-   000D 36 30         [10]  123 	ld	(hl), #0x30
-                            124 ;src/datos/definiciones.c:28: puntos_decena   =   '0';
-   000F 21r12r00      [10]  125 	ld	hl,#_puntos_decena + 0
-   0012 36 30         [10]  126 	ld	(hl), #0x30
-                            127 ;src/datos/definiciones.c:29: puntos_centena  =   '0';
-   0014 21r13r00      [10]  128 	ld	hl,#_puntos_centena + 0
-   0017 36 30         [10]  129 	ld	(hl), #0x30
-                            130 ;src/datos/definiciones.c:30: vidas           =   '3';
-   0019 21r14r00      [10]  131 	ld	hl,#_vidas + 0
-   001C 36 33         [10]  132 	ld	(hl), #0x33
-                            133 ;src/datos/definiciones.c:31: vx_manzana      =   -1;
-   001E 21r0Er00      [10]  134 	ld	hl,#_vx_manzana + 0
-   0021 36 FF         [10]  135 	ld	(hl), #0xff
-                            136 ;src/datos/definiciones.c:32: caida_objeto    =   x_jugador + DERECHA_W + 1;//posicion donde conprueba si jugador coge objeto
-   0023 21r0Fr00      [10]  137 	ld	hl, #_caida_objeto
-   0026 3Ar00r00      [13]  138 	ld	a,(#_x_jugador + 0)
-   0029 C6 03         [ 7]  139 	add	a, #0x03
-   002B 77            [ 7]  140 	ld	(hl), a
-   002C C9            [10]  141 	ret
-                            142 ;src/datos/definiciones.c:48: void inicia_objetos(){
-                            143 ;	---------------------------------
-                            144 ; Function inicia_objetos
-                            145 ; ---------------------------------
-   002D                     146 _inicia_objetos::
-                            147 ;src/datos/definiciones.c:49: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
-   002D 21 09 00      [10]  148 	ld	hl, #0x0009
-   0030 E5            [11]  149 	push	hl
-   0031 21r4Cr00      [10]  150 	ld	hl, #_player_init
-   0034 E5            [11]  151 	push	hl
-   0035 21r27r00      [10]  152 	ld	hl, #_array
-   0038 E5            [11]  153 	push	hl
-   0039 CDr00r00      [17]  154 	call	_cpct_memcpy
-                            155 ;src/datos/definiciones.c:50: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
-   003C 21 09 00      [10]  156 	ld	hl, #0x0009
-   003F E5            [11]  157 	push	hl
-   0040 21r55r00      [10]  158 	ld	hl, #_manzana_init
-   0043 E5            [11]  159 	push	hl
-   0044 21r30r00      [10]  160 	ld	hl, #(_array + 0x0009)
-   0047 E5            [11]  161 	push	hl
-   0048 CDr00r00      [17]  162 	call	_cpct_memcpy
-   004B C9            [10]  163 	ret
-   004C                     164 _player_init:
-   004C 01                  165 	.db #0x01	; 1
-   004D 0A                  166 	.db #0x0a	; 10
-   004E 14                  167 	.db #0x14	; 20
-   004F 00                  168 	.db #0x00	;  0
-   0050 00                  169 	.db #0x00	;  0
-   0051 02                  170 	.db #0x02	; 2
-   0052 14                  171 	.db #0x14	; 20
-   0053r00r00               172 	.dw _derecha
-   0055                     173 _manzana_init:
-   0055 01                  174 	.db #0x01	; 1
-   0056 3C                  175 	.db #0x3c	; 60
-   0057 14                  176 	.db #0x14	; 20
-   0058 FF                  177 	.db #0xff	; -1
-   0059 00                  178 	.db #0x00	;  0
-   005A 02                  179 	.db #0x02	; 2
-   005B 10                  180 	.db #0x10	; 16
-   005Cr00r00               181 	.dw _manzana
-                            182 	.area _CODE
-                            183 	.area _INITIALIZER
-                            184 	.area _CABS (ABS)
+                            107 	.area _HOME
+                            108 	.area _GSINIT
+                            109 	.area _GSFINAL
+                            110 	.area _GSINIT
+                            111 ;--------------------------------------------------------
+                            112 ; Home
+                            113 ;--------------------------------------------------------
+                            114 	.area _HOME
+                            115 	.area _HOME
+                            116 ;--------------------------------------------------------
+                            117 ; code
+                            118 ;--------------------------------------------------------
+                            119 	.area _CODE
+                            120 ;src/datos/definiciones.c:26: void iniciar_valores(){
+                            121 ;	---------------------------------
+                            122 ; Function iniciar_valores
+                            123 ; ---------------------------------
+   0000                     124 _iniciar_valores::
+                            125 ;src/datos/definiciones.c:27: x_manzana       =   x_start_objeto;
+   0000 21r0Ar00      [10]  126 	ld	hl,#_x_manzana + 0
+   0003 36 3C         [10]  127 	ld	(hl), #0x3c
+                            128 ;src/datos/definiciones.c:28: y_manzana       =   y_frame_1;
+   0005 21r0Br00      [10]  129 	ld	hl,#_y_manzana + 0
+   0008 36 0A         [10]  130 	ld	(hl), #0x0a
+                            131 ;src/datos/definiciones.c:29: puntos          =   '0';
+   000A 21r00r00      [10]  132 	ld	hl,#_puntos + 0
+   000D 36 30         [10]  133 	ld	(hl), #0x30
+                            134 ;src/datos/definiciones.c:30: puntos_decena   =   '0';
+   000F 21r12r00      [10]  135 	ld	hl,#_puntos_decena + 0
+   0012 36 30         [10]  136 	ld	(hl), #0x30
+                            137 ;src/datos/definiciones.c:31: puntos_centena  =   '0';
+   0014 21r13r00      [10]  138 	ld	hl,#_puntos_centena + 0
+   0017 36 30         [10]  139 	ld	(hl), #0x30
+                            140 ;src/datos/definiciones.c:32: vidas           =   '3';
+   0019 21r14r00      [10]  141 	ld	hl,#_vidas + 0
+   001C 36 33         [10]  142 	ld	(hl), #0x33
+                            143 ;src/datos/definiciones.c:33: vx_manzana      =   -1;
+   001E 21r0Er00      [10]  144 	ld	hl,#_vx_manzana + 0
+   0021 36 FF         [10]  145 	ld	(hl), #0xff
+                            146 ;src/datos/definiciones.c:34: caida_objeto    =   x_jugador + DERECHA_W + 1;//posicion donde conprueba si jugador coge objeto
+   0023 21r0Fr00      [10]  147 	ld	hl, #_caida_objeto
+   0026 3Ar00r00      [13]  148 	ld	a,(#_x_jugador + 0)
+   0029 C6 03         [ 7]  149 	add	a, #0x03
+   002B 77            [ 7]  150 	ld	(hl), a
+                            151 ;src/datos/definiciones.c:35: pjugador        =   &array[0];
+   002C 01r15r00      [10]  152 	ld	bc, #_array+0
+   002F ED 43r8Dr00   [20]  153 	ld	(_pjugador), bc
+                            154 ;src/datos/definiciones.c:36: pobjeto1        =   &array[1];
+   0033 21 0A 00      [10]  155 	ld	hl, #0x000a
+   0036 09            [11]  156 	add	hl, bc
+   0037 22r8Fr00      [16]  157 	ld	(_pobjeto1), hl
+                            158 ;src/datos/definiciones.c:37: pobjeto2        =   &array[2];
+   003A 21 14 00      [10]  159 	ld	hl, #0x0014
+   003D 09            [11]  160 	add	hl, bc
+   003E 22r91r00      [16]  161 	ld	(_pobjeto2), hl
+                            162 ;src/datos/definiciones.c:38: vmem_ahora      =   0xC000; 
+   0041 21 00 C0      [10]  163 	ld	hl, #0xc000
+   0044 22r00r00      [16]  164 	ld	(_vmem_ahora), hl
+   0047 C9            [10]  165 	ret
+                            166 ;src/datos/definiciones.c:47: void inicia_objetos(){
+                            167 ;	---------------------------------
+                            168 ; Function inicia_objetos
+                            169 ; ---------------------------------
+   0048                     170 _inicia_objetos::
+                            171 ;src/datos/definiciones.c:48: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
+   0048 21 0A 00      [10]  172 	ld	hl, #0x000a
+   004B E5            [11]  173 	push	hl
+   004C 21r76r00      [10]  174 	ld	hl, #_player_init
+   004F E5            [11]  175 	push	hl
+   0050 21r15r00      [10]  176 	ld	hl, #_array
+   0053 E5            [11]  177 	push	hl
+   0054 CDr00r00      [17]  178 	call	_cpct_memcpy
+                            179 ;src/datos/definiciones.c:49: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
+   0057 21 0A 00      [10]  180 	ld	hl, #0x000a
+   005A E5            [11]  181 	push	hl
+   005B 21r80r00      [10]  182 	ld	hl, #_manzana_init
+   005E E5            [11]  183 	push	hl
+   005F 21r1Fr00      [10]  184 	ld	hl, #(_array + 0x000a)
+   0062 E5            [11]  185 	push	hl
+   0063 CDr00r00      [17]  186 	call	_cpct_memcpy
+                            187 ;src/datos/definiciones.c:50: cpct_memcpy (&array[2], &pera_init, sizeof(array[0]));
+   0066 21 0A 00      [10]  188 	ld	hl, #0x000a
+   0069 E5            [11]  189 	push	hl
+   006A 21r8Ar00      [10]  190 	ld	hl, #_pera_init
+   006D E5            [11]  191 	push	hl
+   006E 21r29r00      [10]  192 	ld	hl, #(_array + 0x0014)
+   0071 E5            [11]  193 	push	hl
+   0072 CDr00r00      [17]  194 	call	_cpct_memcpy
+   0075 C9            [10]  195 	ret
+   0076                     196 _player_init:
+   0076 01                  197 	.db #0x01	; 1
+   0077 0A                  198 	.db #0x0a	; 10
+   0078 0A                  199 	.db #0x0a	; 10
+   0079 00                  200 	.db #0x00	;  0
+   007A 00                  201 	.db #0x00	;  0
+   007B 04                  202 	.db #0x04	; 4
+   007C 28                  203 	.db #0x28	; 40
+   007Dr00r00               204 	.dw _rightpng
+   007F 00                  205 	.db #0x00	; 0
+   0080                     206 _manzana_init:
+   0080 01                  207 	.db #0x01	; 1
+   0081 50                  208 	.db #0x50	; 80	'P'
+   0082 0A                  209 	.db #0x0a	; 10
+   0083 FF                  210 	.db #0xff	; -1
+   0084 00                  211 	.db #0x00	;  0
+   0085 02                  212 	.db #0x02	; 2
+   0086 10                  213 	.db #0x10	; 16
+   0087r00r00               214 	.dw _manzana
+   0089 50                  215 	.db #0x50	; 80	'P'
+   008A                     216 _pera_init:
+   008A 01                  217 	.db #0x01	; 1
+   008B 3C                  218 	.db #0x3c	; 60
+   008C 32                  219 	.db #0x32	; 50	'2'
+   008D FF                  220 	.db #0xff	; -1
+   008E 00                  221 	.db #0x00	;  0
+   008F 02                  222 	.db #0x02	; 2
+   0090 10                  223 	.db #0x10	; 16
+   0091r00r00               224 	.dw _pera
+   0093 3C                  225 	.db #0x3c	; 60
+                            226 	.area _CODE
+                            227 	.area _INITIALIZER
+                            228 	.area _CABS (ABS)

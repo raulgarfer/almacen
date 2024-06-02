@@ -10,4 +10,5 @@ void teclado(){
         if(cpct_isKeyPressed(Key_A)
             && array[0].y<=y_frame_4)
                 {array[0].vy=1;}
+        
 }

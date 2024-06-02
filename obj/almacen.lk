@@ -7,6 +7,8 @@
 -k /home/papi/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
 -l /home/papi/cpctelera/cpctelera/cpctelera.lib
 -l z80
+obj/media/base.rel
+obj/media/rightpng.rel
 obj/media/pera.rel
 obj/media/manzana.rel
 obj/media/izquierda.rel
@@ -17,14 +19,19 @@ obj/media/BW.rel
 obj/main.rel
 obj/datos/definiciones.rel
 obj/sistemas/borra.rel
+obj/sistemas/fin_juego.rel
 obj/sistemas/fisica.rel
 obj/sistemas/fisica_objetos.rel
 obj/sistemas/marcador.rel
 obj/sistemas/pintar.rel
 obj/sistemas/puntuacion.rel
-obj/sistemas/structs.rel
 obj/sistemas/teclado.rel
 obj/manager/menu.rel
+obj/media/fondo.rel
+obj/media/viga.rel
+obj/borrar_pantallas.rel
+obj/espera_tecla.rel
 obj/interrupciones.rel
+obj/sistemas/pinta_con_puntero.rel
 
 -e

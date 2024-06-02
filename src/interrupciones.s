@@ -49,9 +49,9 @@ int_3::
         numero_interrupcion 3
         siguiente_interrrupcion int_4
     cpctm_setBorder_asm 5
-    ld l,#0                             ;;pen
-    ld h,#2                             ;;ink
-    call cpct_setPALColour_asm
+    ;;ld l,#0                             ;;pen
+    ;;ld h,#2                             ;;ink
+    ;;call cpct_setPALColour_asm
      ld l,#1                             ;;pen
     ld h,#1                            ;;ink
     call cpct_setPALColour_asm

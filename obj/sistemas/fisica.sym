@@ -8,17 +8,17 @@ Symbol Table
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
     _array                                                         **** GX
-  0 _baja                                                          000D GR
+  0 _baja                                                          0015 GR
+    _borra                                                         **** GX
   0 _fisica                                                        0000 GR
-  0 _sube                                                          0025 GR
-
+  0 _sube                                                          002D GR
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   3D   flags    0
+   0 _CODE                                      size   45   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

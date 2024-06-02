@@ -7,33 +7,22 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 ___str_0                                                       0087 R
-  0 ___str_1                                                       009B R
-    _a_jugar                                                       **** GX
     _array                                                         **** GX
     _borra_objeto                                                  **** GX
-  0 _comprobar_recojida                                            0035 GR
-    _cpct_drawStringM2                                             **** GX
-    _cpct_getScreenPtr                                             **** GX
-    _cpct_isAnyKeyPressed                                          **** GX
-    _cpct_scanKeyboard                                             **** GX
-  0 _espera_pulsacion_tecla                                        00B0 GR
-  0 _espera_pulsar                                                 00BD GR
-  0 _fin_juego                                                     005A GR
+  0 _comprobar_recojida                                            0088 GR
   0 _fisica_objetos                                                0000 GR
-  0 _muere                                                         0045 GR
-    _pinta_marcador                                                **** GX
+    _muere                                                         **** GX
+  1 _obj_caido                                                     0000 GR
+    _pinta_puntos                                                  **** GX
     _suma_puntos                                                   **** GX
-    _vidas                                                         **** GX
-
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   C0   flags    0
-   1 _DATA                                      size    0   flags    0
+   0 _CODE                                      size   CC   flags    0
+   1 _DATA                                      size    2   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

@@ -62,7 +62,7 @@
    0010 28 0C         [12]   62 	jr	Z,00102$
                              63 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
    0012 3Ar02r00      [13]   64 	ld	a, (#(_array + 0x0002) + 0)
-   0015 D6 14         [ 7]   65 	sub	a, #0x14
+   0015 D6 0A         [ 7]   65 	sub	a, #0x0a
    0017 38 05         [12]   66 	jr	C,00102$
                              67 ;src/sistemas/teclado.c:9: {array[0].vy=-1;}
    0019 21r04r00      [10]   68 	ld	hl, #(_array + 0x0004)
@@ -77,7 +77,7 @@
                              77 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
    0027 21r02r00      [10]   78 	ld	hl, #(_array + 0x0002) + 0
    002A 4E            [ 7]   79 	ld	c, (hl)
-   002B 3E AA         [ 7]   80 	ld	a, #0xaa
+   002B 3E 96         [ 7]   80 	ld	a, #0x96
    002D 91            [ 4]   81 	sub	a, c
    002E D8            [11]   82 	ret	C
                              83 ;src/sistemas/teclado.c:12: {array[0].vy=1;}

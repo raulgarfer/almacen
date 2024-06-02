@@ -2,12 +2,13 @@
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.6.8 #9946 (Linux)
 ;--------------------------------------------------------
-	.module structs
+	.module viga
 	.optsdcc -mz80
 	
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _viga
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -40,5 +41,38 @@
 ;--------------------------------------------------------
 	.area _CODE
 	.area _CODE
+_viga:
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xf8	; 248
+	.db #0x1f	; 31
+	.db #0xf0	; 240
+	.db #0x0f	; 15
+	.db #0xf0	; 240
+	.db #0x0f	; 15
+	.db #0xf0	; 240
+	.db #0x0f	; 15
+	.db #0xf0	; 240
+	.db #0x0f	; 15
+	.db #0xf0	; 240
+	.db #0x0f	; 15
+	.db #0xf8	; 248
+	.db #0x1f	; 31
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
 	.area _INITIALIZER
 	.area _CABS (ABS)

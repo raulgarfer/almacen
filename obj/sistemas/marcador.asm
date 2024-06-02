@@ -8,12 +8,12 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
-	.globl _pinta_puntos
-	.globl _pinta_marcador
 	.globl _cpct_setPALColour
 	.globl _cpct_drawStringM2
 	.globl _cpct_drawCharM2
 	.globl _puntos
+	.globl _pinta_marcador
+	.globl _pinta_puntos
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -60,13 +60,13 @@ _pinta_marcador::
 	ld	hl, #0x0201
 	push	hl
 	call	_cpct_setPALColour
-;src/sistemas/marcador.c:8: cpct_drawStringM2("Puntos",marcador_y); 
+;src/sistemas/marcador.c:8: cpct_drawStringM2("Puntos",(u8*)marcador_y); 
 	ld	hl, #0xc780
 	push	hl
 	ld	hl, #___str_0
 	push	hl
 	call	_cpct_drawStringM2
-;src/sistemas/marcador.c:9: cpct_drawStringM2("Vidas",marcador_y+10);
+;src/sistemas/marcador.c:9: cpct_drawStringM2("Vidas",(u8*)marcador_y+10);
 	ld	hl, #0xc78a
 	push	hl
 	ld	hl, #___str_1
@@ -92,7 +92,7 @@ _pinta_puntos::
 	ld	hl, #0x0201
 	push	hl
 	call	_cpct_setPALColour
-;src/sistemas/marcador.c:15: cpct_drawCharM2(marcador_y+7,puntos_decena);
+;src/sistemas/marcador.c:15: cpct_drawCharM2((u8*)marcador_y+7,puntos_decena);
 	ld	hl,#_puntos_decena + 0
 	ld	c, (hl)
 	ld	b, #0x00
@@ -100,7 +100,7 @@ _pinta_puntos::
 	ld	hl, #0xc787
 	push	hl
 	call	_cpct_drawCharM2
-;src/sistemas/marcador.c:16: cpct_drawCharM2(marcador_y+8,puntos);
+;src/sistemas/marcador.c:16: cpct_drawCharM2((u8*)marcador_y+8,puntos);
 	ld	hl,#_puntos + 0
 	ld	c, (hl)
 	ld	b, #0x00
@@ -108,7 +108,7 @@ _pinta_puntos::
 	ld	hl, #0xc788
 	push	hl
 	call	_cpct_drawCharM2
-;src/sistemas/marcador.c:17: cpct_drawCharM2(marcador_y+16,vidas);
+;src/sistemas/marcador.c:17: cpct_drawCharM2((u8*)marcador_y+16,vidas);
 	ld	hl,#_vidas + 0
 	ld	c, (hl)
 	ld	b, #0x00

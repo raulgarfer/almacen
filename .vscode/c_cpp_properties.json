@@ -33,7 +33,8 @@
                 "${workspaceRoot}/src",
                 "/usr/local/include",
                 "/usr/include",
-                "${env:CPCT_PATH}/src"
+                "${env:CPCT_PATH}/src",
+                "/home/papi/cpctelera/cpctelera"
             ],
             "defines": [],
             "browse": {
@@ -43,7 +44,8 @@
                     "/usr/include/c++",
                     "/usr/local/include",
                     "/usr/lib/clang",
-                    "/usr/include"
+                    "/usr/include",
+                    "/home/papi/cpctelera/cpctelera"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""

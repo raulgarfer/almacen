@@ -43,34 +43,79 @@
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/sistemas/borra.c:4: void borra(){
+;src/sistemas/borra.c:4: void borra(){       //borra todos los sprites
 ;	---------------------------------
 ; Function borra
 ; ---------------------------------
 _borra::
-;src/sistemas/borra.c:6: pvmem   =   cpct_getScreenPtr(0xc000,array[0].x,array[0].y);
-	ld	hl, #_array + 2
-	ld	d, (hl)
-	ld	hl, #_array + 1
-	ld	e, (hl)
+	push	ix
+	ld	ix,#0
+	add	ix,sp
+	push	af
+;src/sistemas/borra.c:7: for (i=0;i<max_entidades;i++){
+	ld	-2 (ix), #0x00
+00102$:
+;src/sistemas/borra.c:8: pvmem   =   cpct_getScreenPtr((u8*)vmem_ahora,array[i].x,array[i].y);
+	ld	c,-2 (ix)
+	ld	b,#0x00
+	ld	l, c
+	ld	h, b
+	add	hl, hl
+	add	hl, hl
+	add	hl, bc
+	add	hl, hl
+	ld	bc,#_array
+	add	hl,bc
+	ld	e,l
+	ld	d,h
+	inc	hl
+	inc	hl
+	ld	a, (hl)
+	ld	-1 (ix), a
+	ld	l, e
+	ld	h, d
+	inc	hl
+	ld	c, (hl)
+	ld	iy, (_vmem_ahora)
 	push	de
-	ld	hl, #0xc000
-	push	hl
+	ld	b, -1 (ix)
+	push	bc
+	push	iy
 	call	_cpct_getScreenPtr
-;src/sistemas/borra.c:7: cpct_drawSolidBox(pvmem,0,DERECHA_W,DERECHA_H);
-	ld	bc, #0x1402
-	push	bc
-	ld	bc, #0x0000
-	push	bc
+	ld	c, l
+	ld	b, h
+	pop	de
+;src/sistemas/borra.c:9: cpct_drawSolidBox(pvmem,0,array[i].ancho,array[i].alto);}
+	push	de
+	pop	iy
+	ld	a, 6 (iy)
+	ex	de,hl
+	ld	de, #0x0005
+	add	hl, de
+	ld	d, (hl)
+	push	af
+	inc	sp
+	push	de
+	inc	sp
+	ld	hl, #0x0000
 	push	hl
+	push	bc
 	call	_cpct_drawSolidBox
+;src/sistemas/borra.c:7: for (i=0;i<max_entidades;i++){
+	inc	-2 (ix)
+	ld	a, -2 (ix)
+	sub	a, #0x02
+	jr	C,00102$
+	ld	sp, ix
+	pop	ix
 	ret
-;src/sistemas/borra.c:9: void borra_objeto(u8 x,u8 y,u8 ancho,u8 alto){
+;src/sistemas/borra.c:11: void borra_objeto(u8 x,u8 y,u8 ancho,u8 alto){
 ;	---------------------------------
 ; Function borra_objeto
 ; ---------------------------------
 _borra_objeto::
-;src/sistemas/borra.c:11: pvmem   =   cpct_getScreenPtr(0xc000,x,y);  
+;src/sistemas/borra.c:13: pvmem   =   cpct_getScreenPtr((u8*)vmem_ahora,x,y);  
+	ld	bc, (_vmem_ahora)
 	ld	hl, #3+0
 	add	hl, sp
 	ld	a, (hl)
@@ -81,12 +126,11 @@ _borra_objeto::
 	ld	a, (hl)
 	push	af
 	inc	sp
-	ld	hl, #0xc000
-	push	hl
+	push	bc
 	call	_cpct_getScreenPtr
 	ld	c, l
 	ld	b, h
-;src/sistemas/borra.c:12: cpct_drawSolidBox(pvmem,0,ancho,alto);
+;src/sistemas/borra.c:14: cpct_drawSolidBox(pvmem,0,ancho,alto);
 	ld	hl, #5+0
 	add	hl, sp
 	ld	a, (hl)

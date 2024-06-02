@@ -8,11 +8,11 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
-	.globl _menu_juego
 	.globl _espera_pulsacion_tecla
 	.globl _cpct_getScreenPtr
 	.globl _cpct_drawStringM2
 	.globl _cpct_memset_f64
+	.globl _menu_juego
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -49,7 +49,7 @@
 ; Function menu_juego
 ; ---------------------------------
 _menu_juego::
-;src/manager/menu.c:6: cpct_clearScreen_f64(0);
+;src/manager/menu.c:6: cpct_clearScreen_f64 (0);
 	ld	hl, #0x4000
 	push	hl
 	ld	h, #0x00
@@ -57,29 +57,37 @@ _menu_juego::
 	ld	h, #0xc0
 	push	hl
 	call	_cpct_memset_f64
-;src/manager/menu.c:7: pvmem   =  cpct_getScreenPtr(0xc000,10,20);
+;src/manager/menu.c:7: cpct_clearScreen_f64(0);
+	ld	hl, #0x4000
+	push	hl
+	ld	h, #0x00
+	push	hl
+	ld	h, #0xc0
+	push	hl
+	call	_cpct_memset_f64
+;src/manager/menu.c:8: pvmem   =  cpct_getScreenPtr((u8*)0xc000,10,20);
 	ld	hl, #0x140a
 	push	hl
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
-;src/manager/menu.c:8: cpct_drawStringM2("Bienvenido al almacen",pvmem);
+;src/manager/menu.c:9: cpct_drawStringM2("Bienvenido al almacen",pvmem);
 	ld	bc, #___str_0+0
 	push	hl
 	push	bc
 	call	_cpct_drawStringM2
-;src/manager/menu.c:9: pvmem   =  cpct_getScreenPtr(0xc000,10,40);
+;src/manager/menu.c:10: pvmem   =  cpct_getScreenPtr(0xc000,10,40);
 	ld	hl, #0x280a
 	push	hl
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
-;src/manager/menu.c:10: cpct_drawStringM2("pulsa una tecla",pvmem);
+;src/manager/menu.c:11: cpct_drawStringM2("pulsa una tecla",pvmem);
 	ld	bc, #___str_1+0
 	push	hl
 	push	bc
 	call	_cpct_drawStringM2
-;src/manager/menu.c:11: espera_pulsacion_tecla();
+;src/manager/menu.c:12: espera_pulsacion_tecla();
 	call	_espera_pulsacion_tecla
 	ret
 ___str_0:

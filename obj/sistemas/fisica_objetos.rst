@@ -8,192 +8,190 @@
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
-                             11 	.globl _espera_pulsar
-                             12 	.globl _fin_juego
-                             13 	.globl _borra_objeto
+                             11 	.globl _pinta_puntos
+                             12 	.globl _borra_objeto
+                             13 	.globl _muere
                              14 	.globl _suma_puntos
-                             15 	.globl _cpct_getScreenPtr
-                             16 	.globl _cpct_drawStringM2
-                             17 	.globl _cpct_isAnyKeyPressed
-                             18 	.globl _cpct_scanKeyboard
-                             19 	.globl _fisica_objetos
-                             20 	.globl _comprobar_recojida
-                             21 	.globl _muere
-                             22 	.globl _espera_pulsacion_tecla
+                             15 	.globl _obj_caido
+                             16 	.globl _fisica_objetos
+                             17 	.globl _comprobar_recojida
+                             18 ;--------------------------------------------------------
+                             19 ; special function registers
+                             20 ;--------------------------------------------------------
+                             21 ;--------------------------------------------------------
+                             22 ; ram data
                              23 ;--------------------------------------------------------
-                             24 ; special function registers
-                             25 ;--------------------------------------------------------
-                             26 ;--------------------------------------------------------
-                             27 ; ram data
-                             28 ;--------------------------------------------------------
-                             29 	.area _DATA
-                             30 ;--------------------------------------------------------
-                             31 ; ram data
-                             32 ;--------------------------------------------------------
-                             33 	.area _INITIALIZED
-                             34 ;--------------------------------------------------------
-                             35 ; absolute external ram data
-                             36 ;--------------------------------------------------------
-                             37 	.area _DABS (ABS)
-                             38 ;--------------------------------------------------------
-                             39 ; global & static initialisations
-                             40 ;--------------------------------------------------------
-                             41 	.area _HOME
-                             42 	.area _GSINIT
-                             43 	.area _GSFINAL
-                             44 	.area _GSINIT
-                             45 ;--------------------------------------------------------
-                             46 ; Home
+                             24 	.area _DATA
+   4D2F                      25 _obj_caido::
+   4D2F                      26 	.ds 2
+                             27 ;--------------------------------------------------------
+                             28 ; ram data
+                             29 ;--------------------------------------------------------
+                             30 	.area _INITIALIZED
+                             31 ;--------------------------------------------------------
+                             32 ; absolute external ram data
+                             33 ;--------------------------------------------------------
+                             34 	.area _DABS (ABS)
+                             35 ;--------------------------------------------------------
+                             36 ; global & static initialisations
+                             37 ;--------------------------------------------------------
+                             38 	.area _HOME
+                             39 	.area _GSINIT
+                             40 	.area _GSFINAL
+                             41 	.area _GSINIT
+                             42 ;--------------------------------------------------------
+                             43 ; Home
+                             44 ;--------------------------------------------------------
+                             45 	.area _HOME
+                             46 	.area _HOME
                              47 ;--------------------------------------------------------
-                             48 	.area _HOME
-                             49 	.area _HOME
-                             50 ;--------------------------------------------------------
-                             51 ; code
-                             52 ;--------------------------------------------------------
-                             53 	.area _CODE
-                             54 ;src/sistemas/fisica_objetos.c:4: void fisica_objetos(){
-                             55 ;	---------------------------------
-                             56 ; Function fisica_objetos
-                             57 ; ---------------------------------
-   420A                      58 _fisica_objetos::
-                             59 ;src/sistemas/fisica_objetos.c:5: borra_objeto(array[1].x,array[1].y,array[1].ancho,array[1].alto);
-   420A 21 01 48      [10]   60 	ld	hl, #_array + 15
-   420D 4E            [ 7]   61 	ld	c, (hl)
-   420E 21 00 48      [10]   62 	ld	hl, #_array + 14
-   4211 46            [ 7]   63 	ld	b, (hl)
-   4212 21 FD 47      [10]   64 	ld	hl, #_array + 11
-   4215 5E            [ 7]   65 	ld	e, (hl)
-   4216 21 FC 47      [10]   66 	ld	hl, #(_array + 0x000a) + 0
-   4219 56            [ 7]   67 	ld	d, (hl)
-   421A 79            [ 4]   68 	ld	a, c
-   421B F5            [11]   69 	push	af
-   421C 33            [ 6]   70 	inc	sp
-   421D C5            [11]   71 	push	bc
-   421E 33            [ 6]   72 	inc	sp
-   421F 7B            [ 4]   73 	ld	a, e
-   4220 F5            [11]   74 	push	af
-   4221 33            [ 6]   75 	inc	sp
-   4222 D5            [11]   76 	push	de
-   4223 33            [ 6]   77 	inc	sp
-   4224 CD 9F 41      [17]   78 	call	_borra_objeto
-   4227 F1            [10]   79 	pop	af
-   4228 F1            [10]   80 	pop	af
-                             81 ;src/sistemas/fisica_objetos.c:6: array[1].x+=array[1].vx;
-   4229 21 FC 47      [10]   82 	ld	hl, #(_array + 0x000a) + 0
-   422C 4E            [ 7]   83 	ld	c, (hl)
-   422D 21 FE 47      [10]   84 	ld	hl, #_array + 12
-   4230 5E            [ 7]   85 	ld	e, (hl)
-   4231 79            [ 4]   86 	ld	a, c
-   4232 83            [ 4]   87 	add	a, e
-   4233 32 FC 47      [13]   88 	ld	(#(_array + 0x000a)),a
-                             89 ;src/sistemas/fisica_objetos.c:7: if (array[1].x==10)
-   4236 3A FC 47      [13]   90 	ld	a, (#(_array + 0x000a) + 0)
-   4239 D6 0A         [ 7]   91 	sub	a, #0x0a
-   423B C0            [11]   92 	ret	NZ
-                             93 ;src/sistemas/fisica_objetos.c:8: {comprobar_recojida();}
-   423C C3 3F 42      [10]   94 	jp  _comprobar_recojida
-                             95 ;src/sistemas/fisica_objetos.c:11: void comprobar_recojida(){
-                             96 ;	---------------------------------
-                             97 ; Function comprobar_recojida
-                             98 ; ---------------------------------
-   423F                      99 _comprobar_recojida::
-                            100 ;src/sistemas/fisica_objetos.c:12: if (array[1].y==array[0].y)
-   423F 21 FD 47      [10]  101 	ld	hl, #_array + 11
-   4242 4E            [ 7]  102 	ld	c, (hl)
-   4243 21 F4 47      [10]  103 	ld	hl, #_array + 2
-   4246 46            [ 7]  104 	ld	b, (hl)
-   4247 79            [ 4]  105 	ld	a, c
-   4248 90            [ 4]  106 	sub	a, b
-                            107 ;src/sistemas/fisica_objetos.c:13: {suma_puntos();}
-   4249 CA 79 43      [10]  108 	jp	Z,_suma_puntos
-                            109 ;src/sistemas/fisica_objetos.c:14: else {muere();}}
-   424C C3 4F 42      [10]  110 	jp  _muere
-                            111 ;src/sistemas/fisica_objetos.c:16: void muere(){
-                            112 ;	---------------------------------
-                            113 ; Function muere
-                            114 ; ---------------------------------
-   424F                     115 _muere::
-                            116 ;src/sistemas/fisica_objetos.c:17: vidas--;
-   424F 21 DF 47      [10]  117 	ld	hl, #_vidas+0
-   4252 35            [11]  118 	dec	(hl)
-                            119 ;src/sistemas/fisica_objetos.c:18: array[1].x = 60;
-   4253 21 FC 47      [10]  120 	ld	hl, #(_array + 0x000a)
-   4256 36 3C         [10]  121 	ld	(hl), #0x3c
-                            122 ;src/sistemas/fisica_objetos.c:19: pinta_marcador();
-   4258 CD CA 42      [17]  123 	call	_pinta_marcador
-                            124 ;src/sistemas/fisica_objetos.c:20: if (vidas=='0')
-   425B 3A DF 47      [13]  125 	ld	a,(#_vidas + 0)
-   425E D6 30         [ 7]  126 	sub	a, #0x30
-   4260 C0            [11]  127 	ret	NZ
-                            128 ;src/sistemas/fisica_objetos.c:21: {fin_juego();}
-   4261 C3 64 42      [10]  129 	jp  _fin_juego
-                            130 ;src/sistemas/fisica_objetos.c:23: void fin_juego(){
-                            131 ;	---------------------------------
-                            132 ; Function fin_juego
-                            133 ; ---------------------------------
-   4264                     134 _fin_juego::
-                            135 ;src/sistemas/fisica_objetos.c:26: pvmem=cpct_getScreenPtr(0xc000,10,20);
-   4264 21 0A 14      [10]  136 	ld	hl, #0x140a
-   4267 E5            [11]  137 	push	hl
-   4268 21 00 C0      [10]  138 	ld	hl, #0xc000
-   426B E5            [11]  139 	push	hl
-   426C CD B5 47      [17]  140 	call	_cpct_getScreenPtr
-                            141 ;src/sistemas/fisica_objetos.c:27: cpct_drawStringM2("Has sido despedido!",pvmem);
-   426F 01 91 42      [10]  142 	ld	bc, #___str_0+0
-   4272 E5            [11]  143 	push	hl
-   4273 C5            [11]  144 	push	bc
-   4274 CD 2A 45      [17]  145 	call	_cpct_drawStringM2
-                            146 ;src/sistemas/fisica_objetos.c:28: pvmem=cpct_getScreenPtr(0xc000,10,40);
-   4277 21 0A 28      [10]  147 	ld	hl, #0x280a
-   427A E5            [11]  148 	push	hl
-   427B 21 00 C0      [10]  149 	ld	hl, #0xc000
-   427E E5            [11]  150 	push	hl
-   427F CD B5 47      [17]  151 	call	_cpct_getScreenPtr
-                            152 ;src/sistemas/fisica_objetos.c:29: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
-   4282 01 A5 42      [10]  153 	ld	bc, #___str_1+0
-   4285 E5            [11]  154 	push	hl
-   4286 C5            [11]  155 	push	bc
-   4287 CD 2A 45      [17]  156 	call	_cpct_drawStringM2
-                            157 ;src/sistemas/fisica_objetos.c:30: espera_pulsacion_tecla();
-   428A CD BA 42      [17]  158 	call	_espera_pulsacion_tecla
-                            159 ;src/sistemas/fisica_objetos.c:31: espera_pulsar();
-   428D CD C7 42      [17]  160 	call	_espera_pulsar
-   4290 C9            [10]  161 	ret
-   4291                     162 ___str_0:
-   4291 48 61 73 20 73 69   163 	.ascii "Has sido despedido!"
-        64 6F 20 64 65 73
-        70 65 64 69 64 6F
-        21
-   42A4 00                  164 	.db 0x00
-   42A5                     165 ___str_1:
-   42A5 56 75 65 6C 76 65   166 	.ascii "Vuelve a intentarlo."
-        20 61 20 69 6E 74
-        65 6E 74 61 72 6C
-        6F 2E
-   42B9 00                  167 	.db 0x00
-                            168 ;src/sistemas/fisica_objetos.c:33: void espera_pulsacion_tecla(){
-                            169 ;	---------------------------------
-                            170 ; Function espera_pulsacion_tecla
-                            171 ; ---------------------------------
-   42BA                     172 _espera_pulsacion_tecla::
-                            173 ;src/sistemas/fisica_objetos.c:35: cpct_scanKeyboard();
-   42BA CD 84 47      [17]  174 	call	_cpct_scanKeyboard
-                            175 ;src/sistemas/fisica_objetos.c:36: pulsado=cpct_isAnyKeyPressed();
-   42BD CD 94 46      [17]  176 	call	_cpct_isAnyKeyPressed
-                            177 ;src/sistemas/fisica_objetos.c:37: if (pulsado!=0)
-   42C0 7D            [ 4]  178 	ld	a, l
-   42C1 B7            [ 4]  179 	or	a, a
-                            180 ;src/sistemas/fisica_objetos.c:38: {espera_pulsar();}
-   42C2 C2 C7 42      [10]  181 	jp	NZ,_espera_pulsar
-                            182 ;src/sistemas/fisica_objetos.c:39: else espera_pulsacion_tecla();
-   42C5 18 F3         [12]  183 	jr	_espera_pulsacion_tecla
-                            184 ;src/sistemas/fisica_objetos.c:41: void espera_pulsar(){
-                            185 ;	---------------------------------
-                            186 ; Function espera_pulsar
-                            187 ; ---------------------------------
-   42C7                     188 _espera_pulsar::
-                            189 ;src/sistemas/fisica_objetos.c:42: a_jugar();}
-   42C7 C3 F6 40      [10]  190 	jp  _a_jugar
-                            191 	.area _CODE
-                            192 	.area _INITIALIZER
-                            193 	.area _CABS (ABS)
+                             48 ; code
+                             49 ;--------------------------------------------------------
+                             50 	.area _CODE
+                             51 ;src/sistemas/fisica_objetos.c:4: void fisica_objetos(){
+                             52 ;	---------------------------------
+                             53 ; Function fisica_objetos
+                             54 ; ---------------------------------
+   45B6                      55 _fisica_objetos::
+   45B6 DD E5         [15]   56 	push	ix
+   45B8 DD 21 00 00   [14]   57 	ld	ix,#0
+   45BC DD 39         [15]   58 	add	ix,sp
+   45BE F5            [11]   59 	push	af
+   45BF F5            [11]   60 	push	af
+   45C0 3B            [ 6]   61 	dec	sp
+                             62 ;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
+   45C1 06 01         [ 7]   63 	ld	b, #0x01
+   45C3                      64 00104$:
+                             65 ;src/sistemas/fisica_objetos.c:7: borra_objeto(array[i].x,array[i].y,array[i].ancho,array[i].alto);
+   45C3 58            [ 4]   66 	ld	e,b
+   45C4 16 00         [ 7]   67 	ld	d,#0x00
+   45C6 6B            [ 4]   68 	ld	l, e
+   45C7 62            [ 4]   69 	ld	h, d
+   45C8 29            [11]   70 	add	hl, hl
+   45C9 29            [11]   71 	add	hl, hl
+   45CA 19            [11]   72 	add	hl, de
+   45CB 29            [11]   73 	add	hl, hl
+   45CC 11 B1 4C      [10]   74 	ld	de, #_array
+   45CF 19            [11]   75 	add	hl, de
+   45D0 DD 75 FE      [19]   76 	ld	-2 (ix), l
+   45D3 DD 74 FF      [19]   77 	ld	-1 (ix), h
+   45D6 11 06 00      [10]   78 	ld	de, #0x0006
+   45D9 19            [11]   79 	add	hl, de
+   45DA 7E            [ 7]   80 	ld	a, (hl)
+   45DB DD 77 FD      [19]   81 	ld	-3 (ix), a
+   45DE DD 6E FE      [19]   82 	ld	l,-2 (ix)
+   45E1 DD 66 FF      [19]   83 	ld	h,-1 (ix)
+   45E4 11 05 00      [10]   84 	ld	de, #0x0005
+   45E7 19            [11]   85 	add	hl, de
+   45E8 7E            [ 7]   86 	ld	a, (hl)
+   45E9 DD 77 FC      [19]   87 	ld	-4 (ix), a
+   45EC DD 6E FE      [19]   88 	ld	l,-2 (ix)
+   45EF DD 66 FF      [19]   89 	ld	h,-1 (ix)
+   45F2 23            [ 6]   90 	inc	hl
+   45F3 23            [ 6]   91 	inc	hl
+   45F4 4E            [ 7]   92 	ld	c, (hl)
+   45F5 DD 5E FE      [19]   93 	ld	e,-2 (ix)
+   45F8 DD 56 FF      [19]   94 	ld	d,-1 (ix)
+   45FB 13            [ 6]   95 	inc	de
+   45FC 1A            [ 7]   96 	ld	a, (de)
+   45FD DD 77 FB      [19]   97 	ld	-5 (ix), a
+   4600 C5            [11]   98 	push	bc
+   4601 D5            [11]   99 	push	de
+   4602 DD 7E FD      [19]  100 	ld	a, -3 (ix)
+   4605 F5            [11]  101 	push	af
+   4606 33            [ 6]  102 	inc	sp
+   4607 DD 46 FC      [19]  103 	ld	b, -4 (ix)
+   460A C5            [11]  104 	push	bc
+   460B DD 7E FB      [19]  105 	ld	a, -5 (ix)
+   460E F5            [11]  106 	push	af
+   460F 33            [ 6]  107 	inc	sp
+   4610 CD A4 44      [17]  108 	call	_borra_objeto
+   4613 F1            [10]  109 	pop	af
+   4614 F1            [10]  110 	pop	af
+   4615 D1            [10]  111 	pop	de
+   4616 C1            [10]  112 	pop	bc
+                            113 ;src/sistemas/fisica_objetos.c:8: array[i].x+=array[i].vx;
+   4617 1A            [ 7]  114 	ld	a, (de)
+   4618 4F            [ 4]  115 	ld	c, a
+   4619 DD 6E FE      [19]  116 	ld	l,-2 (ix)
+   461C DD 66 FF      [19]  117 	ld	h,-1 (ix)
+   461F 23            [ 6]  118 	inc	hl
+   4620 23            [ 6]  119 	inc	hl
+   4621 23            [ 6]  120 	inc	hl
+   4622 6E            [ 7]  121 	ld	l, (hl)
+   4623 79            [ 4]  122 	ld	a, c
+   4624 85            [ 4]  123 	add	a, l
+   4625 12            [ 7]  124 	ld	(de), a
+                            125 ;src/sistemas/fisica_objetos.c:9: if (array[i].x==10)
+   4626 1A            [ 7]  126 	ld	a, (de)
+   4627 D6 0A         [ 7]  127 	sub	a, #0x0a
+   4629 20 08         [12]  128 	jr	NZ,00105$
+                            129 ;src/sistemas/fisica_objetos.c:10: {comprobar_recojida(i);}
+   462B C5            [11]  130 	push	bc
+   462C C5            [11]  131 	push	bc
+   462D 33            [ 6]  132 	inc	sp
+   462E CD 3E 46      [17]  133 	call	_comprobar_recojida
+   4631 33            [ 6]  134 	inc	sp
+   4632 C1            [10]  135 	pop	bc
+   4633                     136 00105$:
+                            137 ;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
+   4633 04            [ 4]  138 	inc	b
+   4634 78            [ 4]  139 	ld	a, b
+   4635 D6 02         [ 7]  140 	sub	a, #0x02
+   4637 38 8A         [12]  141 	jr	C,00104$
+   4639 DD F9         [10]  142 	ld	sp, ix
+   463B DD E1         [14]  143 	pop	ix
+   463D C9            [10]  144 	ret
+                            145 ;src/sistemas/fisica_objetos.c:14: void comprobar_recojida(u8 i){
+                            146 ;	---------------------------------
+                            147 ; Function comprobar_recojida
+                            148 ; ---------------------------------
+   463E                     149 _comprobar_recojida::
+   463E DD E5         [15]  150 	push	ix
+   4640 DD 21 00 00   [14]  151 	ld	ix,#0
+   4644 DD 39         [15]  152 	add	ix,sp
+                            153 ;src/sistemas/fisica_objetos.c:16: if (array[i].y==array[0].y)
+   4646 11 B1 4C      [10]  154 	ld	de, #_array+0
+   4649 DD 4E 04      [19]  155 	ld	c,4 (ix)
+   464C 06 00         [ 7]  156 	ld	b,#0x00
+   464E 69            [ 4]  157 	ld	l, c
+   464F 60            [ 4]  158 	ld	h, b
+   4650 29            [11]  159 	add	hl, hl
+   4651 29            [11]  160 	add	hl, hl
+   4652 09            [11]  161 	add	hl, bc
+   4653 29            [11]  162 	add	hl, hl
+   4654 19            [11]  163 	add	hl, de
+   4655 E5            [11]  164 	push	hl
+   4656 FD E1         [14]  165 	pop	iy
+   4658 FD E5         [15]  166 	push	iy
+   465A E1            [10]  167 	pop	hl
+   465B 23            [ 6]  168 	inc	hl
+   465C 23            [ 6]  169 	inc	hl
+   465D 4E            [ 7]  170 	ld	c, (hl)
+   465E 3A B3 4C      [13]  171 	ld	a, (#_array + 2)
+   4661 91            [ 4]  172 	sub	a, c
+   4662 20 0E         [12]  173 	jr	NZ,00102$
+                            174 ;src/sistemas/fisica_objetos.c:17: {suma_puntos(i);
+   4664 DD 7E 04      [19]  175 	ld	a, 4 (ix)
+   4667 F5            [11]  176 	push	af
+   4668 33            [ 6]  177 	inc	sp
+   4669 CD 0A 47      [17]  178 	call	_suma_puntos
+   466C 33            [ 6]  179 	inc	sp
+                            180 ;src/sistemas/fisica_objetos.c:18: pinta_puntos();}
+   466D CD B4 46      [17]  181 	call	_pinta_puntos
+   4670 18 0D         [12]  182 	jr	00104$
+   4672                     183 00102$:
+                            184 ;src/sistemas/fisica_objetos.c:19: else {obj_caido=&array[i];
+   4672 FD 22 2F 4D   [20]  185 	ld	(_obj_caido), iy
+                            186 ;src/sistemas/fisica_objetos.c:20: muere(i);}
+   4676 DD 7E 04      [19]  187 	ld	a, 4 (ix)
+   4679 F5            [11]  188 	push	af
+   467A 33            [ 6]  189 	inc	sp
+   467B CD D3 44      [17]  190 	call	_muere
+   467E 33            [ 6]  191 	inc	sp
+   467F                     192 00104$:
+   467F DD E1         [14]  193 	pop	ix
+   4681 C9            [10]  194 	ret
+                            195 	.area _CODE
+                            196 	.area _INITIALIZER
+                            197 	.area _CABS (ABS)

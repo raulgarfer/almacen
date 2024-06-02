@@ -1,0 +1,17 @@
+XL2
+H 1 areas 3 global symbols
+M cpct_keyboard
+S .__.ABS. Def0000
+A _CODE size 21 flags 0 addr 0
+S _mover_pila Def0000
+S _borrar_ambas_pantallas Def0006
+T 00 00
+R 00 00 00 00
+T 00 00 E1 31 FE 7F E5 C9
+R 00 00 00 00
+T 06 00
+R 00 00 00 00
+T 06 00 AF 21 00 C0 54 5D 13 77 01 FF 3F ED B0 AF
+R 00 00 00 00
+T 14 00 21 00 80 54 5D 13 77 01 FF 3F ED B0 C9
+R 00 00 00 00

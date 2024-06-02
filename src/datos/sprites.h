@@ -7,4 +7,5 @@
 #include "media/izquierda.h"
 #include "media/pera.h"
 #include "media/manzana.h"
+#include "media/rightpng.h"
 
