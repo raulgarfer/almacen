@@ -10,16 +10,16 @@ Symbol Table
   1 _array                                                         0015 GR
   1 _caida_objeto                                                  000F GR
     _cpct_memcpy                                                   **** GX
-  0 _inicia_objetos                                                0048 GR
+  0 _inicia_objetos                                                004D GR
   0 _iniciar_valores                                               0000 GR
   1 _item1                                                         0083 GR
     _manzana                                                       **** GX
-  0 _manzana_init                                                  0080 GR
+  0 _manzana_init                                                  0085 GR
     _pera                                                          **** GX
-  0 _pera_init                                                     008A GR
+  0 _pera_init                                                     008F GR
   1 _pjugador                                                      008D GR
   1 _player                                                        0079 GR
-  0 _player_init                                                   0076 GR
+  0 _player_init                                                   007B GR
   1 _pobjeto1                                                      008F GR
   1 _pobjeto2                                                      0091 GR
     _puntos                                                        **** GX
@@ -29,6 +29,7 @@ Symbol Table
   1 _spr_jugador                                                   0002 GR
   1 _spr_manzana                                                   000C GR
   1 _spr_pera                                                      0007 GR
+  1 _vaso_lleno                                                    0093 GR
   1 _vidas                                                         0014 GR
     _vmem_ahora                                                    **** GX
   1 _vx_manzana                                                    000E GR
@@ -43,13 +44,14 @@ Symbol Table
   1 _y_pera                                                        0006 GR
   1 _y_start_manzana                                               0011 GR
 
+
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   94   flags    0
-   1 _DATA                                      size   93   flags    0
+   0 _CODE                                      size   99   flags    0
+   1 _DATA                                      size   94   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

@@ -5017,14 +5017,14 @@ Hexadecimal [16-Bits]
                               6 ;;============================================================================================
                               7 ;;espera que no haya ninguna tecla pulsada y seguidamente a que se pulse una
                               8 ;;============================================================================================ 
-   4845                       9  _espera_pulsacion_alguna_tecla::
-   4845                      10     espera_que_no_se_pulse_tecla:
-   4845 CD 5E 49      [17]   11     call  cpct_scanKeyboard_f_asm
-   4848 CD 66 4B      [17]   12     call cpct_isAnyKeyPressed_f_asm
-   484B 20 F8         [12]   13         jr nz,espera_que_no_se_pulse_tecla
-   484D                      14  espera_que_si_se_pulse:
-   484D CD 5E 49      [17]   15     call  cpct_scanKeyboard_f_asm
-   4850 CD 66 4B      [17]   16     call cpct_isAnyKeyPressed_f_asm
-   4853 28 F8         [12]   17         jr z,espera_que_si_se_pulse
-   4855 C9            [10]   18 ret 
+   491C                       9  _espera_pulsacion_alguna_tecla::
+   491C                      10     espera_que_no_se_pulse_tecla:
+   491C CD FC 49      [17]   11     call  cpct_scanKeyboard_f_asm
+   491F CD 04 4C      [17]   12     call cpct_isAnyKeyPressed_f_asm
+   4922 20 F8         [12]   13         jr nz,espera_que_no_se_pulse_tecla
+   4924                      14  espera_que_si_se_pulse:
+   4924 CD FC 49      [17]   15     call  cpct_scanKeyboard_f_asm
+   4927 CD 04 4C      [17]   16     call cpct_isAnyKeyPressed_f_asm
+   492A 28 F8         [12]   17         jr z,espera_que_si_se_pulse
+   492C C9            [10]   18 ret 
                              19 

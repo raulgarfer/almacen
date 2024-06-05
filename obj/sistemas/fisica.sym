@@ -10,15 +10,21 @@ Symbol Table
     _array                                                         **** GX
   0 _baja                                                          0015 GR
     _borra                                                         **** GX
+    _derecha_2                                                     **** GX
   0 _fisica                                                        0000 GR
-  0 _sube                                                          002D GR
+    _puntos                                                        **** GX
+    _rightpng                                                      **** GX
+  0 _sube                                                          0047 GR
+  0 _vacia_vaso                                                    0077 GR
+    _vaso_lleno                                                    **** GX
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   45   flags    0
+   0 _CODE                                      size   87   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

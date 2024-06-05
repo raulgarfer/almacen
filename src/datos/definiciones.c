@@ -23,6 +23,7 @@ objeto item1;
 objeto* pjugador;
 objeto* pobjeto1;
 objeto* pobjeto2;
+u8 vaso_lleno;
 void iniciar_valores(){
     x_manzana       =   x_start_objeto;
     y_manzana       =   y_frame_1;
@@ -31,11 +32,12 @@ void iniciar_valores(){
     puntos_centena  =   '0';
     vidas           =   '3';
     vx_manzana      =   -1;
-    caida_objeto    =   x_jugador + DERECHA_W + 1;//posicion donde conprueba si jugador coge objeto
+    caida_objeto    =   x_jugador + RIGHTPNG_W + 1;//posicion donde conprueba si jugador coge objeto
     pjugador        =   &array[0];
     pobjeto1        =   &array[1];
     pobjeto2        =   &array[2];
     vmem_ahora      =   0xC000; 
+    vaso_lleno      =   vacio;
 } 
 
 const objeto player_init  ={1,x_start_jugador,y_frame_1,0,0,RIGHTPNG_W,RIGHTPNG_H,rightpng};

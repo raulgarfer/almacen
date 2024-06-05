@@ -36,3 +36,4 @@ extern u8 puntos_centena;
 extern u8 vidas;
 extern u8 puntos;
 extern u8* vmem_ahora;
+extern u8 vaso_lleno;

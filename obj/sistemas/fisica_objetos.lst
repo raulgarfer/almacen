@@ -170,28 +170,31 @@
    00A7 4E            [ 7]  170 	ld	c, (hl)
    00A8 3Ar02r00      [13]  171 	ld	a, (#_array + 2)
    00AB 91            [ 4]  172 	sub	a, c
-   00AC 20 0E         [12]  173 	jr	NZ,00102$
+   00AC 20 13         [12]  173 	jr	NZ,00102$
                             174 ;src/sistemas/fisica_objetos.c:17: {suma_puntos(i);
    00AE DD 7E 04      [19]  175 	ld	a, 4 (ix)
    00B1 F5            [11]  176 	push	af
    00B2 33            [ 6]  177 	inc	sp
    00B3 CDr00r00      [17]  178 	call	_suma_puntos
    00B6 33            [ 6]  179 	inc	sp
-                            180 ;src/sistemas/fisica_objetos.c:18: pinta_puntos();}
+                            180 ;src/sistemas/fisica_objetos.c:18: pinta_puntos();
    00B7 CDr00r00      [17]  181 	call	_pinta_puntos
-   00BA 18 0D         [12]  182 	jr	00104$
-   00BC                     183 00102$:
-                            184 ;src/sistemas/fisica_objetos.c:19: else {obj_caido=&array[i];
-   00BC FD 22r00r00   [20]  185 	ld	(_obj_caido), iy
-                            186 ;src/sistemas/fisica_objetos.c:20: muere(i);}
-   00C0 DD 7E 04      [19]  187 	ld	a, 4 (ix)
-   00C3 F5            [11]  188 	push	af
-   00C4 33            [ 6]  189 	inc	sp
-   00C5 CDr00r00      [17]  190 	call	_muere
-   00C8 33            [ 6]  191 	inc	sp
-   00C9                     192 00104$:
-   00C9 DD E1         [14]  193 	pop	ix
-   00CB C9            [10]  194 	ret
-                            195 	.area _CODE
-                            196 	.area _INITIALIZER
-                            197 	.area _CABS (ABS)
+                            182 ;src/sistemas/fisica_objetos.c:19: vaso_lleno    =   lleno;}
+   00BA 21r00r00      [10]  183 	ld	hl,#_vaso_lleno + 0
+   00BD 36 01         [10]  184 	ld	(hl), #0x01
+   00BF 18 0D         [12]  185 	jr	00104$
+   00C1                     186 00102$:
+                            187 ;src/sistemas/fisica_objetos.c:20: else {obj_caido=&array[i];
+   00C1 FD 22r00r00   [20]  188 	ld	(_obj_caido), iy
+                            189 ;src/sistemas/fisica_objetos.c:21: muere(i);}
+   00C5 DD 7E 04      [19]  190 	ld	a, 4 (ix)
+   00C8 F5            [11]  191 	push	af
+   00C9 33            [ 6]  192 	inc	sp
+   00CA CDr00r00      [17]  193 	call	_muere
+   00CD 33            [ 6]  194 	inc	sp
+   00CE                     195 00104$:
+   00CE DD E1         [14]  196 	pop	ix
+   00D0 C9            [10]  197 	ret
+                            198 	.area _CODE
+                            199 	.area _INITIALIZER
+                            200 	.area _CABS (ABS)

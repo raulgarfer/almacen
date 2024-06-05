@@ -8,6 +8,7 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _vacia_vaso
 	.globl _borra
 	.globl _fisica
 	.globl _baja
@@ -70,53 +71,104 @@ _fisica::
 ; ---------------------------------
 _baja::
 ;src/sistemas/fisica.c:13: if (array[0].y   ==  y_frame_1)
-	ld	hl, #_array+2
-	ld	a, (hl)
-	cp	a, #0x0a
+	ld	bc, #_array + 2
+	ld	a, (bc)
+;src/sistemas/fisica.c:15: array[0].sprite =   derecha_2;}
+;src/sistemas/fisica.c:13: if (array[0].y   ==  y_frame_1)
+	ld	e,a
+	sub	a, #0x0a
 	jr	NZ,00107$
-;src/sistemas/fisica.c:14: { array[0].y  =   y_frame_2;}
-	ld	(hl), #0x32
+;src/sistemas/fisica.c:14: { array[0].y  =   y_frame_2;
+	ld	a, #0x32
+	ld	(bc), a
+;src/sistemas/fisica.c:15: array[0].sprite =   derecha_2;}
+	ld	hl, #_derecha_2
+	ld	((_array + 0x0007)), hl
 	ret
 00107$:
-;src/sistemas/fisica.c:16: if (array[0].y   ==  y_frame_2)
-	cp	a, #0x32
+;src/sistemas/fisica.c:17: if (array[0].y   ==  y_frame_2)
+	ld	a, e
+	sub	a, #0x32
 	jr	NZ,00104$
-;src/sistemas/fisica.c:17: {array[0].y  =   y_frame_3;}
-	ld	(hl), #0x64
+;src/sistemas/fisica.c:18: {array[0].y  =   y_frame_3;
+	ld	a, #0x64
+	ld	(bc), a
+;src/sistemas/fisica.c:19: array[0].sprite =  rightpng;}
+	ld	hl, #_rightpng
+	ld	((_array + 0x0007)), hl
 	ret
 00104$:
-;src/sistemas/fisica.c:19: if (array[0].y   ==  y_frame_3)
+;src/sistemas/fisica.c:21: if (array[0].y   ==  y_frame_3)
+	ld	a, e
 	sub	a, #0x64
 	ret	NZ
-;src/sistemas/fisica.c:20: {array[0].y  =   y_frame_4;}}
-	ld	(hl), #0x96
-	ret
-;src/sistemas/fisica.c:21: void sube(){
+;src/sistemas/fisica.c:22: {array[0].y  =   y_frame_4;
+	ld	a, #0x96
+	ld	(bc), a
+;src/sistemas/fisica.c:23: array[0].sprite =   derecha_2;
+	ld	hl, #_derecha_2
+	ld	((_array + 0x0007)), hl
+;src/sistemas/fisica.c:24: vacia_vaso();
+	jp  _vacia_vaso
+;src/sistemas/fisica.c:26: void sube(){
 ;	---------------------------------
 ; Function sube
 ; ---------------------------------
 _sube::
-;src/sistemas/fisica.c:22: if (array[0].y   ==  y_frame_4)
-	ld	hl, #_array+2
-	ld	a, (hl)
-	cp	a, #0x96
+;src/sistemas/fisica.c:27: if (array[0].y   ==  y_frame_4)
+	ld	bc, #_array + 2
+	ld	a, (bc)
+;src/sistemas/fisica.c:29: array[0].sprite =  rightpng;}
+;src/sistemas/fisica.c:27: if (array[0].y   ==  y_frame_4)
+	ld	e,a
+	sub	a, #0x96
 	jr	NZ,00107$
-;src/sistemas/fisica.c:23: {array[0].y  =   y_frame_3;}
-	ld	(hl), #0x64
+;src/sistemas/fisica.c:28: {array[0].y  =   y_frame_3;
+	ld	a, #0x64
+	ld	(bc), a
+;src/sistemas/fisica.c:29: array[0].sprite =  rightpng;}
+	ld	hl, #_rightpng
+	ld	((_array + 0x0007)), hl
 	ret
 00107$:
-;src/sistemas/fisica.c:25: if (array[0].y   ==  y_frame_3)
-	cp	a, #0x64
+;src/sistemas/fisica.c:31: if (array[0].y   ==  y_frame_3)
+	ld	a, e
+	sub	a, #0x64
 	jr	NZ,00104$
-;src/sistemas/fisica.c:26: {array[0].y  =   y_frame_2;}
-	ld	(hl), #0x32
+;src/sistemas/fisica.c:32: {array[0].y  =   y_frame_2;
+	ld	a, #0x32
+	ld	(bc), a
+;src/sistemas/fisica.c:33: array[0].sprite =   derecha_2;}
+	ld	hl, #_derecha_2
+	ld	((_array + 0x0007)), hl
 	ret
 00104$:
-;src/sistemas/fisica.c:28: if (array[0].y   ==  y_frame_2)
+;src/sistemas/fisica.c:35: if (array[0].y   ==  y_frame_2)
+	ld	a, e
 	sub	a, #0x32
 	ret	NZ
-;src/sistemas/fisica.c:29: {array[0].y  =   y_frame_1;}
-	ld	(hl), #0x0a
+;src/sistemas/fisica.c:36: {array[0].y  =   y_frame_1;
+	ld	a, #0x0a
+	ld	(bc), a
+;src/sistemas/fisica.c:37: array[0].sprite =  rightpng;}
+	ld	hl, #_rightpng
+	ld	((_array + 0x0007)), hl
+	ret
+;src/sistemas/fisica.c:39: void vacia_vaso(){
+;	---------------------------------
+; Function vacia_vaso
+; ---------------------------------
+_vacia_vaso::
+;src/sistemas/fisica.c:40: if (vaso_lleno==lleno)
+	ld	a,(#_vaso_lleno + 0)
+	dec	a
+	ret	NZ
+;src/sistemas/fisica.c:41: {puntos++;
+	ld	hl, #_puntos+0
+	inc	(hl)
+;src/sistemas/fisica.c:42: array[0].sprite =  rightpng; }
+	ld	hl, #_rightpng
+	ld	((_array + 0x0007)), hl
 	ret
 	.area _CODE
 	.area _INITIALIZER

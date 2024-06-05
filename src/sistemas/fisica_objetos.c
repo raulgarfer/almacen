@@ -15,7 +15,8 @@ void comprobar_recojida(u8 i){
         
     if (array[i].y==array[0].y)
         {suma_puntos(i);
-          pinta_puntos();}
+          pinta_puntos();
+          vaso_lleno    =   lleno;}
     else {obj_caido=&array[i];
         muere(i);}
 }

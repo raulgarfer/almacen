@@ -1,5 +1,5 @@
 //
-// File src/mapas/base.tmx converted to csv using cpct_tmx2data [Sun Jun  2 16:47:23 2024]
+// File src/mapas/base.tmx converted to csv using cpct_tmx2data [Wed Jun  5 06:34:50 2024]
 //   * Visible Layers:  1
 //   * Layer Width:     20
 //   * Layer Height:    25

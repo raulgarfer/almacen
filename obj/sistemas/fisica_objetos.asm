@@ -177,13 +177,16 @@ _comprobar_recojida::
 	inc	sp
 	call	_suma_puntos
 	inc	sp
-;src/sistemas/fisica_objetos.c:18: pinta_puntos();}
+;src/sistemas/fisica_objetos.c:18: pinta_puntos();
 	call	_pinta_puntos
+;src/sistemas/fisica_objetos.c:19: vaso_lleno    =   lleno;}
+	ld	hl,#_vaso_lleno + 0
+	ld	(hl), #0x01
 	jr	00104$
 00102$:
-;src/sistemas/fisica_objetos.c:19: else {obj_caido=&array[i];
+;src/sistemas/fisica_objetos.c:20: else {obj_caido=&array[i];
 	ld	(_obj_caido), iy
-;src/sistemas/fisica_objetos.c:20: muere(i);}
+;src/sistemas/fisica_objetos.c:21: muere(i);}
 	ld	a, 4 (ix)
 	push	af
 	inc	sp

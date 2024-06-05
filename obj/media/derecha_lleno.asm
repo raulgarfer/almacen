@@ -47,7 +47,7 @@ _derecha_lleno:
 	.db #0x6e	; 110	'n'
 	.db #0x00	; 0
 	.db #0xea	; 234
-	.db #0x5d	; 93
+	.db #0x41	; 65	'A'
 	.db #0xe6	; 230
 	.db #0x5d	; 93
 	.db #0xfe	; 254

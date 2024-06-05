@@ -19,6 +19,7 @@
 	.globl _fisica
 	.globl _teclado
 	.globl _borra
+	.globl _control_interrupciones
 	.globl _cpct_waitVSYNC
 	.globl _cpct_setVideoMode
 	.globl _cpct_disableFirmware
@@ -67,6 +68,8 @@ _main::
 	call	_cpct_disableFirmware
 ;src/main.c:9: mover_pila();
 	call	_mover_pila
+;src/main.c:10: control_interrupciones();
+	call	_control_interrupciones
 ;src/main.c:11: cpct_setVideoMode(2);
 	ld	l, #0x02
 	call	_cpct_setVideoMode

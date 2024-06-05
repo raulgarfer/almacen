@@ -45,44 +45,44 @@
                              45 ;	---------------------------------
                              46 ; Function suma_puntos
                              47 ; ---------------------------------
-   470A                      48 _suma_puntos::
-   470A DD E5         [15]   49 	push	ix
-   470C DD 21 00 00   [14]   50 	ld	ix,#0
-   4710 DD 39         [15]   51 	add	ix,sp
+   4821                      48 _suma_puntos::
+   4821 DD E5         [15]   49 	push	ix
+   4823 DD 21 00 00   [14]   50 	ld	ix,#0
+   4827 DD 39         [15]   51 	add	ix,sp
                              52 ;src/sistemas/puntuacion.c:6: puntos++;
-   4712 FD 21 31 4D   [14]   53 	ld	iy, #_puntos
-   4716 FD 34 00      [23]   54 	inc	0 (iy)
+   4829 FD 21 D0 4D   [14]   53 	ld	iy, #_puntos
+   482D FD 34 00      [23]   54 	inc	0 (iy)
                              55 ;src/sistemas/puntuacion.c:7: if (puntos=='9'+1)
-   4719 FD 7E 00      [19]   56 	ld	a, 0 (iy)
-   471C D6 3A         [ 7]   57 	sub	a, #0x3a
-   471E 20 08         [12]   58 	jr	NZ,00102$
+   4830 FD 7E 00      [19]   56 	ld	a, 0 (iy)
+   4833 D6 3A         [ 7]   57 	sub	a, #0x3a
+   4835 20 08         [12]   58 	jr	NZ,00102$
                              59 ;src/sistemas/puntuacion.c:8: {puntos='0';
-   4720 FD 36 00 30   [19]   60 	ld	0 (iy), #0x30
+   4837 FD 36 00 30   [19]   60 	ld	0 (iy), #0x30
                              61 ;src/sistemas/puntuacion.c:9: puntos_decena++;}
-   4724 21 AE 4C      [10]   62 	ld	hl, #_puntos_decena+0
-   4727 34            [11]   63 	inc	(hl)
-   4728                      64 00102$:
+   483B 21 4C 4D      [10]   62 	ld	hl, #_puntos_decena+0
+   483E 34            [11]   63 	inc	(hl)
+   483F                      64 00102$:
                              65 ;src/sistemas/puntuacion.c:10: array[i].x = array[i].x_inicial;
-   4728 01 B1 4C      [10]   66 	ld	bc, #_array+0
-   472B DD 5E 04      [19]   67 	ld	e,4 (ix)
-   472E 16 00         [ 7]   68 	ld	d,#0x00
-   4730 6B            [ 4]   69 	ld	l, e
-   4731 62            [ 4]   70 	ld	h, d
-   4732 29            [11]   71 	add	hl, hl
-   4733 29            [11]   72 	add	hl, hl
-   4734 19            [11]   73 	add	hl, de
-   4735 29            [11]   74 	add	hl, hl
-   4736 09            [11]   75 	add	hl, bc
-   4737 4D            [ 4]   76 	ld	c, l
-   4738 44            [ 4]   77 	ld	b, h
-   4739 03            [ 6]   78 	inc	bc
-   473A 11 09 00      [10]   79 	ld	de, #0x0009
-   473D 19            [11]   80 	add	hl, de
-   473E 7E            [ 7]   81 	ld	a, (hl)
-   473F 02            [ 7]   82 	ld	(bc), a
+   483F 01 4F 4D      [10]   66 	ld	bc, #_array+0
+   4842 DD 5E 04      [19]   67 	ld	e,4 (ix)
+   4845 16 00         [ 7]   68 	ld	d,#0x00
+   4847 6B            [ 4]   69 	ld	l, e
+   4848 62            [ 4]   70 	ld	h, d
+   4849 29            [11]   71 	add	hl, hl
+   484A 29            [11]   72 	add	hl, hl
+   484B 19            [11]   73 	add	hl, de
+   484C 29            [11]   74 	add	hl, hl
+   484D 09            [11]   75 	add	hl, bc
+   484E 4D            [ 4]   76 	ld	c, l
+   484F 44            [ 4]   77 	ld	b, h
+   4850 03            [ 6]   78 	inc	bc
+   4851 11 09 00      [10]   79 	ld	de, #0x0009
+   4854 19            [11]   80 	add	hl, de
+   4855 7E            [ 7]   81 	ld	a, (hl)
+   4856 02            [ 7]   82 	ld	(bc), a
                              83 ;src/sistemas/puntuacion.c:11: pinta_marcador();
-   4740 DD E1         [14]   84 	pop	ix
-   4742 C3 82 46      [10]   85 	jp	_pinta_marcador
+   4857 DD E1         [14]   84 	pop	ix
+   4859 C3 99 47      [10]   85 	jp	_pinta_marcador
                              86 	.area _CODE
                              87 	.area _INITIALIZER
                              88 	.area _CABS (ABS)

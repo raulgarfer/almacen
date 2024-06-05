@@ -7,7 +7,7 @@ u8* vmem_ahora;//cpct_pageC0 ;
 void main(void) {
    cpct_disableFirmware();
    mover_pila();
-  //control_interrupciones();
+  control_interrupciones();
    cpct_setVideoMode(2);
    borrar_ambas_pantallas();
    inicia_objetos();

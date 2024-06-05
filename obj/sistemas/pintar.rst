@@ -45,31 +45,31 @@
                              45 ;	---------------------------------
                              46 ; Function pintar_sprites
                              47 ; ---------------------------------
-   46ED                      48 _pintar_sprites::
+   4804                      48 _pintar_sprites::
                              49 ;src/sistemas/pintar.c:8: for (i=0;i<max_entidades;i++){
-   46ED 0E 00         [ 7]   50 	ld	c, #0x00
-   46EF                      51 00102$:
+   4804 0E 00         [ 7]   50 	ld	c, #0x00
+   4806                      51 00102$:
                              52 ;src/sistemas/pintar.c:9: pinta_objeto  = &array[i];
-   46EF 06 00         [ 7]   53 	ld	b,#0x00
-   46F1 69            [ 4]   54 	ld	l, c
-   46F2 60            [ 4]   55 	ld	h, b
-   46F3 29            [11]   56 	add	hl, hl
-   46F4 29            [11]   57 	add	hl, hl
-   46F5 09            [11]   58 	add	hl, bc
-   46F6 29            [11]   59 	add	hl, hl
-   46F7 11 B1 4C      [10]   60 	ld	de, #_array
-   46FA 19            [11]   61 	add	hl, de
-   46FB 22 2E 49      [16]   62 	ld	(_pinta_objeto), hl
+   4806 06 00         [ 7]   53 	ld	b,#0x00
+   4808 69            [ 4]   54 	ld	l, c
+   4809 60            [ 4]   55 	ld	h, b
+   480A 29            [11]   56 	add	hl, hl
+   480B 29            [11]   57 	add	hl, hl
+   480C 09            [11]   58 	add	hl, bc
+   480D 29            [11]   59 	add	hl, hl
+   480E 11 4F 4D      [10]   60 	ld	de, #_array
+   4811 19            [11]   61 	add	hl, de
+   4812 22 CC 49      [16]   62 	ld	(_pinta_objeto), hl
                              63 ;src/sistemas/pintar.c:10: pinta_con_puntero();} 
-   46FE C5            [11]   64 	push	bc
-   46FF CD 30 49      [17]   65 	call	_pinta_con_puntero
-   4702 C1            [10]   66 	pop	bc
+   4815 C5            [11]   64 	push	bc
+   4816 CD CE 49      [17]   65 	call	_pinta_con_puntero
+   4819 C1            [10]   66 	pop	bc
                              67 ;src/sistemas/pintar.c:8: for (i=0;i<max_entidades;i++){
-   4703 0C            [ 4]   68 	inc	c
-   4704 79            [ 4]   69 	ld	a, c
-   4705 D6 02         [ 7]   70 	sub	a, #0x02
-   4707 38 E6         [12]   71 	jr	C,00102$
-   4709 C9            [10]   72 	ret
+   481A 0C            [ 4]   68 	inc	c
+   481B 79            [ 4]   69 	ld	a, c
+   481C D6 02         [ 7]   70 	sub	a, #0x02
+   481E 38 E6         [12]   71 	jr	C,00102$
+   4820 C9            [10]   72 	ret
                              73 	.area _CODE
                              74 	.area _INITIALIZER
                              75 	.area _CABS (ABS)

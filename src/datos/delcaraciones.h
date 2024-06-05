@@ -15,6 +15,8 @@
 #define x_start_objeto      60
 #define x_init_obj1         60
 #define x_init_obj2         80
+#define lleno               1
+#define vacio               0
 typedef struct Sobjeto{
     u8 estado;
     u8 x,y;
