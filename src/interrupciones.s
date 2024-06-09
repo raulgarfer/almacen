@@ -4,6 +4,7 @@
 .globl cpct_setPALColour_asm
 .macro siguiente_interrrupcion direccion
 .globl cpct_setVideoMode_asm
+.globl cpct_akp_musicPlay_asm
 .globl _pinta_marcador
     ld hl,#direccion
     ld (0x39),hl
@@ -32,6 +33,8 @@ int_1::
     cpctm_push af,bc,hl
         numero_interrupcion 1
         siguiente_interrrupcion int_2
+        
+        ;;call cpct_akp_musicPlay_asm
      cpctm_pop hl,bc,af
     ei
 reti 

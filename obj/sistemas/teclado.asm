@@ -47,26 +47,25 @@
 ; Function teclado
 ; ---------------------------------
 _teclado::
-;src/sistemas/teclado.c:5: array[0].vy=0;
-	ld	hl, #(_array + 0x0004)
-	ld	(hl), #0x00
+;src/sistemas/teclado.c:5: comprueba_que_arriba_no_este_pulsada();
+	call	_comprueba_que_arriba_no_este_pulsada
 ;src/sistemas/teclado.c:6: cpct_scanKeyboard();
 	call	_cpct_scanKeyboard
-;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q)
+;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q) 
 	ld	hl, #0x0808
 	call	_cpct_isKeyPressed
-;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
-;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q)
 	ld	a, l
 	or	a, a
 	jr	Z,00102$
 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
-	ld	a, (#(_array + 0x0002) + 0)
+	ld	a, (#_array + 2)
 	sub	a, #0x0a
 	jr	C,00102$
-;src/sistemas/teclado.c:9: {array[0].vy=-1;}
-	ld	hl, #(_array + 0x0004)
-	ld	(hl), #0xff
+;src/sistemas/teclado.c:9: {array[0].vy+=-1;}
+	ld	bc, #_array + 4
+	ld	a, (bc)
+	add	a, #0xff
+	ld	(bc), a
 00102$:
 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
 	ld	hl, #0x2008
@@ -75,14 +74,16 @@ _teclado::
 	or	a, a
 	ret	Z
 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
-	ld	hl, #(_array + 0x0002) + 0
+	ld	hl, #_array + 2
 	ld	c, (hl)
 	ld	a, #0x96
 	sub	a, c
 	ret	C
-;src/sistemas/teclado.c:12: {array[0].vy=1;}
-	ld	hl, #(_array + 0x0004)
-	ld	(hl), #0x01
+;src/sistemas/teclado.c:12: {array[0].vy+=1;}      
+	ld	bc, #_array + 4
+	ld	a, (bc)
+	inc	a
+	ld	(bc), a
 	ret
 	.area _CODE
 	.area _INITIALIZER

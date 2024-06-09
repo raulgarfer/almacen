@@ -49,127 +49,132 @@
                              49 ; Function fisica
                              50 ; ---------------------------------
    0000                      51 _fisica::
-                             52 ;src/sistemas/fisica.c:5: if (array[0].vy==1)
+                             52 ;src/sistemas/fisica.c:5: if (array[0].vy==5)
    0000 3Ar04r00      [13]   53 	ld	a, (#(_array + 0x0004) + 0)
-   0003 FE 01         [ 7]   54 	cp	a, #0x01
+   0003 FE 05         [ 7]   54 	cp	a, #0x05
    0005 20 06         [12]   55 	jr	NZ,00104$
                              56 ;src/sistemas/fisica.c:6: {borra();
    0007 CDr00r00      [17]   57 	call	_borra
                              58 ;src/sistemas/fisica.c:7: baja();}
-   000A C3r15r00      [10]   59 	jp  _baja
+   000A C3r16r00      [10]   59 	jp  _baja
    000D                      60 00104$:
-                             61 ;src/sistemas/fisica.c:8: else if(array[0].vy==-1)
-   000D 3C            [ 4]   62 	inc	a
-   000E C0            [11]   63 	ret	NZ
+                             61 ;src/sistemas/fisica.c:8: else if(array[0].vy==-5)
+   000D D6 FB         [ 7]   62 	sub	a, #0xfb
+   000F C0            [11]   63 	ret	NZ
                              64 ;src/sistemas/fisica.c:9: {borra();
-   000F CDr00r00      [17]   65 	call	_borra
+   0010 CDr00r00      [17]   65 	call	_borra
                              66 ;src/sistemas/fisica.c:10: sube();}
-   0012 C3r47r00      [10]   67 	jp  _sube
+   0013 C3r47r00      [10]   67 	jp  _sube
                              68 ;src/sistemas/fisica.c:12: void baja(){
                              69 ;	---------------------------------
                              70 ; Function baja
                              71 ; ---------------------------------
-   0015                      72 _baja::
-                             73 ;src/sistemas/fisica.c:13: if (array[0].y   ==  y_frame_1)
-   0015 01r02r00      [10]   74 	ld	bc, #_array + 2
-   0018 0A            [ 7]   75 	ld	a, (bc)
-                             76 ;src/sistemas/fisica.c:15: array[0].sprite =   derecha_2;}
-                             77 ;src/sistemas/fisica.c:13: if (array[0].y   ==  y_frame_1)
-   0019 5F            [ 4]   78 	ld	e,a
-   001A D6 0A         [ 7]   79 	sub	a, #0x0a
-   001C 20 0A         [12]   80 	jr	NZ,00107$
-                             81 ;src/sistemas/fisica.c:14: { array[0].y  =   y_frame_2;
-   001E 3E 32         [ 7]   82 	ld	a, #0x32
-   0020 02            [ 7]   83 	ld	(bc), a
-                             84 ;src/sistemas/fisica.c:15: array[0].sprite =   derecha_2;}
-   0021 21r00r00      [10]   85 	ld	hl, #_derecha_2
-   0024 22r07r00      [16]   86 	ld	((_array + 0x0007)), hl
-   0027 C9            [10]   87 	ret
-   0028                      88 00107$:
-                             89 ;src/sistemas/fisica.c:17: if (array[0].y   ==  y_frame_2)
-   0028 7B            [ 4]   90 	ld	a, e
-   0029 D6 32         [ 7]   91 	sub	a, #0x32
-   002B 20 0A         [12]   92 	jr	NZ,00104$
-                             93 ;src/sistemas/fisica.c:18: {array[0].y  =   y_frame_3;
-   002D 3E 64         [ 7]   94 	ld	a, #0x64
-   002F 02            [ 7]   95 	ld	(bc), a
-                             96 ;src/sistemas/fisica.c:19: array[0].sprite =  rightpng;}
-   0030 21r00r00      [10]   97 	ld	hl, #_rightpng
-   0033 22r07r00      [16]   98 	ld	((_array + 0x0007)), hl
-   0036 C9            [10]   99 	ret
-   0037                     100 00104$:
-                            101 ;src/sistemas/fisica.c:21: if (array[0].y   ==  y_frame_3)
-   0037 7B            [ 4]  102 	ld	a, e
-   0038 D6 64         [ 7]  103 	sub	a, #0x64
-   003A C0            [11]  104 	ret	NZ
-                            105 ;src/sistemas/fisica.c:22: {array[0].y  =   y_frame_4;
-   003B 3E 96         [ 7]  106 	ld	a, #0x96
-   003D 02            [ 7]  107 	ld	(bc), a
-                            108 ;src/sistemas/fisica.c:23: array[0].sprite =   derecha_2;
-   003E 21r00r00      [10]  109 	ld	hl, #_derecha_2
-   0041 22r07r00      [16]  110 	ld	((_array + 0x0007)), hl
-                            111 ;src/sistemas/fisica.c:24: vacia_vaso();
-   0044 C3r77r00      [10]  112 	jp  _vacia_vaso
-                            113 ;src/sistemas/fisica.c:26: void sube(){
-                            114 ;	---------------------------------
-                            115 ; Function sube
-                            116 ; ---------------------------------
-   0047                     117 _sube::
-                            118 ;src/sistemas/fisica.c:27: if (array[0].y   ==  y_frame_4)
-   0047 01r02r00      [10]  119 	ld	bc, #_array + 2
-   004A 0A            [ 7]  120 	ld	a, (bc)
-                            121 ;src/sistemas/fisica.c:29: array[0].sprite =  rightpng;}
-                            122 ;src/sistemas/fisica.c:27: if (array[0].y   ==  y_frame_4)
-   004B 5F            [ 4]  123 	ld	e,a
-   004C D6 96         [ 7]  124 	sub	a, #0x96
-   004E 20 0A         [12]  125 	jr	NZ,00107$
-                            126 ;src/sistemas/fisica.c:28: {array[0].y  =   y_frame_3;
-   0050 3E 64         [ 7]  127 	ld	a, #0x64
-   0052 02            [ 7]  128 	ld	(bc), a
-                            129 ;src/sistemas/fisica.c:29: array[0].sprite =  rightpng;}
-   0053 21r00r00      [10]  130 	ld	hl, #_rightpng
-   0056 22r07r00      [16]  131 	ld	((_array + 0x0007)), hl
-   0059 C9            [10]  132 	ret
-   005A                     133 00107$:
-                            134 ;src/sistemas/fisica.c:31: if (array[0].y   ==  y_frame_3)
-   005A 7B            [ 4]  135 	ld	a, e
-   005B D6 64         [ 7]  136 	sub	a, #0x64
-   005D 20 0A         [12]  137 	jr	NZ,00104$
-                            138 ;src/sistemas/fisica.c:32: {array[0].y  =   y_frame_2;
-   005F 3E 32         [ 7]  139 	ld	a, #0x32
-   0061 02            [ 7]  140 	ld	(bc), a
-                            141 ;src/sistemas/fisica.c:33: array[0].sprite =   derecha_2;}
-   0062 21r00r00      [10]  142 	ld	hl, #_derecha_2
-   0065 22r07r00      [16]  143 	ld	((_array + 0x0007)), hl
-   0068 C9            [10]  144 	ret
-   0069                     145 00104$:
-                            146 ;src/sistemas/fisica.c:35: if (array[0].y   ==  y_frame_2)
-   0069 7B            [ 4]  147 	ld	a, e
-   006A D6 32         [ 7]  148 	sub	a, #0x32
-   006C C0            [11]  149 	ret	NZ
-                            150 ;src/sistemas/fisica.c:36: {array[0].y  =   y_frame_1;
-   006D 3E 0A         [ 7]  151 	ld	a, #0x0a
-   006F 02            [ 7]  152 	ld	(bc), a
-                            153 ;src/sistemas/fisica.c:37: array[0].sprite =  rightpng;}
-   0070 21r00r00      [10]  154 	ld	hl, #_rightpng
-   0073 22r07r00      [16]  155 	ld	((_array + 0x0007)), hl
-   0076 C9            [10]  156 	ret
-                            157 ;src/sistemas/fisica.c:39: void vacia_vaso(){
-                            158 ;	---------------------------------
-                            159 ; Function vacia_vaso
-                            160 ; ---------------------------------
-   0077                     161 _vacia_vaso::
-                            162 ;src/sistemas/fisica.c:40: if (vaso_lleno==lleno)
-   0077 3Ar00r00      [13]  163 	ld	a,(#_vaso_lleno + 0)
-   007A 3D            [ 4]  164 	dec	a
-   007B C0            [11]  165 	ret	NZ
-                            166 ;src/sistemas/fisica.c:41: {puntos++;
-   007C 21r00r00      [10]  167 	ld	hl, #_puntos+0
-   007F 34            [11]  168 	inc	(hl)
-                            169 ;src/sistemas/fisica.c:42: array[0].sprite =  rightpng; }
-   0080 21r00r00      [10]  170 	ld	hl, #_rightpng
-   0083 22r07r00      [16]  171 	ld	((_array + 0x0007)), hl
-   0086 C9            [10]  172 	ret
-                            173 	.area _CODE
-                            174 	.area _INITIALIZER
-                            175 	.area _CABS (ABS)
+   0016                      72 _baja::
+                             73 ;src/sistemas/fisica.c:13: array[0].vy=0;
+   0016 21r04r00      [10]   74 	ld	hl, #(_array + 0x0004)
+   0019 36 00         [10]   75 	ld	(hl), #0x00
+                             76 ;src/sistemas/fisica.c:14: if (array[0].y   ==  y_frame_1)
+   001B 01r02r00      [10]   77 	ld	bc, #_array + 2
+   001E 0A            [ 7]   78 	ld	a, (bc)
+   001F 5F            [ 4]   79 	ld	e,a
+   0020 D6 0A         [ 7]   80 	sub	a, #0x0a
+   0022 20 04         [12]   81 	jr	NZ,00107$
+                             82 ;src/sistemas/fisica.c:15: { array[0].y  =   y_frame_2;
+   0024 3E 32         [ 7]   83 	ld	a, #0x32
+   0026 02            [ 7]   84 	ld	(bc), a
+   0027 C9            [10]   85 	ret
+   0028                      86 00107$:
+                             87 ;src/sistemas/fisica.c:20: array[0].sprite =  rightpng;}
+                             88 ;src/sistemas/fisica.c:18: if (array[0].y   ==  y_frame_2)
+   0028 7B            [ 4]   89 	ld	a, e
+   0029 D6 32         [ 7]   90 	sub	a, #0x32
+   002B 20 0A         [12]   91 	jr	NZ,00104$
+                             92 ;src/sistemas/fisica.c:19: {array[0].y  =   y_frame_3;
+   002D 3E 64         [ 7]   93 	ld	a, #0x64
+   002F 02            [ 7]   94 	ld	(bc), a
+                             95 ;src/sistemas/fisica.c:20: array[0].sprite =  rightpng;}
+   0030 21r00r00      [10]   96 	ld	hl, #_rightpng
+   0033 22r07r00      [16]   97 	ld	((_array + 0x0007)), hl
+   0036 C9            [10]   98 	ret
+   0037                      99 00104$:
+                            100 ;src/sistemas/fisica.c:22: if (array[0].y   ==  y_frame_3)
+   0037 7B            [ 4]  101 	ld	a, e
+   0038 D6 64         [ 7]  102 	sub	a, #0x64
+   003A C0            [11]  103 	ret	NZ
+                            104 ;src/sistemas/fisica.c:23: {array[0].y  =   y_frame_4;
+   003B 3E 96         [ 7]  105 	ld	a, #0x96
+   003D 02            [ 7]  106 	ld	(bc), a
+                            107 ;src/sistemas/fisica.c:24: array[0].sprite =   derecha_2;
+   003E 21r00r00      [10]  108 	ld	hl, #_derecha_2
+   0041 22r07r00      [16]  109 	ld	((_array + 0x0007)), hl
+                            110 ;src/sistemas/fisica.c:25: vacia_vaso();}
+   0044 C3r7Cr00      [10]  111 	jp  _vacia_vaso
+                            112 ;src/sistemas/fisica.c:27: void sube(){
+                            113 ;	---------------------------------
+                            114 ; Function sube
+                            115 ; ---------------------------------
+   0047                     116 _sube::
+                            117 ;src/sistemas/fisica.c:28: array[0].vy=0;
+   0047 21r04r00      [10]  118 	ld	hl, #(_array + 0x0004)
+   004A 36 00         [10]  119 	ld	(hl), #0x00
+                            120 ;src/sistemas/fisica.c:29: if (array[0].y   ==  y_frame_4)
+   004C 01r02r00      [10]  121 	ld	bc, #_array + 2
+   004F 0A            [ 7]  122 	ld	a, (bc)
+                            123 ;src/sistemas/fisica.c:31: array[0].sprite =  rightpng;}
+                            124 ;src/sistemas/fisica.c:29: if (array[0].y   ==  y_frame_4)
+   0050 5F            [ 4]  125 	ld	e,a
+   0051 D6 96         [ 7]  126 	sub	a, #0x96
+   0053 20 0A         [12]  127 	jr	NZ,00107$
+                            128 ;src/sistemas/fisica.c:30: {array[0].y  =   y_frame_3;
+   0055 3E 64         [ 7]  129 	ld	a, #0x64
+   0057 02            [ 7]  130 	ld	(bc), a
+                            131 ;src/sistemas/fisica.c:31: array[0].sprite =  rightpng;}
+   0058 21r00r00      [10]  132 	ld	hl, #_rightpng
+   005B 22r07r00      [16]  133 	ld	((_array + 0x0007)), hl
+   005E C9            [10]  134 	ret
+   005F                     135 00107$:
+                            136 ;src/sistemas/fisica.c:33: if (array[0].y   ==  y_frame_3)
+   005F 7B            [ 4]  137 	ld	a, e
+   0060 D6 64         [ 7]  138 	sub	a, #0x64
+   0062 20 0A         [12]  139 	jr	NZ,00104$
+                            140 ;src/sistemas/fisica.c:34: {array[0].y  =   y_frame_2;
+   0064 3E 32         [ 7]  141 	ld	a, #0x32
+   0066 02            [ 7]  142 	ld	(bc), a
+                            143 ;src/sistemas/fisica.c:35: array[0].sprite =   derecha_2;}
+   0067 21r00r00      [10]  144 	ld	hl, #_derecha_2
+   006A 22r07r00      [16]  145 	ld	((_array + 0x0007)), hl
+   006D C9            [10]  146 	ret
+   006E                     147 00104$:
+                            148 ;src/sistemas/fisica.c:37: if (array[0].y   ==  y_frame_2)
+   006E 7B            [ 4]  149 	ld	a, e
+   006F D6 32         [ 7]  150 	sub	a, #0x32
+   0071 C0            [11]  151 	ret	NZ
+                            152 ;src/sistemas/fisica.c:38: {array[0].y  =   y_frame_1;
+   0072 3E 0A         [ 7]  153 	ld	a, #0x0a
+   0074 02            [ 7]  154 	ld	(bc), a
+                            155 ;src/sistemas/fisica.c:39: array[0].sprite =  rightpng;}
+   0075 21r00r00      [10]  156 	ld	hl, #_rightpng
+   0078 22r07r00      [16]  157 	ld	((_array + 0x0007)), hl
+   007B C9            [10]  158 	ret
+                            159 ;src/sistemas/fisica.c:41: void vacia_vaso(){
+                            160 ;	---------------------------------
+                            161 ; Function vacia_vaso
+                            162 ; ---------------------------------
+   007C                     163 _vacia_vaso::
+                            164 ;src/sistemas/fisica.c:42: if (vaso_lleno==lleno)
+   007C 3Ar00r00      [13]  165 	ld	a,(#_vaso_lleno + 0)
+   007F 3D            [ 4]  166 	dec	a
+   0080 C0            [11]  167 	ret	NZ
+                            168 ;src/sistemas/fisica.c:43: {puntos++;
+   0081 21r00r00      [10]  169 	ld	hl, #_puntos+0
+   0084 34            [11]  170 	inc	(hl)
+                            171 ;src/sistemas/fisica.c:44: array[0].sprite =  rightpng; 
+   0085 21r00r00      [10]  172 	ld	hl, #_rightpng
+   0088 22r07r00      [16]  173 	ld	((_array + 0x0007)), hl
+                            174 ;src/sistemas/fisica.c:45: vaso_lleno  =  vacio;}
+   008B 21r00r00      [10]  175 	ld	hl,#_vaso_lleno + 0
+   008E 36 00         [10]  176 	ld	(hl), #0x00
+   0090 C9            [10]  177 	ret
+                            178 	.area _CODE
+                            179 	.area _INITIALIZER
+                            180 	.area _CABS (ABS)

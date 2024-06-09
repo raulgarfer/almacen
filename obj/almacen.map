@@ -15,153 +15,192 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__HOME                         
      00000000  l__INITIALIZED                  
      00000000  l__INITIALIZER                  
+     00000000  l___Demo                        
      00000000  s__CABS                         
      00000000  s__DABS                         
+     00000000  s___Demo                        
+     00000000  s___Demo0                       
      00000099  l__DATA                         
-     00000D38  l__CODE                         
+     00001610  l__CODE                         
+     00001C4E  l___Demo0                       
      00004000  s__CODE                         
-     00004D38  s__DATA                         
-     00004DD1  s__GSFINAL                      
-     00004DD1  s__GSINIT                       
-     00004DD1  s__HOME                         
-     00004DD1  s__INITIALIZED                  
-     00004DD1  s__INITIALIZER                  
+     00005610  s__DATA                         
+     000056A9  s__GSFINAL                      
+     000056A9  s__GSINIT                       
+     000056A9  s__HOME                         
+     000056A9  s__INITIALIZED                  
+     000056A9  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00000D38 =        3384. bytes (REL,CON)
+_CODE                               00004000    00001610 =        5648. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00004000  _base                              base
      000041F4  _rightpng                          rightpng
      00004294  _pera                              pera
-     000042B4  _manzana                           manzana
-     000042D4  _derecha_2_lleno                   derecha_2_lleno
-     00004374  _derecha_2                         derecha_2
-     00004414  _derecha_lleno                     derecha_lleno
-     0000443C  _BW                                BW
-     0000443E  _main                              main
-     00004458  _a_jugar                           main
-     00004467  _mientras_juego                    main
-     0000447B  _iniciar_valores                   definiciones
-     000044C8  _inicia_objetos                    definiciones
-     000044F6  _player_init                       definiciones
-     00004500  _manzana_init                      definiciones
-     0000450A  _pera_init                         definiciones
-     00004514  _borra                             borra
-     00004574  _borra_objeto                      borra
-     000045A3  _muere                             fin_juego
-     000045D7  _fin_juego                         fin_juego
-     0000462D  _espera_pulsacion_tecla            fin_juego
-     0000463E  _espera_pulsar                     fin_juego
-     00004641  _fisica                            fisica
-     00004656  _baja                              fisica
-     00004688  _sube                              fisica
-     000046B8  _vacia_vaso                        fisica
-     000046C8  _fisica_objetos                    fisica_objetos
-     00004750  _comprobar_recojida                fisica_objetos
-     00004799  _pinta_marcador                    marcador
-     000047CB  _pinta_puntos                      marcador
-     00004804  _pintar_sprites                    pintar
-     00004821  _suma_puntos                       puntuacion
-     0000485C  _teclado                           teclado
-     00004891  _menu_juego                        menu
-     000048FB  _mover_pila                        cpct_keyboard
-     00004901  _borrar_ambas_pantallas            cpct_keyboard
-     0000491C  _espera_pulsacion_alguna_tecla     rutinas_espera_tecla.s
-     0000492D  IR                                 rupturas.s
-     0000492E  _control_interrupciones            rupturas.s
-     00004946  int_1                              rupturas.s
-     0000495A  int_2                              rupturas.s
-     0000496E  int_3                              rupturas.s
-     00004989  int_4                              rupturas.s
-     0000499D  int_5                              rupturas.s
-     000049B1  int_6                              rupturas.s
-     000049CC  _pinta_objeto                      cpct_keyboard
-     000049CE  _pinta_con_puntero                 cpct_keyboard
-     000049F0  _cpct_isKeyPressed                 cpct_keyboard
-     000049F0  cpct_isKeyPressed_asm              cpct_keyboard
-     000049FC  _cpct_scanKeyboard_f               cpct_keyboard
+     000042DC  _manzana                           manzana
+     00004324  _derecha_2_lleno                   derecha_2_lleno
+     000043C4  _derecha_2                         derecha_2
+     00004464  _derecha_lleno                     derecha_lleno
+     0000448C  _BW                                BW
+     0000448E  _main                              main
+     000044B0  _a_jugar                           main
+     000044BF  _mientras_juego                    main
+     000044D6  _cambiar_sprites                   main
+     000044EA  _iniciar_valores                   definiciones
+     00004537  _inicia_objetos                    definiciones
+     00004565  _player_init                       definiciones
+     0000456F  _manzana_init                      definiciones
+     00004579  _pera_init                         definiciones
+     00004583  _borra                             borra
+     000045E3  _borra_objeto                      borra
+     00004612  _muere                             fin_juego
+     00004646  _fin_juego                         fin_juego
+     0000469C  _espera_pulsacion_tecla            fin_juego
+     000046AD  _espera_pulsar                     fin_juego
+     000046B0  _fisica                            fisica
+     000046C6  _baja                              fisica
+     000046F7  _sube                              fisica
+     0000472C  _vacia_vaso                        fisica
+     00004741  _fisica_objetos                    fisica_objetos
+     000047C9  _comprobar_recojida                fisica_objetos
+     00004812  _pinta_marcador                    marcador
+     00004844  _pinta_puntos                      marcador
+     00004884  _pintar_sprites                    pintar
+     000048A1  _suma_puntos                       puntuacion
+     000048DC  _teclado                           teclado
+     00004912  _menu_juego                        menu
+     0000497C  _mover_pila                        cpct_keyboard
+     00004982  _borrar_ambas_pantallas            cpct_keyboard
+     0000499D  _espera_pulsacion_alguna_tecla     rutinas_espera_tecla.s
+     000049AE  _q_esta_pulsada                    rutinas_espera_tecla.s
+     000049AF  _a_esta_pulsada                    rutinas_espera_tecla.s
+     000049B0  _comprueba_que_arriba_no_este_pu   rutinas_espera_tecla.s
+     000049C7  _comprueba_que_abajo_no_este_pul   rutinas_espera_tecla.s
+     000049DB  fin_teclado                        rutinas_espera_tecla.s
+     000049DC  IR                                 rupturas.s
+     000049DD  _control_interrupciones            rupturas.s
+     000049F5  int_1                              rupturas.s
+     00004A09  int_2                              rupturas.s
+     00004A1D  int_3                              rupturas.s
+     00004A38  int_4                              rupturas.s
+     00004A4C  int_5                              rupturas.s
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00000D38 =        3384. bytes (REL,CON)
+_CODE                               00004000    00001610 =        5648. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000049FC  cpct_scanKeyboard_f_asm            cpct_keyboard
-     00004A66  _cpct_setPALColour                 cpct_video
-     00004A72  cpct_setPALColour_asm              cpct_video
-     00004A7C  _cpct_drawStringM2                 cpct_strings
-     00004AAB  cpct_drawSprite_asm                cpct_sprites
-     00004B4B  cpct_drawCharM2_inner_asm          cpct_strings
-     00004B5A  cpct_charm2imc                     cpct_strings
-     00004B71  _cpct_drawCharM2                   cpct_strings
-     00004B8C  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00004B96  _cpct_memset_f64                   cpct_memutils
-     00004BE1  _cpct_waitVSYNC                    cpct_video
-     00004BE1  cpct_waitVSYNC_asm                 cpct_video
-     00004BE9  _cpct_setVideoMode                 cpct_video
-     00004BF7  cpct_setVideoMode_asm              cpct_video
-     00004C04  _cpct_isAnyKeyPressed_f            cpct_keyboard
-     00004C04  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
-     00004C1F  _cpct_memcpy                       cpct_memutils
-     00004C27  _cpct_disableFirmware              cpct_firmware
-     00004C27  _cpct_removeInterruptHandler       cpct_firmware
-     00004C27  cpct_disableFirmware_asm           cpct_firmware
-     00004C27  cpct_removeInterruptHandler_asm    cpct_firmware
-     00004C37  _cpct_drawSolidBox                 cpct_sprites
-     00004CDE  _cpct_mode_rom_status              cpct_firmware
-     00004CDF  _cpct_scanKeyboard                 cpct_keyboard
-     00004CDF  cpct_scanKeyboard_asm              cpct_keyboard
-     00004D10  _cpct_getScreenPtr                 cpct_video
-     00004D26  cpct_getScreenPtr_asm              cpct_video
+     00004A60  int_6                              rupturas.s
+     00004A7B  _pinta_objeto                      cpct_keyboard
+     00004A7D  _pinta_con_puntero                 cpct_keyboard
+     00004A9F  _cpct_isKeyPressed                 cpct_keyboard
+     00004A9F  cpct_isKeyPressed_asm              cpct_keyboard
+     00004AAB  _cpct_scanKeyboard_f               cpct_keyboard
+     00004AAB  cpct_scanKeyboard_f_asm            cpct_keyboard
+     00004B15  _cpct_setPALColour                 cpct_video
+     00004B21  cpct_setPALColour_asm              cpct_video
+     00004B2B  _cpct_drawStringM2                 cpct_strings
+     00004B5A  cpct_drawSprite_asm                cpct_sprites
+     00004BFA  cpct_drawCharM2_inner_asm          cpct_strings
+     00004C09  cpct_charm2imc                     cpct_strings
+     00004C20  _cpct_drawCharM2                   cpct_strings
+     00004C3B  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00004C45  _cpct_memset_f64                   cpct_memutils
+     00004C90  _cpct_waitVSYNC                    cpct_video
+     00004C90  cpct_waitVSYNC_asm                 cpct_video
+     00004C98  _cpct_setVideoMode                 cpct_video
+     00004CA6  cpct_setVideoMode_asm              cpct_video
+     00004CB3  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     00004CB3  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     00004CCE  _cpct_memcpy                       cpct_memutils
+     00004CD6  _cpct_akp_digidrumStatus           cpct_audio
+     00004CD7  _cpct_akp_songLoopTimes            cpct_audio
+     00004CD8  _cpct_akp_musicPlay                cpct_audio
+     00004CD8  cpct_akp_musicPlay_asm             cpct_audio
+     000053DB  _cpct_akp_musicInit                cpct_audio
+     000053E2  cpct_akp_musicInit_asm             cpct_audio
+     0000543B  _cpct_akp_stop                     cpct_audio
+     0000543B  cpct_akp_stop_asm                  cpct_audio
+     0000544E  _cpct_akp_SFXGetInstrument         cpct_audio
+     00005453  cpct_akp_SFXGetInstrument_asm      cpct_audio
+     00005467  _cpct_akp_SFXInit                  cpct_audio
+     0000546E  cpct_akp_SFXInit_asm               cpct_audio
+     00005475  _cpct_akp_SFXStopAll               cpct_audio
+     00005475  cpct_akp_SFXStopAll_asm            cpct_audio
+     00005482  _cpct_akp_SFXPlay                  cpct_audio
+     00005494  cpct_akp_SFXPlay_asm               cpct_audio
+     000054E1  _cpct_akp_SFXStop                  cpct_audio
+     000054E6  cpct_akp_SFXStop_asm               cpct_audio
+     000054FF  _cpct_disableFirmware              cpct_firmware
+     000054FF  _cpct_removeInterruptHandler       cpct_firmware
+     000054FF  cpct_disableFirmware_asm           cpct_firmware
+     000054FF  cpct_removeInterruptHandler_asm    cpct_firmware
+     0000550F  _cpct_drawSolidBox                 cpct_sprites
+     000055B6  _cpct_mode_rom_status              cpct_firmware
+     000055B7  _cpct_scanKeyboard                 cpct_keyboard
+     000055B7  cpct_scanKeyboard_asm              cpct_keyboard
+     000055E8  _cpct_getScreenPtr                 cpct_video
+     000055FE  cpct_getScreenPtr_asm              cpct_video
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00004D38    00000099 =         153. bytes (REL,CON)
+_DATA                               00005610    00000099 =         153. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004D38  _vmem_ahora                        main
-     00004D3A  _x_jugador                         definiciones
-     00004D3B  _y_jugador                         definiciones
-     00004D3C  _spr_jugador                       definiciones
-     00004D3E  _vy_jug                            definiciones
-     00004D3F  _x_pera                            definiciones
-     00004D40  _y_pera                            definiciones
-     00004D41  _spr_pera                          definiciones
-     00004D43  _vx_pera                           definiciones
-     00004D44  _x_manzana                         definiciones
-     00004D45  _y_manzana                         definiciones
-     00004D46  _spr_manzana                       definiciones
-     00004D48  _vx_manzana                        definiciones
-     00004D49  _caida_objeto                      definiciones
-     00004D4A  _x_start_manzana                   definiciones
-     00004D4B  _y_start_manzana                   definiciones
-     00004D4C  _puntos_decena                     definiciones
-     00004D4D  _puntos_centena                    definiciones
-     00004D4E  _vidas                             definiciones
-     00004D4F  _array                             definiciones
-     00004DB3  _player                            definiciones
-     00004DBD  _item1                             definiciones
-     00004DC7  _pjugador                          definiciones
-     00004DC9  _pobjeto1                          definiciones
-     00004DCB  _pobjeto2                          definiciones
-     00004DCD  _vaso_lleno                        definiciones
-     00004DCE  _obj_caido                         fisica_objetos
-     00004DD0  _puntos                            marcador
+     00005610  _vmem_ahora                        main
+     00005612  _x_jugador                         definiciones
+     00005613  _y_jugador                         definiciones
+     00005614  _spr_jugador                       definiciones
+     00005616  _vy_jug                            definiciones
+     00005617  _x_pera                            definiciones
+     00005618  _y_pera                            definiciones
+     00005619  _spr_pera                          definiciones
+     0000561B  _vx_pera                           definiciones
+     0000561C  _x_manzana                         definiciones
+     0000561D  _y_manzana                         definiciones
+     0000561E  _spr_manzana                       definiciones
+     00005620  _vx_manzana                        definiciones
+     00005621  _caida_objeto                      definiciones
+     00005622  _x_start_manzana                   definiciones
+     00005623  _y_start_manzana                   definiciones
+     00005624  _puntos_decena                     definiciones
+     00005625  _puntos_centena                    definiciones
+     00005626  _vidas                             definiciones
+     00005627  _array                             definiciones
+     0000568B  _player                            definiciones
+     00005695  _item1                             definiciones
+     0000569F  _pjugador                          definiciones
+     000056A1  _pobjeto1                          definiciones
+     000056A3  _pobjeto2                          definiciones
+     000056A5  _vaso_lleno                        definiciones
+     000056A6  _obj_caido                         fisica_objetos
+     000056A8  _puntos                            marcador
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+__Demo0                             00000000    00001C4E =        7246. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000079D8  _Demo                              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
 
 Files Linked                              [ module(s) ]
 
@@ -173,6 +212,7 @@ obj/media/derecha_2_lleno.rel             [ derecha_2_lleno ]
 obj/media/derecha_2.rel                   [ derecha_2 ]
 obj/media/derecha_lleno.rel               [ derecha_lleno ]
 obj/media/BW.rel                          [ BW ]
+obj/music/Demo.rel                        [  ]
 obj/main.rel                              [ main ]
 obj/datos/definiciones.rel                [ definiciones ]
 obj/sistemas/borra.rel                    [ borra ]
@@ -188,6 +228,9 @@ obj/borrar_pantallas.rel                  [ cpct_keyboard ]
 obj/espera_tecla.rel                      [ rutinas_espera_tecla.s ]
 obj/interrupciones.rel                    [ rupturas.s ]
 obj/sistemas/pinta_con_puntero.rel        [ cpct_keyboard ]
+obj/music/ingame.rel                      [  ]
+obj/music/KellyOn.rel                     [  ]
+obj/music/Smoke.rel                       [  ]
 
 
 Libraries Linked                          [ object file ]
@@ -223,6 +266,8 @@ Libraries Linked                          [ object file ]
 /home/papi/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_memcpy_cbindings.rel ]
 /home/papi/cpctelera/cpctelera/cpctelera.lib
+                                          [ arkostracker.rel ]
+/home/papi/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_removeInterruptHandler.rel ]
 /home/papi/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawSolidBox_cbindings.rel ]
@@ -235,7 +280,7 @@ Libraries Linked                          [ object file ]
 /home/papi/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_getScreenPtr_asmbindings.re ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
 
 User Base Address Definitions
 

@@ -41,14 +41,14 @@ void iniciar_valores(){
 } 
 
 const objeto player_init  ={1,x_start_jugador,y_frame_1,0,0,RIGHTPNG_W,RIGHTPNG_H,rightpng};
-const objeto manzana_init ={1,x_init_obj2,y_frame_1,-1,0,MANZANA_W,MANZANA_H,manzana,x_init_obj2};
-const objeto pera_init ={1,x_init_obj1,y_frame_2,-1,0,PERA_W,PERA_H,pera,x_init_obj1};
+const objeto manzana_init ={1,x_init_obj2,y_frame_1,-1,0,MANZANA_W,MANZANA_H,manzana,x_start_objeto};
+const objeto pera_init ={1,x_init_obj1,y_frame_2,-1,0,PERA_W,PERA_H,pera,x_start_objeto};
 
 
 
 void inicia_objetos(){
    cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
-   cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
-   cpct_memcpy (&array[2], &pera_init, sizeof(array[0]));
+   cpct_memcpy (&array[2], &manzana_init, sizeof(array[0]));
+   cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
 
 }

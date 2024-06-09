@@ -3,8 +3,8 @@
 #define _SRC_SPRITES_MANZANA_H_
 
 #include <types.h>
-#define MANZANA_W 2
-#define MANZANA_H 16
-extern const u8 manzana[2 * 16];
+#define MANZANA_W 3
+#define MANZANA_H 24
+extern const u8 manzana[3 * 24];
 
 #endif

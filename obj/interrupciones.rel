@@ -1,11 +1,12 @@
 XL2
-H 1 areas D global symbols
+H 1 areas E global symbols
 M rupturas.s
 S cpct_setPALColour_asm Ref0000
 S .__.ABS. Def0000
 S _pinta_marcador Ref0000
 S cpct_setVideoMode_asm Ref0000
 S cpct_waitVSYNC_asm Ref0000
+S cpct_akp_musicPlay_asm Ref0000
 A _CODE size 9F flags 0 addr 0
 S int_1 Def0019
 S IR Def0000

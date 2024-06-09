@@ -46,44 +46,45 @@
                              46 ;	---------------------------------
                              47 ; Function teclado
                              48 ; ---------------------------------
-   485C                      49 _teclado::
-                             50 ;src/sistemas/teclado.c:5: array[0].vy=0;
-   485C 21 53 4D      [10]   51 	ld	hl, #(_array + 0x0004)
-   485F 36 00         [10]   52 	ld	(hl), #0x00
-                             53 ;src/sistemas/teclado.c:6: cpct_scanKeyboard();
-   4861 CD DF 4C      [17]   54 	call	_cpct_scanKeyboard
-                             55 ;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q)
-   4864 21 08 08      [10]   56 	ld	hl, #0x0808
-   4867 CD F0 49      [17]   57 	call	_cpct_isKeyPressed
-                             58 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
-                             59 ;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q)
-   486A 7D            [ 4]   60 	ld	a, l
-   486B B7            [ 4]   61 	or	a, a
-   486C 28 0C         [12]   62 	jr	Z,00102$
-                             63 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
-   486E 3A 51 4D      [13]   64 	ld	a, (#(_array + 0x0002) + 0)
-   4871 D6 0A         [ 7]   65 	sub	a, #0x0a
-   4873 38 05         [12]   66 	jr	C,00102$
-                             67 ;src/sistemas/teclado.c:9: {array[0].vy=-1;}
-   4875 21 53 4D      [10]   68 	ld	hl, #(_array + 0x0004)
-   4878 36 FF         [10]   69 	ld	(hl), #0xff
-   487A                      70 00102$:
-                             71 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
-   487A 21 08 20      [10]   72 	ld	hl, #0x2008
-   487D CD F0 49      [17]   73 	call	_cpct_isKeyPressed
-   4880 7D            [ 4]   74 	ld	a, l
-   4881 B7            [ 4]   75 	or	a, a
-   4882 C8            [11]   76 	ret	Z
-                             77 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
-   4883 21 51 4D      [10]   78 	ld	hl, #(_array + 0x0002) + 0
-   4886 4E            [ 7]   79 	ld	c, (hl)
-   4887 3E 96         [ 7]   80 	ld	a, #0x96
-   4889 91            [ 4]   81 	sub	a, c
-   488A D8            [11]   82 	ret	C
-                             83 ;src/sistemas/teclado.c:12: {array[0].vy=1;}
-   488B 21 53 4D      [10]   84 	ld	hl, #(_array + 0x0004)
-   488E 36 01         [10]   85 	ld	(hl), #0x01
-   4890 C9            [10]   86 	ret
-                             87 	.area _CODE
-                             88 	.area _INITIALIZER
-                             89 	.area _CABS (ABS)
+   48DC                      49 _teclado::
+                             50 ;src/sistemas/teclado.c:5: comprueba_que_arriba_no_este_pulsada();
+   48DC CD B0 49      [17]   51 	call	_comprueba_que_arriba_no_este_pulsada
+                             52 ;src/sistemas/teclado.c:6: cpct_scanKeyboard();
+   48DF CD B7 55      [17]   53 	call	_cpct_scanKeyboard
+                             54 ;src/sistemas/teclado.c:7: if(cpct_isKeyPressed(Key_Q) 
+   48E2 21 08 08      [10]   55 	ld	hl, #0x0808
+   48E5 CD 9F 4A      [17]   56 	call	_cpct_isKeyPressed
+   48E8 7D            [ 4]   57 	ld	a, l
+   48E9 B7            [ 4]   58 	or	a, a
+   48EA 28 0E         [12]   59 	jr	Z,00102$
+                             60 ;src/sistemas/teclado.c:8: && array[0].y>=y_frame_1)
+   48EC 3A 29 56      [13]   61 	ld	a, (#_array + 2)
+   48EF D6 0A         [ 7]   62 	sub	a, #0x0a
+   48F1 38 07         [12]   63 	jr	C,00102$
+                             64 ;src/sistemas/teclado.c:9: {array[0].vy+=-1;}
+   48F3 01 2B 56      [10]   65 	ld	bc, #_array + 4
+   48F6 0A            [ 7]   66 	ld	a, (bc)
+   48F7 C6 FF         [ 7]   67 	add	a, #0xff
+   48F9 02            [ 7]   68 	ld	(bc), a
+   48FA                      69 00102$:
+                             70 ;src/sistemas/teclado.c:10: if(cpct_isKeyPressed(Key_A)
+   48FA 21 08 20      [10]   71 	ld	hl, #0x2008
+   48FD CD 9F 4A      [17]   72 	call	_cpct_isKeyPressed
+   4900 7D            [ 4]   73 	ld	a, l
+   4901 B7            [ 4]   74 	or	a, a
+   4902 C8            [11]   75 	ret	Z
+                             76 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
+   4903 21 29 56      [10]   77 	ld	hl, #_array + 2
+   4906 4E            [ 7]   78 	ld	c, (hl)
+   4907 3E 96         [ 7]   79 	ld	a, #0x96
+   4909 91            [ 4]   80 	sub	a, c
+   490A D8            [11]   81 	ret	C
+                             82 ;src/sistemas/teclado.c:12: {array[0].vy+=1;}      
+   490B 01 2B 56      [10]   83 	ld	bc, #_array + 4
+   490E 0A            [ 7]   84 	ld	a, (bc)
+   490F 3C            [ 4]   85 	inc	a
+   4910 02            [ 7]   86 	ld	(bc), a
+   4911 C9            [10]   87 	ret
+                             88 	.area _CODE
+                             89 	.area _INITIALIZER
+                             90 	.area _CABS (ABS)

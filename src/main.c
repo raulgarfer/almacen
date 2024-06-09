@@ -1,12 +1,13 @@
 #include <cpctelera.h>
 #include "sprites.h"
 #include "datos/delcaraciones.h"
-
+#include "music/Demo.h"
 u8* vmem_ahora;//cpct_pageC0 ;
 
 void main(void) {
    cpct_disableFirmware();
    mover_pila();
+   cpct_akp_musicInit (Demo);
   control_interrupciones();
    cpct_setVideoMode(2);
    borrar_ambas_pantallas();
@@ -28,16 +29,14 @@ void mientras_juego(){
       borra();
       teclado();
       fisica();
+      cambiar_sprites();
       fisica_objetos();
       pintar_sprites();
-     // cpct_waitVSYNC();
-    //  if (vmem_ahora==0xc000)
-    //        {vmem_ahora=0x8000;
-    //        cpct_setVideoMemoryPage(cpct_page80);}
-    //     else if (vmem_ahora  == 0x8000)
-    //        {vmem_ahora=0xc000;
-    //        cpct_setVideoMemoryPage(cpct_pageC0 );}
       cpct_waitVSYNC();
       }
    }
+void cambiar_sprites(){
+      if (vaso_lleno==vacio)
+              {array[0].sprite =   derecha_2;}
+              else array[0].sprite =  derecha_2_lleno;}
 

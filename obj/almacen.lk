@@ -15,6 +15,7 @@ obj/media/derecha_2_lleno.rel
 obj/media/derecha_2.rel
 obj/media/derecha_lleno.rel
 obj/media/BW.rel
+obj/music/Demo.rel
 obj/main.rel
 obj/datos/definiciones.rel
 obj/sistemas/borra.rel
@@ -30,5 +31,8 @@ obj/borrar_pantallas.rel
 obj/espera_tecla.rel
 obj/interrupciones.rel
 obj/sistemas/pinta_con_puntero.rel
+obj/music/ingame.rel
+obj/music/KellyOn.rel
+obj/music/Smoke.rel
 
 -e

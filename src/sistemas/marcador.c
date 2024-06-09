@@ -14,5 +14,6 @@ void pinta_puntos(){
     cpct_setPALColour (1, 2);
         cpct_drawCharM2((u8*)marcador_y+7,puntos_decena);
         cpct_drawCharM2((u8*)marcador_y+8,puntos);
+    cpct_setPALColour (1, 3);
          cpct_drawCharM2((u8*)marcador_y+16,vidas);
 }

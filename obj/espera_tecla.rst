@@ -5014,17 +5014,45 @@ Hexadecimal [16-Bits]
 
                               4 .globl cpct_scanKeyboard_f_asm
                               5 .globl cpct_isAnyKeyPressed_f_asm
-                              6 ;;============================================================================================
-                              7 ;;espera que no haya ninguna tecla pulsada y seguidamente a que se pulse una
-                              8 ;;============================================================================================ 
-   491C                       9  _espera_pulsacion_alguna_tecla::
-   491C                      10     espera_que_no_se_pulse_tecla:
-   491C CD FC 49      [17]   11     call  cpct_scanKeyboard_f_asm
-   491F CD 04 4C      [17]   12     call cpct_isAnyKeyPressed_f_asm
-   4922 20 F8         [12]   13         jr nz,espera_que_no_se_pulse_tecla
-   4924                      14  espera_que_si_se_pulse:
-   4924 CD FC 49      [17]   15     call  cpct_scanKeyboard_f_asm
-   4927 CD 04 4C      [17]   16     call cpct_isAnyKeyPressed_f_asm
-   492A 28 F8         [12]   17         jr z,espera_que_si_se_pulse
-   492C C9            [10]   18 ret 
-                             19 
+                              6 .globl cpct_isKeyPressed_asm
+                              7 ;;============================================================================================
+                              8 ;;espera que no haya ninguna tecla pulsada y seguidamente a que se pulse una
+                              9 ;;============================================================================================ 
+   499D                      10  _espera_pulsacion_alguna_tecla::
+   499D                      11     espera_que_no_se_pulse_tecla:
+   499D CD AB 4A      [17]   12     call  cpct_scanKeyboard_f_asm
+   49A0 CD B3 4C      [17]   13     call cpct_isAnyKeyPressed_f_asm
+   49A3 20 F8         [12]   14         jr nz,espera_que_no_se_pulse_tecla
+   49A5                      15  espera_que_si_se_pulse:
+   49A5 CD AB 4A      [17]   16     call  cpct_scanKeyboard_f_asm
+   49A8 CD B3 4C      [17]   17     call cpct_isAnyKeyPressed_f_asm
+   49AB 28 F8         [12]   18         jr z,espera_que_si_se_pulse
+   49AD C9            [10]   19 ret 
+   49AE                      20 _q_esta_pulsada::
+   49AE 00                   21     .db 0
+   49AF                      22 _a_esta_pulsada::
+   49AF 00                   23     .db 0
+   49B0                      24 _comprueba_que_arriba_no_este_pulsada::
+   49B0 CD AB 4A      [17]   25      call  cpct_scanKeyboard_f_asm
+   49B3 21 08 08      [10]   26      ld hl,#Key_Q
+   49B6 CD 9F 4A      [17]   27      call cpct_isKeyPressed_asm
+   49B9 28 07         [12]   28         jr z,q_no_pulsada
+   49BB 21 AE 49      [10]   29             ld hl,#_q_esta_pulsada
+   49BE 36 01         [10]   30             ld (hl),#1
+   49C0 18 05         [12]   31             jr _comprueba_que_abajo_no_este_pulsada
+   49C2                      32     q_no_pulsada:
+   49C2 21 AE 49      [10]   33             ld hl,#_q_esta_pulsada
+   49C5 36 00         [10]   34             ld (hl),#0
+   49C7                      35 _comprueba_que_abajo_no_este_pulsada::
+   49C7 21 08 20      [10]   36     ld hl,#Key_A
+   49CA CD 9F 4A      [17]   37     call cpct_isKeyPressed_asm
+   49CD 28 07         [12]   38         jr z,a_no_pulsada
+   49CF 21 AF 49      [10]   39             ld hl,#_a_esta_pulsada
+   49D2 36 01         [10]   40             ld (hl),#1
+   49D4 18 05         [12]   41             jr fin_teclado
+   49D6                      42         a_no_pulsada:
+   49D6 21 AF 49      [10]   43             ld hl,#_a_esta_pulsada
+   49D9 36 00         [10]   44             ld (hl),#0
+   49DB                      45 fin_teclado::
+   49DB C9            [10]   46 ret
+                             47 

@@ -108,15 +108,19 @@
    0055 21 88 C7      [10]  108 	ld	hl, #0xc788
    0058 E5            [11]  109 	push	hl
    0059 CDr00r00      [17]  110 	call	_cpct_drawCharM2
-                            111 ;src/sistemas/marcador.c:17: cpct_drawCharM2((u8*)marcador_y+16,vidas);
-   005C 21r00r00      [10]  112 	ld	hl,#_vidas + 0
-   005F 4E            [ 7]  113 	ld	c, (hl)
-   0060 06 00         [ 7]  114 	ld	b, #0x00
-   0062 C5            [11]  115 	push	bc
-   0063 21 90 C7      [10]  116 	ld	hl, #0xc790
-   0066 E5            [11]  117 	push	hl
-   0067 CDr00r00      [17]  118 	call	_cpct_drawCharM2
-   006A C9            [10]  119 	ret
-                            120 	.area _CODE
-                            121 	.area _INITIALIZER
-                            122 	.area _CABS (ABS)
+                            111 ;src/sistemas/marcador.c:17: cpct_setPALColour (1, 3);
+   005C 21 01 03      [10]  112 	ld	hl, #0x0301
+   005F E5            [11]  113 	push	hl
+   0060 CDr00r00      [17]  114 	call	_cpct_setPALColour
+                            115 ;src/sistemas/marcador.c:18: cpct_drawCharM2((u8*)marcador_y+16,vidas);
+   0063 21r00r00      [10]  116 	ld	hl,#_vidas + 0
+   0066 4E            [ 7]  117 	ld	c, (hl)
+   0067 06 00         [ 7]  118 	ld	b, #0x00
+   0069 C5            [11]  119 	push	bc
+   006A 21 90 C7      [10]  120 	ld	hl, #0xc790
+   006D E5            [11]  121 	push	hl
+   006E CDr00r00      [17]  122 	call	_cpct_drawCharM2
+   0071 C9            [10]  123 	ret
+                            124 	.area _CODE
+                            125 	.area _INITIALIZER
+                            126 	.area _CABS (ABS)

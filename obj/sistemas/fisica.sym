@@ -8,14 +8,14 @@ Symbol Table
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
     _array                                                         **** GX
-  0 _baja                                                          0015 GR
+  0 _baja                                                          0016 GR
     _borra                                                         **** GX
     _derecha_2                                                     **** GX
   0 _fisica                                                        0000 GR
     _puntos                                                        **** GX
     _rightpng                                                      **** GX
   0 _sube                                                          0047 GR
-  0 _vacia_vaso                                                    0077 GR
+  0 _vacia_vaso                                                    007C GR
     _vaso_lleno                                                    **** GX
 
 
@@ -24,7 +24,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   87   flags    0
+   0 _CODE                                      size   91   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

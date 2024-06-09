@@ -182,20 +182,20 @@ _inicia_objetos::
 	ld	hl, #_array
 	push	hl
 	call	_cpct_memcpy
-;src/datos/definiciones.c:51: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
+;src/datos/definiciones.c:51: cpct_memcpy (&array[2], &manzana_init, sizeof(array[0]));
 	ld	hl, #0x000a
 	push	hl
 	ld	hl, #_manzana_init
 	push	hl
-	ld	hl, #(_array + 0x000a)
+	ld	hl, #(_array + 0x0014)
 	push	hl
 	call	_cpct_memcpy
-;src/datos/definiciones.c:52: cpct_memcpy (&array[2], &pera_init, sizeof(array[0]));
+;src/datos/definiciones.c:52: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
 	ld	hl, #0x000a
 	push	hl
 	ld	hl, #_pera_init
 	push	hl
-	ld	hl, #(_array + 0x0014)
+	ld	hl, #(_array + 0x000a)
 	push	hl
 	call	_cpct_memcpy
 	ret
@@ -215,18 +215,18 @@ _manzana_init:
 	.db #0x0a	; 10
 	.db #0xff	; -1
 	.db #0x00	;  0
-	.db #0x02	; 2
-	.db #0x10	; 16
+	.db #0x03	; 3
+	.db #0x18	; 24
 	.dw _manzana
-	.db #0x50	; 80	'P'
+	.db #0x3c	; 60
 _pera_init:
 	.db #0x01	; 1
 	.db #0x3c	; 60
 	.db #0x32	; 50	'2'
 	.db #0xff	; -1
 	.db #0x00	;  0
-	.db #0x02	; 2
-	.db #0x10	; 16
+	.db #0x03	; 3
+	.db #0x18	; 24
 	.dw _pera
 	.db #0x3c	; 60
 	.area _CODE

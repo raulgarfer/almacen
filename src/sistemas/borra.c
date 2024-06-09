@@ -13,8 +13,3 @@ void borra_objeto(u8 x,u8 y,u8 ancho,u8 alto){
     pvmem   =   cpct_getScreenPtr((u8*)vmem_ahora,x,y);  
     cpct_drawSolidBox(pvmem,0,ancho,alto);
 }
-//void borra_con_puntero(objeto* i){
-//     u8* pvmem;
-//    pvmem   =   cpct_getScreenPtr((u8*)vmem_ahora,i->x,i->y);
-//    cpct_drawSolidBox(pvmem,0,i->ancho,i->alto);
-//}

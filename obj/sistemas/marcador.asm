@@ -108,7 +108,11 @@ _pinta_puntos::
 	ld	hl, #0xc788
 	push	hl
 	call	_cpct_drawCharM2
-;src/sistemas/marcador.c:17: cpct_drawCharM2((u8*)marcador_y+16,vidas);
+;src/sistemas/marcador.c:17: cpct_setPALColour (1, 3);
+	ld	hl, #0x0301
+	push	hl
+	call	_cpct_setPALColour
+;src/sistemas/marcador.c:18: cpct_drawCharM2((u8*)marcador_y+16,vidas);
 	ld	hl,#_vidas + 0
 	ld	c, (hl)
 	ld	b, #0x00

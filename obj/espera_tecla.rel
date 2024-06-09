@@ -1,18 +1,56 @@
 XL2
-H 1 areas 4 global symbols
+H 1 areas A global symbols
 M rutinas_espera_tecla.s
+S cpct_isKeyPressed_asm Ref0000
 S cpct_scanKeyboard_f_asm Ref0000
 S .__.ABS. Def0000
 S cpct_isAnyKeyPressed_f_asm Ref0000
-A _CODE size 11 flags 0 addr 0
+A _CODE size 3F flags 0 addr 0
 S _espera_pulsacion_alguna_tecla Def0000
+S _a_esta_pulsada Def0012
+S _q_esta_pulsada Def0011
+S _comprueba_que_arriba_no_este_pulsada Def0013
+S fin_teclado Def003E
+S _comprueba_que_abajo_no_este_pulsada Def002A
 T 00 00
 R 00 00 00 00
 T 00 00
 R 00 00 00 00
 T 00 00 CD 00 00 CD 00 00 20 F8
-R 00 00 00 00 02 03 00 00 02 06 02 00
+R 00 00 00 00 02 03 01 00 02 06 03 00
 T 08 00
 R 00 00 00 00
 T 08 00 CD 00 00 CD 00 00 28 F8 C9
-R 00 00 00 00 02 03 00 00 02 06 02 00
+R 00 00 00 00 02 03 01 00 02 06 03 00
+T 11 00
+R 00 00 00 00
+T 11 00 00
+R 00 00 00 00
+T 12 00
+R 00 00 00 00
+T 12 00 00
+R 00 00 00 00
+T 13 00
+R 00 00 00 00
+T 13 00 CD 00 00 21 08 08 CD 00 00 28 07 21 11 00
+R 00 00 00 00 02 03 01 00 02 09 00 00 00 0E 00 00
+T 21 00 36 01 18 05
+R 00 00 00 00
+T 25 00
+R 00 00 00 00
+T 25 00 21 11 00 36 00
+R 00 00 00 00 00 03 00 00
+T 2A 00
+R 00 00 00 00
+T 2A 00 21 08 20 CD 00 00 28 07 21 12 00 36 01 18
+R 00 00 00 00 02 06 00 00 00 0B 00 00
+T 38 00 05
+R 00 00 00 00
+T 39 00
+R 00 00 00 00
+T 39 00 21 12 00 36 00
+R 00 00 00 00 00 03 00 00
+T 3E 00
+R 00 00 00 00
+T 3E 00 C9
+R 00 00 00 00

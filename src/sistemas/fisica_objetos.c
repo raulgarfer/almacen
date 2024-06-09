@@ -11,8 +11,7 @@ void fisica_objetos(){
         }
 }
 objeto* obj_caido ;
-void comprobar_recojida(u8 i){
-        
+void comprobar_recojida(u8 i){     
     if (array[i].y==array[0].y)
         {suma_puntos(i);
           pinta_puntos();

@@ -5010,22 +5010,22 @@ Hexadecimal [16-Bits]
                               4 ;;//    pvmem   =   cpct_getScreenPtr((u8*)vmem_ahora,i->x,i->y);
                               5 ;;//    cpct_drawSolidBox(pvmem,0,i->ancho,i->alto);
                               6 ;;//}
-   49CC AD DE                 7 _pinta_objeto::   .dw 0xdead
+   4A7B AD DE                 7 _pinta_objeto::   .dw 0xdead
                               8 .globl _vmem_ahora  
                               9 .globl cpct_getScreenPtr_asm
                              10 .globl cpct_drawSprite_asm
                              11 
-   49CE                      12 _pinta_con_puntero::
-   49CE DD 2A CC 49   [20]   13     ld ix,(_pinta_objeto)
-   49D2 ED 5B 38 4D   [20]   14     ld de,(_vmem_ahora)
-   49D6 DD 4E 01      [19]   15     ld c,1(ix)
-   49D9 DD 46 02      [19]   16     ld b,2(ix)
-   49DC CD 26 4D      [17]   17        call cpct_getScreenPtr_asm
-   49DF EB            [ 4]   18     ex de,hl
+   4A7D                      12 _pinta_con_puntero::
+   4A7D DD 2A 7B 4A   [20]   13     ld ix,(_pinta_objeto)
+   4A81 ED 5B 10 56   [20]   14     ld de,(_vmem_ahora)
+   4A85 DD 4E 01      [19]   15     ld c,1(ix)
+   4A88 DD 46 02      [19]   16     ld b,2(ix)
+   4A8B CD FE 55      [17]   17        call cpct_getScreenPtr_asm
+   4A8E EB            [ 4]   18     ex de,hl
                              19 
-   49E0 DD 66 08      [19]   20     ld h,8(ix)
-   49E3 DD 6E 07      [19]   21     ld l,7(ix)
-   49E6 DD 4E 05      [19]   22     ld c,5(ix)
-   49E9 DD 46 06      [19]   23     ld b,6(ix)
-   49EC CD AB 4A      [17]   24         call cpct_drawSprite_asm
-   49EF C9            [10]   25 ret
+   4A8F DD 66 08      [19]   20     ld h,8(ix)
+   4A92 DD 6E 07      [19]   21     ld l,7(ix)
+   4A95 DD 4E 05      [19]   22     ld c,5(ix)
+   4A98 DD 46 06      [19]   23     ld b,6(ix)
+   4A9B CD 5A 4B      [17]   24         call cpct_drawSprite_asm
+   4A9E C9            [10]   25 ret

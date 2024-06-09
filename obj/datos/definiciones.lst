@@ -182,20 +182,20 @@
    0055 21r15r00      [10]  182 	ld	hl, #_array
    0058 E5            [11]  183 	push	hl
    0059 CDr00r00      [17]  184 	call	_cpct_memcpy
-                            185 ;src/datos/definiciones.c:51: cpct_memcpy (&array[1], &manzana_init, sizeof(array[0]));
+                            185 ;src/datos/definiciones.c:51: cpct_memcpy (&array[2], &manzana_init, sizeof(array[0]));
    005C 21 0A 00      [10]  186 	ld	hl, #0x000a
    005F E5            [11]  187 	push	hl
    0060 21r85r00      [10]  188 	ld	hl, #_manzana_init
    0063 E5            [11]  189 	push	hl
-   0064 21r1Fr00      [10]  190 	ld	hl, #(_array + 0x000a)
+   0064 21r29r00      [10]  190 	ld	hl, #(_array + 0x0014)
    0067 E5            [11]  191 	push	hl
    0068 CDr00r00      [17]  192 	call	_cpct_memcpy
-                            193 ;src/datos/definiciones.c:52: cpct_memcpy (&array[2], &pera_init, sizeof(array[0]));
+                            193 ;src/datos/definiciones.c:52: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
    006B 21 0A 00      [10]  194 	ld	hl, #0x000a
    006E E5            [11]  195 	push	hl
    006F 21r8Fr00      [10]  196 	ld	hl, #_pera_init
    0072 E5            [11]  197 	push	hl
-   0073 21r29r00      [10]  198 	ld	hl, #(_array + 0x0014)
+   0073 21r1Fr00      [10]  198 	ld	hl, #(_array + 0x000a)
    0076 E5            [11]  199 	push	hl
    0077 CDr00r00      [17]  200 	call	_cpct_memcpy
    007A C9            [10]  201 	ret
@@ -215,18 +215,18 @@
    0087 0A                  215 	.db #0x0a	; 10
    0088 FF                  216 	.db #0xff	; -1
    0089 00                  217 	.db #0x00	;  0
-   008A 02                  218 	.db #0x02	; 2
-   008B 10                  219 	.db #0x10	; 16
+   008A 03                  218 	.db #0x03	; 3
+   008B 18                  219 	.db #0x18	; 24
    008Cr00r00               220 	.dw _manzana
-   008E 50                  221 	.db #0x50	; 80	'P'
+   008E 3C                  221 	.db #0x3c	; 60
    008F                     222 _pera_init:
    008F 01                  223 	.db #0x01	; 1
    0090 3C                  224 	.db #0x3c	; 60
    0091 32                  225 	.db #0x32	; 50	'2'
    0092 FF                  226 	.db #0xff	; -1
    0093 00                  227 	.db #0x00	;  0
-   0094 02                  228 	.db #0x02	; 2
-   0095 10                  229 	.db #0x10	; 16
+   0094 03                  228 	.db #0x03	; 3
+   0095 18                  229 	.db #0x18	; 24
    0096r00r00               230 	.dw _pera
    0098 3C                  231 	.db #0x3c	; 60
                             232 	.area _CODE

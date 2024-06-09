@@ -46,7 +46,7 @@
                              46 ; Function pintar_sprites
                              47 ; ---------------------------------
    0000                      48 _pintar_sprites::
-                             49 ;src/sistemas/pintar.c:8: for (i=0;i<max_entidades;i++){
+                             49 ;src/sistemas/pintar.c:8: for (i=0;i<3;i++){
    0000 0E 00         [ 7]   50 	ld	c, #0x00
    0002                      51 00102$:
                              52 ;src/sistemas/pintar.c:9: pinta_objeto  = &array[i];
@@ -64,10 +64,10 @@
    0011 C5            [11]   64 	push	bc
    0012 CDr00r00      [17]   65 	call	_pinta_con_puntero
    0015 C1            [10]   66 	pop	bc
-                             67 ;src/sistemas/pintar.c:8: for (i=0;i<max_entidades;i++){
+                             67 ;src/sistemas/pintar.c:8: for (i=0;i<3;i++){
    0016 0C            [ 4]   68 	inc	c
    0017 79            [ 4]   69 	ld	a, c
-   0018 D6 02         [ 7]   70 	sub	a, #0x02
+   0018 D6 03         [ 7]   70 	sub	a, #0x03
    001A 38 E6         [12]   71 	jr	C,00102$
    001C C9            [10]   72 	ret
                              73 	.area _CODE
