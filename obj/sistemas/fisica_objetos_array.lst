@@ -3,14 +3,13 @@ Hexadecimal [16-Bits]
 
 
 
-                              1 .module rutinas_espera_tecla.s
-                              2 .area _CODE
+                              1 .module fisica_objetos.s
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 
 
-                              3 .include "cpctelera.h.s"
+                              2 .include "cpctelera.h.s"
                               1 ;;-----------------------------LICENSE NOTICE------------------------------------
                               2 ;;  This file is part of CPCtelera: An Amstrad CPC Game Engine
                               3 ;;  Copyright (C) 2017 ronaldo / Fremos / Cheesetea / ByteRealms (@FranGallegoBR)
@@ -5012,47 +5011,35 @@ Hexadecimal [16-Bits]
 
 
 
-                              4 .globl cpct_scanKeyboard_f_asm
-                              5 .globl cpct_isAnyKeyPressed_f_asm
-                              6 .globl cpct_isKeyPressed_asm
-                              7 ;;============================================================================================
-                              8 ;;espera que no haya ninguna tecla pulsada y seguidamente a que se pulse una
-                              9 ;;============================================================================================ 
-   497B                      10  _espera_pulsacion_alguna_tecla::
-   497B                      11     espera_que_no_se_pulse_tecla:
-   497B CD 8E 4A      [17]   12     call  cpct_scanKeyboard_f_asm
-   497E CD 96 4C      [17]   13     call cpct_isAnyKeyPressed_f_asm
-   4981 20 F8         [12]   14         jr nz,espera_que_no_se_pulse_tecla
-   4983                      15  espera_que_si_se_pulse:
-   4983 CD 8E 4A      [17]   16     call  cpct_scanKeyboard_f_asm
-   4986 CD 96 4C      [17]   17     call cpct_isAnyKeyPressed_f_asm
-   4989 28 F8         [12]   18         jr z,espera_que_si_se_pulse
-   498B C9            [10]   19 ret 
-   498C                      20 _q_esta_pulsada::
-   498C 00                   21     .db 0
-   498D                      22 _a_esta_pulsada::
-   498D 00                   23     .db 0
-   498E                      24 _comprueba_que_arriba_no_este_pulsada::
-   498E CD 8E 4A      [17]   25      call  cpct_scanKeyboard_f_asm
-   4991 21 08 08      [10]   26      ld hl,#Key_Q
-   4994 CD 82 4A      [17]   27      call cpct_isKeyPressed_asm
-   4997 28 07         [12]   28         jr z,q_no_pulsada
-   4999 21 8C 49      [10]   29             ld hl,#_q_esta_pulsada
-   499C 36 01         [10]   30             ld (hl),#1
-   499E 18 05         [12]   31             jr _comprueba_que_abajo_no_este_pulsada
-   49A0                      32     q_no_pulsada:
-   49A0 21 8C 49      [10]   33             ld hl,#_q_esta_pulsada
-   49A3 36 00         [10]   34             ld (hl),#0
-   49A5                      35 _comprueba_que_abajo_no_este_pulsada::
-   49A5 21 08 20      [10]   36     ld hl,#Key_A
-   49A8 CD 82 4A      [17]   37     call cpct_isKeyPressed_asm
-   49AB 28 07         [12]   38         jr z,a_no_pulsada
-   49AD 21 8D 49      [10]   39             ld hl,#_a_esta_pulsada
-   49B0 36 01         [10]   40             ld (hl),#1
-   49B2 18 05         [12]   41             jr fin_teclado
-   49B4                      42         a_no_pulsada:
-   49B4 21 8D 49      [10]   43             ld hl,#_a_esta_pulsada
-   49B7 36 00         [10]   44             ld (hl),#0
-   49B9                      45 fin_teclado::
-   49B9 C9            [10]   46 ret
-                             47 
+                              3 .include "datos/declaraciones.inc"
+                              1 .module declaraciones.inc
+                     0000     2 estado      =   0
+                     0001     3 x           =   1
+                     0002     4 y           =   2
+                     0003     5 vx          =   3
+                     0004     6 vy          =   4
+                     0005     7 ancho       =   5
+                     0006     8 alto        =   6
+                     0007     9 sprite      =   7
+                     0009    10 x_inicial   =   9
+                     000A    11 size        =   10
+                             12 
+                             13 .globl _array
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
+Hexadecimal [16-Bits]
+
+
+
+                              4 ;;//void fisica_objetos(){
+                              5 ;;//    u8 i;
+                              6 ;;//    for (i=1;i<max_entidades;i++){
+                              7 ;;//    borra_objeto(array[i].x,array[i].y,array[i].ancho,array[i].alto);
+                              8 ;;//    array[i].x+=array[i].vx;
+                              9 ;;//    if (array[i].x==10)
+                             10 ;;//        {comprobar_recojida(i);}
+                             11 
+   0000                      12 _fisica_objetos_con_array::
+   0000 DD 21 00 00   [14]   13     ld ix,#_array
+                             14  
+                             15 
+   0004 C9            [10]   16 ret

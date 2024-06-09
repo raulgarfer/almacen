@@ -10,8 +10,8 @@
 ;--------------------------------------------------------
 	.globl _cpct_memcpy
 	.globl _vaso_lleno
-	.globl _pobjeto2
-	.globl _pobjeto1
+	.globl _pmanzana
+	.globl _ppera
 	.globl _pjugador
 	.globl _item1
 	.globl _player
@@ -34,6 +34,7 @@
 	.globl _spr_jugador
 	.globl _y_jugador
 	.globl _x_jugador
+	.globl _pera2_init
 	.globl _pera_init
 	.globl _manzana_init
 	.globl _player_init
@@ -90,9 +91,9 @@ _item1::
 	.ds 10
 _pjugador::
 	.ds 2
-_pobjeto1::
+_ppera::
 	.ds 2
-_pobjeto2::
+_pmanzana::
 	.ds 2
 _vaso_lleno::
 	.ds 1
@@ -154,14 +155,14 @@ _iniciar_valores::
 ;src/datos/definiciones.c:36: pjugador        =   &array[0];
 	ld	bc, #_array+0
 	ld	(_pjugador), bc
-;src/datos/definiciones.c:37: pobjeto1        =   &array[1];
+;src/datos/definiciones.c:37: pmanzana        =   &array[1];
 	ld	hl, #0x000a
 	add	hl, bc
-	ld	(_pobjeto1), hl
-;src/datos/definiciones.c:38: pobjeto2        =   &array[2];
+	ld	(_pmanzana), hl
+;src/datos/definiciones.c:38: ppera           =   &array[2];
 	ld	hl, #0x0014
 	add	hl, bc
-	ld	(_pobjeto2), hl
+	ld	(_ppera), hl
 ;src/datos/definiciones.c:39: vmem_ahora      =   0xC000; 
 	ld	hl, #0xc000
 	ld	(_vmem_ahora), hl
@@ -169,12 +170,12 @@ _iniciar_valores::
 	ld	hl,#_vaso_lleno + 0
 	ld	(hl), #0x00
 	ret
-;src/datos/definiciones.c:49: void inicia_objetos(){
+;src/datos/definiciones.c:50: void inicia_objetos(){
 ;	---------------------------------
 ; Function inicia_objetos
 ; ---------------------------------
 _inicia_objetos::
-;src/datos/definiciones.c:50: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
+;src/datos/definiciones.c:51: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
 	ld	hl, #0x000a
 	push	hl
 	ld	hl, #_player_init
@@ -182,15 +183,7 @@ _inicia_objetos::
 	ld	hl, #_array
 	push	hl
 	call	_cpct_memcpy
-;src/datos/definiciones.c:51: cpct_memcpy (&array[2], &manzana_init, sizeof(array[0]));
-	ld	hl, #0x000a
-	push	hl
-	ld	hl, #_manzana_init
-	push	hl
-	ld	hl, #(_array + 0x0014)
-	push	hl
-	call	_cpct_memcpy
-;src/datos/definiciones.c:52: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
+;src/datos/definiciones.c:53: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
 	ld	hl, #0x000a
 	push	hl
 	ld	hl, #_pera_init
@@ -223,6 +216,16 @@ _pera_init:
 	.db #0x01	; 1
 	.db #0x3c	; 60
 	.db #0x32	; 50	'2'
+	.db #0xff	; -1
+	.db #0x00	;  0
+	.db #0x03	; 3
+	.db #0x18	; 24
+	.dw _pera
+	.db #0x3c	; 60
+_pera2_init:
+	.db #0x01	; 1
+	.db #0x46	; 70	'F'
+	.db #0x64	; 100	'd'
 	.db #0xff	; -1
 	.db #0x00	;  0
 	.db #0x03	; 3

@@ -72,19 +72,27 @@
    0021 CDr00r00      [17]   72 	call	_cpct_isKeyPressed
    0024 7D            [ 4]   73 	ld	a, l
    0025 B7            [ 4]   74 	or	a, a
-   0026 C8            [11]   75 	ret	Z
+   0026 28 0F         [12]   75 	jr	Z,00105$
                              76 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
-   0027 21r02r00      [10]   77 	ld	hl, #_array + 2
-   002A 4E            [ 7]   78 	ld	c, (hl)
-   002B 3E 96         [ 7]   79 	ld	a, #0x96
-   002D 91            [ 4]   80 	sub	a, c
-   002E D8            [11]   81 	ret	C
-                             82 ;src/sistemas/teclado.c:12: {array[0].vy+=1;}      
-   002F 01r04r00      [10]   83 	ld	bc, #_array + 4
-   0032 0A            [ 7]   84 	ld	a, (bc)
-   0033 3C            [ 4]   85 	inc	a
-   0034 02            [ 7]   86 	ld	(bc), a
-   0035 C9            [10]   87 	ret
-                             88 	.area _CODE
-                             89 	.area _INITIALIZER
-                             90 	.area _CABS (ABS)
+   0028 21r02r00      [10]   77 	ld	hl, #_array + 2
+   002B 4E            [ 7]   78 	ld	c, (hl)
+   002C 3E 96         [ 7]   79 	ld	a, #0x96
+   002E 91            [ 4]   80 	sub	a, c
+   002F 38 06         [12]   81 	jr	C,00105$
+                             82 ;src/sistemas/teclado.c:12: {array[0].vy+=1;}   
+   0031 01r04r00      [10]   83 	ld	bc, #_array + 4
+   0034 0A            [ 7]   84 	ld	a, (bc)
+   0035 3C            [ 4]   85 	inc	a
+   0036 02            [ 7]   86 	ld	(bc), a
+   0037                      87 00105$:
+                             88 ;src/sistemas/teclado.c:13: if (cpct_isKeyPressed(Key_Esc))
+   0037 21 08 04      [10]   89 	ld	hl, #0x0408
+   003A CDr00r00      [17]   90 	call	_cpct_isKeyPressed
+   003D 7D            [ 4]   91 	ld	a, l
+   003E B7            [ 4]   92 	or	a, a
+   003F C8            [11]   93 	ret	Z
+                             94 ;src/sistemas/teclado.c:14: {main();}   
+   0040 C3r00r00      [10]   95 	jp  _main
+                             96 	.area _CODE
+                             97 	.area _INITIALIZER
+                             98 	.area _CABS (ABS)

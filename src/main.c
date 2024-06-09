@@ -18,6 +18,7 @@ void a_jugar(){
     // cpct_clearScreen_f64(0); 
        borrar_ambas_pantallas();
     iniciar_valores();
+    inicia_objetos();
    pinta_marcador();
     pinta_puntos();
    mientras_juego();

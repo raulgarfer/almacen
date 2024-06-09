@@ -7,16 +7,21 @@ void fisica_objetos(){
     borra_objeto(array[i].x,array[i].y,array[i].ancho,array[i].alto);
     array[i].x+=array[i].vx;
     if (array[i].x==10)
-        {comprobar_recojida(i);}
-        }
-}
-objeto* obj_caido ;
+       { array[i].vx=0;
+          array[i].x    =   70;
+        comprobar_recojida(i);}
+   
+            }}
+
+objeto  *obj_caido ;
+u8 pi;
 void comprobar_recojida(u8 i){     
     if (array[i].y==array[0].y)
-        {suma_puntos(i);
-          pinta_puntos();
-          vaso_lleno    =   lleno;}
+        { vaso_lleno    =   lleno;
+                   }
     else {obj_caido=&array[i];
+            pi=i;
+            array[i].vx =   -1;
         muere(i);}
 }
 

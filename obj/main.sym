@@ -12,7 +12,7 @@ Symbol Table
     _array                                                         **** GX
     _borra                                                         **** GX
     _borrar_ambas_pantallas                                        **** GX
-  0 _cambiar_sprites                                               0048 GR
+  0 _cambiar_sprites                                               004B GR
     _control_interrupciones                                        **** GX
     _cpct_akp_musicInit                                            **** GX
     _cpct_disableFirmware                                          **** GX
@@ -26,7 +26,7 @@ Symbol Table
     _iniciar_valores                                               **** GX
   0 _main                                                          0000 GR
     _menu_juego                                                    **** GX
-  0 _mientras_juego                                                0031 GR
+  0 _mientras_juego                                                0034 GR
     _mover_pila                                                    **** GX
     _pinta_marcador                                                **** GX
     _pinta_puntos                                                  **** GX
@@ -41,7 +41,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   5C   flags    0
+   0 _CODE                                      size   5F   flags    0
    1 _DATA                                      size    2   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

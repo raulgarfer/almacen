@@ -53,41 +53,17 @@
 ; Function muere
 ; ---------------------------------
 _muere::
-	push	ix
-	ld	ix,#0
-	add	ix,sp
 ;src/sistemas/fin_juego.c:5: vidas--;
 	ld	hl, #_vidas+0
 	dec	(hl)
-;src/sistemas/fin_juego.c:6: array[i].x = array[i].x_inicial;
-	ld	bc, #_array+0
-	ld	e,4 (ix)
-	ld	d,#0x00
-	ld	l, e
-	ld	h, d
-	add	hl, hl
-	add	hl, hl
-	add	hl, de
-	add	hl, hl
-	add	hl, bc
-	ld	c, l
-	ld	b, h
-	inc	bc
-	ld	de, #0x0009
-	add	hl, de
-	ld	a, (hl)
-	ld	(bc), a
 ;src/sistemas/fin_juego.c:7: pinta_puntos();
 	call	_pinta_puntos
 ;src/sistemas/fin_juego.c:8: if (vidas=='0')
 	ld	a,(#_vidas + 0)
 	sub	a, #0x30
-	jr	NZ,00103$
+	ret	NZ
 ;src/sistemas/fin_juego.c:9: {fin_juego();}
-	call	_fin_juego
-00103$:
-	pop	ix
-	ret
+	jp  _fin_juego
 ;src/sistemas/fin_juego.c:11: void fin_juego(){
 ;	---------------------------------
 ; Function fin_juego

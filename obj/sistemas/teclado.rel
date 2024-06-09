@@ -1,13 +1,14 @@
 XL2
-H 9 areas 6 global symbols
+H 9 areas 7 global symbols
 M teclado
 O -mz80
 S _cpct_isKeyPressed Ref0000
+S _main Ref0000
 S .__.ABS. Def0000
 S _comprueba_que_arriba_no_este_pulsada Ref0000
 S _array Ref0000
 S _cpct_scanKeyboard Ref0000
-A _CODE size 36 flags 0 addr 0
+A _CODE size 43 flags 0 addr 0
 S _teclado Def0000
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
@@ -20,14 +21,18 @@ A _CABS size 0 flags 8 addr 0
 T 00 00
 R 00 00 00 00
 T 00 00 CD 00 00 CD 00 00 21 08 08 CD 00 00 7D B7
-R 00 00 00 00 02 03 02 00 02 06 04 00 02 0C 00 00
+R 00 00 00 00 02 03 03 00 02 06 05 00 02 0C 00 00
 T 0E 00 28 0E 3A 02 00 D6 0A 38 07 01 04 00 0A C6
-R 00 00 00 00 02 05 03 00 02 0C 03 00
+R 00 00 00 00 02 05 04 00 02 0C 04 00
 T 1C 00 FF 02
 R 00 00 00 00
 T 1E 00
 R 00 00 00 00
-T 1E 00 21 08 20 CD 00 00 7D B7 C8 21 02 00 4E 3E
-R 00 00 00 00 02 06 00 00 02 0C 03 00
-T 2C 00 96 91 D8 01 04 00 0A 3C 02 C9
-R 00 00 00 00 02 06 03 00
+T 1E 00 21 08 20 CD 00 00 7D B7 28 0F 21 02 00 4E
+R 00 00 00 00 02 06 00 00 02 0D 04 00
+T 2C 00 3E 96 91 38 06 01 04 00 0A 3C 02
+R 00 00 00 00 02 08 04 00
+T 37 00
+R 00 00 00 00
+T 37 00 21 08 04 CD 00 00 7D B7 C8 C3 00 00
+R 00 00 00 00 02 06 00 00 02 0C 01 00

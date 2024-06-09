@@ -97,49 +97,51 @@ _a_jugar::
 	call	_borrar_ambas_pantallas
 ;src/main.c:20: iniciar_valores();
 	call	_iniciar_valores
-;src/main.c:21: pinta_marcador();
+;src/main.c:21: inicia_objetos();
+	call	_inicia_objetos
+;src/main.c:22: pinta_marcador();
 	call	_pinta_marcador
-;src/main.c:22: pinta_puntos();
+;src/main.c:23: pinta_puntos();
 	call	_pinta_puntos
-;src/main.c:23: mientras_juego();
+;src/main.c:24: mientras_juego();
 	jp  _mientras_juego
-;src/main.c:27: void mientras_juego(){
+;src/main.c:28: void mientras_juego(){
 ;	---------------------------------
 ; Function mientras_juego
 ; ---------------------------------
 _mientras_juego::
-;src/main.c:28: while(1){
+;src/main.c:29: while(1){
 00102$:
-;src/main.c:29: borra();
+;src/main.c:30: borra();
 	call	_borra
-;src/main.c:30: teclado();
+;src/main.c:31: teclado();
 	call	_teclado
-;src/main.c:31: fisica();
+;src/main.c:32: fisica();
 	call	_fisica
-;src/main.c:32: cambiar_sprites();
+;src/main.c:33: cambiar_sprites();
 	call	_cambiar_sprites
-;src/main.c:33: fisica_objetos();
+;src/main.c:34: fisica_objetos();
 	call	_fisica_objetos
-;src/main.c:34: pintar_sprites();
+;src/main.c:35: pintar_sprites();
 	call	_pintar_sprites
-;src/main.c:35: cpct_waitVSYNC();
+;src/main.c:36: cpct_waitVSYNC();
 	call	_cpct_waitVSYNC
 	jr	00102$
-;src/main.c:38: void cambiar_sprites(){
+;src/main.c:39: void cambiar_sprites(){
 ;	---------------------------------
 ; Function cambiar_sprites
 ; ---------------------------------
 _cambiar_sprites::
-;src/main.c:39: if (vaso_lleno==vacio)
+;src/main.c:40: if (vaso_lleno==vacio)
 	ld	a,(#_vaso_lleno + 0)
 	or	a, a
 	jr	NZ,00102$
-;src/main.c:40: {array[0].sprite =   derecha_2;}
+;src/main.c:41: {array[0].sprite =   derecha_2;}
 	ld	hl, #_derecha_2
 	ld	((_array + 0x0007)), hl
 	ret
 00102$:
-;src/main.c:41: else array[0].sprite =  derecha_2_lleno;}
+;src/main.c:42: else array[0].sprite =  derecha_2_lleno;}
 	ld	hl, #_derecha_2_lleno
 	ld	((_array + 0x0007)), hl
 	ret

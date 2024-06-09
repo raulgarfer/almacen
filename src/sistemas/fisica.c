@@ -17,30 +17,34 @@ void baja(){
      else 
     if (array[0].y   ==  y_frame_2)
         {array[0].y  =   y_frame_3;
-         array[0].sprite =  rightpng;}
+       }
     else
     if (array[0].y   ==  y_frame_3)
         {array[0].y  =   y_frame_4;
-        array[0].sprite =   derecha_2;
         vacia_vaso();}
 }
 void sube(){
     array[0].vy=0;
      if (array[0].y   ==  y_frame_4)
         {array[0].y  =   y_frame_3;
-         array[0].sprite =  rightpng;}
+       }
      else 
     if (array[0].y   ==  y_frame_3)
         {array[0].y  =   y_frame_2;
-        array[0].sprite =   derecha_2;}
+       }
      else
     if (array[0].y   ==  y_frame_2)
         {array[0].y  =   y_frame_1;
-        array[0].sprite =  rightpng;}
+        }
 }
+extern objeto  *obj_caido ;
+extern u8 pi;
 void vacia_vaso(){
     if (vaso_lleno==lleno)
         {puntos++;
-        array[0].sprite =  rightpng; 
-        vaso_lleno  =  vacio;}
+        vaso_lleno  =  vacio;
+        suma_puntos(pi);
+        pinta_puntos();
+        array[pi].vx=-1;
+        }
 }

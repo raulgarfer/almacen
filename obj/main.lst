@@ -97,52 +97,54 @@
    0022 CDr00r00      [17]   97 	call	_borrar_ambas_pantallas
                              98 ;src/main.c:20: iniciar_valores();
    0025 CDr00r00      [17]   99 	call	_iniciar_valores
-                            100 ;src/main.c:21: pinta_marcador();
-   0028 CDr00r00      [17]  101 	call	_pinta_marcador
-                            102 ;src/main.c:22: pinta_puntos();
-   002B CDr00r00      [17]  103 	call	_pinta_puntos
-                            104 ;src/main.c:23: mientras_juego();
-   002E C3r31r00      [10]  105 	jp  _mientras_juego
-                            106 ;src/main.c:27: void mientras_juego(){
-                            107 ;	---------------------------------
-                            108 ; Function mientras_juego
-                            109 ; ---------------------------------
-   0031                     110 _mientras_juego::
-                            111 ;src/main.c:28: while(1){
-   0031                     112 00102$:
-                            113 ;src/main.c:29: borra();
-   0031 CDr00r00      [17]  114 	call	_borra
-                            115 ;src/main.c:30: teclado();
-   0034 CDr00r00      [17]  116 	call	_teclado
-                            117 ;src/main.c:31: fisica();
-   0037 CDr00r00      [17]  118 	call	_fisica
-                            119 ;src/main.c:32: cambiar_sprites();
-   003A CDr48r00      [17]  120 	call	_cambiar_sprites
-                            121 ;src/main.c:33: fisica_objetos();
-   003D CDr00r00      [17]  122 	call	_fisica_objetos
-                            123 ;src/main.c:34: pintar_sprites();
-   0040 CDr00r00      [17]  124 	call	_pintar_sprites
-                            125 ;src/main.c:35: cpct_waitVSYNC();
-   0043 CDr00r00      [17]  126 	call	_cpct_waitVSYNC
-   0046 18 E9         [12]  127 	jr	00102$
-                            128 ;src/main.c:38: void cambiar_sprites(){
-                            129 ;	---------------------------------
-                            130 ; Function cambiar_sprites
-                            131 ; ---------------------------------
-   0048                     132 _cambiar_sprites::
-                            133 ;src/main.c:39: if (vaso_lleno==vacio)
-   0048 3Ar00r00      [13]  134 	ld	a,(#_vaso_lleno + 0)
-   004B B7            [ 4]  135 	or	a, a
-   004C 20 07         [12]  136 	jr	NZ,00102$
-                            137 ;src/main.c:40: {array[0].sprite =   derecha_2;}
-   004E 21r00r00      [10]  138 	ld	hl, #_derecha_2
-   0051 22r07r00      [16]  139 	ld	((_array + 0x0007)), hl
-   0054 C9            [10]  140 	ret
-   0055                     141 00102$:
-                            142 ;src/main.c:41: else array[0].sprite =  derecha_2_lleno;}
-   0055 21r00r00      [10]  143 	ld	hl, #_derecha_2_lleno
-   0058 22r07r00      [16]  144 	ld	((_array + 0x0007)), hl
-   005B C9            [10]  145 	ret
-                            146 	.area _CODE
-                            147 	.area _INITIALIZER
-                            148 	.area _CABS (ABS)
+                            100 ;src/main.c:21: inicia_objetos();
+   0028 CDr00r00      [17]  101 	call	_inicia_objetos
+                            102 ;src/main.c:22: pinta_marcador();
+   002B CDr00r00      [17]  103 	call	_pinta_marcador
+                            104 ;src/main.c:23: pinta_puntos();
+   002E CDr00r00      [17]  105 	call	_pinta_puntos
+                            106 ;src/main.c:24: mientras_juego();
+   0031 C3r34r00      [10]  107 	jp  _mientras_juego
+                            108 ;src/main.c:28: void mientras_juego(){
+                            109 ;	---------------------------------
+                            110 ; Function mientras_juego
+                            111 ; ---------------------------------
+   0034                     112 _mientras_juego::
+                            113 ;src/main.c:29: while(1){
+   0034                     114 00102$:
+                            115 ;src/main.c:30: borra();
+   0034 CDr00r00      [17]  116 	call	_borra
+                            117 ;src/main.c:31: teclado();
+   0037 CDr00r00      [17]  118 	call	_teclado
+                            119 ;src/main.c:32: fisica();
+   003A CDr00r00      [17]  120 	call	_fisica
+                            121 ;src/main.c:33: cambiar_sprites();
+   003D CDr4Br00      [17]  122 	call	_cambiar_sprites
+                            123 ;src/main.c:34: fisica_objetos();
+   0040 CDr00r00      [17]  124 	call	_fisica_objetos
+                            125 ;src/main.c:35: pintar_sprites();
+   0043 CDr00r00      [17]  126 	call	_pintar_sprites
+                            127 ;src/main.c:36: cpct_waitVSYNC();
+   0046 CDr00r00      [17]  128 	call	_cpct_waitVSYNC
+   0049 18 E9         [12]  129 	jr	00102$
+                            130 ;src/main.c:39: void cambiar_sprites(){
+                            131 ;	---------------------------------
+                            132 ; Function cambiar_sprites
+                            133 ; ---------------------------------
+   004B                     134 _cambiar_sprites::
+                            135 ;src/main.c:40: if (vaso_lleno==vacio)
+   004B 3Ar00r00      [13]  136 	ld	a,(#_vaso_lleno + 0)
+   004E B7            [ 4]  137 	or	a, a
+   004F 20 07         [12]  138 	jr	NZ,00102$
+                            139 ;src/main.c:41: {array[0].sprite =   derecha_2;}
+   0051 21r00r00      [10]  140 	ld	hl, #_derecha_2
+   0054 22r07r00      [16]  141 	ld	((_array + 0x0007)), hl
+   0057 C9            [10]  142 	ret
+   0058                     143 00102$:
+                            144 ;src/main.c:42: else array[0].sprite =  derecha_2_lleno;}
+   0058 21r00r00      [10]  145 	ld	hl, #_derecha_2_lleno
+   005B 22r07r00      [16]  146 	ld	((_array + 0x0007)), hl
+   005E C9            [10]  147 	ret
+                            148 	.area _CODE
+                            149 	.area _INITIALIZER
+                            150 	.area _CABS (ABS)

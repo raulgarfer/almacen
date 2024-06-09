@@ -53,108 +53,84 @@
                              53 ; Function muere
                              54 ; ---------------------------------
    0000                      55 _muere::
-   0000 DD E5         [15]   56 	push	ix
-   0002 DD 21 00 00   [14]   57 	ld	ix,#0
-   0006 DD 39         [15]   58 	add	ix,sp
-                             59 ;src/sistemas/fin_juego.c:5: vidas--;
-   0008 21r00r00      [10]   60 	ld	hl, #_vidas+0
-   000B 35            [11]   61 	dec	(hl)
-                             62 ;src/sistemas/fin_juego.c:6: array[i].x = array[i].x_inicial;
-   000C 01r00r00      [10]   63 	ld	bc, #_array+0
-   000F DD 5E 04      [19]   64 	ld	e,4 (ix)
-   0012 16 00         [ 7]   65 	ld	d,#0x00
-   0014 6B            [ 4]   66 	ld	l, e
-   0015 62            [ 4]   67 	ld	h, d
-   0016 29            [11]   68 	add	hl, hl
-   0017 29            [11]   69 	add	hl, hl
-   0018 19            [11]   70 	add	hl, de
-   0019 29            [11]   71 	add	hl, hl
-   001A 09            [11]   72 	add	hl, bc
-   001B 4D            [ 4]   73 	ld	c, l
-   001C 44            [ 4]   74 	ld	b, h
-   001D 03            [ 6]   75 	inc	bc
-   001E 11 09 00      [10]   76 	ld	de, #0x0009
-   0021 19            [11]   77 	add	hl, de
-   0022 7E            [ 7]   78 	ld	a, (hl)
-   0023 02            [ 7]   79 	ld	(bc), a
-                             80 ;src/sistemas/fin_juego.c:7: pinta_puntos();
-   0024 CDr00r00      [17]   81 	call	_pinta_puntos
-                             82 ;src/sistemas/fin_juego.c:8: if (vidas=='0')
-   0027 3Ar00r00      [13]   83 	ld	a,(#_vidas + 0)
-   002A D6 30         [ 7]   84 	sub	a, #0x30
-   002C 20 03         [12]   85 	jr	NZ,00103$
-                             86 ;src/sistemas/fin_juego.c:9: {fin_juego();}
-   002E CDr34r00      [17]   87 	call	_fin_juego
-   0031                      88 00103$:
-   0031 DD E1         [14]   89 	pop	ix
-   0033 C9            [10]   90 	ret
-                             91 ;src/sistemas/fin_juego.c:11: void fin_juego(){
-                             92 ;	---------------------------------
-                             93 ; Function fin_juego
-                             94 ; ---------------------------------
-   0034                      95 _fin_juego::
-                             96 ;src/sistemas/fin_juego.c:13: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,20);
-   0034 2Ar00r00      [16]   97 	ld	hl, (_vmem_ahora)
-   0037 01 0A 14      [10]   98 	ld	bc, #0x140a
-   003A C5            [11]   99 	push	bc
-   003B E5            [11]  100 	push	hl
-   003C CDr00r00      [17]  101 	call	_cpct_getScreenPtr
-                            102 ;src/sistemas/fin_juego.c:14: cpct_drawStringM2("Has sido despedido!",pvmem);
-   003F 01r61r00      [10]  103 	ld	bc, #___str_0+0
-   0042 E5            [11]  104 	push	hl
-   0043 C5            [11]  105 	push	bc
-   0044 CDr00r00      [17]  106 	call	_cpct_drawStringM2
-                            107 ;src/sistemas/fin_juego.c:15: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,40);
-   0047 2Ar00r00      [16]  108 	ld	hl, (_vmem_ahora)
-   004A 01 0A 28      [10]  109 	ld	bc, #0x280a
-   004D C5            [11]  110 	push	bc
-   004E E5            [11]  111 	push	hl
-   004F CDr00r00      [17]  112 	call	_cpct_getScreenPtr
-                            113 ;src/sistemas/fin_juego.c:16: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
-   0052 01r75r00      [10]  114 	ld	bc, #___str_1+0
-   0055 E5            [11]  115 	push	hl
-   0056 C5            [11]  116 	push	bc
-   0057 CDr00r00      [17]  117 	call	_cpct_drawStringM2
-                            118 ;src/sistemas/fin_juego.c:17: espera_pulsacion_tecla();
-   005A CDr8Ar00      [17]  119 	call	_espera_pulsacion_tecla
-                            120 ;src/sistemas/fin_juego.c:18: espera_pulsar();
-   005D CDr9Br00      [17]  121 	call	_espera_pulsar
-   0060 C9            [10]  122 	ret
-   0061                     123 ___str_0:
-   0061 48 61 73 20 73 69   124 	.ascii "Has sido despedido!"
+                             56 ;src/sistemas/fin_juego.c:5: vidas--;
+   0000 21r00r00      [10]   57 	ld	hl, #_vidas+0
+   0003 35            [11]   58 	dec	(hl)
+                             59 ;src/sistemas/fin_juego.c:7: pinta_puntos();
+   0004 CDr00r00      [17]   60 	call	_pinta_puntos
+                             61 ;src/sistemas/fin_juego.c:8: if (vidas=='0')
+   0007 3Ar00r00      [13]   62 	ld	a,(#_vidas + 0)
+   000A D6 30         [ 7]   63 	sub	a, #0x30
+   000C C0            [11]   64 	ret	NZ
+                             65 ;src/sistemas/fin_juego.c:9: {fin_juego();}
+   000D C3r10r00      [10]   66 	jp  _fin_juego
+                             67 ;src/sistemas/fin_juego.c:11: void fin_juego(){
+                             68 ;	---------------------------------
+                             69 ; Function fin_juego
+                             70 ; ---------------------------------
+   0010                      71 _fin_juego::
+                             72 ;src/sistemas/fin_juego.c:13: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,20);
+   0010 2Ar00r00      [16]   73 	ld	hl, (_vmem_ahora)
+   0013 01 0A 14      [10]   74 	ld	bc, #0x140a
+   0016 C5            [11]   75 	push	bc
+   0017 E5            [11]   76 	push	hl
+   0018 CDr00r00      [17]   77 	call	_cpct_getScreenPtr
+                             78 ;src/sistemas/fin_juego.c:14: cpct_drawStringM2("Has sido despedido!",pvmem);
+   001B 01r3Dr00      [10]   79 	ld	bc, #___str_0+0
+   001E E5            [11]   80 	push	hl
+   001F C5            [11]   81 	push	bc
+   0020 CDr00r00      [17]   82 	call	_cpct_drawStringM2
+                             83 ;src/sistemas/fin_juego.c:15: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,40);
+   0023 2Ar00r00      [16]   84 	ld	hl, (_vmem_ahora)
+   0026 01 0A 28      [10]   85 	ld	bc, #0x280a
+   0029 C5            [11]   86 	push	bc
+   002A E5            [11]   87 	push	hl
+   002B CDr00r00      [17]   88 	call	_cpct_getScreenPtr
+                             89 ;src/sistemas/fin_juego.c:16: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
+   002E 01r51r00      [10]   90 	ld	bc, #___str_1+0
+   0031 E5            [11]   91 	push	hl
+   0032 C5            [11]   92 	push	bc
+   0033 CDr00r00      [17]   93 	call	_cpct_drawStringM2
+                             94 ;src/sistemas/fin_juego.c:17: espera_pulsacion_tecla();
+   0036 CDr66r00      [17]   95 	call	_espera_pulsacion_tecla
+                             96 ;src/sistemas/fin_juego.c:18: espera_pulsar();
+   0039 CDr77r00      [17]   97 	call	_espera_pulsar
+   003C C9            [10]   98 	ret
+   003D                      99 ___str_0:
+   003D 48 61 73 20 73 69   100 	.ascii "Has sido despedido!"
         64 6F 20 64 65 73
         70 65 64 69 64 6F
         21
-   0074 00                  125 	.db 0x00
-   0075                     126 ___str_1:
-   0075 56 75 65 6C 76 65   127 	.ascii "Vuelve a intentarlo."
+   0050 00                  101 	.db 0x00
+   0051                     102 ___str_1:
+   0051 56 75 65 6C 76 65   103 	.ascii "Vuelve a intentarlo."
         20 61 20 69 6E 74
         65 6E 74 61 72 6C
         6F 2E
-   0089 00                  128 	.db 0x00
-                            129 ;src/sistemas/fin_juego.c:20: void espera_pulsacion_tecla(){
-                            130 ;	---------------------------------
-                            131 ; Function espera_pulsacion_tecla
-                            132 ; ---------------------------------
-   008A                     133 _espera_pulsacion_tecla::
-                            134 ;src/sistemas/fin_juego.c:21: espera_pulsacion_alguna_tecla();
-   008A CDr00r00      [17]  135 	call	_espera_pulsacion_alguna_tecla
-                            136 ;src/sistemas/fin_juego.c:22: cpct_clearScreen_f64 (0);
-   008D 21 00 40      [10]  137 	ld	hl, #0x4000
-   0090 E5            [11]  138 	push	hl
-   0091 26 00         [ 7]  139 	ld	h, #0x00
-   0093 E5            [11]  140 	push	hl
-   0094 26 C0         [ 7]  141 	ld	h, #0xc0
-   0096 E5            [11]  142 	push	hl
-   0097 CDr00r00      [17]  143 	call	_cpct_memset_f64
-   009A C9            [10]  144 	ret
-                            145 ;src/sistemas/fin_juego.c:24: void espera_pulsar(){
-                            146 ;	---------------------------------
-                            147 ; Function espera_pulsar
-                            148 ; ---------------------------------
-   009B                     149 _espera_pulsar::
-                            150 ;src/sistemas/fin_juego.c:25: a_jugar();}
-   009B C3r00r00      [10]  151 	jp  _a_jugar
-                            152 	.area _CODE
-                            153 	.area _INITIALIZER
-                            154 	.area _CABS (ABS)
+   0065 00                  104 	.db 0x00
+                            105 ;src/sistemas/fin_juego.c:20: void espera_pulsacion_tecla(){
+                            106 ;	---------------------------------
+                            107 ; Function espera_pulsacion_tecla
+                            108 ; ---------------------------------
+   0066                     109 _espera_pulsacion_tecla::
+                            110 ;src/sistemas/fin_juego.c:21: espera_pulsacion_alguna_tecla();
+   0066 CDr00r00      [17]  111 	call	_espera_pulsacion_alguna_tecla
+                            112 ;src/sistemas/fin_juego.c:22: cpct_clearScreen_f64 (0);
+   0069 21 00 40      [10]  113 	ld	hl, #0x4000
+   006C E5            [11]  114 	push	hl
+   006D 26 00         [ 7]  115 	ld	h, #0x00
+   006F E5            [11]  116 	push	hl
+   0070 26 C0         [ 7]  117 	ld	h, #0xc0
+   0072 E5            [11]  118 	push	hl
+   0073 CDr00r00      [17]  119 	call	_cpct_memset_f64
+   0076 C9            [10]  120 	ret
+                            121 ;src/sistemas/fin_juego.c:24: void espera_pulsar(){
+                            122 ;	---------------------------------
+                            123 ; Function espera_pulsar
+                            124 ; ---------------------------------
+   0077                     125 _espera_pulsar::
+                            126 ;src/sistemas/fin_juego.c:25: a_jugar();}
+   0077 C3r00r00      [10]  127 	jp  _a_jugar
+                            128 	.area _CODE
+                            129 	.area _INITIALIZER
+                            130 	.area _CABS (ABS)

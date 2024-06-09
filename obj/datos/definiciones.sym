@@ -14,14 +14,15 @@ Symbol Table
   0 _iniciar_valores                                               0000 GR
   1 _item1                                                         0083 GR
     _manzana                                                       **** GX
-  0 _manzana_init                                                  0085 GR
+  0 _manzana_init                                                  0076 GR
     _pera                                                          **** GX
-  0 _pera_init                                                     008F GR
+  0 _pera2_init                                                    008A GR
+  0 _pera_init                                                     0080 GR
   1 _pjugador                                                      008D GR
   1 _player                                                        0079 GR
-  0 _player_init                                                   007B GR
-  1 _pobjeto1                                                      008F GR
-  1 _pobjeto2                                                      0091 GR
+  0 _player_init                                                   006C GR
+  1 _pmanzana                                                      0091 GR
+  1 _ppera                                                         008F GR
     _puntos                                                        **** GX
   1 _puntos_centena                                                0013 GR
   1 _puntos_decena                                                 0012 GR
@@ -50,7 +51,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   99   flags    0
+   0 _CODE                                      size   94   flags    0
    1 _DATA                                      size   94   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

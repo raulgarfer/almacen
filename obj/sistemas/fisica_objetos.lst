@@ -8,193 +8,205 @@
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
-                             11 	.globl _pinta_puntos
-                             12 	.globl _borra_objeto
-                             13 	.globl _muere
-                             14 	.globl _suma_puntos
-                             15 	.globl _obj_caido
-                             16 	.globl _fisica_objetos
-                             17 	.globl _comprobar_recojida
-                             18 ;--------------------------------------------------------
-                             19 ; special function registers
+                             11 	.globl _borra_objeto
+                             12 	.globl _muere
+                             13 	.globl _pi
+                             14 	.globl _obj_caido
+                             15 	.globl _fisica_objetos
+                             16 	.globl _comprobar_recojida
+                             17 ;--------------------------------------------------------
+                             18 ; special function registers
+                             19 ;--------------------------------------------------------
                              20 ;--------------------------------------------------------
-                             21 ;--------------------------------------------------------
-                             22 ; ram data
-                             23 ;--------------------------------------------------------
-                             24 	.area _DATA
-   0000                      25 _obj_caido::
-   0000                      26 	.ds 2
-                             27 ;--------------------------------------------------------
-                             28 ; ram data
-                             29 ;--------------------------------------------------------
-                             30 	.area _INITIALIZED
-                             31 ;--------------------------------------------------------
-                             32 ; absolute external ram data
-                             33 ;--------------------------------------------------------
-                             34 	.area _DABS (ABS)
-                             35 ;--------------------------------------------------------
-                             36 ; global & static initialisations
-                             37 ;--------------------------------------------------------
-                             38 	.area _HOME
-                             39 	.area _GSINIT
-                             40 	.area _GSFINAL
-                             41 	.area _GSINIT
-                             42 ;--------------------------------------------------------
-                             43 ; Home
-                             44 ;--------------------------------------------------------
-                             45 	.area _HOME
+                             21 ; ram data
+                             22 ;--------------------------------------------------------
+                             23 	.area _DATA
+   0000                      24 _obj_caido::
+   0000                      25 	.ds 2
+   0002                      26 _pi::
+   0002                      27 	.ds 1
+                             28 ;--------------------------------------------------------
+                             29 ; ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area _INITIALIZED
+                             32 ;--------------------------------------------------------
+                             33 ; absolute external ram data
+                             34 ;--------------------------------------------------------
+                             35 	.area _DABS (ABS)
+                             36 ;--------------------------------------------------------
+                             37 ; global & static initialisations
+                             38 ;--------------------------------------------------------
+                             39 	.area _HOME
+                             40 	.area _GSINIT
+                             41 	.area _GSFINAL
+                             42 	.area _GSINIT
+                             43 ;--------------------------------------------------------
+                             44 ; Home
+                             45 ;--------------------------------------------------------
                              46 	.area _HOME
-                             47 ;--------------------------------------------------------
-                             48 ; code
-                             49 ;--------------------------------------------------------
-                             50 	.area _CODE
-                             51 ;src/sistemas/fisica_objetos.c:4: void fisica_objetos(){
-                             52 ;	---------------------------------
-                             53 ; Function fisica_objetos
-                             54 ; ---------------------------------
-   0000                      55 _fisica_objetos::
-   0000 DD E5         [15]   56 	push	ix
-   0002 DD 21 00 00   [14]   57 	ld	ix,#0
-   0006 DD 39         [15]   58 	add	ix,sp
-   0008 F5            [11]   59 	push	af
-   0009 F5            [11]   60 	push	af
-   000A 3B            [ 6]   61 	dec	sp
-                             62 ;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
-   000B 06 01         [ 7]   63 	ld	b, #0x01
-   000D                      64 00104$:
-                             65 ;src/sistemas/fisica_objetos.c:7: borra_objeto(array[i].x,array[i].y,array[i].ancho,array[i].alto);
-   000D 58            [ 4]   66 	ld	e,b
-   000E 16 00         [ 7]   67 	ld	d,#0x00
-   0010 6B            [ 4]   68 	ld	l, e
-   0011 62            [ 4]   69 	ld	h, d
-   0012 29            [11]   70 	add	hl, hl
-   0013 29            [11]   71 	add	hl, hl
-   0014 19            [11]   72 	add	hl, de
-   0015 29            [11]   73 	add	hl, hl
-   0016 11r00r00      [10]   74 	ld	de, #_array
-   0019 19            [11]   75 	add	hl, de
-   001A DD 75 FE      [19]   76 	ld	-2 (ix), l
-   001D DD 74 FF      [19]   77 	ld	-1 (ix), h
-   0020 11 06 00      [10]   78 	ld	de, #0x0006
-   0023 19            [11]   79 	add	hl, de
-   0024 7E            [ 7]   80 	ld	a, (hl)
-   0025 DD 77 FD      [19]   81 	ld	-3 (ix), a
-   0028 DD 6E FE      [19]   82 	ld	l,-2 (ix)
-   002B DD 66 FF      [19]   83 	ld	h,-1 (ix)
-   002E 11 05 00      [10]   84 	ld	de, #0x0005
-   0031 19            [11]   85 	add	hl, de
-   0032 7E            [ 7]   86 	ld	a, (hl)
-   0033 DD 77 FC      [19]   87 	ld	-4 (ix), a
-   0036 DD 6E FE      [19]   88 	ld	l,-2 (ix)
-   0039 DD 66 FF      [19]   89 	ld	h,-1 (ix)
-   003C 23            [ 6]   90 	inc	hl
-   003D 23            [ 6]   91 	inc	hl
-   003E 4E            [ 7]   92 	ld	c, (hl)
-   003F DD 5E FE      [19]   93 	ld	e,-2 (ix)
-   0042 DD 56 FF      [19]   94 	ld	d,-1 (ix)
-   0045 13            [ 6]   95 	inc	de
-   0046 1A            [ 7]   96 	ld	a, (de)
-   0047 DD 77 FB      [19]   97 	ld	-5 (ix), a
-   004A C5            [11]   98 	push	bc
-   004B D5            [11]   99 	push	de
-   004C DD 7E FD      [19]  100 	ld	a, -3 (ix)
-   004F F5            [11]  101 	push	af
-   0050 33            [ 6]  102 	inc	sp
-   0051 DD 46 FC      [19]  103 	ld	b, -4 (ix)
-   0054 C5            [11]  104 	push	bc
-   0055 DD 7E FB      [19]  105 	ld	a, -5 (ix)
-   0058 F5            [11]  106 	push	af
-   0059 33            [ 6]  107 	inc	sp
-   005A CDr00r00      [17]  108 	call	_borra_objeto
-   005D F1            [10]  109 	pop	af
-   005E F1            [10]  110 	pop	af
-   005F D1            [10]  111 	pop	de
-   0060 C1            [10]  112 	pop	bc
+                             47 	.area _HOME
+                             48 ;--------------------------------------------------------
+                             49 ; code
+                             50 ;--------------------------------------------------------
+                             51 	.area _CODE
+                             52 ;src/sistemas/fisica_objetos.c:4: void fisica_objetos(){
+                             53 ;	---------------------------------
+                             54 ; Function fisica_objetos
+                             55 ; ---------------------------------
+   0000                      56 _fisica_objetos::
+   0000 DD E5         [15]   57 	push	ix
+   0002 DD 21 00 00   [14]   58 	ld	ix,#0
+   0006 DD 39         [15]   59 	add	ix,sp
+   0008 F5            [11]   60 	push	af
+   0009 F5            [11]   61 	push	af
+   000A 3B            [ 6]   62 	dec	sp
+                             63 ;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
+   000B DD 36 FB 01   [19]   64 	ld	-5 (ix), #0x01
+   000F                      65 00104$:
+                             66 ;src/sistemas/fisica_objetos.c:7: borra_objeto(array[i].x,array[i].y,array[i].ancho,array[i].alto);
+   000F DD 4E FB      [19]   67 	ld	c,-5 (ix)
+   0012 06 00         [ 7]   68 	ld	b,#0x00
+   0014 69            [ 4]   69 	ld	l, c
+   0015 60            [ 4]   70 	ld	h, b
+   0016 29            [11]   71 	add	hl, hl
+   0017 29            [11]   72 	add	hl, hl
+   0018 09            [11]   73 	add	hl, bc
+   0019 29            [11]   74 	add	hl, hl
+   001A 01r00r00      [10]   75 	ld	bc,#_array
+   001D 09            [11]   76 	add	hl,bc
+   001E 5D            [ 4]   77 	ld	e,l
+   001F 54            [ 4]   78 	ld	d,h
+   0020 01 06 00      [10]   79 	ld	bc, #0x0006
+   0023 09            [11]   80 	add	hl, bc
+   0024 7E            [ 7]   81 	ld	a, (hl)
+   0025 DD 77 FD      [19]   82 	ld	-3 (ix), a
+   0028 6B            [ 4]   83 	ld	l, e
+   0029 62            [ 4]   84 	ld	h, d
+   002A 01 05 00      [10]   85 	ld	bc, #0x0005
+   002D 09            [11]   86 	add	hl, bc
+   002E 7E            [ 7]   87 	ld	a, (hl)
+   002F DD 77 FF      [19]   88 	ld	-1 (ix), a
+   0032 6B            [ 4]   89 	ld	l, e
+   0033 62            [ 4]   90 	ld	h, d
+   0034 23            [ 6]   91 	inc	hl
+   0035 23            [ 6]   92 	inc	hl
+   0036 7E            [ 7]   93 	ld	a, (hl)
+   0037 DD 77 FC      [19]   94 	ld	-4 (ix), a
+   003A 4B            [ 4]   95 	ld	c, e
+   003B 42            [ 4]   96 	ld	b, d
+   003C 03            [ 6]   97 	inc	bc
+   003D 0A            [ 7]   98 	ld	a, (bc)
+   003E DD 77 FE      [19]   99 	ld	-2 (ix), a
+   0041 C5            [11]  100 	push	bc
+   0042 D5            [11]  101 	push	de
+   0043 DD 66 FD      [19]  102 	ld	h, -3 (ix)
+   0046 DD 6E FF      [19]  103 	ld	l, -1 (ix)
+   0049 E5            [11]  104 	push	hl
+   004A DD 66 FC      [19]  105 	ld	h, -4 (ix)
+   004D DD 6E FE      [19]  106 	ld	l, -2 (ix)
+   0050 E5            [11]  107 	push	hl
+   0051 CDr00r00      [17]  108 	call	_borra_objeto
+   0054 F1            [10]  109 	pop	af
+   0055 F1            [10]  110 	pop	af
+   0056 D1            [10]  111 	pop	de
+   0057 C1            [10]  112 	pop	bc
                             113 ;src/sistemas/fisica_objetos.c:8: array[i].x+=array[i].vx;
-   0061 1A            [ 7]  114 	ld	a, (de)
-   0062 4F            [ 4]  115 	ld	c, a
-   0063 DD 6E FE      [19]  116 	ld	l,-2 (ix)
-   0066 DD 66 FF      [19]  117 	ld	h,-1 (ix)
-   0069 23            [ 6]  118 	inc	hl
-   006A 23            [ 6]  119 	inc	hl
-   006B 23            [ 6]  120 	inc	hl
-   006C 6E            [ 7]  121 	ld	l, (hl)
-   006D 79            [ 4]  122 	ld	a, c
-   006E 85            [ 4]  123 	add	a, l
-   006F 12            [ 7]  124 	ld	(de), a
-                            125 ;src/sistemas/fisica_objetos.c:9: if (array[i].x==10)
-   0070 1A            [ 7]  126 	ld	a, (de)
-   0071 D6 0A         [ 7]  127 	sub	a, #0x0a
-   0073 20 08         [12]  128 	jr	NZ,00105$
-                            129 ;src/sistemas/fisica_objetos.c:10: {comprobar_recojida(i);}
-   0075 C5            [11]  130 	push	bc
-   0076 C5            [11]  131 	push	bc
-   0077 33            [ 6]  132 	inc	sp
-   0078 CDr88r00      [17]  133 	call	_comprobar_recojida
-   007B 33            [ 6]  134 	inc	sp
-   007C C1            [10]  135 	pop	bc
-   007D                     136 00105$:
-                            137 ;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
-   007D 04            [ 4]  138 	inc	b
-   007E 78            [ 4]  139 	ld	a, b
-   007F D6 02         [ 7]  140 	sub	a, #0x02
-   0081 38 8A         [12]  141 	jr	C,00104$
-   0083 DD F9         [10]  142 	ld	sp, ix
-   0085 DD E1         [14]  143 	pop	ix
-   0087 C9            [10]  144 	ret
-                            145 ;src/sistemas/fisica_objetos.c:14: void comprobar_recojida(u8 i){     
-                            146 ;	---------------------------------
-                            147 ; Function comprobar_recojida
-                            148 ; ---------------------------------
-   0088                     149 _comprobar_recojida::
-   0088 DD E5         [15]  150 	push	ix
-   008A DD 21 00 00   [14]  151 	ld	ix,#0
-   008E DD 39         [15]  152 	add	ix,sp
-                            153 ;src/sistemas/fisica_objetos.c:15: if (array[i].y==array[0].y)
-   0090 11r00r00      [10]  154 	ld	de, #_array+0
-   0093 DD 4E 04      [19]  155 	ld	c,4 (ix)
-   0096 06 00         [ 7]  156 	ld	b,#0x00
-   0098 69            [ 4]  157 	ld	l, c
-   0099 60            [ 4]  158 	ld	h, b
-   009A 29            [11]  159 	add	hl, hl
-   009B 29            [11]  160 	add	hl, hl
-   009C 09            [11]  161 	add	hl, bc
-   009D 29            [11]  162 	add	hl, hl
-   009E 19            [11]  163 	add	hl, de
-   009F E5            [11]  164 	push	hl
-   00A0 FD E1         [14]  165 	pop	iy
-   00A2 FD E5         [15]  166 	push	iy
-   00A4 E1            [10]  167 	pop	hl
-   00A5 23            [ 6]  168 	inc	hl
-   00A6 23            [ 6]  169 	inc	hl
-   00A7 4E            [ 7]  170 	ld	c, (hl)
-   00A8 3Ar02r00      [13]  171 	ld	a, (#_array + 2)
-   00AB 91            [ 4]  172 	sub	a, c
-   00AC 20 13         [12]  173 	jr	NZ,00102$
-                            174 ;src/sistemas/fisica_objetos.c:16: {suma_puntos(i);
-   00AE DD 7E 04      [19]  175 	ld	a, 4 (ix)
-   00B1 F5            [11]  176 	push	af
-   00B2 33            [ 6]  177 	inc	sp
-   00B3 CDr00r00      [17]  178 	call	_suma_puntos
-   00B6 33            [ 6]  179 	inc	sp
-                            180 ;src/sistemas/fisica_objetos.c:17: pinta_puntos();
-   00B7 CDr00r00      [17]  181 	call	_pinta_puntos
-                            182 ;src/sistemas/fisica_objetos.c:18: vaso_lleno    =   lleno;}
-   00BA 21r00r00      [10]  183 	ld	hl,#_vaso_lleno + 0
-   00BD 36 01         [10]  184 	ld	(hl), #0x01
-   00BF 18 0D         [12]  185 	jr	00104$
-   00C1                     186 00102$:
-                            187 ;src/sistemas/fisica_objetos.c:19: else {obj_caido=&array[i];
-   00C1 FD 22r00r00   [20]  188 	ld	(_obj_caido), iy
-                            189 ;src/sistemas/fisica_objetos.c:20: muere(i);}
-   00C5 DD 7E 04      [19]  190 	ld	a, 4 (ix)
-   00C8 F5            [11]  191 	push	af
-   00C9 33            [ 6]  192 	inc	sp
-   00CA CDr00r00      [17]  193 	call	_muere
-   00CD 33            [ 6]  194 	inc	sp
-   00CE                     195 00104$:
-   00CE DD E1         [14]  196 	pop	ix
-   00D0 C9            [10]  197 	ret
-                            198 	.area _CODE
-                            199 	.area _INITIALIZER
-                            200 	.area _CABS (ABS)
+   0058 0A            [ 7]  114 	ld	a, (bc)
+   0059 DD 77 FE      [19]  115 	ld	-2 (ix), a
+   005C 13            [ 6]  116 	inc	de
+   005D 13            [ 6]  117 	inc	de
+   005E 13            [ 6]  118 	inc	de
+   005F 1A            [ 7]  119 	ld	a, (de)
+   0060 6F            [ 4]  120 	ld	l, a
+   0061 DD 7E FE      [19]  121 	ld	a, -2 (ix)
+   0064 85            [ 4]  122 	add	a, l
+   0065 02            [ 7]  123 	ld	(bc), a
+                            124 ;src/sistemas/fisica_objetos.c:9: if (array[i].x==10)
+   0066 0A            [ 7]  125 	ld	a, (bc)
+   0067 D6 0A         [ 7]  126 	sub	a, #0x0a
+   0069 20 0E         [12]  127 	jr	NZ,00105$
+                            128 ;src/sistemas/fisica_objetos.c:10: { array[i].vx=0;
+   006B AF            [ 4]  129 	xor	a, a
+   006C 12            [ 7]  130 	ld	(de), a
+                            131 ;src/sistemas/fisica_objetos.c:11: array[i].x    =   70;
+   006D 3E 46         [ 7]  132 	ld	a, #0x46
+   006F 02            [ 7]  133 	ld	(bc), a
+                            134 ;src/sistemas/fisica_objetos.c:12: comprobar_recojida(i);}
+   0070 DD 7E FB      [19]  135 	ld	a, -5 (ix)
+   0073 F5            [11]  136 	push	af
+   0074 33            [ 6]  137 	inc	sp
+   0075 CDr88r00      [17]  138 	call	_comprobar_recojida
+   0078 33            [ 6]  139 	inc	sp
+   0079                     140 00105$:
+                            141 ;src/sistemas/fisica_objetos.c:6: for (i=1;i<max_entidades;i++){
+   0079 DD 34 FB      [23]  142 	inc	-5 (ix)
+   007C DD 7E FB      [19]  143 	ld	a, -5 (ix)
+   007F D6 02         [ 7]  144 	sub	a, #0x02
+   0081 38 8C         [12]  145 	jr	C,00104$
+   0083 DD F9         [10]  146 	ld	sp, ix
+   0085 DD E1         [14]  147 	pop	ix
+   0087 C9            [10]  148 	ret
+                            149 ;src/sistemas/fisica_objetos.c:18: void comprobar_recojida(u8 i){     
+                            150 ;	---------------------------------
+                            151 ; Function comprobar_recojida
+                            152 ; ---------------------------------
+   0088                     153 _comprobar_recojida::
+   0088 DD E5         [15]  154 	push	ix
+   008A DD 21 00 00   [14]  155 	ld	ix,#0
+   008E DD 39         [15]  156 	add	ix,sp
+                            157 ;src/sistemas/fisica_objetos.c:19: if (array[i].y==array[0].y)
+   0090 DD 4E 04      [19]  158 	ld	c,4 (ix)
+   0093 06 00         [ 7]  159 	ld	b,#0x00
+   0095 69            [ 4]  160 	ld	l, c
+   0096 60            [ 4]  161 	ld	h, b
+   0097 29            [11]  162 	add	hl, hl
+   0098 29            [11]  163 	add	hl, hl
+   0099 09            [11]  164 	add	hl, bc
+   009A 29            [11]  165 	add	hl, hl
+   009B 01r00r00      [10]  166 	ld	bc,#_array
+   009E 09            [11]  167 	add	hl,bc
+   009F 4D            [ 4]  168 	ld	c,l
+   00A0 44            [ 4]  169 	ld	b,h
+   00A1 23            [ 6]  170 	inc	hl
+   00A2 23            [ 6]  171 	inc	hl
+   00A3 5E            [ 7]  172 	ld	e, (hl)
+   00A4 3Ar02r00      [13]  173 	ld	a, (#_array + 2)
+   00A7 93            [ 4]  174 	sub	a, e
+   00A8 20 07         [12]  175 	jr	NZ,00102$
+                            176 ;src/sistemas/fisica_objetos.c:20: { vaso_lleno    =   lleno;
+   00AA 21r00r00      [10]  177 	ld	hl,#_vaso_lleno + 0
+   00AD 36 01         [10]  178 	ld	(hl), #0x01
+   00AF 18 23         [12]  179 	jr	00104$
+   00B1                     180 00102$:
+                            181 ;src/sistemas/fisica_objetos.c:22: else {obj_caido=&array[i];
+   00B1 ED 43r00r00   [20]  182 	ld	(_obj_caido), bc
+                            183 ;src/sistemas/fisica_objetos.c:23: pi=i;
+   00B5 DD 46 04      [19]  184 	ld	b, 4 (ix)
+   00B8 21r02r00      [10]  185 	ld	hl,#_pi + 0
+   00BB 70            [ 7]  186 	ld	(hl), b
+                            187 ;src/sistemas/fisica_objetos.c:24: array[i].vx =   -1;
+   00BC 58            [ 4]  188 	ld	e,b
+   00BD 16 00         [ 7]  189 	ld	d,#0x00
+   00BF 6B            [ 4]  190 	ld	l, e
+   00C0 62            [ 4]  191 	ld	h, d
+   00C1 29            [11]  192 	add	hl, hl
+   00C2 29            [11]  193 	add	hl, hl
+   00C3 19            [11]  194 	add	hl, de
+   00C4 29            [11]  195 	add	hl, hl
+   00C5 11r00r00      [10]  196 	ld	de, #_array
+   00C8 19            [11]  197 	add	hl, de
+   00C9 23            [ 6]  198 	inc	hl
+   00CA 23            [ 6]  199 	inc	hl
+   00CB 23            [ 6]  200 	inc	hl
+   00CC 36 FF         [10]  201 	ld	(hl), #0xff
+                            202 ;src/sistemas/fisica_objetos.c:25: muere(i);}
+   00CE C5            [11]  203 	push	bc
+   00CF 33            [ 6]  204 	inc	sp
+   00D0 CDr00r00      [17]  205 	call	_muere
+   00D3 33            [ 6]  206 	inc	sp
+   00D4                     207 00104$:
+   00D4 DD E1         [14]  208 	pop	ix
+   00D6 C9            [10]  209 	ret
+                            210 	.area _CODE
+                            211 	.area _INITIALIZER
+                            212 	.area _CABS (ABS)

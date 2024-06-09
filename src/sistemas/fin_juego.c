@@ -3,7 +3,7 @@
 #include "datos/delcaraciones.h"
 void muere(u8 i){
    vidas--;
-    array[i].x = array[i].x_inicial;
+   // array[i].x = array[i].x_inicial;
     pinta_puntos();
    if (vidas=='0')
     {fin_juego();}

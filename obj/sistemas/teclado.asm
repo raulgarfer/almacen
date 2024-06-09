@@ -72,19 +72,27 @@ _teclado::
 	call	_cpct_isKeyPressed
 	ld	a, l
 	or	a, a
-	ret	Z
+	jr	Z,00105$
 ;src/sistemas/teclado.c:11: && array[0].y<=y_frame_4)
 	ld	hl, #_array + 2
 	ld	c, (hl)
 	ld	a, #0x96
 	sub	a, c
-	ret	C
-;src/sistemas/teclado.c:12: {array[0].vy+=1;}      
+	jr	C,00105$
+;src/sistemas/teclado.c:12: {array[0].vy+=1;}   
 	ld	bc, #_array + 4
 	ld	a, (bc)
 	inc	a
 	ld	(bc), a
-	ret
+00105$:
+;src/sistemas/teclado.c:13: if (cpct_isKeyPressed(Key_Esc))
+	ld	hl, #0x0408
+	call	_cpct_isKeyPressed
+	ld	a, l
+	or	a, a
+	ret	Z
+;src/sistemas/teclado.c:14: {main();}   
+	jp  _main
 	.area _CODE
 	.area _INITIALIZER
 	.area _CABS (ABS)

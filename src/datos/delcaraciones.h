@@ -29,3 +29,11 @@ typedef struct Sobjeto{
 extern objeto player;
 extern objeto item1;
 extern objeto array[];
+enum estados{
+ vivo   =       1,
+ muerto =       2
+
+};
+extern objeto  *pjugador;
+extern objeto  *ppera;
+extern objeto  *pmanzana;

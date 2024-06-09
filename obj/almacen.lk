@@ -30,6 +30,7 @@ obj/manager/menu.rel
 obj/borrar_pantallas.rel
 obj/espera_tecla.rel
 obj/interrupciones.rel
+obj/sistemas/fisica_objetos_array.rel
 obj/sistemas/pinta_con_puntero.rel
 obj/music/ingame.rel
 obj/music/KellyOn.rel

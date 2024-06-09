@@ -5005,27 +5005,44 @@ Hexadecimal [16-Bits]
 
 
 
-                              2 ;;//void borra_con_puntero(objeto* i){
-                              3 ;;//     u8* pvmem;
-                              4 ;;//    pvmem   =   cpct_getScreenPtr((u8*)vmem_ahora,i->x,i->y);
-                              5 ;;//    cpct_drawSolidBox(pvmem,0,i->ancho,i->alto);
-                              6 ;;//}
-   0000 AD DE                 7 _pinta_objeto::   .dw 0xdead
-                              8 .globl _vmem_ahora  
-                              9 .globl cpct_getScreenPtr_asm
-                             10 .globl cpct_drawSprite_asm
-                             11 
-   0002                      12 _pinta_con_puntero::
-   0002 DD 2A 00 00   [20]   13     ld ix,(_pinta_objeto)
-   0006 ED 5B 00 00   [20]   14     ld de,(_vmem_ahora)
-   000A DD 4E 01      [19]   15     ld c,1(ix)
-   000D DD 46 02      [19]   16     ld b,2(ix)
-   0010 CD 00 00      [17]   17        call cpct_getScreenPtr_asm
-   0013 EB            [ 4]   18     ex de,hl
-                             19 
-   0014 DD 66 08      [19]   20     ld h,8(ix)
-   0017 DD 6E 07      [19]   21     ld l,7(ix)
-   001A DD 4E 05      [19]   22     ld c,5(ix)
-   001D DD 46 06      [19]   23     ld b,6(ix)
-   0020 CD 00 00      [17]   24         call cpct_drawSprite_asm
-   0023 C9            [10]   25 ret
+                              2 .include "datos/declaraciones.inc"
+                              1 .module declaraciones.inc
+                     0000     2 estado      =   0
+                     0001     3 x           =   1
+                     0002     4 y           =   2
+                     0003     5 vx          =   3
+                     0004     6 vy          =   4
+                     0005     7 ancho       =   5
+                     0006     8 alto        =   6
+                     0007     9 sprite      =   7
+                     0009    10 x_inicial   =   9
+                     000A    11 size        =   10
+                             12 
+                             13 .globl _array
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
+Hexadecimal [16-Bits]
+
+
+
+   0000 AD DE                 3 _pinta_objeto::   .dw 0xdead
+                              4 .globl _vmem_ahora  
+                              5 .globl cpct_getScreenPtr_asm
+                              6 .globl cpct_drawSprite_asm
+                              7 
+   0002                       8 _pinta_con_puntero::
+   0002 DD 2A 00 00   [20]    9     ld ix,(_pinta_objeto)
+   0006                      10  loop_array:
+   0006 ED 5B 00 00   [20]   11     ld de,(_vmem_ahora)
+   000A DD 4E 01      [19]   12     ld c,1(ix)
+   000D DD 46 02      [19]   13     ld b,2(ix)
+   0010 CD 00 00      [17]   14        call cpct_getScreenPtr_asm
+   0013 EB            [ 4]   15     ex de,hl
+                             16 
+   0014 DD 66 08      [19]   17     ld h,sprite+1(ix)
+   0017 DD 6E 07      [19]   18     ld l,sprite(ix)
+   001A DD 4E 05      [19]   19     ld c,ancho(ix)
+   001D DD 46 06      [19]   20     ld b,alto(ix)
+   0020 CD 00 00      [17]   21         call cpct_drawSprite_asm
+                             22         
+                             23 
+   0023 C9            [10]   24 ret

@@ -5025,30 +5025,30 @@ Hexadecimal [16-Bits]
                              14     ld (IR),a
                              15 .endm
                              16 
-   49DC                      17 IR::
-   49DC 00                   18 .db 0
-   49DD                      19 _control_interrupciones::
-   49DD ED 56         [ 8]   20     im 1
-   49DF CD 90 4C      [17]   21     call cpct_waitVSYNC_asm
-   49E2 76            [ 4]   22     halt
-   49E3 76            [ 4]   23     halt
-   49E4 CD 90 4C      [17]   24     call cpct_waitVSYNC_asm
-   49E7 F3            [ 4]   25     di
-   49E8 3E C3         [ 7]   26     ld a,#0xc3
-   49EA 32 38 00      [13]   27     ld (0x38),a
-   49ED 21 F5 49      [10]   28     ld hl,#int_1
-   49F0 22 39 00      [16]   29     ld (0x39),hl
-   49F3 FB            [ 4]   30     ei 
-   49F4 C9            [10]   31 ret
-   49F5                      32 int_1::
+   49BA                      17 IR::
+   49BA 00                   18 .db 0
+   49BB                      19 _control_interrupciones::
+   49BB ED 56         [ 8]   20     im 1
+   49BD CD 73 4C      [17]   21     call cpct_waitVSYNC_asm
+   49C0 76            [ 4]   22     halt
+   49C1 76            [ 4]   23     halt
+   49C2 CD 73 4C      [17]   24     call cpct_waitVSYNC_asm
+   49C5 F3            [ 4]   25     di
+   49C6 3E C3         [ 7]   26     ld a,#0xc3
+   49C8 32 38 00      [13]   27     ld (0x38),a
+   49CB 21 D3 49      [10]   28     ld hl,#int_1
+   49CE 22 39 00      [16]   29     ld (0x39),hl
+   49D1 FB            [ 4]   30     ei 
+   49D2 C9            [10]   31 ret
+   49D3                      32 int_1::
    0019                      33     cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   49F5 F5            [11]    3    push af
+   49D3 F5            [11]    3    push af
                      0001     4    .if v-1
-   49F6 C5            [11]    5    push bc
+   49D4 C5            [11]    5    push bc
                      0001     6    .if v-2
-   49F7 E5            [11]    7    push hl
+   49D5 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5064,8 +5064,8 @@ Hexadecimal [16-Bits]
                      0001    20    .else
                              21    .mexit
    001C                      34         numero_interrupcion 1
-   49F8 3E 01         [ 7]    1     ld a,#1
-   49FA 32 DC 49      [13]    2     ld (IR),a
+   49D6 3E 01         [ 7]    1     ld a,#1
+   49D8 32 BA 49      [13]    2     ld (IR),a
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
 Hexadecimal [16-Bits]
 
@@ -5075,18 +5075,18 @@ Hexadecimal [16-Bits]
                               1 .globl cpct_setVideoMode_asm
                               2 .globl cpct_akp_musicPlay_asm
                               3 .globl _pinta_marcador
-   49FD 21 09 4A      [10]    4     ld hl,#int_2
-   4A00 22 39 00      [16]    5     ld (0x39),hl
+   49DB 21 E7 49      [10]    4     ld hl,#int_2
+   49DE 22 39 00      [16]    5     ld (0x39),hl
                              36         
                              37         ;;call cpct_akp_musicPlay_asm
    0027                      38      cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   4A03 E1            [10]    3    pop hl
+   49E1 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   4A04 C1            [10]    5    pop bc
+   49E2 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   4A05 F1            [10]    7    pop af
+   49E3 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5101,17 +5101,17 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   4A06 FB            [ 4]   39     ei
-   4A07 ED 4D         [14]   40 reti 
-   4A09                      41 int_2::
+   49E4 FB            [ 4]   39     ei
+   49E5 ED 4D         [14]   40 reti 
+   49E7                      41 int_2::
    002D                      42    cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   4A09 F5            [11]    3    push af
+   49E7 F5            [11]    3    push af
                      0001     4    .if v-1
-   4A0A C5            [11]    5    push bc
+   49E8 C5            [11]    5    push bc
                      0001     6    .if v-2
-   4A0B E5            [11]    7    push hl
+   49E9 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5132,22 +5132,22 @@ Hexadecimal [16-Bits]
 
 
    0030                      43         numero_interrupcion 2
-   4A0C 3E 02         [ 7]    1     ld a,#2
-   4A0E 32 DC 49      [13]    2     ld (IR),a
+   49EA 3E 02         [ 7]    1     ld a,#2
+   49EC 32 BA 49      [13]    2     ld (IR),a
    0035                      44         siguiente_interrrupcion int_3
                               1 .globl cpct_setVideoMode_asm
                               2 .globl cpct_akp_musicPlay_asm
                               3 .globl _pinta_marcador
-   4A11 21 1D 4A      [10]    4     ld hl,#int_3
-   4A14 22 39 00      [16]    5     ld (0x39),hl
+   49EF 21 FB 49      [10]    4     ld hl,#int_3
+   49F2 22 39 00      [16]    5     ld (0x39),hl
    003B                      45     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   4A17 E1            [10]    3    pop hl
+   49F5 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   4A18 C1            [10]    5    pop bc
+   49F6 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   4A19 F1            [10]    7    pop af
+   49F7 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5162,17 +5162,17 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   4A1A FB            [ 4]   46     ei
-   4A1B ED 4D         [14]   47 reti
-   4A1D                      48 int_3::
+   49F8 FB            [ 4]   46     ei
+   49F9 ED 4D         [14]   47 reti
+   49FB                      48 int_3::
    0041                      49    cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   4A1D F5            [11]    3    push af
+   49FB F5            [11]    3    push af
                      0001     4    .if v-1
-   4A1E C5            [11]    5    push bc
+   49FC C5            [11]    5    push bc
                      0001     6    .if v-2
-   4A1F E5            [11]    7    push hl
+   49FD E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5193,26 +5193,26 @@ Hexadecimal [16-Bits]
 
                              21    .mexit
    0044                      50         numero_interrupcion 3
-   4A20 3E 03         [ 7]    1     ld a,#3
-   4A22 32 DC 49      [13]    2     ld (IR),a
+   49FE 3E 03         [ 7]    1     ld a,#3
+   4A00 32 BA 49      [13]    2     ld (IR),a
    0049                      51         siguiente_interrrupcion int_4
                               1 .globl cpct_setVideoMode_asm
                               2 .globl cpct_akp_musicPlay_asm
                               3 .globl _pinta_marcador
-   4A25 21 38 4A      [10]    4     ld hl,#int_4
-   4A28 22 39 00      [16]    5     ld (0x39),hl
-   4A2B 2E 01         [ 7]   52            ld l,#1                             ;;pen
-   4A2D 26 04         [ 7]   53     ld h,#4                             ;;ink
-   4A2F CD 21 4B      [17]   54     call cpct_setPALColour_asm
+   4A03 21 16 4A      [10]    4     ld hl,#int_4
+   4A06 22 39 00      [16]    5     ld (0x39),hl
+   4A09 2E 01         [ 7]   52            ld l,#1                             ;;pen
+   4A0B 26 04         [ 7]   53     ld h,#4                             ;;ink
+   4A0D CD 04 4B      [17]   54     call cpct_setPALColour_asm
                              55     
    0056                      56       cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   4A32 E1            [10]    3    pop hl
+   4A10 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   4A33 C1            [10]    5    pop bc
+   4A11 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   4A34 F1            [10]    7    pop af
+   4A12 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5227,17 +5227,17 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   4A35 FB            [ 4]   57     ei
-   4A36 ED 4D         [14]   58 reti
-   4A38                      59 int_4::
+   4A13 FB            [ 4]   57     ei
+   4A14 ED 4D         [14]   58 reti
+   4A16                      59 int_4::
    005C                      60   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   4A38 F5            [11]    3    push af
+   4A16 F5            [11]    3    push af
                      0001     4    .if v-1
-   4A39 C5            [11]    5    push bc
+   4A17 C5            [11]    5    push bc
                      0001     6    .if v-2
-   4A3A E5            [11]    7    push hl
+   4A18 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5258,22 +5258,22 @@ Hexadecimal [16-Bits]
                      0001    20    .else
                              21    .mexit
    005F                      61         numero_interrupcion 4
-   4A3B 3E 04         [ 7]    1     ld a,#4
-   4A3D 32 DC 49      [13]    2     ld (IR),a
+   4A19 3E 04         [ 7]    1     ld a,#4
+   4A1B 32 BA 49      [13]    2     ld (IR),a
    0064                      62         siguiente_interrrupcion int_5
                               1 .globl cpct_setVideoMode_asm
                               2 .globl cpct_akp_musicPlay_asm
                               3 .globl _pinta_marcador
-   4A40 21 4C 4A      [10]    4     ld hl,#int_5
-   4A43 22 39 00      [16]    5     ld (0x39),hl
+   4A1E 21 2A 4A      [10]    4     ld hl,#int_5
+   4A21 22 39 00      [16]    5     ld (0x39),hl
    006A                      63      cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   4A46 E1            [10]    3    pop hl
+   4A24 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   4A47 C1            [10]    5    pop bc
+   4A25 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   4A48 F1            [10]    7    pop af
+   4A26 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5289,17 +5289,17 @@ Hexadecimal [16-Bits]
                      0001    20    .else
                              21    .mexit
                              64     
-   4A49 FB            [ 4]   65     ei
-   4A4A ED 4D         [14]   66 reti
-   4A4C                      67 int_5::
+   4A27 FB            [ 4]   65     ei
+   4A28 ED 4D         [14]   66 reti
+   4A2A                      67 int_5::
    0070                      68   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   4A4C F5            [11]    3    push af
+   4A2A F5            [11]    3    push af
                      0001     4    .if v-1
-   4A4D C5            [11]    5    push bc
+   4A2B C5            [11]    5    push bc
                      0001     6    .if v-2
-   4A4E E5            [11]    7    push hl
+   4A2C E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5320,22 +5320,22 @@ Hexadecimal [16-Bits]
                      0001    20    .else
                              21    .mexit
    0073                      69         numero_interrupcion 5
-   4A4F 3E 05         [ 7]    1     ld a,#5
-   4A51 32 DC 49      [13]    2     ld (IR),a
+   4A2D 3E 05         [ 7]    1     ld a,#5
+   4A2F 32 BA 49      [13]    2     ld (IR),a
    0078                      70         siguiente_interrrupcion int_6
                               1 .globl cpct_setVideoMode_asm
                               2 .globl cpct_akp_musicPlay_asm
                               3 .globl _pinta_marcador
-   4A54 21 60 4A      [10]    4     ld hl,#int_6
-   4A57 22 39 00      [16]    5     ld (0x39),hl
+   4A32 21 3E 4A      [10]    4     ld hl,#int_6
+   4A35 22 39 00      [16]    5     ld (0x39),hl
    007E                      71      cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   4A5A E1            [10]    3    pop hl
+   4A38 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   4A5B C1            [10]    5    pop bc
+   4A39 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   4A5C F1            [10]    7    pop af
+   4A3A F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5350,17 +5350,17 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   4A5D FB            [ 4]   72     ei
-   4A5E ED 4D         [14]   73 reti
-   4A60                      74 int_6::
+   4A3B FB            [ 4]   72     ei
+   4A3C ED 4D         [14]   73 reti
+   4A3E                      74 int_6::
    0084                      75   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   4A60 F5            [11]    3    push af
+   4A3E F5            [11]    3    push af
                      0001     4    .if v-1
-   4A61 C5            [11]    5    push bc
+   4A3F C5            [11]    5    push bc
                      0001     6    .if v-2
-   4A62 E5            [11]    7    push hl
+   4A40 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5381,26 +5381,26 @@ Hexadecimal [16-Bits]
                      0001    20    .else
                              21    .mexit
    0087                      76         numero_interrupcion 6
-   4A63 3E 06         [ 7]    1     ld a,#6
-   4A65 32 DC 49      [13]    2     ld (IR),a
+   4A41 3E 06         [ 7]    1     ld a,#6
+   4A43 32 BA 49      [13]    2     ld (IR),a
    008C                      77         siguiente_interrrupcion int_1
                               1 .globl cpct_setVideoMode_asm
                               2 .globl cpct_akp_musicPlay_asm
                               3 .globl _pinta_marcador
-   4A68 21 F5 49      [10]    4     ld hl,#int_1
-   4A6B 22 39 00      [16]    5     ld (0x39),hl
-   4A6E 2E 01         [ 7]   78     ld l,#1                             ;;pen
-   4A70 26 03         [ 7]   79     ld h,#3                             ;;ink
-   4A72 CD 21 4B      [17]   80     call cpct_setPALColour_asm
+   4A46 21 D3 49      [10]    4     ld hl,#int_1
+   4A49 22 39 00      [16]    5     ld (0x39),hl
+   4A4C 2E 01         [ 7]   78     ld l,#1                             ;;pen
+   4A4E 26 03         [ 7]   79     ld h,#3                             ;;ink
+   4A50 CD 04 4B      [17]   80     call cpct_setPALColour_asm
                              81     
    0099                      82     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   4A75 E1            [10]    3    pop hl
+   4A53 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   4A76 C1            [10]    5    pop bc
+   4A54 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   4A77 F1            [10]    7    pop af
+   4A55 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5415,5 +5415,5 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   4A78 FB            [ 4]   83     ei
-   4A79 ED 4D         [14]   84 reti
+   4A56 FB            [ 4]   83     ei
+   4A57 ED 4D         [14]   84 reti

@@ -5005,28 +5005,28 @@ Hexadecimal [16-Bits]
 
 
 
-   497C                       2 _mover_pila::
-   497C E1            [10]    3    pop hl
-   497D 31 FE 7F      [10]    4    ld sp,#0x8000-2
-   4980 E5            [11]    5    push hl
-   4981 C9            [10]    6 ret
+   495A                       2 _mover_pila::
+   495A E1            [10]    3    pop hl
+   495B 31 FE 7F      [10]    4    ld sp,#0x8000-2
+   495E E5            [11]    5    push hl
+   495F C9            [10]    6 ret
                               7 
-   4982                       8 _borrar_ambas_pantallas::
-   4982 AF            [ 4]    9     xor a
-   4983 21 00 C0      [10]   10     ld hl,#0xc000
-   4986 54            [ 4]   11     ld d,h
-   4987 5D            [ 4]   12     ld e,l
-   4988 13            [ 6]   13     inc de
-   4989 77            [ 7]   14     ld (hl),a
-   498A 01 FF 3F      [10]   15     ld bc,#0x4000-1
-   498D ED B0         [21]   16     ldir
-   498F AF            [ 4]   17      xor a
+   4960                       8 _borrar_ambas_pantallas::
+   4960 AF            [ 4]    9     xor a
+   4961 21 00 C0      [10]   10     ld hl,#0xc000
+   4964 54            [ 4]   11     ld d,h
+   4965 5D            [ 4]   12     ld e,l
+   4966 13            [ 6]   13     inc de
+   4967 77            [ 7]   14     ld (hl),a
+   4968 01 FF 3F      [10]   15     ld bc,#0x4000-1
+   496B ED B0         [21]   16     ldir
+   496D AF            [ 4]   17      xor a
                              18    
-   4990 21 00 80      [10]   19     ld hl,#0x8000
-   4993 54            [ 4]   20     ld d,h
-   4994 5D            [ 4]   21     ld e,l
-   4995 13            [ 6]   22     inc de
-   4996 77            [ 7]   23     ld (hl),a
-   4997 01 FF 3F      [10]   24     ld bc,#0x4000-1
-   499A ED B0         [21]   25     ldir
-   499C C9            [10]   26 ret
+   496E 21 00 80      [10]   19     ld hl,#0x8000
+   4971 54            [ 4]   20     ld d,h
+   4972 5D            [ 4]   21     ld e,l
+   4973 13            [ 6]   22     inc de
+   4974 77            [ 7]   23     ld (hl),a
+   4975 01 FF 3F      [10]   24     ld bc,#0x4000-1
+   4978 ED B0         [21]   25     ldir
+   497A C9            [10]   26 ret

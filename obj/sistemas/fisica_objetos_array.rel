@@ -1,0 +1,11 @@
+XL2
+H 1 areas 3 global symbols
+M fisica_objetos.s
+S .__.ABS. Def0000
+S _array Ref0000
+A _CODE size 5 flags 0 addr 0
+S _fisica_objetos_con_array Def0000
+T 00 00
+R 00 00 00 00
+T 00 00 DD 21 00 00 C9
+R 00 00 00 00 02 04 01 00

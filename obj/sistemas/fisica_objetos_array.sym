@@ -54,25 +54,23 @@ Symbol Table
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     PPI_PORT=  00F5 
-    _array     **** GX  |   0 _pinta_c   0002 GR  |   0 _pinta_o   0000 GR
-    _vmem_ah   **** GX  |     alto    =  0006     |     ancho   =  0005 
-    cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_pag=  0000 
-    cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
+    _array     **** GX  |   0 _fisica_   0000 GR  |     alto    =  0006 
+    ancho   =  0005     |     cpct_pag=  0000     |     cpct_pag=  0010 
+    cpct_pag=  0020     |     cpct_pag=  0030     |     estado  =  0000 
+    firmware=  0038     |     opc_DI  =  00F3     |     opc_EI  =  00FB 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-    estado  =  0000     |     firmware=  0038     |   0 loop_arr   0006 R
-    opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
-    opc_LD_D=  0016     |     size    =  000A     |     sprite  =  0007 
-    vx      =  0003     |     vy      =  0004     |     x       =  0001 
-    x_inicia=  0009     |     y       =  0002 
+    opc_JR  =  0018     |     opc_LD_D=  0016     |     size    =  000A 
+    sprite  =  0007     |     vx      =  0003     |     vy      =  0004 
+    x       =  0001     |     x_inicia=  0009     |     y       =  0002 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   24   flags    0
+   0 _CODE      size    5   flags    0
 
