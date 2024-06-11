@@ -10,6 +10,7 @@ Symbol Table
   1 _array                                                         0015 GR
   1 _caida_objeto                                                  000F GR
     _cpct_memcpy                                                   **** GX
+  1 _hisc                                                          0094 GR
   0 _inicia_objetos                                                004D GR
   0 _iniciar_valores                                               0000 GR
   1 _item1                                                         0083 GR
@@ -45,14 +46,13 @@ Symbol Table
   1 _y_pera                                                        0006 GR
   1 _y_start_manzana                                               0011 GR
 
-
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
    0 _CODE                                      size   94   flags    0
-   1 _DATA                                      size   94   flags    0
+   1 _DATA                                      size   95   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

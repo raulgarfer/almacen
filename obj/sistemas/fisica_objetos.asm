@@ -146,7 +146,7 @@ _fisica_objetos::
 	ld	sp, ix
 	pop	ix
 	ret
-;src/sistemas/fisica_objetos.c:18: void comprobar_recojida(u8 i){     
+;src/sistemas/fisica_objetos.c:17: void comprobar_recojida(u8 i){     
 ;	---------------------------------
 ; Function comprobar_recojida
 ; ---------------------------------
@@ -154,7 +154,7 @@ _comprobar_recojida::
 	push	ix
 	ld	ix,#0
 	add	ix,sp
-;src/sistemas/fisica_objetos.c:19: if (array[i].y==array[0].y)
+;src/sistemas/fisica_objetos.c:18: if (array[i].y==array[0].y)
 	ld	c,4 (ix)
 	ld	b,#0x00
 	ld	l, c
@@ -173,18 +173,18 @@ _comprobar_recojida::
 	ld	a, (#_array + 2)
 	sub	a, e
 	jr	NZ,00102$
-;src/sistemas/fisica_objetos.c:20: { vaso_lleno    =   lleno;
+;src/sistemas/fisica_objetos.c:19: { vaso_lleno    =   lleno;}
 	ld	hl,#_vaso_lleno + 0
 	ld	(hl), #0x01
 	jr	00104$
 00102$:
-;src/sistemas/fisica_objetos.c:22: else {obj_caido=&array[i];
+;src/sistemas/fisica_objetos.c:20: else {obj_caido=&array[i];
 	ld	(_obj_caido), bc
-;src/sistemas/fisica_objetos.c:23: pi=i;
+;src/sistemas/fisica_objetos.c:21: pi=i;
 	ld	b, 4 (ix)
 	ld	hl,#_pi + 0
 	ld	(hl), b
-;src/sistemas/fisica_objetos.c:24: array[i].vx =   -1;
+;src/sistemas/fisica_objetos.c:22: array[i].vx =   -1;
 	ld	e,b
 	ld	d,#0x00
 	ld	l, e
@@ -199,7 +199,7 @@ _comprobar_recojida::
 	inc	hl
 	inc	hl
 	ld	(hl), #0xff
-;src/sistemas/fisica_objetos.c:25: muere(i);}
+;src/sistemas/fisica_objetos.c:23: muere(i);}
 	push	bc
 	inc	sp
 	call	_muere

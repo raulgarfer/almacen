@@ -5024,25 +5024,25 @@ Hexadecimal [16-Bits]
 
 
 
-   4A5E AD DE                 3 _pinta_objeto::   .dw 0xdead
+   893A AD DE                 3 _pinta_objeto::   .dw 0xdead
                               4 .globl _vmem_ahora  
                               5 .globl cpct_getScreenPtr_asm
                               6 .globl cpct_drawSprite_asm
                               7 
-   4A60                       8 _pinta_con_puntero::
-   4A60 DD 2A 5E 4A   [20]    9     ld ix,(_pinta_objeto)
-   4A64                      10  loop_array:
-   4A64 ED 5B F3 55   [20]   11     ld de,(_vmem_ahora)
-   4A68 DD 4E 01      [19]   12     ld c,1(ix)
-   4A6B DD 46 02      [19]   13     ld b,2(ix)
-   4A6E CD E1 55      [17]   14        call cpct_getScreenPtr_asm
-   4A71 EB            [ 4]   15     ex de,hl
+   893C                       8 _pinta_con_puntero::
+   893C DD 2A 3A 89   [20]    9     ld ix,(_pinta_objeto)
+   8940                      10  loop_array:
+   8940 ED 5B 6D 95   [20]   11     ld de,(_vmem_ahora)
+   8944 DD 4E 01      [19]   12     ld c,1(ix)
+   8947 DD 46 02      [19]   13     ld b,2(ix)
+   894A CD 5B 95      [17]   14        call cpct_getScreenPtr_asm
+   894D EB            [ 4]   15     ex de,hl
                              16 
-   4A72 DD 66 08      [19]   17     ld h,sprite+1(ix)
-   4A75 DD 6E 07      [19]   18     ld l,sprite(ix)
-   4A78 DD 4E 05      [19]   19     ld c,ancho(ix)
-   4A7B DD 46 06      [19]   20     ld b,alto(ix)
-   4A7E CD 3D 4B      [17]   21         call cpct_drawSprite_asm
+   894E DD 66 08      [19]   17     ld h,sprite+1(ix)
+   8951 DD 6E 07      [19]   18     ld l,sprite(ix)
+   8954 DD 4E 05      [19]   19     ld c,ancho(ix)
+   8957 DD 46 06      [19]   20     ld b,alto(ix)
+   895A CD B7 8A      [17]   21         call cpct_drawSprite_asm
                              22         
                              23 
-   4A81 C9            [10]   24 ret
+   895D C9            [10]   24 ret

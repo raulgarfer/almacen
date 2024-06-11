@@ -3,7 +3,7 @@ H 9 areas 7 global symbols
 M teclado
 O -mz80
 S _cpct_isKeyPressed Ref0000
-S _main Ref0000
+S _inicia Ref0000
 S .__.ABS. Def0000
 S _comprueba_que_arriba_no_este_pulsada Ref0000
 S _array Ref0000

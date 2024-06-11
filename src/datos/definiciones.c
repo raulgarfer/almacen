@@ -24,6 +24,7 @@ objeto  *pjugador;
 objeto  *ppera;
 objeto  *pmanzana;
 u8 vaso_lleno;
+u8 hisc;
 void iniciar_valores(){
     x_manzana       =   x_start_objeto;
     y_manzana       =   y_frame_1;
@@ -38,6 +39,7 @@ void iniciar_valores(){
     ppera           =   &array[2];
     vmem_ahora      =   0xC000; 
     vaso_lleno      =   vacio;
+    
 } 
 
 const objeto player_init  ={1,x_start_jugador,y_frame_1,0,0,RIGHTPNG_W,RIGHTPNG_H,rightpng};

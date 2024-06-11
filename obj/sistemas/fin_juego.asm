@@ -48,52 +48,62 @@
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/sistemas/fin_juego.c:4: void muere(u8 i){
+;src/sistemas/fin_juego.c:5: void muere(u8 i){
 ;	---------------------------------
 ; Function muere
 ; ---------------------------------
 _muere::
-;src/sistemas/fin_juego.c:5: vidas--;
+;src/sistemas/fin_juego.c:6: vidas--;
 	ld	hl, #_vidas+0
 	dec	(hl)
-;src/sistemas/fin_juego.c:7: pinta_puntos();
+;src/sistemas/fin_juego.c:8: pinta_puntos();
 	call	_pinta_puntos
-;src/sistemas/fin_juego.c:8: if (vidas=='0')
+;src/sistemas/fin_juego.c:9: if (vidas=='0')
 	ld	a,(#_vidas + 0)
 	sub	a, #0x30
 	ret	NZ
-;src/sistemas/fin_juego.c:9: {fin_juego();}
+;src/sistemas/fin_juego.c:10: {fin_juego();}
 	jp  _fin_juego
-;src/sistemas/fin_juego.c:11: void fin_juego(){
+;src/sistemas/fin_juego.c:12: void fin_juego(){
 ;	---------------------------------
 ; Function fin_juego
 ; ---------------------------------
 _fin_juego::
-;src/sistemas/fin_juego.c:13: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,20);
+;src/sistemas/fin_juego.c:14: if (puntos>=hisc)
+	ld	hl, #_hisc
+	ld	iy, #_puntos
+	ld	a, 0 (iy)
+	sub	a, (hl)
+	jr	C,00102$
+;src/sistemas/fin_juego.c:15: {hisc=puntos;}
+	ld	a, 0 (iy)
+	ld	(#_hisc + 0),a
+00102$:
+;src/sistemas/fin_juego.c:17: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,20);
 	ld	hl, (_vmem_ahora)
 	ld	bc, #0x140a
 	push	bc
 	push	hl
 	call	_cpct_getScreenPtr
-;src/sistemas/fin_juego.c:14: cpct_drawStringM2("Has sido despedido!",pvmem);
+;src/sistemas/fin_juego.c:18: cpct_drawStringM2("Has sido despedido!",pvmem);
 	ld	bc, #___str_0+0
 	push	hl
 	push	bc
 	call	_cpct_drawStringM2
-;src/sistemas/fin_juego.c:15: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,40);
+;src/sistemas/fin_juego.c:19: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,40);
 	ld	hl, (_vmem_ahora)
 	ld	bc, #0x280a
 	push	bc
 	push	hl
 	call	_cpct_getScreenPtr
-;src/sistemas/fin_juego.c:16: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
+;src/sistemas/fin_juego.c:20: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
 	ld	bc, #___str_1+0
 	push	hl
 	push	bc
 	call	_cpct_drawStringM2
-;src/sistemas/fin_juego.c:17: espera_pulsacion_tecla();
+;src/sistemas/fin_juego.c:21: espera_pulsacion_tecla();
 	call	_espera_pulsacion_tecla
-;src/sistemas/fin_juego.c:18: espera_pulsar();
+;src/sistemas/fin_juego.c:22: espera_pulsar();
 	call	_espera_pulsar
 	ret
 ___str_0:
@@ -102,14 +112,14 @@ ___str_0:
 ___str_1:
 	.ascii "Vuelve a intentarlo."
 	.db 0x00
-;src/sistemas/fin_juego.c:20: void espera_pulsacion_tecla(){
+;src/sistemas/fin_juego.c:24: void espera_pulsacion_tecla(){
 ;	---------------------------------
 ; Function espera_pulsacion_tecla
 ; ---------------------------------
 _espera_pulsacion_tecla::
-;src/sistemas/fin_juego.c:21: espera_pulsacion_alguna_tecla();
+;src/sistemas/fin_juego.c:25: espera_pulsacion_alguna_tecla();
 	call	_espera_pulsacion_alguna_tecla
-;src/sistemas/fin_juego.c:22: cpct_clearScreen_f64 (0);
+;src/sistemas/fin_juego.c:26: cpct_clearScreen_f64 (0);
 	ld	hl, #0x4000
 	push	hl
 	ld	h, #0x00
@@ -118,12 +128,12 @@ _espera_pulsacion_tecla::
 	push	hl
 	call	_cpct_memset_f64
 	ret
-;src/sistemas/fin_juego.c:24: void espera_pulsar(){
+;src/sistemas/fin_juego.c:28: void espera_pulsar(){
 ;	---------------------------------
 ; Function espera_pulsar
 ; ---------------------------------
 _espera_pulsar::
-;src/sistemas/fin_juego.c:25: a_jugar();}
+;src/sistemas/fin_juego.c:29: a_jugar();}
 	jp  _a_jugar
 	.area _CODE
 	.area _INITIALIZER

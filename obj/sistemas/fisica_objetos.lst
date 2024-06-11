@@ -146,7 +146,7 @@
    0083 DD F9         [10]  146 	ld	sp, ix
    0085 DD E1         [14]  147 	pop	ix
    0087 C9            [10]  148 	ret
-                            149 ;src/sistemas/fisica_objetos.c:18: void comprobar_recojida(u8 i){     
+                            149 ;src/sistemas/fisica_objetos.c:17: void comprobar_recojida(u8 i){     
                             150 ;	---------------------------------
                             151 ; Function comprobar_recojida
                             152 ; ---------------------------------
@@ -154,7 +154,7 @@
    0088 DD E5         [15]  154 	push	ix
    008A DD 21 00 00   [14]  155 	ld	ix,#0
    008E DD 39         [15]  156 	add	ix,sp
-                            157 ;src/sistemas/fisica_objetos.c:19: if (array[i].y==array[0].y)
+                            157 ;src/sistemas/fisica_objetos.c:18: if (array[i].y==array[0].y)
    0090 DD 4E 04      [19]  158 	ld	c,4 (ix)
    0093 06 00         [ 7]  159 	ld	b,#0x00
    0095 69            [ 4]  160 	ld	l, c
@@ -173,18 +173,18 @@
    00A4 3Ar02r00      [13]  173 	ld	a, (#_array + 2)
    00A7 93            [ 4]  174 	sub	a, e
    00A8 20 07         [12]  175 	jr	NZ,00102$
-                            176 ;src/sistemas/fisica_objetos.c:20: { vaso_lleno    =   lleno;
+                            176 ;src/sistemas/fisica_objetos.c:19: { vaso_lleno    =   lleno;}
    00AA 21r00r00      [10]  177 	ld	hl,#_vaso_lleno + 0
    00AD 36 01         [10]  178 	ld	(hl), #0x01
    00AF 18 23         [12]  179 	jr	00104$
    00B1                     180 00102$:
-                            181 ;src/sistemas/fisica_objetos.c:22: else {obj_caido=&array[i];
+                            181 ;src/sistemas/fisica_objetos.c:20: else {obj_caido=&array[i];
    00B1 ED 43r00r00   [20]  182 	ld	(_obj_caido), bc
-                            183 ;src/sistemas/fisica_objetos.c:23: pi=i;
+                            183 ;src/sistemas/fisica_objetos.c:21: pi=i;
    00B5 DD 46 04      [19]  184 	ld	b, 4 (ix)
    00B8 21r02r00      [10]  185 	ld	hl,#_pi + 0
    00BB 70            [ 7]  186 	ld	(hl), b
-                            187 ;src/sistemas/fisica_objetos.c:24: array[i].vx =   -1;
+                            187 ;src/sistemas/fisica_objetos.c:22: array[i].vx =   -1;
    00BC 58            [ 4]  188 	ld	e,b
    00BD 16 00         [ 7]  189 	ld	d,#0x00
    00BF 6B            [ 4]  190 	ld	l, e
@@ -199,7 +199,7 @@
    00CA 23            [ 6]  199 	inc	hl
    00CB 23            [ 6]  200 	inc	hl
    00CC 36 FF         [10]  201 	ld	(hl), #0xff
-                            202 ;src/sistemas/fisica_objetos.c:25: muere(i);}
+                            202 ;src/sistemas/fisica_objetos.c:23: muere(i);}
    00CE C5            [11]  203 	push	bc
    00CF 33            [ 6]  204 	inc	sp
    00D0 CDr00r00      [17]  205 	call	_muere

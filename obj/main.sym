@@ -7,14 +7,12 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-    _Demo                                                          **** GX
   0 _a_jugar                                                       0022 GR
     _array                                                         **** GX
     _borra                                                         **** GX
     _borrar_ambas_pantallas                                        **** GX
   0 _cambiar_sprites                                               004B GR
     _control_interrupciones                                        **** GX
-    _cpct_akp_musicInit                                            **** GX
     _cpct_disableFirmware                                          **** GX
     _cpct_setVideoMode                                             **** GX
     _cpct_waitVSYNC                                                **** GX
@@ -22,6 +20,8 @@ Symbol Table
     _derecha_2_lleno                                               **** GX
     _fisica                                                        **** GX
     _fisica_objetos                                                **** GX
+    _hisc                                                          **** GX
+  0 _inicia                                                        000E GR
     _inicia_objetos                                                **** GX
     _iniciar_valores                                               **** GX
   0 _main                                                          0000 GR

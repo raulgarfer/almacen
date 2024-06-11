@@ -91,8 +91,8 @@
    003D 7D            [ 4]   91 	ld	a, l
    003E B7            [ 4]   92 	or	a, a
    003F C8            [11]   93 	ret	Z
-                             94 ;src/sistemas/teclado.c:14: {main();}   
-   0040 C3r00r00      [10]   95 	jp  _main
+                             94 ;src/sistemas/teclado.c:14: {inicia();}   
+   0040 C3r00r00      [10]   95 	jp  _inicia
                              96 	.area _CODE
                              97 	.area _INITIALIZER
                              98 	.area _CABS (ABS)

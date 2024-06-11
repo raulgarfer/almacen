@@ -10,15 +10,13 @@ void fisica_objetos(){
        { array[i].vx=0;
           array[i].x    =   70;
         comprobar_recojida(i);}
-   
-            }}
+             }}
 
 objeto  *obj_caido ;
 u8 pi;
 void comprobar_recojida(u8 i){     
     if (array[i].y==array[0].y)
-        { vaso_lleno    =   lleno;
-                   }
+        { vaso_lleno    =   lleno;}
     else {obj_caido=&array[i];
             pi=i;
             array[i].vx =   -1;

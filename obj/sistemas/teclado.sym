@@ -11,7 +11,7 @@ Symbol Table
     _comprueba_que_arriba_no_este_pulsada                          **** GX
     _cpct_isKeyPressed                                             **** GX
     _cpct_scanKeyboard                                             **** GX
-    _main                                                          **** GX
+    _inicia                                                        **** GX
   0 _teclado                                                       0000 GR
 
 

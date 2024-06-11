@@ -7,13 +7,15 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 ___str_0                                                       0025 R
-  0 ___str_1                                                       002C R
+  0 ___str_0                                                       0030 R
+  0 ___str_1                                                       0037 R
+  0 ___str_2                                                       003D R
     _cpct_drawCharM2                                               **** GX
     _cpct_drawStringM2                                             **** GX
     _cpct_setPALColour                                             **** GX
+    _hisc                                                          **** GX
   0 _pinta_marcador                                                0000 GR
-  0 _pinta_puntos                                                  0032 GR
+  0 _pinta_puntos                                                  0040 GR
   1 _puntos                                                        0000 GR
     _puntos_decena                                                 **** GX
     _vidas                                                         **** GX
@@ -24,7 +26,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   72   flags    0
+   0 _CODE                                      size   95   flags    0
    1 _DATA                                      size    1   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

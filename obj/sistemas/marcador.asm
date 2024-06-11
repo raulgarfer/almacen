@@ -72,6 +72,12 @@ _pinta_marcador::
 	ld	hl, #___str_1
 	push	hl
 	call	_cpct_drawStringM2
+;src/sistemas/marcador.c:10: cpct_drawStringM2("HI",(u8*)marcador_y+20);
+	ld	hl, #0xc794
+	push	hl
+	ld	hl, #___str_2
+	push	hl
+	call	_cpct_drawStringM2
 	ret
 ___str_0:
 	.ascii "Puntos"
@@ -79,20 +85,23 @@ ___str_0:
 ___str_1:
 	.ascii "Vidas"
 	.db 0x00
-;src/sistemas/marcador.c:12: void pinta_puntos(){
+___str_2:
+	.ascii "HI"
+	.db 0x00
+;src/sistemas/marcador.c:13: void pinta_puntos(){
 ;	---------------------------------
 ; Function pinta_puntos
 ; ---------------------------------
 _pinta_puntos::
-;src/sistemas/marcador.c:13: cpct_setPALColour (0, 1);
+;src/sistemas/marcador.c:14: cpct_setPALColour (0, 1);
 	ld	hl, #0x0100
 	push	hl
 	call	_cpct_setPALColour
-;src/sistemas/marcador.c:14: cpct_setPALColour (1, 2);
+;src/sistemas/marcador.c:15: cpct_setPALColour (1, 2);
 	ld	hl, #0x0201
 	push	hl
 	call	_cpct_setPALColour
-;src/sistemas/marcador.c:15: cpct_drawCharM2((u8*)marcador_y+7,puntos_decena);
+;src/sistemas/marcador.c:16: cpct_drawCharM2((u8*)marcador_y+7,puntos_decena);
 	ld	hl,#_puntos_decena + 0
 	ld	c, (hl)
 	ld	b, #0x00
@@ -100,7 +109,7 @@ _pinta_puntos::
 	ld	hl, #0xc787
 	push	hl
 	call	_cpct_drawCharM2
-;src/sistemas/marcador.c:16: cpct_drawCharM2((u8*)marcador_y+8,puntos);
+;src/sistemas/marcador.c:17: cpct_drawCharM2((u8*)marcador_y+8,puntos);
 	ld	hl,#_puntos + 0
 	ld	c, (hl)
 	ld	b, #0x00
@@ -108,16 +117,27 @@ _pinta_puntos::
 	ld	hl, #0xc788
 	push	hl
 	call	_cpct_drawCharM2
-;src/sistemas/marcador.c:17: cpct_setPALColour (1, 3);
+;src/sistemas/marcador.c:18: cpct_setPALColour (1, 3);
 	ld	hl, #0x0301
 	push	hl
 	call	_cpct_setPALColour
-;src/sistemas/marcador.c:18: cpct_drawCharM2((u8*)marcador_y+16,vidas);
+;src/sistemas/marcador.c:19: cpct_drawCharM2((u8*)marcador_y+16,vidas);
 	ld	hl,#_vidas + 0
 	ld	c, (hl)
 	ld	b, #0x00
 	push	bc
 	ld	hl, #0xc790
+	push	hl
+	call	_cpct_drawCharM2
+;src/sistemas/marcador.c:20: cpct_drawCharM2((u8*)marcador_y+32,hisc);
+	ld	iy, #_hisc
+	ld	c, 0 (iy)
+	ld	a, 0 (iy)
+	rla
+	sbc	a, a
+	ld	b, a
+	push	bc
+	ld	hl, #0xc7a0
 	push	hl
 	call	_cpct_drawCharM2
 	ret

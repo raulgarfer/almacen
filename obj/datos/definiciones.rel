@@ -1,5 +1,5 @@
 XL2
-H 9 areas 26 global symbols
+H 9 areas 27 global symbols
 M definiciones
 O -mz80
 S _rightpng Ref0000
@@ -16,8 +16,9 @@ S _iniciar_valores Def0000
 S _pera_init Def0080
 S _inicia_objetos Def004D
 S _player_init Def006C
-A _DATA size 94 flags 0 addr 0
+A _DATA size 95 flags 0 addr 0
 S _puntos_centena Def0013
+S _hisc Def0094
 S _puntos_decena Def0012
 S _vaso_lleno Def0093
 S _vx_manzana Def000E
@@ -148,6 +149,10 @@ R 00 00 01 00
 T 93 00
 R 00 00 01 00
 T 93 00
+R 00 00 01 00
+T 94 00
+R 00 00 01 00
+T 94 00
 R 00 00 01 00
 T 00 00
 R 00 00 00 00

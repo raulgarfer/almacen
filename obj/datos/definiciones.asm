@@ -9,6 +9,7 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _cpct_memcpy
+	.globl _hisc
 	.globl _vaso_lleno
 	.globl _pmanzana
 	.globl _ppera
@@ -97,6 +98,8 @@ _pmanzana::
 	.ds 2
 _vaso_lleno::
 	.ds 1
+_hisc::
+	.ds 1
 ;--------------------------------------------------------
 ; ram data
 ;--------------------------------------------------------
@@ -121,61 +124,61 @@ _vaso_lleno::
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/datos/definiciones.c:27: void iniciar_valores(){
+;src/datos/definiciones.c:28: void iniciar_valores(){
 ;	---------------------------------
 ; Function iniciar_valores
 ; ---------------------------------
 _iniciar_valores::
-;src/datos/definiciones.c:28: x_manzana       =   x_start_objeto;
+;src/datos/definiciones.c:29: x_manzana       =   x_start_objeto;
 	ld	hl,#_x_manzana + 0
 	ld	(hl), #0x3c
-;src/datos/definiciones.c:29: y_manzana       =   y_frame_1;
+;src/datos/definiciones.c:30: y_manzana       =   y_frame_1;
 	ld	hl,#_y_manzana + 0
 	ld	(hl), #0x0a
-;src/datos/definiciones.c:30: puntos          =   '0';
+;src/datos/definiciones.c:31: puntos          =   '0';
 	ld	hl,#_puntos + 0
 	ld	(hl), #0x30
-;src/datos/definiciones.c:31: puntos_decena   =   '0';
+;src/datos/definiciones.c:32: puntos_decena   =   '0';
 	ld	hl,#_puntos_decena + 0
 	ld	(hl), #0x30
-;src/datos/definiciones.c:32: puntos_centena  =   '0';
+;src/datos/definiciones.c:33: puntos_centena  =   '0';
 	ld	hl,#_puntos_centena + 0
 	ld	(hl), #0x30
-;src/datos/definiciones.c:33: vidas           =   '3';
+;src/datos/definiciones.c:34: vidas           =   '3';
 	ld	hl,#_vidas + 0
 	ld	(hl), #0x33
-;src/datos/definiciones.c:34: vx_manzana      =   -1;
+;src/datos/definiciones.c:35: vx_manzana      =   -1;
 	ld	hl,#_vx_manzana + 0
 	ld	(hl), #0xff
-;src/datos/definiciones.c:35: caida_objeto    =   x_jugador + RIGHTPNG_W + 1;//posicion donde conprueba si jugador coge objeto
+;src/datos/definiciones.c:36: caida_objeto    =   x_jugador + RIGHTPNG_W + 1;//posicion donde conprueba si jugador coge objeto
 	ld	hl, #_caida_objeto
 	ld	a,(#_x_jugador + 0)
 	add	a, #0x05
 	ld	(hl), a
-;src/datos/definiciones.c:36: pjugador        =   &array[0];
+;src/datos/definiciones.c:37: pjugador        =   &array[0];
 	ld	bc, #_array+0
 	ld	(_pjugador), bc
-;src/datos/definiciones.c:37: pmanzana        =   &array[1];
+;src/datos/definiciones.c:38: pmanzana        =   &array[1];
 	ld	hl, #0x000a
 	add	hl, bc
 	ld	(_pmanzana), hl
-;src/datos/definiciones.c:38: ppera           =   &array[2];
+;src/datos/definiciones.c:39: ppera           =   &array[2];
 	ld	hl, #0x0014
 	add	hl, bc
 	ld	(_ppera), hl
-;src/datos/definiciones.c:39: vmem_ahora      =   0xC000; 
+;src/datos/definiciones.c:40: vmem_ahora      =   0xC000; 
 	ld	hl, #0xc000
 	ld	(_vmem_ahora), hl
-;src/datos/definiciones.c:40: vaso_lleno      =   vacio;
+;src/datos/definiciones.c:41: vaso_lleno      =   vacio;
 	ld	hl,#_vaso_lleno + 0
 	ld	(hl), #0x00
 	ret
-;src/datos/definiciones.c:50: void inicia_objetos(){
+;src/datos/definiciones.c:52: void inicia_objetos(){
 ;	---------------------------------
 ; Function inicia_objetos
 ; ---------------------------------
 _inicia_objetos::
-;src/datos/definiciones.c:51: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
+;src/datos/definiciones.c:53: cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
 	ld	hl, #0x000a
 	push	hl
 	ld	hl, #_player_init
@@ -183,7 +186,7 @@ _inicia_objetos::
 	ld	hl, #_array
 	push	hl
 	call	_cpct_memcpy
-;src/datos/definiciones.c:53: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
+;src/datos/definiciones.c:55: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
 	ld	hl, #0x000a
 	push	hl
 	ld	hl, #_pera_init

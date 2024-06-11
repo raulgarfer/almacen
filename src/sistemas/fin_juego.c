@@ -1,6 +1,7 @@
 #include <cpctelera.h>
 #include "sprites.h"
 #include "datos/delcaraciones.h"
+extern u8 hisc;
 void muere(u8 i){
    vidas--;
    // array[i].x = array[i].x_inicial;
@@ -10,6 +11,9 @@ void muere(u8 i){
 }
 void fin_juego(){
     u8* pvmem;
+    if (puntos>=hisc)
+        {hisc=puntos;}
+
     pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,20);
         cpct_drawStringM2("Has sido despedido!",pvmem);
     pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,40);

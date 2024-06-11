@@ -18,6 +18,8 @@ $(eval $(call IMG2SP, CONVERT         , src/sprites/derecha_2_lleno.png, 0, 0, d
 $(eval $(call IMG2SP, CONVERT         , src/sprites/manzana.png, 0, 0, manzana ))
 $(eval $(call IMG2SP, CONVERT         , src/sprites/pera.png, 0, 0, pera ))
 $(eval $(call IMG2SP, CONVERT         , src/sprites/rightpng.png, 0, 0, rightpng ))
+$(eval $(call IMG2SP, SET_MODE        , 0                 ))  
+$(eval $(call IMG2SP, CONVERT         , src/sprites/granada.png, 0, 0, granada ))
 
 
 #$(eval $(call IMG2SP, SET_IMG_FORMAT  , zgtiles            ))

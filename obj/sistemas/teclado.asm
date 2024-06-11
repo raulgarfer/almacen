@@ -91,8 +91,8 @@ _teclado::
 	ld	a, l
 	or	a, a
 	ret	Z
-;src/sistemas/teclado.c:14: {main();}   
-	jp  _main
+;src/sistemas/teclado.c:14: {inicia();}   
+	jp  _inicia
 	.area _CODE
 	.area _INITIALIZER
 	.area _CABS (ABS)

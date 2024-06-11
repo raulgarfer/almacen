@@ -3,12 +3,16 @@
 #include "datos/delcaraciones.h"
 #include "music/Demo.h"
 u8* vmem_ahora;//cpct_pageC0 ;
-
+extern u8 hisc;
 void main(void) {
    cpct_disableFirmware();
+     hisc='0';
    mover_pila();
-   cpct_akp_musicInit (Demo);
-  control_interrupciones();
+ inicia();
+}
+void inicia(){
+   //cpct_akp_musicInit (Demo);
+   control_interrupciones();
    cpct_setVideoMode(2);
    borrar_ambas_pantallas();
    inicia_objetos();

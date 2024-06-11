@@ -33,7 +33,9 @@ int_1::
     cpctm_push af,bc,hl
         numero_interrupcion 1
         siguiente_interrrupcion int_2
-        
+    ld l,#1                             ;;pen
+    ld h,#2                             ;;ink
+    call cpct_setPALColour_asm  
         ;;call cpct_akp_musicPlay_asm
      cpctm_pop hl,bc,af
     ei

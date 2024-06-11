@@ -9,19 +9,19 @@
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
                              11 	.globl _cambiar_sprites
-                             12 	.globl _main
-                             13 	.globl _pinta_puntos
-                             14 	.globl _pinta_marcador
-                             15 	.globl _menu_juego
-                             16 	.globl _inicia_objetos
-                             17 	.globl _pintar_sprites
-                             18 	.globl _fisica_objetos
-                             19 	.globl _iniciar_valores
-                             20 	.globl _fisica
-                             21 	.globl _teclado
-                             22 	.globl _borra
-                             23 	.globl _control_interrupciones
-                             24 	.globl _cpct_akp_musicInit
+                             12 	.globl _inicia
+                             13 	.globl _main
+                             14 	.globl _pinta_puntos
+                             15 	.globl _pinta_marcador
+                             16 	.globl _menu_juego
+                             17 	.globl _inicia_objetos
+                             18 	.globl _pintar_sprites
+                             19 	.globl _fisica_objetos
+                             20 	.globl _iniciar_valores
+                             21 	.globl _fisica
+                             22 	.globl _teclado
+                             23 	.globl _borra
+                             24 	.globl _control_interrupciones
                              25 	.globl _cpct_waitVSYNC
                              26 	.globl _cpct_setVideoMode
                              27 	.globl _cpct_disableFirmware
@@ -68,83 +68,88 @@
    0000                      68 _main::
                              69 ;src/main.c:8: cpct_disableFirmware();
    0000 CDr00r00      [17]   70 	call	_cpct_disableFirmware
-                             71 ;src/main.c:9: mover_pila();
-   0003 CDr00r00      [17]   72 	call	_mover_pila
-                             73 ;src/main.c:10: cpct_akp_musicInit (Demo);
-   0006 21r00r00      [10]   74 	ld	hl, #_Demo
-   0009 E5            [11]   75 	push	hl
-   000A CDr00r00      [17]   76 	call	_cpct_akp_musicInit
-   000D F1            [10]   77 	pop	af
-                             78 ;src/main.c:11: control_interrupciones();
-   000E CDr00r00      [17]   79 	call	_control_interrupciones
-                             80 ;src/main.c:12: cpct_setVideoMode(2);
-   0011 2E 02         [ 7]   81 	ld	l, #0x02
-   0013 CDr00r00      [17]   82 	call	_cpct_setVideoMode
-                             83 ;src/main.c:13: borrar_ambas_pantallas();
-   0016 CDr00r00      [17]   84 	call	_borrar_ambas_pantallas
-                             85 ;src/main.c:14: inicia_objetos();
-   0019 CDr00r00      [17]   86 	call	_inicia_objetos
-                             87 ;src/main.c:15: menu_juego();
-   001C CDr00r00      [17]   88 	call	_menu_juego
-                             89 ;src/main.c:16: a_jugar();}
-   001F C3r22r00      [10]   90 	jp  _a_jugar
-                             91 ;src/main.c:17: void a_jugar(){  
-                             92 ;	---------------------------------
-                             93 ; Function a_jugar
-                             94 ; ---------------------------------
-   0022                      95 _a_jugar::
-                             96 ;src/main.c:19: borrar_ambas_pantallas();
-   0022 CDr00r00      [17]   97 	call	_borrar_ambas_pantallas
-                             98 ;src/main.c:20: iniciar_valores();
-   0025 CDr00r00      [17]   99 	call	_iniciar_valores
-                            100 ;src/main.c:21: inicia_objetos();
-   0028 CDr00r00      [17]  101 	call	_inicia_objetos
-                            102 ;src/main.c:22: pinta_marcador();
-   002B CDr00r00      [17]  103 	call	_pinta_marcador
-                            104 ;src/main.c:23: pinta_puntos();
-   002E CDr00r00      [17]  105 	call	_pinta_puntos
-                            106 ;src/main.c:24: mientras_juego();
-   0031 C3r34r00      [10]  107 	jp  _mientras_juego
-                            108 ;src/main.c:28: void mientras_juego(){
-                            109 ;	---------------------------------
-                            110 ; Function mientras_juego
-                            111 ; ---------------------------------
-   0034                     112 _mientras_juego::
-                            113 ;src/main.c:29: while(1){
-   0034                     114 00102$:
-                            115 ;src/main.c:30: borra();
-   0034 CDr00r00      [17]  116 	call	_borra
-                            117 ;src/main.c:31: teclado();
-   0037 CDr00r00      [17]  118 	call	_teclado
-                            119 ;src/main.c:32: fisica();
-   003A CDr00r00      [17]  120 	call	_fisica
-                            121 ;src/main.c:33: cambiar_sprites();
-   003D CDr4Br00      [17]  122 	call	_cambiar_sprites
-                            123 ;src/main.c:34: fisica_objetos();
-   0040 CDr00r00      [17]  124 	call	_fisica_objetos
-                            125 ;src/main.c:35: pintar_sprites();
-   0043 CDr00r00      [17]  126 	call	_pintar_sprites
-                            127 ;src/main.c:36: cpct_waitVSYNC();
-   0046 CDr00r00      [17]  128 	call	_cpct_waitVSYNC
-   0049 18 E9         [12]  129 	jr	00102$
-                            130 ;src/main.c:39: void cambiar_sprites(){
-                            131 ;	---------------------------------
-                            132 ; Function cambiar_sprites
-                            133 ; ---------------------------------
-   004B                     134 _cambiar_sprites::
-                            135 ;src/main.c:40: if (vaso_lleno==vacio)
-   004B 3Ar00r00      [13]  136 	ld	a,(#_vaso_lleno + 0)
-   004E B7            [ 4]  137 	or	a, a
-   004F 20 07         [12]  138 	jr	NZ,00102$
-                            139 ;src/main.c:41: {array[0].sprite =   derecha_2;}
-   0051 21r00r00      [10]  140 	ld	hl, #_derecha_2
-   0054 22r07r00      [16]  141 	ld	((_array + 0x0007)), hl
-   0057 C9            [10]  142 	ret
-   0058                     143 00102$:
-                            144 ;src/main.c:42: else array[0].sprite =  derecha_2_lleno;}
-   0058 21r00r00      [10]  145 	ld	hl, #_derecha_2_lleno
-   005B 22r07r00      [16]  146 	ld	((_array + 0x0007)), hl
-   005E C9            [10]  147 	ret
-                            148 	.area _CODE
-                            149 	.area _INITIALIZER
-                            150 	.area _CABS (ABS)
+                             71 ;src/main.c:9: hisc='0';
+   0003 21r00r00      [10]   72 	ld	hl,#_hisc + 0
+   0006 36 30         [10]   73 	ld	(hl), #0x30
+                             74 ;src/main.c:10: mover_pila();
+   0008 CDr00r00      [17]   75 	call	_mover_pila
+                             76 ;src/main.c:11: inicia();
+   000B C3r0Er00      [10]   77 	jp  _inicia
+                             78 ;src/main.c:13: void inicia(){
+                             79 ;	---------------------------------
+                             80 ; Function inicia
+                             81 ; ---------------------------------
+   000E                      82 _inicia::
+                             83 ;src/main.c:15: control_interrupciones();
+   000E CDr00r00      [17]   84 	call	_control_interrupciones
+                             85 ;src/main.c:16: cpct_setVideoMode(2);
+   0011 2E 02         [ 7]   86 	ld	l, #0x02
+   0013 CDr00r00      [17]   87 	call	_cpct_setVideoMode
+                             88 ;src/main.c:17: borrar_ambas_pantallas();
+   0016 CDr00r00      [17]   89 	call	_borrar_ambas_pantallas
+                             90 ;src/main.c:18: inicia_objetos();
+   0019 CDr00r00      [17]   91 	call	_inicia_objetos
+                             92 ;src/main.c:19: menu_juego();
+   001C CDr00r00      [17]   93 	call	_menu_juego
+                             94 ;src/main.c:20: a_jugar();}
+   001F C3r22r00      [10]   95 	jp  _a_jugar
+                             96 ;src/main.c:21: void a_jugar(){  
+                             97 ;	---------------------------------
+                             98 ; Function a_jugar
+                             99 ; ---------------------------------
+   0022                     100 _a_jugar::
+                            101 ;src/main.c:23: borrar_ambas_pantallas();
+   0022 CDr00r00      [17]  102 	call	_borrar_ambas_pantallas
+                            103 ;src/main.c:24: iniciar_valores();
+   0025 CDr00r00      [17]  104 	call	_iniciar_valores
+                            105 ;src/main.c:25: inicia_objetos();
+   0028 CDr00r00      [17]  106 	call	_inicia_objetos
+                            107 ;src/main.c:26: pinta_marcador();
+   002B CDr00r00      [17]  108 	call	_pinta_marcador
+                            109 ;src/main.c:27: pinta_puntos();
+   002E CDr00r00      [17]  110 	call	_pinta_puntos
+                            111 ;src/main.c:28: mientras_juego();
+   0031 C3r34r00      [10]  112 	jp  _mientras_juego
+                            113 ;src/main.c:32: void mientras_juego(){
+                            114 ;	---------------------------------
+                            115 ; Function mientras_juego
+                            116 ; ---------------------------------
+   0034                     117 _mientras_juego::
+                            118 ;src/main.c:33: while(1){
+   0034                     119 00102$:
+                            120 ;src/main.c:34: borra();
+   0034 CDr00r00      [17]  121 	call	_borra
+                            122 ;src/main.c:35: teclado();
+   0037 CDr00r00      [17]  123 	call	_teclado
+                            124 ;src/main.c:36: fisica();
+   003A CDr00r00      [17]  125 	call	_fisica
+                            126 ;src/main.c:37: cambiar_sprites();
+   003D CDr4Br00      [17]  127 	call	_cambiar_sprites
+                            128 ;src/main.c:38: fisica_objetos();
+   0040 CDr00r00      [17]  129 	call	_fisica_objetos
+                            130 ;src/main.c:39: pintar_sprites();
+   0043 CDr00r00      [17]  131 	call	_pintar_sprites
+                            132 ;src/main.c:40: cpct_waitVSYNC();
+   0046 CDr00r00      [17]  133 	call	_cpct_waitVSYNC
+   0049 18 E9         [12]  134 	jr	00102$
+                            135 ;src/main.c:43: void cambiar_sprites(){
+                            136 ;	---------------------------------
+                            137 ; Function cambiar_sprites
+                            138 ; ---------------------------------
+   004B                     139 _cambiar_sprites::
+                            140 ;src/main.c:44: if (vaso_lleno==vacio)
+   004B 3Ar00r00      [13]  141 	ld	a,(#_vaso_lleno + 0)
+   004E B7            [ 4]  142 	or	a, a
+   004F 20 07         [12]  143 	jr	NZ,00102$
+                            144 ;src/main.c:45: {array[0].sprite =   derecha_2;}
+   0051 21r00r00      [10]  145 	ld	hl, #_derecha_2
+   0054 22r07r00      [16]  146 	ld	((_array + 0x0007)), hl
+   0057 C9            [10]  147 	ret
+   0058                     148 00102$:
+                            149 ;src/main.c:46: else array[0].sprite =  derecha_2_lleno;}
+   0058 21r00r00      [10]  150 	ld	hl, #_derecha_2_lleno
+   005B 22r07r00      [16]  151 	ld	((_array + 0x0007)), hl
+   005E C9            [10]  152 	ret
+                            153 	.area _CODE
+                            154 	.area _INITIALIZER
+                            155 	.area _CABS (ABS)
