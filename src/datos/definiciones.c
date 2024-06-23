@@ -50,8 +50,6 @@ const objeto pera2_init ={1,x_init_obj1+10,y_frame_3,-1,0,PERA_W,PERA_H,pera,x_s
 
 
 void inicia_objetos(){
-   cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
-   //cpct_memcpy (&array[2], &manzana_init, sizeof(array[0]));
-   cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
-  // cpct_memcpy (&array[3], &pera2_init, sizeof(array[0]));
-}
+  cpct_memcpy (&array[0], &player_init, sizeof(array[0]));
+  cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
+ }

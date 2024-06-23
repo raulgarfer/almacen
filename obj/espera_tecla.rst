@@ -5018,41 +5018,41 @@ Hexadecimal [16-Bits]
                               7 ;;============================================================================================
                               8 ;;espera que no haya ninguna tecla pulsada y seguidamente a que se pulse una
                               9 ;;============================================================================================ 
-   8850                      10  _espera_pulsacion_alguna_tecla::
-   8850                      11     espera_que_no_se_pulse_tecla:
-   8850 CD 6A 89      [17]   12     call  cpct_scanKeyboard_f_asm
-   8853 CD 10 8C      [17]   13     call cpct_isAnyKeyPressed_f_asm
-   8856 20 F8         [12]   14         jr nz,espera_que_no_se_pulse_tecla
-   8858                      15  espera_que_si_se_pulse:
-   8858 CD 6A 89      [17]   16     call  cpct_scanKeyboard_f_asm
-   885B CD 10 8C      [17]   17     call cpct_isAnyKeyPressed_f_asm
-   885E 28 F8         [12]   18         jr z,espera_que_si_se_pulse
-   8860 C9            [10]   19 ret 
-   8861                      20 _q_esta_pulsada::
-   8861 00                   21     .db 0
-   8862                      22 _a_esta_pulsada::
-   8862 00                   23     .db 0
-   8863                      24 _comprueba_que_arriba_no_este_pulsada::
-   8863 CD 6A 89      [17]   25      call  cpct_scanKeyboard_f_asm
-   8866 21 08 08      [10]   26      ld hl,#Key_Q
-   8869 CD 5E 89      [17]   27      call cpct_isKeyPressed_asm
-   886C 28 07         [12]   28         jr z,q_no_pulsada
-   886E 21 61 88      [10]   29             ld hl,#_q_esta_pulsada
-   8871 36 01         [10]   30             ld (hl),#1
-   8873 18 05         [12]   31             jr _comprueba_que_abajo_no_este_pulsada
-   8875                      32     q_no_pulsada:
-   8875 21 61 88      [10]   33             ld hl,#_q_esta_pulsada
-   8878 36 00         [10]   34             ld (hl),#0
-   887A                      35 _comprueba_que_abajo_no_este_pulsada::
-   887A 21 08 20      [10]   36     ld hl,#Key_A
-   887D CD 5E 89      [17]   37     call cpct_isKeyPressed_asm
-   8880 28 07         [12]   38         jr z,a_no_pulsada
-   8882 21 62 88      [10]   39             ld hl,#_a_esta_pulsada
-   8885 36 01         [10]   40             ld (hl),#1
-   8887 18 05         [12]   41             jr fin_teclado
-   8889                      42         a_no_pulsada:
-   8889 21 62 88      [10]   43             ld hl,#_a_esta_pulsada
-   888C 36 00         [10]   44             ld (hl),#0
-   888E                      45 fin_teclado::
-   888E C9            [10]   46 ret
+   8840                      10  _espera_pulsacion_alguna_tecla::
+   8840                      11     espera_que_no_se_pulse_tecla:
+   8840 CD 5A 89      [17]   12     call  cpct_scanKeyboard_f_asm
+   8843 CD 00 8C      [17]   13     call cpct_isAnyKeyPressed_f_asm
+   8846 20 F8         [12]   14         jr nz,espera_que_no_se_pulse_tecla
+   8848                      15  espera_que_si_se_pulse:
+   8848 CD 5A 89      [17]   16     call  cpct_scanKeyboard_f_asm
+   884B CD 00 8C      [17]   17     call cpct_isAnyKeyPressed_f_asm
+   884E 28 F8         [12]   18         jr z,espera_que_si_se_pulse
+   8850 C9            [10]   19 ret 
+   8851                      20 _q_esta_pulsada::
+   8851 00                   21     .db 0
+   8852                      22 _a_esta_pulsada::
+   8852 00                   23     .db 0
+   8853                      24 _comprueba_que_arriba_no_este_pulsada::
+   8853 CD 5A 89      [17]   25      call  cpct_scanKeyboard_f_asm
+   8856 21 08 08      [10]   26      ld hl,#Key_Q
+   8859 CD 4E 89      [17]   27      call cpct_isKeyPressed_asm
+   885C 28 07         [12]   28         jr z,q_no_pulsada
+   885E 21 51 88      [10]   29             ld hl,#_q_esta_pulsada
+   8861 36 01         [10]   30             ld (hl),#1
+   8863 18 05         [12]   31             jr _comprueba_que_abajo_no_este_pulsada
+   8865                      32     q_no_pulsada:
+   8865 21 51 88      [10]   33             ld hl,#_q_esta_pulsada
+   8868 36 00         [10]   34             ld (hl),#0
+   886A                      35 _comprueba_que_abajo_no_este_pulsada::
+   886A 21 08 20      [10]   36     ld hl,#Key_A
+   886D CD 4E 89      [17]   37     call cpct_isKeyPressed_asm
+   8870 28 07         [12]   38         jr z,a_no_pulsada
+   8872 21 52 88      [10]   39             ld hl,#_a_esta_pulsada
+   8875 36 01         [10]   40             ld (hl),#1
+   8877 18 05         [12]   41             jr fin_teclado
+   8879                      42         a_no_pulsada:
+   8879 21 52 88      [10]   43             ld hl,#_a_esta_pulsada
+   887C 36 00         [10]   44             ld (hl),#0
+   887E                      45 fin_teclado::
+   887E C9            [10]   46 ret
                              47 

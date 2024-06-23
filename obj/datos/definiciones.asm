@@ -186,7 +186,7 @@ _inicia_objetos::
 	ld	hl, #_array
 	push	hl
 	call	_cpct_memcpy
-;src/datos/definiciones.c:55: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
+;src/datos/definiciones.c:54: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
 	ld	hl, #0x000a
 	push	hl
 	ld	hl, #_pera_init

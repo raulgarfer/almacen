@@ -8,7 +8,6 @@ void menu_juego(){
         cpct_setVideoMode(0);
      cpct_clearScreen_f64 (0);
     cpct_clearScreen_f64(0);
-
     pvmem   =  cpct_getScreenPtr((u8*)0xc000,10,20);
     cpct_drawStringM0("Bienvenido al almacen",pvmem);
         pvmem   =  cpct_getScreenPtr(0xc000,10,40);

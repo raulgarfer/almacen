@@ -186,7 +186,7 @@
    0055 21r15r00      [10]  186 	ld	hl, #_array
    0058 E5            [11]  187 	push	hl
    0059 CDr00r00      [17]  188 	call	_cpct_memcpy
-                            189 ;src/datos/definiciones.c:55: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
+                            189 ;src/datos/definiciones.c:54: cpct_memcpy (&array[1], &pera_init, sizeof(array[0]));
    005C 21 0A 00      [10]  190 	ld	hl, #0x000a
    005F E5            [11]  191 	push	hl
    0060 21r80r00      [10]  192 	ld	hl, #_pera_init

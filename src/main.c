@@ -7,11 +7,10 @@ extern u8 hisc;
 void main(void) {
    cpct_disableFirmware();
      hisc='0';
-   mover_pila();
+//   mover_pila();
  inicia();
 }
 void inicia(){
-   //cpct_akp_musicInit (Demo);
    control_interrupciones();
    cpct_setVideoMode(2);
    borrar_ambas_pantallas();
@@ -19,12 +18,11 @@ void inicia(){
    menu_juego();
    a_jugar();}
 void a_jugar(){  
-    // cpct_clearScreen_f64(0); 
-       borrar_ambas_pantallas();
-    iniciar_valores();
-    inicia_objetos();
+   borrar_ambas_pantallas();
+   iniciar_valores();
+   inicia_objetos();
    pinta_marcador();
-    pinta_puntos();
+   pinta_puntos();
    mientras_juego();
 
 }

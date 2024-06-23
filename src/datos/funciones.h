@@ -23,5 +23,3 @@ void fin_juego();
 void pinta_puntos();
 void baja();
 void sube();
-//void borra_con_puntero(objeto );
-//void borra_con_puntero(objeto );

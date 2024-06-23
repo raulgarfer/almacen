@@ -5005,28 +5005,19 @@ Hexadecimal [16-Bits]
 
 
 
-   882F                       2 _mover_pila::
-   882F E1            [10]    3    pop hl
-   8830 31 FE 7F      [10]    4    ld sp,#0x8000-2
-   8833 E5            [11]    5    push hl
-   8834 C9            [10]    6 ret
+   882C                       2 _mover_pila::
+   882C E1            [10]    3    pop hl
+   882D 31 FE 7F      [10]    4    ld sp,#0x8000-2
+   8830 E5            [11]    5    push hl
+   8831 C9            [10]    6 ret
                               7 
-   8835                       8 _borrar_ambas_pantallas::
-   8835 AF            [ 4]    9     xor a
-   8836 21 00 C0      [10]   10     ld hl,#0xc000
-   8839 54            [ 4]   11     ld d,h
-   883A 5D            [ 4]   12     ld e,l
-   883B 13            [ 6]   13     inc de
-   883C 77            [ 7]   14     ld (hl),a
-   883D 01 FF 3F      [10]   15     ld bc,#0x4000-1
-   8840 ED B0         [21]   16     ldir
-   8842 AF            [ 4]   17      xor a
-                             18    
-   8843 21 00 80      [10]   19     ld hl,#0x8000
-   8846 54            [ 4]   20     ld d,h
-   8847 5D            [ 4]   21     ld e,l
-   8848 13            [ 6]   22     inc de
-   8849 77            [ 7]   23     ld (hl),a
-   884A 01 FF 3F      [10]   24     ld bc,#0x4000-1
-   884D ED B0         [21]   25     ldir
-   884F C9            [10]   26 ret
+   8832                       8 _borrar_ambas_pantallas::
+   8832 AF            [ 4]    9     xor a
+   8833 21 00 C0      [10]   10     ld hl,#0xc000
+   8836 54            [ 4]   11     ld d,h
+   8837 5D            [ 4]   12     ld e,l
+   8838 13            [ 6]   13     inc de
+   8839 77            [ 7]   14     ld (hl),a
+   883A 01 FF 3F      [10]   15     ld bc,#0x4000-1
+   883D ED B0         [21]   16     ldir
+   883F C9            [10]   17  ret

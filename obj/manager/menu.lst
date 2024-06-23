@@ -70,37 +70,37 @@
    0019 26 C0         [ 7]   70 	ld	h, #0xc0
    001B E5            [11]   71 	push	hl
    001C CDr00r00      [17]   72 	call	_cpct_memset_f64
-                             73 ;src/manager/menu.c:12: pvmem   =  cpct_getScreenPtr((u8*)0xc000,10,20);
+                             73 ;src/manager/menu.c:11: pvmem   =  cpct_getScreenPtr((u8*)0xc000,10,20);
    001F 21 0A 14      [10]   74 	ld	hl, #0x140a
    0022 E5            [11]   75 	push	hl
    0023 21 00 C0      [10]   76 	ld	hl, #0xc000
    0026 E5            [11]   77 	push	hl
    0027 CDr00r00      [17]   78 	call	_cpct_getScreenPtr
-                             79 ;src/manager/menu.c:13: cpct_drawStringM0("Bienvenido al almacen",pvmem);
+                             79 ;src/manager/menu.c:12: cpct_drawStringM0("Bienvenido al almacen",pvmem);
    002A 01r63r00      [10]   80 	ld	bc, #___str_0+0
    002D E5            [11]   81 	push	hl
    002E C5            [11]   82 	push	bc
    002F CDr00r00      [17]   83 	call	_cpct_drawStringM0
-                             84 ;src/manager/menu.c:14: pvmem   =  cpct_getScreenPtr(0xc000,10,40);
+                             84 ;src/manager/menu.c:13: pvmem   =  cpct_getScreenPtr(0xc000,10,40);
    0032 21 0A 28      [10]   85 	ld	hl, #0x280a
    0035 E5            [11]   86 	push	hl
    0036 21 00 C0      [10]   87 	ld	hl, #0xc000
    0039 E5            [11]   88 	push	hl
    003A CDr00r00      [17]   89 	call	_cpct_getScreenPtr
-                             90 ;src/manager/menu.c:15: cpct_drawStringM0("pulsa una tecla",pvmem);
+                             90 ;src/manager/menu.c:14: cpct_drawStringM0("pulsa una tecla",pvmem);
    003D 01r79r00      [10]   91 	ld	bc, #___str_1+0
    0040 E5            [11]   92 	push	hl
    0041 C5            [11]   93 	push	bc
    0042 CDr00r00      [17]   94 	call	_cpct_drawStringM0
-                             95 ;src/manager/menu.c:16: pvmem   =  cpct_getScreenPtr(0xc000,10,50);
+                             95 ;src/manager/menu.c:15: pvmem   =  cpct_getScreenPtr(0xc000,10,50);
    0045 21 0A 32      [10]   96 	ld	hl, #0x320a
    0048 E5            [11]   97 	push	hl
    0049 21 00 C0      [10]   98 	ld	hl, #0xc000
    004C E5            [11]   99 	push	hl
    004D CDr00r00      [17]  100 	call	_cpct_getScreenPtr
-                            101 ;src/manager/menu.c:18: espera_pulsacion_tecla();
+                            101 ;src/manager/menu.c:17: espera_pulsacion_tecla();
    0050 CDr00r00      [17]  102 	call	_espera_pulsacion_tecla
-                            103 ;src/manager/menu.c:19: cpct_setVideoMode(2);
+                            103 ;src/manager/menu.c:18: cpct_setVideoMode(2);
    0053 2E 02         [ 7]  104 	ld	l, #0x02
    0055 CDr00r00      [17]  105 	call	_cpct_setVideoMode
    0058 C9            [10]  106 	ret

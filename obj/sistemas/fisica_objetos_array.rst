@@ -5038,8 +5038,8 @@ Hexadecimal [16-Bits]
                               9 ;;//    if (array[i].x==10)
                              10 ;;//        {comprobar_recojida(i);}
                              11 
-   8935                      12 _fisica_objetos_con_array::
-   8935 DD 21 84 95   [14]   13     ld ix,#_array
+   8925                      12 _fisica_objetos_con_array::
+   8925 DD 21 74 95   [14]   13     ld ix,#_array
                              14  
                              15 
-   8939 C9            [10]   16 ret
+   8929 C9            [10]   16 ret
