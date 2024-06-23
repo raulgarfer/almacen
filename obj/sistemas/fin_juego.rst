@@ -52,95 +52,95 @@
                              52 ;	---------------------------------
                              53 ; Function muere
                              54 ; ---------------------------------
-   848D                      55 _muere::
+   8299                      55 _muere::
                              56 ;src/sistemas/fin_juego.c:6: vidas--;
-   848D 21 73 95      [10]   57 	ld	hl, #_vidas+0
-   8490 35            [11]   58 	dec	(hl)
+   8299 21 34 8E      [10]   57 	ld	hl, #_vidas+0
+   829C 35            [11]   58 	dec	(hl)
                              59 ;src/sistemas/fin_juego.c:8: pinta_puntos();
-   8491 CD B3 86      [17]   60 	call	_pinta_puntos
+   829D CD C3 84      [17]   60 	call	_pinta_puntos
                              61 ;src/sistemas/fin_juego.c:9: if (vidas=='0')
-   8494 3A 73 95      [13]   62 	ld	a,(#_vidas + 0)
-   8497 D6 30         [ 7]   63 	sub	a, #0x30
-   8499 C0            [11]   64 	ret	NZ
+   82A0 3A 34 8E      [13]   62 	ld	a,(#_vidas + 0)
+   82A3 D6 30         [ 7]   63 	sub	a, #0x30
+   82A5 C0            [11]   64 	ret	NZ
                              65 ;src/sistemas/fin_juego.c:10: {fin_juego();}
-   849A C3 9D 84      [10]   66 	jp  _fin_juego
+   82A6 C3 A9 82      [10]   66 	jp  _fin_juego
                              67 ;src/sistemas/fin_juego.c:12: void fin_juego(){
                              68 ;	---------------------------------
                              69 ; Function fin_juego
                              70 ; ---------------------------------
-   849D                      71 _fin_juego::
+   82A9                      71 _fin_juego::
                              72 ;src/sistemas/fin_juego.c:14: if (puntos>=hisc)
-   849D 21 F3 95      [10]   73 	ld	hl, #_hisc
-   84A0 FD 21 F7 95   [14]   74 	ld	iy, #_puntos
-   84A4 FD 7E 00      [19]   75 	ld	a, 0 (iy)
-   84A7 96            [ 7]   76 	sub	a, (hl)
-   84A8 38 06         [12]   77 	jr	C,00102$
+   82A9 21 B4 8E      [10]   73 	ld	hl, #_hisc
+   82AC FD 21 B8 8E   [14]   74 	ld	iy, #_puntos
+   82B0 FD 7E 00      [19]   75 	ld	a, 0 (iy)
+   82B3 96            [ 7]   76 	sub	a, (hl)
+   82B4 38 06         [12]   77 	jr	C,00102$
                              78 ;src/sistemas/fin_juego.c:15: {hisc=puntos;}
-   84AA FD 7E 00      [19]   79 	ld	a, 0 (iy)
-   84AD 32 F3 95      [13]   80 	ld	(#_hisc + 0),a
-   84B0                      81 00102$:
+   82B6 FD 7E 00      [19]   79 	ld	a, 0 (iy)
+   82B9 32 B4 8E      [13]   80 	ld	(#_hisc + 0),a
+   82BC                      81 00102$:
                              82 ;src/sistemas/fin_juego.c:17: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,20);
-   84B0 2A 5D 95      [16]   83 	ld	hl, (_vmem_ahora)
-   84B3 01 0A 14      [10]   84 	ld	bc, #0x140a
-   84B6 C5            [11]   85 	push	bc
-   84B7 E5            [11]   86 	push	hl
-   84B8 CD 35 95      [17]   87 	call	_cpct_getScreenPtr
+   82BC 2A 1E 8E      [16]   83 	ld	hl, (_vmem_ahora)
+   82BF 01 0A 14      [10]   84 	ld	bc, #0x140a
+   82C2 C5            [11]   85 	push	bc
+   82C3 E5            [11]   86 	push	hl
+   82C4 CD F6 8D      [17]   87 	call	_cpct_getScreenPtr
                              88 ;src/sistemas/fin_juego.c:18: cpct_drawStringM2("Has sido despedido!",pvmem);
-   84BB 01 DD 84      [10]   89 	ld	bc, #___str_0+0
-   84BE E5            [11]   90 	push	hl
-   84BF C5            [11]   91 	push	bc
-   84C0 CD 14 8A      [17]   92 	call	_cpct_drawStringM2
+   82C7 01 E9 82      [10]   89 	ld	bc, #___str_0+0
+   82CA E5            [11]   90 	push	hl
+   82CB C5            [11]   91 	push	bc
+   82CC CD 59 8A      [17]   92 	call	_cpct_drawStringM2
                              93 ;src/sistemas/fin_juego.c:19: pvmem=cpct_getScreenPtr((u8*)vmem_ahora,10,40);
-   84C3 2A 5D 95      [16]   94 	ld	hl, (_vmem_ahora)
-   84C6 01 0A 28      [10]   95 	ld	bc, #0x280a
-   84C9 C5            [11]   96 	push	bc
-   84CA E5            [11]   97 	push	hl
-   84CB CD 35 95      [17]   98 	call	_cpct_getScreenPtr
+   82CF 2A 1E 8E      [16]   94 	ld	hl, (_vmem_ahora)
+   82D2 01 0A 28      [10]   95 	ld	bc, #0x280a
+   82D5 C5            [11]   96 	push	bc
+   82D6 E5            [11]   97 	push	hl
+   82D7 CD F6 8D      [17]   98 	call	_cpct_getScreenPtr
                              99 ;src/sistemas/fin_juego.c:20: cpct_drawStringM2("Vuelve a intentarlo.",pvmem);
-   84CE 01 F1 84      [10]  100 	ld	bc, #___str_1+0
-   84D1 E5            [11]  101 	push	hl
-   84D2 C5            [11]  102 	push	bc
-   84D3 CD 14 8A      [17]  103 	call	_cpct_drawStringM2
+   82DA 01 FD 82      [10]  100 	ld	bc, #___str_1+0
+   82DD E5            [11]  101 	push	hl
+   82DE C5            [11]  102 	push	bc
+   82DF CD 59 8A      [17]  103 	call	_cpct_drawStringM2
                             104 ;src/sistemas/fin_juego.c:21: espera_pulsacion_tecla();
-   84D6 CD 06 85      [17]  105 	call	_espera_pulsacion_tecla
+   82E2 CD 12 83      [17]  105 	call	_espera_pulsacion_tecla
                             106 ;src/sistemas/fin_juego.c:22: espera_pulsar();
-   84D9 CD 17 85      [17]  107 	call	_espera_pulsar
-   84DC C9            [10]  108 	ret
-   84DD                     109 ___str_0:
-   84DD 48 61 73 20 73 69   110 	.ascii "Has sido despedido!"
+   82E5 CD 23 83      [17]  107 	call	_espera_pulsar
+   82E8 C9            [10]  108 	ret
+   82E9                     109 ___str_0:
+   82E9 48 61 73 20 73 69   110 	.ascii "Has sido despedido!"
         64 6F 20 64 65 73
         70 65 64 69 64 6F
         21
-   84F0 00                  111 	.db 0x00
-   84F1                     112 ___str_1:
-   84F1 56 75 65 6C 76 65   113 	.ascii "Vuelve a intentarlo."
+   82FC 00                  111 	.db 0x00
+   82FD                     112 ___str_1:
+   82FD 56 75 65 6C 76 65   113 	.ascii "Vuelve a intentarlo."
         20 61 20 69 6E 74
         65 6E 74 61 72 6C
         6F 2E
-   8505 00                  114 	.db 0x00
+   8311 00                  114 	.db 0x00
                             115 ;src/sistemas/fin_juego.c:24: void espera_pulsacion_tecla(){
                             116 ;	---------------------------------
                             117 ; Function espera_pulsacion_tecla
                             118 ; ---------------------------------
-   8506                     119 _espera_pulsacion_tecla::
+   8312                     119 _espera_pulsacion_tecla::
                             120 ;src/sistemas/fin_juego.c:25: espera_pulsacion_alguna_tecla();
-   8506 CD 40 88      [17]  121 	call	_espera_pulsacion_alguna_tecla
+   8312 CD 70 88      [17]  121 	call	_espera_pulsacion_alguna_tecla
                             122 ;src/sistemas/fin_juego.c:26: cpct_clearScreen_f64 (0);
-   8509 21 00 40      [10]  123 	ld	hl, #0x4000
-   850C E5            [11]  124 	push	hl
-   850D 26 00         [ 7]  125 	ld	h, #0x00
-   850F E5            [11]  126 	push	hl
-   8510 26 C0         [ 7]  127 	ld	h, #0xc0
-   8512 E5            [11]  128 	push	hl
-   8513 CD 92 8B      [17]  129 	call	_cpct_memset_f64
-   8516 C9            [10]  130 	ret
+   8315 21 00 40      [10]  123 	ld	hl, #0x4000
+   8318 E5            [11]  124 	push	hl
+   8319 26 00         [ 7]  125 	ld	h, #0x00
+   831B E5            [11]  126 	push	hl
+   831C 26 C0         [ 7]  127 	ld	h, #0xc0
+   831E E5            [11]  128 	push	hl
+   831F CD 7C 8C      [17]  129 	call	_cpct_memset_f64
+   8322 C9            [10]  130 	ret
                             131 ;src/sistemas/fin_juego.c:28: void espera_pulsar(){
                             132 ;	---------------------------------
                             133 ; Function espera_pulsar
                             134 ; ---------------------------------
-   8517                     135 _espera_pulsar::
+   8323                     135 _espera_pulsar::
                             136 ;src/sistemas/fin_juego.c:29: a_jugar();}
-   8517 C3 2D 83      [10]  137 	jp  _a_jugar
+   8323 C3 39 81      [10]  137 	jp  _a_jugar
                             138 	.area _CODE
                             139 	.area _INITIALIZER
                             140 	.area _CABS (ABS)

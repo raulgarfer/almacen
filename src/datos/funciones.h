@@ -21,5 +21,4 @@ void pinta_marcador();
 void espera_pulsar();
 void fin_juego();
 void pinta_puntos();
-void baja();
-void sube();
+

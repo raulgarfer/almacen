@@ -166,6 +166,10 @@ _vacia_vaso::
 	inc	hl
 	inc	hl
 	ld	(hl), #0xff
+;src/sistemas/fisica.c:49: array[0].x  =   x_start_jugador;
+	inc	bc
+	ld	a, #0x0a
+	ld	(bc), a
 	ret
 	.area _CODE
 	.area _INITIALIZER

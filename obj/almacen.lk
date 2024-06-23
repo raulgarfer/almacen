@@ -7,7 +7,6 @@
 -k /home/papi/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
 -l /home/papi/cpctelera/cpctelera/cpctelera.lib
 -l z80
-obj/media/base.rel
 obj/media/granada.rel
 obj/media/rightpng.rel
 obj/media/pera.rel
@@ -27,6 +26,7 @@ obj/sistemas/pintar.rel
 obj/sistemas/puntuacion.rel
 obj/sistemas/teclado.rel
 obj/manager/menu.rel
+obj/media/base.rel
 obj/borrar_pantallas.rel
 obj/espera_tecla.rel
 obj/interrupciones.rel

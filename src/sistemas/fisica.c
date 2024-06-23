@@ -46,5 +46,6 @@ void vacia_vaso(){
         suma_puntos(pi);
         pinta_puntos();
         array[pi].vx=-1;
+        array[0].x  =   x_start_jugador;
         }
 }

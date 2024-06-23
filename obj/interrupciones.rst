@@ -5015,40 +5015,39 @@ Hexadecimal [16-Bits]
                               4 .globl cpct_setPALColour_asm
                               5 .macro siguiente_interrrupcion direccion
                               6 .globl cpct_setVideoMode_asm
-                              7 .globl cpct_akp_musicPlay_asm
-                              8 .globl _pinta_marcador
-                              9     ld hl,#direccion
-                             10     ld (0x39),hl
-                             11 .endm
-                             12 .macro numero_interrupcion numero 
-                             13     ld a,#numero
-                             14     ld (IR),a
-                             15 .endm
-                             16 
-   887F                      17 IR::
-   887F 00                   18 .db 0
-   8880                      19 _control_interrupciones::
-   8880 ED 56         [ 8]   20     im 1
-   8882 CD DD 8B      [17]   21     call cpct_waitVSYNC_asm
-   8885 76            [ 4]   22     halt
-   8886 76            [ 4]   23     halt
-   8887 CD DD 8B      [17]   24     call cpct_waitVSYNC_asm
-   888A F3            [ 4]   25     di
-   888B 3E C3         [ 7]   26     ld a,#0xc3
-   888D 32 38 00      [13]   27     ld (0x38),a
-   8890 21 98 88      [10]   28     ld hl,#int_1
-   8893 22 39 00      [16]   29     ld (0x39),hl
-   8896 FB            [ 4]   30     ei 
-   8897 C9            [10]   31 ret
-   8898                      32 int_1::
-   0019                      33     cpctm_push af,bc,hl
+                              7 .globl _pinta_marcador
+                              8     ld hl,#direccion
+                              9     ld (0x39),hl
+                             10 .endm
+                             11 .macro numero_interrupcion numero 
+                             12     ld a,#numero
+                             13     ld (IR),a
+                             14 .endm
+                             15 
+   88AF                      16 IR::
+   88AF 00                   17 .db 0
+   88B0                      18 _control_interrupciones::
+   88B0 ED 56         [ 8]   19     im 1
+   88B2 CD C7 8C      [17]   20     call cpct_waitVSYNC_asm
+   88B5 76            [ 4]   21     halt
+   88B6 76            [ 4]   22     halt
+   88B7 CD C7 8C      [17]   23     call cpct_waitVSYNC_asm
+   88BA F3            [ 4]   24     di
+   88BB 3E C3         [ 7]   25     ld a,#0xc3
+   88BD 32 38 00      [13]   26     ld (0x38),a
+   88C0 21 C8 88      [10]   27     ld hl,#int_1
+   88C3 22 39 00      [16]   28     ld (0x39),hl
+   88C6 FB            [ 4]   29     ei 
+   88C7 C9            [10]   30 ret
+   88C8                      31 int_1::
+   0019                      32     cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   8898 F5            [11]    3    push af
+   88C8 F5            [11]    3    push af
                      0001     4    .if v-1
-   8899 C5            [11]    5    push bc
+   88C9 C5            [11]    5    push bc
                      0001     6    .if v-2
-   889A E5            [11]    7    push hl
+   88CA E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5063,32 +5062,30 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   001C                      34         numero_interrupcion 1
-   889B 3E 01         [ 7]    1     ld a,#1
-   889D 32 7F 88      [13]    2     ld (IR),a
+   001C                      33         numero_interrupcion 1
+   88CB 3E 01         [ 7]    1     ld a,#1
+   88CD 32 AF 88      [13]    2     ld (IR),a
+   0021                      34         siguiente_interrrupcion int_2
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
 Hexadecimal [16-Bits]
 
 
 
-   0021                      35         siguiente_interrrupcion int_2
                               1 .globl cpct_setVideoMode_asm
-                              2 .globl cpct_akp_musicPlay_asm
-                              3 .globl _pinta_marcador
-   88A0 21 B3 88      [10]    4     ld hl,#int_2
-   88A3 22 39 00      [16]    5     ld (0x39),hl
-   88A6 2E 01         [ 7]   36     ld l,#1                             ;;pen
-   88A8 26 02         [ 7]   37     ld h,#2                             ;;ink
-   88AA CD D0 89      [17]   38     call cpct_setPALColour_asm  
-                             39         ;;call cpct_akp_musicPlay_asm
-   002E                      40      cpctm_pop hl,bc,af
+                              2 .globl _pinta_marcador
+   88D0 21 E3 88      [10]    3     ld hl,#int_2
+   88D3 22 39 00      [16]    4     ld (0x39),hl
+   88D6 2E 01         [ 7]   35     ld l,#1                             ;;pen
+   88D8 26 02         [ 7]   36     ld h,#2                             ;;ink
+   88DA CD 15 8A      [17]   37     call cpct_setPALColour_asm  
+   002E                      38     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   88AD E1            [10]    3    pop hl
+   88DD E1            [10]    3    pop hl
                      0001     4    .if v-1
-   88AE C1            [10]    5    pop bc
+   88DE C1            [10]    5    pop bc
                      0001     6    .if v-2
-   88AF F1            [10]    7    pop af
+   88DF F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5103,17 +5100,17 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   88B0 FB            [ 4]   41     ei
-   88B1 ED 4D         [14]   42 reti 
-   88B3                      43 int_2::
-   0034                      44    cpctm_push af,bc,hl
+   88E0 FB            [ 4]   39     ei
+   88E1 ED 4D         [14]   40 reti 
+   88E3                      41 int_2::
+   0034                      42    cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   88B3 F5            [11]    3    push af
+   88E3 F5            [11]    3    push af
                      0001     4    .if v-1
-   88B4 C5            [11]    5    push bc
+   88E4 C5            [11]    5    push bc
                      0001     6    .if v-2
-   88B5 E5            [11]    7    push hl
+   88E5 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5126,30 +5123,32 @@ Hexadecimal [16-Bits]
                              17    .else
                              18    .mexit
                              19    .endif
+                     0001    20    .else
+                             21    .mexit
+   0037                      43         numero_interrupcion 2
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
 
 
-                     0001    20    .else
-                             21    .mexit
-   0037                      45         numero_interrupcion 2
-   88B6 3E 02         [ 7]    1     ld a,#2
-   88B8 32 7F 88      [13]    2     ld (IR),a
-   003C                      46         siguiente_interrrupcion int_3
+   88E6 3E 02         [ 7]    1     ld a,#2
+   88E8 32 AF 88      [13]    2     ld (IR),a
+   003C                      44         siguiente_interrrupcion int_3
                               1 .globl cpct_setVideoMode_asm
-                              2 .globl cpct_akp_musicPlay_asm
-                              3 .globl _pinta_marcador
-   88BB 21 C7 88      [10]    4     ld hl,#int_3
-   88BE 22 39 00      [16]    5     ld (0x39),hl
-   0042                      47     cpctm_pop hl,bc,af
+                              2 .globl _pinta_marcador
+   88EB 21 FE 88      [10]    3     ld hl,#int_3
+   88EE 22 39 00      [16]    4     ld (0x39),hl
+   88F1 2E 01         [ 7]   45     ld l,#1                             ;;pen
+   88F3 26 03         [ 7]   46     ld h,#3                             ;;ink
+   88F5 CD 15 8A      [17]   47     call cpct_setPALColour_asm  
+   0049                      48     cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   88C1 E1            [10]    3    pop hl
+   88F8 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   88C2 C1            [10]    5    pop bc
+   88F9 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   88C3 F1            [10]    7    pop af
+   88FA F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5164,17 +5163,17 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   88C4 FB            [ 4]   48     ei
-   88C5 ED 4D         [14]   49 reti
-   88C7                      50 int_3::
-   0048                      51    cpctm_push af,bc,hl
+   88FB FB            [ 4]   49     ei
+   88FC ED 4D         [14]   50 reti
+   88FE                      51 int_3::
+   004F                      52    cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   88C7 F5            [11]    3    push af
+   88FE F5            [11]    3    push af
                      0001     4    .if v-1
-   88C8 C5            [11]    5    push bc
+   88FF C5            [11]    5    push bc
                      0001     6    .if v-2
-   88C9 E5            [11]    7    push hl
+   8900 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
@@ -5186,35 +5185,34 @@ Hexadecimal [16-Bits]
                              16    .endif
                              17    .else
                              18    .mexit
+                             19    .endif
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
 
 
-                             19    .endif
                      0001    20    .else
                              21    .mexit
-   004B                      52         numero_interrupcion 3
-   88CA 3E 03         [ 7]    1     ld a,#3
-   88CC 32 7F 88      [13]    2     ld (IR),a
-   0050                      53         siguiente_interrrupcion int_4
+   0052                      53         numero_interrupcion 3
+   8901 3E 03         [ 7]    1     ld a,#3
+   8903 32 AF 88      [13]    2     ld (IR),a
+   0057                      54         siguiente_interrrupcion int_4
                               1 .globl cpct_setVideoMode_asm
-                              2 .globl cpct_akp_musicPlay_asm
-                              3 .globl _pinta_marcador
-   88CF 21 E2 88      [10]    4     ld hl,#int_4
-   88D2 22 39 00      [16]    5     ld (0x39),hl
-   88D5 2E 01         [ 7]   54            ld l,#1                             ;;pen
-   88D7 26 04         [ 7]   55     ld h,#4                             ;;ink
-   88D9 CD D0 89      [17]   56     call cpct_setPALColour_asm
-                             57     
-   005D                      58       cpctm_pop hl,bc,af
+                              2 .globl _pinta_marcador
+   8906 21 19 89      [10]    3     ld hl,#int_4
+   8909 22 39 00      [16]    4     ld (0x39),hl
+   890C 2E 01         [ 7]   55     ld l,#1                             ;;pen
+   890E 26 04         [ 7]   56     ld h,#4                             ;;ink
+   8910 CD 15 8A      [17]   57     call cpct_setPALColour_asm
+                             58     
+   0064                      59       cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   88DC E1            [10]    3    pop hl
+   8913 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   88DD C1            [10]    5    pop bc
+   8914 C1            [10]    5    pop bc
                      0001     6    .if v-2
-   88DE F1            [10]    7    pop af
+   8915 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5229,53 +5227,56 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   88DF FB            [ 4]   59     ei
-   88E0 ED 4D         [14]   60 reti
-   88E2                      61 int_4::
-   0063                      62   cpctm_push af,bc,hl
+   8916 FB            [ 4]   60     ei
+   8917 ED 4D         [14]   61 reti
+   8919                      62 int_4::
+   006A                      63   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   88E2 F5            [11]    3    push af
+   8919 F5            [11]    3    push af
                      0001     4    .if v-1
-   88E3 C5            [11]    5    push bc
+   891A C5            [11]    5    push bc
                      0001     6    .if v-2
-   88E4 E5            [11]    7    push hl
+   891B E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
                              11    push 
                              12    .if v-5
                              13    push 
+                             14    .else
+                             15    .mexit
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 100.
 Hexadecimal [16-Bits]
 
 
 
-                             14    .else
-                             15    .mexit
                              16    .endif
                              17    .else
                              18    .mexit
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   0066                      63         numero_interrupcion 4
-   88E5 3E 04         [ 7]    1     ld a,#4
-   88E7 32 7F 88      [13]    2     ld (IR),a
-   006B                      64         siguiente_interrrupcion int_5
+   006D                      64         numero_interrupcion 4
+   891C 3E 04         [ 7]    1     ld a,#4
+   891E 32 AF 88      [13]    2     ld (IR),a
+   0072                      65         siguiente_interrrupcion int_5
                               1 .globl cpct_setVideoMode_asm
-                              2 .globl cpct_akp_musicPlay_asm
-                              3 .globl _pinta_marcador
-   88EA 21 F6 88      [10]    4     ld hl,#int_5
-   88ED 22 39 00      [16]    5     ld (0x39),hl
-   0071                      65      cpctm_pop hl,bc,af
+                              2 .globl _pinta_marcador
+   8921 21 34 89      [10]    3     ld hl,#int_5
+   8924 22 39 00      [16]    4     ld (0x39),hl
+   8927 2E 01         [ 7]   66     ld l,#1                             ;;pen
+   8929 26 05         [ 7]   67     ld h,#5                             ;;ink
+   892B CD 15 8A      [17]   68     call cpct_setPALColour_asm
+                             69     
+   007F                      70      cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   88F0 E1            [10]    3    pop hl
+   892E E1            [10]    3    pop hl
                      0001     4    .if v-1
-   88F1 C1            [10]    5    pop bc
+   892F C1            [10]    5    pop bc
                      0001     6    .if v-2
-   88F2 F1            [10]    7    pop af
+   8930 F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5290,87 +5291,26 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-                             66     
-   88F3 FB            [ 4]   67     ei
-   88F4 ED 4D         [14]   68 reti
-   88F6                      69 int_5::
-   0077                      70   cpctm_push af,bc,hl
+                             71     
+   8931 FB            [ 4]   72     ei
+   8932 ED 4D         [14]   73 reti
+   8934                      74 int_5::
+   0085                      75   cpctm_push af,bc,hl
                      0003     1    .narg v
                      0001     2    .if v
-   88F6 F5            [11]    3    push af
+   8934 F5            [11]    3    push af
                      0001     4    .if v-1
-   88F7 C5            [11]    5    push bc
+   8935 C5            [11]    5    push bc
                      0001     6    .if v-2
-   88F8 E5            [11]    7    push hl
+   8936 E5            [11]    7    push hl
                      0000     8    .if v-3
                               9    push 
                              10    .if v-4
-                             11    push 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-                             12    .if v-5
-                             13    push 
-                             14    .else
-                             15    .mexit
-                             16    .endif
-                             17    .else
-                             18    .mexit
-                             19    .endif
-                     0001    20    .else
-                             21    .mexit
-   007A                      71         numero_interrupcion 5
-   88F9 3E 05         [ 7]    1     ld a,#5
-   88FB 32 7F 88      [13]    2     ld (IR),a
-   007F                      72         siguiente_interrrupcion int_6
-                              1 .globl cpct_setVideoMode_asm
-                              2 .globl cpct_akp_musicPlay_asm
-                              3 .globl _pinta_marcador
-   88FE 21 0A 89      [10]    4     ld hl,#int_6
-   8901 22 39 00      [16]    5     ld (0x39),hl
-   0085                      73      cpctm_pop hl,bc,af
-                     0003     1    .narg v
-                     0001     2    .if v
-   8904 E1            [10]    3    pop hl
-                     0001     4    .if v-1
-   8905 C1            [10]    5    pop bc
-                     0001     6    .if v-2
-   8906 F1            [10]    7    pop af
-                     0000     8    .if v-3
-                              9    pop 
-                             10    .if v-4
-                             11    pop 
-                             12    .if v-5
-                             13    pop 
-                             14    .else
-                             15    .mexit
-                             16    .endif
-                             17    .else
-                             18    .mexit
-                             19    .endif
-                     0001    20    .else
-                             21    .mexit
-   8907 FB            [ 4]   74     ei
-   8908 ED 4D         [14]   75 reti
-   890A                      76 int_6::
-   008B                      77   cpctm_push af,bc,hl
-                     0003     1    .narg v
-                     0001     2    .if v
-   890A F5            [11]    3    push af
-                     0001     4    .if v-1
-   890B C5            [11]    5    push bc
-                     0001     6    .if v-2
-   890C E5            [11]    7    push hl
-                     0000     8    .if v-3
-                              9    push 
-                             10    .if v-4
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
-Hexadecimal [16-Bits]
-
-
-
                              11    push 
                              12    .if v-5
                              13    push 
@@ -5382,27 +5322,25 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   008E                      78         numero_interrupcion 6
-   890D 3E 06         [ 7]    1     ld a,#6
-   890F 32 7F 88      [13]    2     ld (IR),a
-   0093                      79         siguiente_interrrupcion int_1
+   0088                      76         numero_interrupcion 5
+   8937 3E 05         [ 7]    1     ld a,#5
+   8939 32 AF 88      [13]    2     ld (IR),a
+   008D                      77         siguiente_interrrupcion int_6
                               1 .globl cpct_setVideoMode_asm
-                              2 .globl cpct_akp_musicPlay_asm
-                              3 .globl _pinta_marcador
-   8912 21 98 88      [10]    4     ld hl,#int_1
-   8915 22 39 00      [16]    5     ld (0x39),hl
-   8918 2E 01         [ 7]   80     ld l,#1                             ;;pen
-   891A 26 03         [ 7]   81     ld h,#3                             ;;ink
-   891C CD D0 89      [17]   82     call cpct_setPALColour_asm
-                             83     
-   00A0                      84     cpctm_pop hl,bc,af
+                              2 .globl _pinta_marcador
+   893C 21 4F 89      [10]    3     ld hl,#int_6
+   893F 22 39 00      [16]    4     ld (0x39),hl
+   8942 2E 01         [ 7]   78     ld l,#1                             ;;pen
+   8944 26 06         [ 7]   79     ld h,#6                             ;;ink
+   8946 CD 15 8A      [17]   80     call cpct_setPALColour_asm
+   009A                      81      cpctm_pop hl,bc,af
                      0003     1    .narg v
                      0001     2    .if v
-   891F E1            [10]    3    pop hl
+   8949 E1            [10]    3    pop hl
                      0001     4    .if v-1
-   8920 C1            [10]    5    pop bc
+   894A C1            [10]    5    pop bc
                      0001     6    .if v-2
-   8921 F1            [10]    7    pop af
+   894B F1            [10]    7    pop af
                      0000     8    .if v-3
                               9    pop 
                              10    .if v-4
@@ -5417,5 +5355,69 @@ Hexadecimal [16-Bits]
                              19    .endif
                      0001    20    .else
                              21    .mexit
-   8922 FB            [ 4]   85     ei
-   8923 ED 4D         [14]   86 reti
+   894C FB            [ 4]   82     ei
+   894D ED 4D         [14]   83 reti
+   894F                      84 int_6::
+   00A0                      85   cpctm_push af,bc,hl
+                     0003     1    .narg v
+                     0001     2    .if v
+   894F F5            [11]    3    push af
+                     0001     4    .if v-1
+   8950 C5            [11]    5    push bc
+                     0001     6    .if v-2
+   8951 E5            [11]    7    push hl
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
+Hexadecimal [16-Bits]
+
+
+
+                     0000     8    .if v-3
+                              9    push 
+                             10    .if v-4
+                             11    push 
+                             12    .if v-5
+                             13    push 
+                             14    .else
+                             15    .mexit
+                             16    .endif
+                             17    .else
+                             18    .mexit
+                             19    .endif
+                     0001    20    .else
+                             21    .mexit
+   00A3                      86         numero_interrupcion 6
+   8952 3E 06         [ 7]    1     ld a,#6
+   8954 32 AF 88      [13]    2     ld (IR),a
+   00A8                      87         siguiente_interrrupcion int_1
+                              1 .globl cpct_setVideoMode_asm
+                              2 .globl _pinta_marcador
+   8957 21 C8 88      [10]    3     ld hl,#int_1
+   895A 22 39 00      [16]    4     ld (0x39),hl
+   895D 2E 01         [ 7]   88     ld l,#1                             ;;pen
+   895F 26 07         [ 7]   89     ld h,#7                             ;;ink
+   8961 CD 15 8A      [17]   90     call cpct_setPALColour_asm
+                             91     
+   00B5                      92     cpctm_pop hl,bc,af
+                     0003     1    .narg v
+                     0001     2    .if v
+   8964 E1            [10]    3    pop hl
+                     0001     4    .if v-1
+   8965 C1            [10]    5    pop bc
+                     0001     6    .if v-2
+   8966 F1            [10]    7    pop af
+                     0000     8    .if v-3
+                              9    pop 
+                             10    .if v-4
+                             11    pop 
+                             12    .if v-5
+                             13    pop 
+                             14    .else
+                             15    .mexit
+                             16    .endif
+                             17    .else
+                             18    .mexit
+                             19    .endif
+                     0001    20    .else
+                             21    .mexit
+   8967 FB            [ 4]   93     ei
+   8968 ED 4D         [14]   94 reti

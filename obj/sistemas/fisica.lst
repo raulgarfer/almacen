@@ -166,7 +166,11 @@
    007D 23            [ 6]  166 	inc	hl
    007E 23            [ 6]  167 	inc	hl
    007F 36 FF         [10]  168 	ld	(hl), #0xff
-   0081 C9            [10]  169 	ret
-                            170 	.area _CODE
-                            171 	.area _INITIALIZER
-                            172 	.area _CABS (ABS)
+                            169 ;src/sistemas/fisica.c:49: array[0].x  =   x_start_jugador;
+   0081 03            [ 6]  170 	inc	bc
+   0082 3E 0A         [ 7]  171 	ld	a, #0x0a
+   0084 02            [ 7]  172 	ld	(bc), a
+   0085 C9            [10]  173 	ret
+                            174 	.area _CODE
+                            175 	.area _INITIALIZER
+                            176 	.area _CABS (ABS)
